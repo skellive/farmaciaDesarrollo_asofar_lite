@@ -16,7 +16,7 @@ public class Conexion {
             Class.forName("com.mysql.jdbc.Driver");
             //conn = DriverManager.getConnection("jdbc:mysql://"+iplocal+":3306/moduloprueba", "root", "rootpassword");
 
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/moduloprueba", "root", "1234");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/moduloprueba", "root", "");
 
             System.out.println("Conectado");
 
