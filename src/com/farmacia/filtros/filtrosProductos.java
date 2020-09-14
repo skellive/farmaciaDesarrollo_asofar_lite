@@ -13,7 +13,7 @@ public class filtrosProductos {
     
     public String comboProductoCodigo (){
         String query="";
-        query="SELECT p.`id_productos`,p.receta,p.codigo_barras,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
+        query="SELECT p.`id_productos`,p.unidades,p.receta,p.codigo_barras,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
             "      p.`id_presentacion`,e.`nombre`AS presentacion ,p.`id_marcas`,ma.`nombre` AS marca, p.id_usuario, p.iva , p.cantidad_minima\n" +
             "      FROM `productos` p\n" +
             "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n" +
@@ -25,7 +25,7 @@ public class filtrosProductos {
     
     }
     public String comboProductoNombre (){
-        String query="SELECT p.`id_productos`,p.receta,p.codigo_barras,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
+        String query="SELECT p.`id_productos`,p.unidades,p.receta,p.codigo_barras,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
             "      p.`id_presentacion`,e.`nombre`AS presentacion ,p.`id_marcas`,ma.`nombre` AS marca, p.id_usuario, p.iva , p.cantidad_minima\n" +
             "      FROM `productos` p\n" +
             "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n" +
@@ -38,7 +38,7 @@ public class filtrosProductos {
     }
     public String comboProductoTipo (){
         String query="";
-        query="SELECT p.`id_productos`,p.codigo_barras,p.receta,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
+        query="SELECT p.`id_productos`,p.unidades,p.codigo_barras,p.receta,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
             "      p.`id_presentacion`,e.`nombre`AS presentacion ,p.`id_marcas`,ma.`nombre` AS marca, p.id_usuario, p.iva , p.cantidad_minima\n" +
             "      FROM `productos` p\n" +
             "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n" +
@@ -51,7 +51,7 @@ public class filtrosProductos {
     }
     public String comboProductoMedida (){
         String query="";
-        query="SELECT p.`id_productos`,p.codigo_barras,p.receta,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
+        query="SELECT p.`id_productos`,p.unidades,p.codigo_barras,p.receta,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
             "      p.`id_presentacion`,e.`nombre`AS presentacion ,p.`id_marcas`,ma.`nombre` AS marca, p.id_usuario, p.iva , p.cantidad_minima\n" +
             "      FROM `productos` p\n" +
             "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n" +
@@ -64,7 +64,7 @@ public class filtrosProductos {
     }
     public String comboProductoEnvase (){
         String query="";
-        query="SELECT p.`id_productos`,p.codigo_barras,p.receta,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
+        query="SELECT p.`id_productos`,p.unidades,p.codigo_barras,p.receta,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
             "      p.`id_presentacion`,e.`nombre`AS presentacion ,p.`id_marcas`,ma.`nombre` AS marca, p.id_usuario, p.iva , p.cantidad_minima\n" +
             "      FROM `productos` p\n" +
             "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n" +
@@ -77,7 +77,7 @@ public class filtrosProductos {
     }
     public String comboProductoMarca (){
         String query="";
-        query="SELECT p.`id_productos`,p.codigo_barras,p.receta,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
+        query="SELECT p.`id_productos`,p.unidades,p.codigo_barras,p.receta,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
             "      p.`id_presentacion`,e.`nombre`AS presentacion ,p.`id_marcas`,ma.`nombre` AS marca, p.id_usuario, p.iva , p.cantidad_minima\n" +
             "      FROM `productos` p\n" +
             "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n" +
@@ -90,7 +90,7 @@ public class filtrosProductos {
     }
     public String comboProductoTodo (){
         String query="";
-        query="SELECT p.`id_productos`,p.codigo_barras,p.receta,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
+        query="SELECT p.`id_productos`,p.unidades,p.codigo_barras,p.receta,p.`nombre`,p.`descripcion`,p.`fecha_registro`,p.`peso`,p.`id_tipo`,t.`nombre`AS tipo,p.`id_medidas`,m.`nombre_medida` AS medida,\n" +
             "      p.`id_presentacion`,e.`nombre`AS presentacion ,p.`id_marcas`,ma.`nombre` AS marca, p.id_usuario, p.iva , p.cantidad_minima\n" +
             "      FROM `productos` p\n" +
             "      JOIN `tipo` t ON t.`id_tipo`= p.`id_tipo` \n" +

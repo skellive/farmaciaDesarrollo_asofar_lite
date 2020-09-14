@@ -2122,6 +2122,7 @@ public class CRUD {
             prodProAlm.setString(10, obj.getIva());
             prodProAlm.setLong(11, obj.getCantidad_minima());
             prodProAlm.setString(12, obj.getReceta());
+            System.out.println(" vamos "+ obj.getUnidades());
             prodProAlm.setLong(13, obj.getUnidades());
             prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
