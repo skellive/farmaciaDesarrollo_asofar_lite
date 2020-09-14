@@ -16,6 +16,7 @@ import java.awt.Toolkit;
 import sistemafarmacia.Fondo;
 import sistemafarmacia.VariablesFunciones;
 import com.farmacia.entities1.Usuario;
+import com.farmacia.view.excel.subirExcelBD;
 
 import com.farmacia.views.Reportes.Reporte_Compra;
 import com.farmacia.views.Reportes.Reporte_Productos_Compras;
@@ -158,6 +159,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmReporteCompra = new javax.swing.JMenuItem();
         jmVentaReporte = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
+        mnuAyuda1 = new javax.swing.JMenu();
+        mnuAcerca1 = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
         mnuAcerca = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -568,6 +571,25 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu8);
 
+        mnuAyuda1.setText("EXCEL");
+        mnuAyuda1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+
+        mnuAcerca1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuAcerca1.setText("SUBIR EXCEL");
+        mnuAcerca1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuAcerca1MouseClicked(evt);
+            }
+        });
+        mnuAcerca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAcerca1ActionPerformed(evt);
+            }
+        });
+        mnuAyuda1.add(mnuAcerca1);
+
+        jMenuBar1.add(mnuAyuda1);
+
         mnuAyuda.setText("AYUDA");
         mnuAyuda.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
@@ -839,6 +861,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_mnuAcercaMouseClicked
 
+    private void mnuAcerca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAcerca1ActionPerformed
+        subirExcelBD seb = new subirExcelBD();
+        seb.setVisible(true);
+    }//GEN-LAST:event_mnuAcerca1ActionPerformed
+
+    private void mnuAcerca1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAcerca1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuAcerca1MouseClicked
+
     public Listar_usuario getUsuario() {
         return objUsuario;
     }
@@ -924,7 +955,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblPrivilegio;
     private javax.swing.JMenu menuProducto;
     private javax.swing.JMenuItem mnuAcerca;
+    private javax.swing.JMenuItem mnuAcerca1;
     private javax.swing.JMenu mnuAyuda;
+    private javax.swing.JMenu mnuAyuda1;
     private javax.swing.JMenuItem mnuCliente;
     private javax.swing.JMenuItem mnuCliente1;
     private javax.swing.JMenuItem mnuLaboratorio;
