@@ -638,10 +638,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     public void llenarProveedor() {
         ArrayList<ListarJoinProveedor> listaPro = crud.listarProveedores(Long.valueOf("1"));
         proveedor = buscarObjeto(objCabecera.getCedula_ruc(), listaPro);
@@ -662,10 +659,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         } else {
         }
     }
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
     private void jLabel10MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseDragged
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
@@ -735,7 +729,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                     txt_Numero.getText());
             tablac.add(tabla1);
         }
-        try {
+    /*    try {
 <<<<<<< Updated upstream
             String dir = System.getProperty("user.dir") + "/Reportes/" + "Reporte_Compra.jrxml";
 =======
@@ -752,10 +746,10 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
             viewer.setFitWidthZoomRatio();
         } catch (JRException ex) {
             Logger.getLogger(Reporte_DetalleCompra.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }//GEN-LAST:event_btnReporteActionPerformed
 
-<<<<<<< Updated upstream
+
     private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
         // TODO add your handling code here:
         TotalDescuento();
@@ -908,8 +902,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         }
     }
 
-=======
->>>>>>> Stashed changes
+
     /**
      * @param args the command line arguments
      */
