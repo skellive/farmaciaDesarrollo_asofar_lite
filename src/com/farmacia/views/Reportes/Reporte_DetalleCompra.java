@@ -10,6 +10,7 @@ import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Conexion;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.fecha.Fecha;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedor;
@@ -35,10 +36,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -84,17 +88,26 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
     ListarJoinProveedor proveedor = null;
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
+    int dia, mes, ano;
 
+    /*Fecha Date; 
+
+     System.out.println(Date);
+     String strDateFormat = "hh: mm: ss a dd-MMM-aaaa"; // El formato de fecha está especificado  
+     SimpleDateFormat objSDF = new SimpleDateFormat(strDateFormat); // La cadena de formato de fecha se pasa como un argumento al objeto 
+     System.out.println (objSDF.format(objDate));*/
     /**
      * Creates new form Reporte_DetalleCompra
      */
     public Reporte_DetalleCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        //this.Date = new Date();
         initComponents();
     }
 
     public Reporte_DetalleCompra(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera Obj) {
         super(parent, modal);
+        //this.Date = new Date();
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
@@ -767,10 +780,10 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_txtIvaActionPerformed
 
     private void btnReporte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporte1ActionPerformed
-            reporte();
+        reporte();
     }//GEN-LAST:event_btnReporte1ActionPerformed
 
-    public void reporte(){
+    public void reporte() {
 
         int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
 
@@ -847,18 +860,18 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 datosEstilo.setBorderRight(BorderStyle.THIN);
                 datosEstilo.setBorderBottom(BorderStyle.THIN);
 
-                ps = conn.prepareStatement("SELECT dnp.`id_detalle_nota_pedidos`, concat(t.`nombre`, ' ', pro.`nombre`, ' en ',en.`nombre`, ' en ',me.`nombre_medida`) AS producto,  m.`nombre` AS marca,\n" +
-"                        dnp.`cantidad`,dnp.`precio`,dnp.`descuento`,dnp.`iva`,dnp.`total`\n" +
-"                        FROM `detalle_nota_pedidos` dnp\n" +
-"                        JOIN `cabecera_nota_pedidos` cnp ON cnp.`id_cabecera_nota_pedidos`= dnp.`id_cabecera_nota_pedidos`\n" +
-"                        JOIN `precios` pre ON pre.`id_precio` = dnp.`id_precio`\n" +
-"                        JOIN `productos` pro ON pro.`id_productos`= pre.`id_producto`\n" +
-"                        JOIN `marcas` m ON m.`id_marcas` = pro.`id_marcas`\n" +
-"                        JOIN `tipo` t ON t.`id_tipo` = pro.`id_tipo`\n" +
-"                        JOIN `presentaciones` en ON en.`idPresentaciones`= pro.`id_presentacion`\n" +
-"                        JOIN `medidas` me ON me.`id_medidas`= pro.`id_medidas`\n" +
-"                        WHERE dnp.`id_cabecera_nota_pedidos`= "+id_cab+"\n" +
-"                        ORDER BY dnp.`id_cabecera_nota_pedidos`");
+                ps = conn.prepareStatement("SELECT dnp.`id_detalle_nota_pedidos`, concat(t.`nombre`, ' ', pro.`nombre`, ' en ',en.`nombre`, ' en ',me.`nombre_medida`) AS producto,  m.`nombre` AS marca,\n"
+                        + "                        dnp.`cantidad`,dnp.`precio`,dnp.`descuento`,dnp.`iva`,dnp.`total`\n"
+                        + "                        FROM `detalle_nota_pedidos` dnp\n"
+                        + "                        JOIN `cabecera_nota_pedidos` cnp ON cnp.`id_cabecera_nota_pedidos`= dnp.`id_cabecera_nota_pedidos`\n"
+                        + "                        JOIN `precios` pre ON pre.`id_precio` = dnp.`id_precio`\n"
+                        + "                        JOIN `productos` pro ON pro.`id_productos`= pre.`id_producto`\n"
+                        + "                        JOIN `marcas` m ON m.`id_marcas` = pro.`id_marcas`\n"
+                        + "                        JOIN `tipo` t ON t.`id_tipo` = pro.`id_tipo`\n"
+                        + "                        JOIN `presentaciones` en ON en.`idPresentaciones`= pro.`id_presentacion`\n"
+                        + "                        JOIN `medidas` me ON me.`id_medidas`= pro.`id_medidas`\n"
+                        + "                        WHERE dnp.`id_cabecera_nota_pedidos`= " + id_cab + "\n"
+                        + "                        ORDER BY dnp.`id_cabecera_nota_pedidos`");
                 rs = ps.executeQuery();
 
                 int numCol = rs.getMetaData().getColumnCount();
@@ -894,7 +907,11 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
 
                 sheet.setZoom(120);
 
-                FileOutputStream fileout = new FileOutputStream("Reporte.xlsx");
+                dia = Integer.toString(c.get(Calendar.DATE));
+                mes = Integer.toString(c.get(Calendar.MONTH));
+                ano = Integer.toString(c.get(Calendar.YEAR));
+
+                FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporte.xlsx");
                 book.write(fileout);
                 fileout.close();
 

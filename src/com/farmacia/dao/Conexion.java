@@ -20,7 +20,7 @@ public class Conexion {
 
             conn = DriverManager.getConnection("jdbc:mysql://mysql-asofar.alwaysdata.net:3306/asofar_moduloprueba", "asofar", "asofarLITEbase");
 
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/moduloprueba", "root", "");
+            //conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/moduloprueba", "root", "");
             System.out.println("Conectado");
 
         } catch (ClassNotFoundException ex) {
