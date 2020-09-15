@@ -17,6 +17,9 @@ public class Conexion {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             //conn = DriverManager.getConnection("jdbc:mysql://"+iplocal+":3306/moduloprueba", "root", "rootpassword");
+
+            conn = DriverManager.getConnection("jdbc:mysql://mysql-asofar.alwaysdata.net:3306/asofar_moduloprueba", "asofar", "asofarLITEbase");
+
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/moduloprueba", "root", "");
             System.out.println("Conectado");
 
