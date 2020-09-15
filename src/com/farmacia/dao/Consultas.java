@@ -24,13 +24,14 @@ import java.util.logging.Logger;
  */
 public class Consultas {
 
-   // Conectar con = new Conectar();
+    // Conectar con = new Conectar();
     Connection conect = null;
     java.sql.Statement st = null;
     ResultSet rs = null;
     String query;
     java.sql.Statement jss = null;
     Conexion con = new Conexion();
+
     public ArrayList<Laboratorio> listarLabo(String Query) {
         ArrayList<Laboratorio> lista = new ArrayList<Laboratorio>();
         //conect=con.conectar(base);
@@ -54,17 +55,13 @@ public class Consultas {
         }
         return lista;
     }
-    
-    public  ArrayList<Clientes> listarClientes(String query) {
+
+    public ArrayList<Clientes> listarClientes(String query) {
         ArrayList<Clientes> lista = new ArrayList();
-        try {
-            conect = con.conectar();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        conect = con.conectar();
 
         try {
-            
+
             jss = conect.createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
@@ -78,7 +75,7 @@ public class Consultas {
 
         try {
             while (rs.next()) {
-                
+
                 Clientes objeto = EntidadesMappers.getClienteFromResultSet(rs);
                 lista.add(objeto);
             }
@@ -94,16 +91,13 @@ public class Consultas {
 
         return lista;
     }
-    public ArrayList<Telefono_Cliente> listarTelefonoCliente( String query){
+
+    public ArrayList<Telefono_Cliente> listarTelefonoCliente(String query) {
         ArrayList<Telefono_Cliente> telf = new ArrayList();
-        try {
-            conect = con.conectar();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        conect = con.conectar();
         try {
             jss = conect.createStatement();
-                    } catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
@@ -112,8 +106,8 @@ public class Consultas {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            while(rs.next()){
-                Telefono_Cliente objeto = EntidadesMappers.getTelefonoClienteFromResultSet(rs);    
+            while (rs.next()) {
+                Telefono_Cliente objeto = EntidadesMappers.getTelefonoClienteFromResultSet(rs);
                 telf.add(objeto);
             }
         } catch (SQLException ex) {
@@ -124,15 +118,12 @@ public class Consultas {
         } catch (SQLException ex) {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return telf;
+        return telf;
     }
-    public ArrayList<Correo_Cliente> listarCorreoCliente(String query){
+
+    public ArrayList<Correo_Cliente> listarCorreoCliente(String query) {
         ArrayList<Correo_Cliente> cor = new ArrayList();
-        try {
-            conect = con.conectar();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        conect = con.conectar();
         try {
             jss = conect.createStatement();
         } catch (SQLException ex) {
@@ -144,7 +135,7 @@ public class Consultas {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            while(rs.next()){
+            while (rs.next()) {
                 Correo_Cliente coo = EntidadesMappers.getCorreoClientesFromResultSet(rs);
                 cor.add(coo);
             }
@@ -156,19 +147,15 @@ public class Consultas {
         } catch (SQLException ex) {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return cor;
+        return cor;
     }
-    
-    public ArrayList<Precios> listarPrecioCompra(String query){
+
+    public ArrayList<Precios> listarPrecioCompra(String query) {
         ArrayList<Precios> telf = new ArrayList();
-        try {
-            conect = con.conectar();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        conect = con.conectar();
         try {
             jss = conect.createStatement();
-                    } catch (SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
@@ -177,8 +164,8 @@ public class Consultas {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            while(rs.next()){
-                Precios objeto = EntidadesMappers.getPrecioCompraFromResultSet(rs);    
+            while (rs.next()) {
+                Precios objeto = EntidadesMappers.getPrecioCompraFromResultSet(rs);
                 telf.add(objeto);
             }
         } catch (SQLException ex) {
@@ -189,19 +176,19 @@ public class Consultas {
         } catch (SQLException ex) {
             Logger.getLogger(Consultas.class.getName()).log(Level.SEVERE, null, ex);
         }
-    return telf;
+        return telf;
     }
-    
-    public Precios listarPreciosProductos(String query){
+
+    public Precios listarPreciosProductos(String query) {
         Precios precios = null;
-       try {
+        try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             jss = conect.createStatement();
             rs = jss.executeQuery(query);
-            while(rs.next()){
-                precios = EntidadesMappers.getPreciosProductosFromResultSet(rs);    
-              }
+            while (rs.next()) {
+                precios = EntidadesMappers.getPreciosProductosFromResultSet(rs);
+            }
             conect.commit();
         } catch (Exception e) {
             try {
@@ -217,7 +204,7 @@ public class Consultas {
                 Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-    return precios;
+        return precios;
     }
-    
+
 }

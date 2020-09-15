@@ -122,7 +122,7 @@ public class CRUD {
                 st.executeUpdate(queryL.get(i));
             }
             conect.close();
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -179,8 +179,6 @@ public class CRUD {
             conect.close();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
 
@@ -197,8 +195,6 @@ public class CRUD {
             id = rs.getInt("cantidad");
             conect.close();
         } catch (SQLException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
@@ -217,8 +213,6 @@ public class CRUD {
             conect.close();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
 
@@ -235,8 +229,6 @@ public class CRUD {
             conect.close();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -250,8 +242,6 @@ public class CRUD {
             //}
             conect.close();
         } catch (SQLException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -267,8 +257,6 @@ public class CRUD {
             conect.close();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -282,8 +270,6 @@ public class CRUD {
             }
             conect.close();
         } catch (SQLException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
@@ -1625,7 +1611,7 @@ public class CRUD {
                 tp.add(tpp);
             }
             rs.close();
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tp;
@@ -1650,8 +1636,6 @@ public class CRUD {
             } catch (SQLException ex) {
                 Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1675,8 +1659,6 @@ public class CRUD {
             } catch (SQLException ex) {
                 Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1699,8 +1681,6 @@ public class CRUD {
             } catch (SQLException ex) {
                 Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1720,7 +1700,7 @@ public class CRUD {
                 tp.add(tpp);
             }
             rs.close();
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return tp;
@@ -1745,8 +1725,6 @@ public class CRUD {
             } catch (SQLException ex) {
                 Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1770,8 +1748,6 @@ public class CRUD {
             } catch (SQLException ex) {
                 Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -1794,8 +1770,6 @@ public class CRUD {
             } catch (SQLException ex) {
                 Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -2325,8 +2299,6 @@ public class CRUD {
             conect.close();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
 
@@ -2342,10 +2314,7 @@ public class CRUD {
             conect.close();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     public ArrayList<listarJoinProductosNotaPedidos> filtroBusquedaProductoNotaPedido(String query) {
@@ -3356,8 +3325,6 @@ public class CRUD {
             conect.close();
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
@@ -3951,7 +3918,7 @@ public class CRUD {
             rs.next();
             id = rs.getInt("cantidad");
             conect.close();
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id;
@@ -4396,8 +4363,6 @@ public class CRUD {
             conect.close();
         } catch (SQLException e) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, e);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return ruc;
     }
@@ -4412,7 +4377,7 @@ public class CRUD {
             rs.next();
             iva = rs.getDouble("iva");
             conect.close();
-        } catch (SQLException | ClassNotFoundException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return iva;
@@ -4703,8 +4668,6 @@ public class CRUD {
             conect.commit();
         } catch (SQLException e) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, e);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return valor;
     }
@@ -4843,8 +4806,6 @@ public class CRUD {
             conect.commit();
         } catch (SQLException e) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, e);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
         return valor;
     }
