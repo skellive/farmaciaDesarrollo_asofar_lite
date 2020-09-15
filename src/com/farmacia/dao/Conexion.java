@@ -15,15 +15,13 @@ public class Conexion {
         String claves = "*ISTG.2007!";
         String clavel = "itsgg";
         try {
-            try {
-                Class.forName("com.mysql.jdbc.Driver");
-                //conn = DriverManager.getConnection("jdbc:mysql://"+iplocal+":3306/moduloprueba", "root", "rootpassword");
-                conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/moduloprueba", "root", "");
-                System.out.println("Conectado");
+            Class.forName("com.mysql.jdbc.Driver");
+            //conn = DriverManager.getConnection("jdbc:mysql://"+iplocal+":3306/moduloprueba", "root", "rootpassword");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/moduloprueba", "root", "");
+            System.out.println("Conectado");
 
-            } catch (ClassNotFoundException ex) {
-                Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
-            }
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
             System.out.println("Error de conexión: " + ex.getMessage());
         }

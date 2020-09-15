@@ -196,7 +196,7 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
 //            view.setVisible(true);
 //            setModal(true);
 
-        } catch (ClassNotFoundException | JRException ex) {
+        } catch (JRException ex) {
             Logger.getLogger(ImprimirOrdenVentas.class.getName()).log(Level.SEVERE, null, ex);
         }
 

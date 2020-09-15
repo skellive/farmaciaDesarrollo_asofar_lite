@@ -120,7 +120,7 @@ public final class Frm_CargarSistema extends javax.swing.JFrame {
                     FrmLogin fl = new FrmLogin();
                     fl.setVisible(true);
                 }
-            } catch (ClassNotFoundException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(Frm_CargarSistema.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

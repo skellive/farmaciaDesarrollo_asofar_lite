@@ -106,7 +106,6 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         Total();
         TotalIVA();
         TotalDescuento();
-        System.out.println(lista3);
     }
 
     public void TotalIVA() {
@@ -546,7 +545,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
         );
 
         btnReporte1.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        btnReporte1.setText("Excel");
+        btnReporte1.setText("EXCEL");
         btnReporte1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReporte1ActionPerformed(evt);
@@ -589,9 +588,9 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addGap(38, 38, 38)
                                 .addComponent(btnReporte1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
+                                .addGap(32, 32, 32)
                                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(260, 260, 260))))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -768,15 +767,10 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
     }//GEN-LAST:event_txtIvaActionPerformed
 
     private void btnReporte1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporte1ActionPerformed
-        // TODO add your handling code here:       
-        try {
             reporte();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Reporte_DetalleCompra.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_btnReporte1ActionPerformed
 
-    public void reporte() throws FileNotFoundException {
+    public void reporte(){
 
         int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
 
@@ -796,7 +790,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 anchor.setCol1(0);
                 anchor.setRow1(1);
                 Picture pict = draw.createPicture(anchor, imgIndex);
-                pict.resize(4, 5);
+                pict.resize(2, 5);
 
                 CellStyle tituloEstilo = book.createCellStyle();
                 tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
@@ -808,13 +802,13 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 tituloEstilo.setFont(fuenteTitulo);
 
                 Row filaTitulo = sheet.createRow(3);
-                Cell celdaTitulo = filaTitulo.createCell(6);
+                Cell celdaTitulo = filaTitulo.createCell(2);
                 celdaTitulo.setCellStyle(tituloEstilo);
                 celdaTitulo.setCellValue("Reporte de Compras");
 
                 sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 1));
 
-                String[] cabecera = new String[]{"COD.", "CODIGO", "MARCA", "TIPO", "PRODUCTO", "ENVASE", "MEDIDA", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
+                String[] cabecera = new String[]{"CODIGO", "PRODUCTO", "MARCA", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
 
                 CellStyle headerStyle = book.createCellStyle();
                 headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
@@ -839,7 +833,13 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                     celdaEnzabezado.setCellValue(cabecera[i]);
                 }
 
-                int numFilaDatos = 6;
+                Conexion con = new Conexion();
+                PreparedStatement ps;
+                ResultSet rs;
+                java.sql.Connection conn = con.conectar();
+
+                String id_cab = txt_Numero.getText().toString();;
+                int numFilaDatos = 7;
 
                 CellStyle datosEstilo = book.createCellStyle();
                 datosEstilo.setBorderBottom(BorderStyle.THIN);
@@ -847,19 +847,18 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 datosEstilo.setBorderRight(BorderStyle.THIN);
                 datosEstilo.setBorderBottom(BorderStyle.THIN);
 
-                Conexion conect = new Conexion();
-                PreparedStatement ps;
-                ResultSet rs;
-                Connection conn = con.getConexion();
-
-                ps = con.prepareStatement("SELECT p.id_producto, p.codigo_barra, g.nombre, sg.nombre, a.nombre_articulo,\n"
-                        + "pr.nombre, m.nombre_tipo_medida, p.nombre_producto\n"
-                        + "FROM pr_productos p\n"
-                        + "right join pr_grupos g on p.id_grupo = g.id_grupo \n"
-                        + "right join pr_subgrupos sg on p.id_subgrupo = sg.id_subgrupo\n"
-                        + "right join pr_articulo a on p.id_articulo = a.id_articulo\n"
-                        + "right join pr_tipo_presentacion pr on p.id_tipo_presentacion = pr.id_tipo_presentacion\n"
-                        + "right join pr_tipo_medidas m on p.id_tipo_medidas = m.id_tipo_medidas;");
+                ps = conn.prepareStatement("SELECT dnp.`id_detalle_nota_pedidos`, concat(t.`nombre`, ' ', pro.`nombre`, ' en ',en.`nombre`, ' en ',me.`nombre_medida`) AS producto,  m.`nombre` AS marca,\n" +
+"                        dnp.`cantidad`,dnp.`precio`,dnp.`descuento`,dnp.`iva`,dnp.`total`\n" +
+"                        FROM `detalle_nota_pedidos` dnp\n" +
+"                        JOIN `cabecera_nota_pedidos` cnp ON cnp.`id_cabecera_nota_pedidos`= dnp.`id_cabecera_nota_pedidos`\n" +
+"                        JOIN `precios` pre ON pre.`id_precio` = dnp.`id_precio`\n" +
+"                        JOIN `productos` pro ON pro.`id_productos`= pre.`id_producto`\n" +
+"                        JOIN `marcas` m ON m.`id_marcas` = pro.`id_marcas`\n" +
+"                        JOIN `tipo` t ON t.`id_tipo` = pro.`id_tipo`\n" +
+"                        JOIN `presentaciones` en ON en.`idPresentaciones`= pro.`id_presentacion`\n" +
+"                        JOIN `medidas` me ON me.`id_medidas`= pro.`id_medidas`\n" +
+"                        WHERE dnp.`id_cabecera_nota_pedidos`= "+id_cab+"\n" +
+"                        ORDER BY dnp.`id_cabecera_nota_pedidos`");
                 rs = ps.executeQuery();
 
                 int numCol = rs.getMetaData().getColumnCount();
@@ -878,14 +877,12 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                             CeldaDatos.setCellValue(rs.getString(a + 1));
                         }
                     }
-                    Cell celdaImporte = filaDatos.createCell(4);
-                    celdaImporte.setCellStyle(datosEstilo);
-                    celdaImporte.setCellFormula(String.format("C%d+D%d", numFilaDatos + 1, numFilaDatos + 1));
 
                     numFilaDatos++;
 
                 }
 
+                conn.close();
                 sheet.autoSizeColumn(0);
                 sheet.autoSizeColumn(1);
                 sheet.autoSizeColumn(2);
@@ -895,7 +892,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 sheet.autoSizeColumn(6);
                 sheet.autoSizeColumn(7);
 
-                sheet.setZoom(150);
+                sheet.setZoom(120);
 
                 FileOutputStream fileout = new FileOutputStream("Reporte.xlsx");
                 book.write(fileout);

@@ -9,13 +9,39 @@ import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.dao.Conexion;
 import com.farmacia.entities1.Detalle_ventas;
 import com.farmacia.fecha.Fecha;
 import com.farmacia.join_entidades.JoinListarCabeceraVenta;
 
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Picture;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.util.IOUtils;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -29,7 +55,6 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
     String buscar = "";
     Formulario F = new Formulario();
     ArrayList<Detalle_ventas> listadetalles = null;
-
 
     /**
      * Creates new form Reporte_DetalleVenta111
@@ -46,9 +71,9 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         objCabecera = Obj;
         llenarDatos();
-        listadetalles=crud.ListarDetallesVentas(Integer.valueOf(objCabecera.getId_cabecera_venta().toString()));
+        listadetalles = crud.ListarDetallesVentas(Integer.valueOf(objCabecera.getId_cabecera_venta().toString()));
         Tablas.cargarListaVentasDetalle(jTable1, listadetalles);
-        
+
     }
 
     /**
@@ -99,6 +124,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel28 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         btnSalir2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -187,6 +213,11 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
 
         txt_Numero.setEditable(false);
         txt_Numero.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        txt_Numero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_NumeroActionPerformed(evt);
+            }
+        });
 
         jLabel15.setBackground(new java.awt.Color(255, 255, 255));
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -347,6 +378,13 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setText("EXCEL");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -378,6 +416,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TxtSubConIva, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
                                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(129, 129, 129)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -451,7 +491,9 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                         .addContainerGap(24, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1))
                         .addGap(25, 25, 25))))
         );
 
@@ -490,11 +532,162 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         setLocation(point.x - x, point.y - y);
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel10MouseDragged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        reporte();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txt_NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NumeroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_NumeroActionPerformed
+
+    public void reporte() {
+
+        int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
+
+        try {
+            if (r == JOptionPane.YES_OPTION) {
+                Workbook book = new XSSFWorkbook();
+                Sheet sheet = book.createSheet("REPORTE");
+                InputStream is = new FileInputStream("src\\img\\asofarLite.png");
+                byte[] bytes = IOUtils.toByteArray(is);
+                int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+                is.close();
+
+                CreationHelper help = book.getCreationHelper();
+                Drawing draw = sheet.createDrawingPatriarch();
+
+                ClientAnchor anchor = help.createClientAnchor();
+                anchor.setCol1(0);
+                anchor.setRow1(1);
+                Picture pict = draw.createPicture(anchor, imgIndex);
+                pict.resize(2, 5);
+
+                CellStyle tituloEstilo = book.createCellStyle();
+                tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
+                tituloEstilo.setVerticalAlignment(VerticalAlignment.CENTER);
+                Font fuenteTitulo = book.createFont();
+                fuenteTitulo.setFontName("Arial");
+                fuenteTitulo.setBold(true);
+                fuenteTitulo.setFontHeightInPoints((short) 14);
+                tituloEstilo.setFont(fuenteTitulo);
+
+                Row filaTitulo = sheet.createRow(3);
+                Cell celdaTitulo = filaTitulo.createCell(2);
+                celdaTitulo.setCellStyle(tituloEstilo);
+                celdaTitulo.setCellValue("Reporte de Compras");
+
+                sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 1));
+
+                String[] cabecera = new String[]{"CODIGO", "PRODUCTO", "CANTIDAD", "PRECIO", "SUBTOTAL","DESCUENTO",  "IVA", "TOTAL"};
+
+                CellStyle headerStyle = book.createCellStyle();
+                headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+                headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                headerStyle.setBorderBottom(BorderStyle.THIN);
+                headerStyle.setBorderLeft(BorderStyle.THIN);
+                headerStyle.setBorderRight(BorderStyle.THIN);
+                headerStyle.setBorderBottom(BorderStyle.THIN);
+
+                Font font = book.createFont();
+                font.setFontName("Arial");
+                font.setBold(true);
+                font.setColor(IndexedColors.WHITE.getIndex());
+                font.setFontHeightInPoints((short) 12);
+                headerStyle.setFont(font);
+
+                Row filaEncabezados = sheet.createRow(6);
+
+                for (int i = 0; i < cabecera.length; i++) {
+                    Cell celdaEnzabezado = filaEncabezados.createCell(i);
+                    celdaEnzabezado.setCellStyle(headerStyle);
+                    celdaEnzabezado.setCellValue(cabecera[i]);
+                }
+
+                Conexion con = new Conexion();
+                PreparedStatement ps;
+                ResultSet rs;
+                java.sql.Connection conn = con.conectar();
+
+                String id_cab = txt_Numero.getText().toString();
+                int numFilaDatos = 7;
+
+                CellStyle datosEstilo = book.createCellStyle();
+                datosEstilo.setBorderBottom(BorderStyle.THIN);
+                datosEstilo.setBorderLeft(BorderStyle.THIN);
+                datosEstilo.setBorderRight(BorderStyle.THIN);
+                datosEstilo.setBorderBottom(BorderStyle.THIN);
+
+                ps = conn.prepareStatement("SELECT `detalle_venta`.`id`,\n"
+                        + "concat(t.`nombre`, ' ', `productos`.`nombre`, ' en ',en.`nombre`, ' en ',me.`nombre_medida`) AS 'producto', \n"
+                        + "`detalle_venta`.`cantidad` AS 'Cantidad',\n"
+                        + "ROUND (detalle_venta.`precio`,2 )AS 'Precio', \n"
+                        + "ROUND ((`detalle_venta`.`cantidad` * `detalle_venta`.`precio`),2)AS 'Subtotal',\n"
+                        + "ROUND (`detalle_venta`.`descuento`,2) AS 'Descuento',\n"
+                        + "ROUND (`detalle_venta`.`iva`,2) AS 'Iva',\n"
+                        + "ROUND ((( `detalle_venta`.`precio` * `detalle_venta`.`cantidad`) + `detalle_venta`.`iva` - `detalle_venta`.`descuento` ),2) AS 'Total'\n"
+                        + "FROM detalle_venta \n"
+                        + "INNER JOIN `precios` ON `detalle_venta`.`id_control` = `precios`.`id_precio` \n"
+                        + "INNER JOIN `productos` ON `productos`.`id_productos` = `precios`.`id_producto`\n"
+                        + "JOIN `marcas` m ON m.`id_marcas` = `productos`.`id_marcas`\n"
+                        + "JOIN `tipo` t ON t.`id_tipo` = `productos`.`id_tipo`\n"
+                        + "JOIN `presentaciones` en ON en.`idPresentaciones`= `productos`.`id_presentacion`\n"
+                        + "JOIN `medidas` me ON me.`id_medidas`= `productos`.`id_medidas`\n"
+                        + "WHERE `detalle_venta`.`id_cabecera_venta`= " + id_cab + "");
+                rs = ps.executeQuery();
+
+                int numCol = rs.getMetaData().getColumnCount();
+
+                while (rs.next()) {
+                    Row filaDatos = sheet.createRow(numFilaDatos);
+
+                    for (int a = 0; a < numCol; a++) {
+
+                        Cell CeldaDatos = filaDatos.createCell(a);
+                        CeldaDatos.setCellStyle(datosEstilo);
+
+                        if (a == 0) {
+                            CeldaDatos.setCellValue(rs.getInt(a + 1));
+                        } else {
+                            CeldaDatos.setCellValue(rs.getString(a + 1));
+                        }
+                    }
+
+                    numFilaDatos++;
+
+                }
+
+                conn.close();
+                sheet.autoSizeColumn(0);
+                sheet.autoSizeColumn(1);
+                sheet.autoSizeColumn(2);
+                sheet.autoSizeColumn(3);
+                sheet.autoSizeColumn(4);
+                sheet.autoSizeColumn(5);
+                sheet.autoSizeColumn(6);
+                sheet.autoSizeColumn(7);
+
+                sheet.setZoom(120);
+
+                FileOutputStream fileout = new FileOutputStream("Reporte.xlsx");
+                book.write(fileout);
+                fileout.close();
+
+                JOptionPane.showMessageDialog(null, "Generado con exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al generar el reporte");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            System.out.println(ex);
+        }
+    }
+
     public void llenarDatos() {
 //        ArrayList<JoinListarCabeceraVenta> listaPro = crud.ListarCabeceraVentas(1);
 //        cliente = buscarObjeto(objCabecera.getId_cabecera_venta().toString(), listaPro);
         if (objCabecera != null) {
-           
+
             TxtCliente.setText(objCabecera.getNombre_completo_cliente());
             TxtCedula.setText(objCabecera.getCedula_cliente());
             txt_Numero.setText(objCabecera.getMun_venta());
@@ -565,6 +758,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
     public static javax.swing.JTextField TxtSubtotal;
     private javax.swing.JTextField TxtTipoVenta;
     private javax.swing.JButton btnSalir2;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -85,9 +85,9 @@
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="btnReporte" min="-2" pref="105" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
                                   <Component id="btnReporte1" min="-2" pref="105" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                                   <Component id="btnSalir2" min="-2" pref="105" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="260" max="-2" attributes="0"/>
                               </Group>
@@ -851,7 +851,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Ubuntu" size="11" style="1"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Excel"/>
+            <Property name="text" type="java.lang.String" value="EXCEL"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReporte1ActionPerformed"/>
