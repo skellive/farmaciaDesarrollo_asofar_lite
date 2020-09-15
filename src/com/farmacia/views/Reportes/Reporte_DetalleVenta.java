@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 import javax.swing.JOptionPane;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
@@ -55,6 +56,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
     String buscar = "";
     Formulario F = new Formulario();
     ArrayList<Detalle_ventas> listadetalles = null;
+    int dia, mes, ano;
+    Calendar c1 = Calendar.getInstance();
 
     /**
      * Creates new form Reporte_DetalleVenta111
@@ -579,7 +582,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
 
                 sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 1));
 
-                String[] cabecera = new String[]{"CODIGO", "PRODUCTO", "CANTIDAD", "PRECIO", "SUBTOTAL","DESCUENTO",  "IVA", "TOTAL"};
+                String[] cabecera = new String[]{"CODIGO", "PRODUCTO", "CANTIDAD", "PRECIO", "SUBTOTAL", "DESCUENTO", "IVA", "TOTAL"};
 
                 CellStyle headerStyle = book.createCellStyle();
                 headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
@@ -669,7 +672,12 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
 
                 sheet.setZoom(120);
 
-                FileOutputStream fileout = new FileOutputStream("Reporte.xlsx");
+                dia = (c1.get(Calendar.DATE));
+                mes = (c1.get(Calendar.MONTH));
+                ano = (c1.get(Calendar.YEAR));
+                System.out.println(dia + "-" + mes + "-" + ano);
+
+                FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporteVenta\\reporte"+id_cab+"("+dia+"-"+mes+"-"+ano+").xlsx");
                 book.write(fileout);
                 fileout.close();
 

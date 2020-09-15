@@ -618,7 +618,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call ingresarProducto(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call ingresarProducto(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getCodigo_barras());
             prodProAlm.setString(2, obj.getNombre());
             prodProAlm.setString(3, obj.getDescripcion());
@@ -633,6 +633,7 @@ public class CRUD {
             prodProAlm.setLong(12, obj.getCantidad_minima());
             prodProAlm.setString(13, obj.getReceta());
             prodProAlm.setLong(14, obj.getUnidades());
+            prodProAlm.setLong(15, obj.getId_categoria());
             prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor1");
@@ -644,6 +645,8 @@ public class CRUD {
 
             conect.commit();
         } catch (Exception e) {
+            
+           
             try {
                 conect.rollback();
                 e.printStackTrace();
@@ -802,7 +805,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call modificarProductos(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call modificarProductos(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getNombre());
             prodProAlm.setString(2, obj.getDescripcion());
             prodProAlm.setDouble(3, obj.getPeso());
@@ -816,6 +819,7 @@ public class CRUD {
             prodProAlm.setLong(11, obj.getCantidad_minima());
             prodProAlm.setString(12, obj.getReceta());
             prodProAlm.setLong(13, obj.getUnidades());
+            prodProAlm.setLong(14, obj.getId_categoria());
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.execute();
             valor = prodProAlm.getString("valor");
@@ -1706,6 +1710,30 @@ public class CRUD {
         return tp;
     }
 
+    
+     public ArrayList<CategoriaProducto> MostrarCategoria() {
+        ArrayList<CategoriaProducto> cp = new ArrayList<>();
+
+        try {
+            conect = con.conectar();
+            CallableStatement prcProAl = conect.prepareCall(
+                    "{ call Categoria_Producto() }");
+            prcProAl.executeQuery();
+            rs = prcProAl.getResultSet();
+            while (rs.next()) {
+             CategoriaProducto tpp = new CategoriaProducto(rs.getLong("id_categoria"),// cambio para que apunte a la tabla presentaciones -- cecj
+                        rs.getString("nombre"));
+                cp.add(tpp);
+            }
+            rs.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return cp;
+    }
+    
+    
+    
     public void InsertarEnvase(String valor) {
         String msg;
         try {
@@ -1713,6 +1741,29 @@ public class CRUD {
             conect.setAutoCommit(false);
             CallableStatement cs = conect.prepareCall(
                     "{ call Insertar_Envase(?,?) }");
+            cs.setString(1, valor);
+            cs.registerOutParameter("salida", Types.VARCHAR);
+            cs.executeUpdate();
+            msg = cs.getString("salida");
+            JOptionPane.showMessageDialog(null, msg);
+            conect.commit();
+        } catch (SQLException e) {
+            try {
+                conect.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+     public void InsertarCategoria(String valor) {
+        String msg;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement cs = conect.prepareCall(
+                    "{ call Insertar_Categoria(?,?) }");
             cs.setString(1, valor);
             cs.registerOutParameter("salida", Types.VARCHAR);
             cs.executeUpdate();
@@ -1750,6 +1801,34 @@ public class CRUD {
             }
         }
     }
+    
+    
+     public void ActualizarCategoria(CategoriaProducto en, String valor) {
+        String msg;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement cs = conect.prepareCall(
+                    "{ call Actualizar_Categoria(?,?,?) }");
+            cs.setString(1, valor);
+            cs.setLong(2, en.getId_categoria());
+            cs.registerOutParameter("salida", Types.VARCHAR);
+            cs.executeUpdate();
+            msg = cs.getString("salida");
+            JOptionPane.showMessageDialog(null, msg);
+            conect.commit();
+        } catch (SQLException e) {
+            try {
+                conect.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+    
+    
 
     public void EliminarEnvase(EnvaseProducto en) {
         String msg;
@@ -1772,6 +1851,32 @@ public class CRUD {
             }
         }
     }
+    
+    
+     public void EliminarCategoria(CategoriaProducto en) {
+        String msg;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement cs = conect.prepareCall(
+                    "{ call Eliminar_Categoria(?,?) }");
+            cs.setLong(1, en.getId_categoria());
+            cs.registerOutParameter("salida", Types.VARCHAR);
+            cs.executeUpdate();
+            msg = cs.getString("salida");
+            JOptionPane.showMessageDialog(null, msg);
+            conect.commit();
+        } catch (SQLException e) {
+            try {
+                conect.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+    
 
     //medida
     public String validarMedidaProducto(String nombre) {
@@ -2083,7 +2188,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call BuscarIDProductoNuevo(?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call BuscarIDProductoNuevo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getNombre());
             prodProAlm.setString(2, obj.getDescripcion());
             prodProAlm.setDate(3, obj.getFecha_registro());
@@ -2098,6 +2203,7 @@ public class CRUD {
             prodProAlm.setString(12, obj.getReceta());
             System.out.println(" vamos "+ obj.getUnidades());
             prodProAlm.setLong(13, obj.getUnidades());
+             prodProAlm.setLong(14, obj.getId_categoria());
             prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor1");

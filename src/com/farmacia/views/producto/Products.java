@@ -1,12 +1,16 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+
 package com.farmacia.views.producto;
 
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.CategoriaProducto;
 import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Listar_usuario;
@@ -16,6 +20,7 @@ import com.farmacia.entities1.Productos;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.fecha.Fecha;
 import com.farmacia.validaciones.Validacion;
+import com.farmacia.views.compras.AgregarCategoria;
 import com.farmacia.views.compras.AgregarEnvase;
 import com.farmacia.views.compras.AgregarMarca;
 import com.farmacia.views.compras.AgregarMedida;
@@ -45,8 +50,9 @@ public class Products extends javax.swing.JDialog {
     ArrayList<MedidaProducto> listam = crud.listarTodoMedidasProductos();
     ArrayList<EnvaseProducto> listae = crud.listarTodoEnvaseProductos();
     ArrayList<MarcaProducto> listama = crud.listarTodoMarcaProductos();
+    ArrayList<CategoriaProducto> listaca = crud.listarTodoCategoriaProductos();
     ArrayList<Iva> listaIva = crud.listarTodoIvaProducto();
-    Long id_tipo, id_medida, id_envase, id_marca;
+    Long id_tipo, id_medida, id_envase, id_marca, id_categoria;
     String error = "", IVA = "", valorIDProd = "";
 
     //,RECETA = "";
@@ -61,6 +67,7 @@ public class Products extends javax.swing.JDialog {
         cbxEnvase.setModel(Formulario.listarComboEnvasePro(listae));
         cbxMarca.setModel(Formulario.listarComboMarcaPro(listama));
         cbxIva.setModel(Formulario.listarComboIva(listaIva));
+        cbcCategoria.setModel(Formulario.listarComboCategoriaPro(listaca));
         txtFechaActual.setText(FechaActual());
         Habilitar(false);
 
@@ -77,6 +84,7 @@ public class Products extends javax.swing.JDialog {
         cbxEnvase.setModel(Formulario.listarComboEnvasePro(listae));
         cbxMarca.setModel(Formulario.listarComboMarcaPro(listama));
         cbxIva.setModel(Formulario.listarComboIva(listaIva));
+         cbcCategoria.setModel(Formulario.listarComboCategoriaPro(listaca));
         txtFechaActual.setText(FechaActual());
         //  txtDescuentoVenta.setText("0");
         usuario.setText(obj.getApellidos() + " " + obj.getNombres());
@@ -108,8 +116,8 @@ public class Products extends javax.swing.JDialog {
         jLabel3 = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        cbxTipos = new javax.swing.JComboBox<>();
-        btnAgregarTipo = new javax.swing.JButton();
+        cbcCategoria = new javax.swing.JComboBox<>();
+        btnAgregarCategoria = new javax.swing.JButton();
         btnAgreMarca = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         btnAgreEnvase = new javax.swing.JButton();
@@ -131,6 +139,9 @@ public class Products extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         codigo2 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        cbxTipos = new javax.swing.JComboBox<>();
+        btnAgregarTipo = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         usuario = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -160,12 +171,15 @@ public class Products extends javax.swing.JDialog {
         });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("NOMBRE DE PRODUCTO:");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, 25));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel8.setText("MARCA/LABORATORIO:");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 25));
 
         cbxMarca.setEditable(true);
         cbxMarca.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -174,9 +188,11 @@ public class Products extends javax.swing.JDialog {
                 cbxMarcaActionPerformed(evt);
             }
         });
+        jPanel1.add(cbxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 160, 25));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("DESCRIPCION:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, 25));
 
         txtDescripcion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtDescripcion.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -184,26 +200,29 @@ public class Products extends javax.swing.JDialog {
                 txtDescripcionFocusLost(evt);
             }
         });
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 320, 30));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("PRESENTACION:");
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 25));
 
-        cbxTipos.setEditable(true);
-        cbxTipos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cbxTipos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbxTipos.addActionListener(new java.awt.event.ActionListener() {
+        cbcCategoria.setEditable(true);
+        cbcCategoria.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbcCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxTiposActionPerformed(evt);
+                cbcCategoriaActionPerformed(evt);
             }
         });
+        jPanel1.add(cbcCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 160, 25));
 
-        btnAgregarTipo.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        btnAgregarTipo.setText("AGREGAR");
-        btnAgregarTipo.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregarCategoria.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAgregarCategoria.setText("AGREGAR");
+        btnAgregarCategoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAgregarTipoActionPerformed(evt);
+                btnAgregarCategoriaActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAgregarCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 90, 25));
 
         btnAgreMarca.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnAgreMarca.setText("AGREGAR");
@@ -212,9 +231,11 @@ public class Products extends javax.swing.JDialog {
                 btnAgreMarcaActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAgreMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 90, 25));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("PESO:");
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 25));
 
         btnAgreEnvase.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnAgreEnvase.setText("AGREGAR");
@@ -223,6 +244,7 @@ public class Products extends javax.swing.JDialog {
                 btnAgreEnvaseActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAgreEnvase, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 90, 25));
 
         cbxEnvase.setEditable(true);
         cbxEnvase.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -231,6 +253,7 @@ public class Products extends javax.swing.JDialog {
                 cbxEnvaseActionPerformed(evt);
             }
         });
+        jPanel1.add(cbxEnvase, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 160, 25));
 
         nombre1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         nombre1.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -238,9 +261,11 @@ public class Products extends javax.swing.JDialog {
                 nombre1FocusLost(evt);
             }
         });
+        jPanel1.add(nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 160, 25));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setText("IVA:");
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, 25));
 
         cbxIva.setEditable(true);
         cbxIva.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -250,9 +275,11 @@ public class Products extends javax.swing.JDialog {
                 cbxIvaActionPerformed(evt);
             }
         });
+        jPanel1.add(cbxIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 105, 25));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setText("CANT. MINIMA STOCK:");
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, 25));
 
         txtcantMinima.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtcantMinima.addActionListener(new java.awt.event.ActionListener() {
@@ -260,6 +287,7 @@ public class Products extends javax.swing.JDialog {
                 txtcantMinimaActionPerformed(evt);
             }
         });
+        jPanel1.add(txtcantMinima, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 160, 25));
 
         ingresoDePrecio.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         ingresoDePrecio.setText("INGRESAR PRECIOS");
@@ -268,9 +296,11 @@ public class Products extends javax.swing.JDialog {
                 ingresoDePrecioActionPerformed(evt);
             }
         });
+        jPanel1.add(ingresoDePrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 138, 25));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText(" MEDIDA:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, -1, 25));
 
         cbxMedida.setEditable(true);
         cbxMedida.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -279,6 +309,7 @@ public class Products extends javax.swing.JDialog {
                 cbxMedidaActionPerformed(evt);
             }
         });
+        jPanel1.add(cbxMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 160, 25));
 
         btnAgregarMedida.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnAgregarMedida.setText("+");
@@ -287,11 +318,14 @@ public class Products extends javax.swing.JDialog {
                 btnAgregarMedidaActionPerformed(evt);
             }
         });
+        jPanel1.add(btnAgregarMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 40, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel9.setText("TIPO:");
+        jLabel9.setText("CATEGORIA:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 25));
 
         cbxReceta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SIN RECETA ", "CON RECETA" }));
+        jPanel1.add(cbxReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
 
         txtPeso1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtPeso1.setText("0");
@@ -308,9 +342,11 @@ public class Products extends javax.swing.JDialog {
                 txtPeso1KeyTyped(evt);
             }
         });
+        jPanel1.add(txtPeso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 72, 25));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setText("UNIDADES:");
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, 25));
 
         txtUnidades.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtUnidades.setText("1");
@@ -327,9 +363,11 @@ public class Products extends javax.swing.JDialog {
                 txtUnidadesKeyTyped(evt);
             }
         });
+        jPanel1.add(txtUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 220, 80, 25));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("CODIGO DE BARRAS:");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 20, -1, -1));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         jButton1.setText("AGREGAR");
@@ -338,141 +376,34 @@ public class Products extends javax.swing.JDialog {
                 jButton1ActionPerformed(evt);
             }
         });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 10, 90, 30));
 
         codigo2.setEditable(false);
         codigo2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         codigo2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(codigo2, new org.netbeans.lib.awtextra.AbsoluteConstraints(204, 13, 160, 28));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(11, 11, 11)
-                                .addComponent(cbxTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(7, 7, 7)
-                                .addComponent(btnAgregarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel20)
-                                .addGap(9, 9, 9)
-                                .addComponent(cbxIva, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbxReceta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(42, 42, 42)
-                                .addComponent(codigo2, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel9)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cbxEnvase, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cbxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnAgreMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnAgreEnvase, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel6)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPeso1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel10)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cbxMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnAgregarMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtcantMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(ingresoDePrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jLabel4))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(codigo2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxTipos, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cbxMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAgreMarca, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxEnvase, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgreEnvase, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtPeso1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbxMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnAgregarMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtUnidades, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxIva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxReceta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtcantMinima, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(ingresoDePrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(200, 200, 200))
-        );
+        jLabel13.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel13.setText("TIPO:");
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 25));
+
+        cbxTipos.setEditable(true);
+        cbxTipos.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        cbxTipos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxTiposActionPerformed(evt);
+            }
+        });
+        jPanel1.add(cbxTipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 160, 25));
+
+        btnAgregarTipo.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        btnAgregarTipo.setText("AGREGAR");
+        btnAgregarTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarTipoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAgregarTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 90, 25));
 
         jLabel14.setBackground(new java.awt.Color(0, 153, 153));
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -508,6 +439,12 @@ public class Products extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(112, 112, 112)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -519,15 +456,9 @@ public class Products extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(121, 121, 121)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(124, 124, 124))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 620, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -545,12 +476,12 @@ public class Products extends javax.swing.JDialog {
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 397, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -593,6 +524,8 @@ public class Products extends javax.swing.JDialog {
                 p.setId_medidas(id_medida);
                 p.setId_envase(id_envase);
                 p.setId_marcas(id_marca);
+                p.setId_categoria(id_categoria);
+             
                 p.setId_usuario(Long.valueOf(id_usuario.getText()));
                 p.setIva(IVA);
                 try {
@@ -623,6 +556,7 @@ public class Products extends javax.swing.JDialog {
                 p2.setId_medidas(id_medida);
                 p2.setId_envase(id_envase);
                 p2.setId_marcas(id_marca);
+                p2.setId_categoria(id_categoria);
                 p2.setId_usuario(Long.valueOf(id_usuario.getText()));
                 p2.setIva(IVA);
                 try {
@@ -755,16 +689,16 @@ public class Products extends javax.swing.JDialog {
         cbxMarca.setModel(Formulario.listarComboMarcaPro(listama));
     }//GEN-LAST:event_btnAgreMarcaActionPerformed
 
-    private void btnAgregarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipoActionPerformed
-        AgregarTipo nuevotipo = new AgregarTipo(new javax.swing.JFrame(), true);
-        nuevotipo.setVisible(true);
-        lista = crud.listarTodoTipoProductos1();
-        cbxTipos.setModel(Formulario.listarComboTipoPro(lista));
-    }//GEN-LAST:event_btnAgregarTipoActionPerformed
+    private void btnAgregarCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarCategoriaActionPerformed
+         AgregarCategoria nuevocategoria = new AgregarCategoria(new javax.swing.JFrame(), true);
+        nuevocategoria.setVisible(true);
+        listaca = crud.listarTodoCategoriaProductos();
+        cbcCategoria.setModel(Formulario.listarComboCategoriaPro(listaca));
+    }//GEN-LAST:event_btnAgregarCategoriaActionPerformed
 
-    private void cbxTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTiposActionPerformed
+    private void cbcCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcCategoriaActionPerformed
         seleccionId();
-    }//GEN-LAST:event_cbxTiposActionPerformed
+    }//GEN-LAST:event_cbcCategoriaActionPerformed
 
     private void txtDescripcionFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtDescripcionFocusLost
         txtDescripcion.setText(txtDescripcion.getText().toUpperCase());
@@ -773,6 +707,18 @@ public class Products extends javax.swing.JDialog {
     private void cbxMarcaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMarcaActionPerformed
         seleccionId();
     }//GEN-LAST:event_cbxMarcaActionPerformed
+
+    private void cbxTiposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTiposActionPerformed
+         seleccionId();
+    }//GEN-LAST:event_cbxTiposActionPerformed
+
+    private void btnAgregarTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarTipoActionPerformed
+        // TODO add your handling code here:
+         AgregarTipo nuevotipo = new AgregarTipo(new javax.swing.JFrame(), true);
+        nuevotipo.setVisible(true);
+        lista = crud.listarTodoTipoProductos1();
+        cbxTipos.setModel(Formulario.listarComboTipoPro(lista));
+    }//GEN-LAST:event_btnAgregarTipoActionPerformed
 //    public void keyTyped(KeyEvent e) {
 //        char caracter = e.getKeyChar();
 //        String P = "..";
@@ -826,6 +772,15 @@ public class Products extends javax.swing.JDialog {
         } else {
             id_envase = listae.get(pos).getId_presentaciones();
             System.err.println(id_envase);
+        }
+        
+        
+         pos = (cbcCategoria.getSelectedIndex() - 1);
+        if (pos < 0) {
+            error = error + "\nCategoria invalido !";
+        } else {
+            id_categoria = listaca.get(pos).getId_categoria();
+            System.err.println(id_categoria);
         }
         return error;
     }
@@ -882,41 +837,44 @@ public class Products extends javax.swing.JDialog {
     private javax.swing.JButton btnAgreEnvase;
     private javax.swing.JButton btnAgreMarca;
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnAgregarCategoria;
     private javax.swing.JButton btnAgregarMedida;
     private javax.swing.JButton btnAgregarTipo;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JComboBox<String> cbcCategoria;
     private javax.swing.JComboBox<String> cbxEnvase;
     private javax.swing.JComboBox<String> cbxIva;
     private javax.swing.JComboBox<String> cbxMarca;
     private javax.swing.JComboBox<String> cbxMedida;
     private javax.swing.JComboBox<String> cbxReceta;
     private javax.swing.JComboBox<String> cbxTipos;
-    private javax.swing.JTextField codigo2;
+    public javax.swing.JTextField codigo2;
     private javax.swing.JLabel id_usuario;
     private javax.swing.JButton ingresoDePrecio;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
+    public static javax.swing.JLabel jLabel10;
+    public static javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    public static javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel3;
+    public static javax.swing.JLabel jLabel2;
+    public static javax.swing.JLabel jLabel20;
+    public static javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
+    public static javax.swing.JLabel jLabel5;
+    public static javax.swing.JLabel jLabel6;
+    public static javax.swing.JLabel jLabel7;
+    public static javax.swing.JLabel jLabel8;
+    public static javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField nombre1;
-    private javax.swing.JTextField txtDescripcion;
+    public static javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtFechaActual;
-    private javax.swing.JTextField txtPeso1;
+    public static javax.swing.JTextField txtPeso1;
     private javax.swing.JTextField txtUnidades;
-    private javax.swing.JTextField txtcantMinima;
+    public static javax.swing.JTextField txtcantMinima;
     public static javax.swing.JLabel usuario;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="2.5937424601000227"/>
-	<property name="ireport.x" value="1121"/>
-	<property name="ireport.y" value="82"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<field name="valor1" class="java.lang.String"/>
 	<field name="valor2" class="java.lang.String"/>
 	<field name="valor3" class="java.lang.String"/>
@@ -42,14 +42,14 @@
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor9}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor9}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="177" y="3" width="100" height="20"/>
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor10}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor10}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
@@ -153,21 +153,21 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor1}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor1}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="103" y="1" width="99" height="17"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor2}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor2}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="203" y="1" width="99" height="17"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor3}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor3}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="102" y="1" width="1" height="17"/>
@@ -189,7 +189,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor4}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor4}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="302" y="1" width="1" height="17"/>
@@ -199,7 +199,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor5}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor5}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="502" y="1" width="1" height="17"/>
@@ -218,21 +218,21 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor6}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor6}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="603" y="1" width="99" height="17"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor7}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor7}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="703" y="1" width="96" height="17"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="7" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor8}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor8}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="2" y="0" width="798" height="1"/>
@@ -253,7 +253,7 @@
 				<textElement verticalAlignment="Middle">
 					<font size="10" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor11}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{valor11}]]></textFieldExpression>
 			</textField>
 		</band>
 	</columnFooter>
@@ -267,7 +267,6 @@
 				<textElement>
 					<font isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>
