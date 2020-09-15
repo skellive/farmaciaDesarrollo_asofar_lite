@@ -12,11 +12,23 @@ package com.farmacia.entities1;
 public class CategoriaProducto {
       private Long id_categoria;
     private String nombrecategoria;
+      private String estado;
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
 
     public CategoriaProducto(Long id_categoria, String nombrecategoria) {
         this.id_categoria = id_categoria;
         this.nombrecategoria = nombrecategoria;
+     
     }
+
+    
 
     public CategoriaProducto() {
     }

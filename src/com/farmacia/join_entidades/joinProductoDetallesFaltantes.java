@@ -21,6 +21,9 @@ public class joinProductoDetallesFaltantes {
     private String estado;
     private Long id_marcas;
     private String marca;
+    
+      private Long id_categoria;
+    private String nombrecategoria;
     private Long id_medida;
     private String medida;
     private Long id_envase;
@@ -38,7 +41,17 @@ public class joinProductoDetallesFaltantes {
     public joinProductoDetallesFaltantes() {
     }
 
-    public joinProductoDetallesFaltantes(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios, String iva, Integer bono, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento, BigDecimal PrecioBono, BigDecimal Precioiva) {
+    public Long getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(Long id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+
+  
+
+    public joinProductoDetallesFaltantes(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Long id_categoria, String nombrecategoria, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios, String iva, Integer bono, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento, BigDecimal PrecioBono, BigDecimal Precioiva) {
         this.id_detalle_faltantes = id_detalle_faltantes;
         this.id_tipo = id_tipo;
         this.nombre_tipo = nombre_tipo;
@@ -48,6 +61,8 @@ public class joinProductoDetallesFaltantes {
         this.estado = estado;
         this.id_marcas = id_marcas;
         this.marca = marca;
+        this.id_categoria = id_categoria;
+        this.nombrecategoria = nombrecategoria;
         this.id_medida = id_medida;
         this.medida = medida;
         this.id_envase = id_envase;
@@ -62,6 +77,16 @@ public class joinProductoDetallesFaltantes {
         this.PrecioBono = PrecioBono;
         this.Precioiva = Precioiva;
     }
+
+    public String getNombrecategoria() {
+        return nombrecategoria;
+    }
+
+    public void setNombrecategoria(String nombrecategoria) {
+        this.nombrecategoria = nombrecategoria;
+    }
+
+   
 
     public Long getId_detalle_faltantes() {
         return id_detalle_faltantes;

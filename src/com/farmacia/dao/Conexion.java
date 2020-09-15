@@ -1,4 +1,8 @@
+<<<<<<< Updated upstream
 package com.farmacia.dao;
+=======
+ package com.farmacia.dao;
+>>>>>>> Stashed changes
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,7 +22,7 @@ public class Conexion {
             Class.forName("com.mysql.jdbc.Driver");
             //conn = DriverManager.getConnection("jdbc:mysql://"+iplocal+":3306/moduloprueba", "root", "rootpassword");
 
-            conn = DriverManager.getConnection("jdbc:mysql://mysql-asofar.alwaysdata.net:3306/asofar_moduloprueba", "asofar", "asofarLITEbase");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/moduloprueba14092020", "root", "valentina23");
 
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/moduloprueba", "root", "");
             System.out.println("Conectado");

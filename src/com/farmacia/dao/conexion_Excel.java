@@ -26,7 +26,6 @@ public class conexion_Excel {
         Conexion c = new Conexion();
 
         Connection con = c.conectar();
-        CRUD cr = new CRUD();
         PreparedStatement ps;
         FileInputStream file = new FileInputStream(new File(ruta));
 
@@ -36,7 +35,6 @@ public class conexion_Excel {
         int numFilas = sheet.getLastRowNum();
         for (int a = 1; a <= numFilas; a++) {
                 Row fila = sheet.getRow(a);
-                
                 
         }
 

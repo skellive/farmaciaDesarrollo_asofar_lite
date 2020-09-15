@@ -17,6 +17,7 @@ import sistemafarmacia.Fondo;
 import sistemafarmacia.VariablesFunciones;
 import com.farmacia.entities1.Usuario;
 import com.farmacia.view.excel.subirExcelBD;
+import com.farmacia.view.principal.Categoria;
 
 import com.farmacia.views.Reportes.Reporte_Compra;
 import com.farmacia.views.Reportes.Reporte_Productos_Compras;
@@ -702,7 +703,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        Tipo_Producto t = new Tipo_Producto(new javax.swing.JFrame(), true);
 //        t.setVisible(true);
-
+        Categoria ca = new Categoria(new javax.swing.JFrame(), true);
+        ca.setVisible(true);
        
        
     }//GEN-LAST:event_jMenuItem5ActionPerformed
