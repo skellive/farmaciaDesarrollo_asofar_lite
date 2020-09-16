@@ -5,6 +5,11 @@
  */
 package com.farmacia.view.excel;
 
+import com.farmacia.dao.conexion_Excel;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -81,6 +86,11 @@ public class subirExcelBD extends javax.swing.JFrame {
         btnSave.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/guardar.jpg"))); // NOI18N
         btnSave.setText("GUARDAR");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/eliminar1.png"))); // NOI18N
         btnClose.addActionListener(new java.awt.event.ActionListener() {
@@ -185,6 +195,20 @@ public class subirExcelBD extends javax.swing.JFrame {
             txtRuta.setText(ruta);
         }
     }//GEN-LAST:event_btnBuscararchActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        conexion_Excel cne = new conexion_Excel();
+        String ruta = txtRuta.getText();
+        try {
+            cne.subirArchivosProductos(ruta);
+        } catch (IOException ex) {
+            Logger.getLogger(subirExcelBD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException ex) {
+            Logger.getLogger(subirExcelBD.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(subirExcelBD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     /**
      * @param args the command line arguments
