@@ -45,10 +45,10 @@ public class conexion_Excel {
                 ps.setString(2, fila.getCell(1).getStringCellValue());
                 ps.setString(3, fila.getCell(2).getStringCellValue());
                 ps.setDouble(4, fila.getCell(3).getNumericCellValue());
-                ps.setDouble(5, fila.getCell(4).getNumericCellValue());
-                ps.setDouble(6, fila.getCell(5).getNumericCellValue());
-                ps.setDouble(7, fila.getCell(6).getNumericCellValue());
-                ps.setDouble(8, fila.getCell(7).getNumericCellValue());                
+                ps.setString(5, fila.getCell(4).getStringCellValue());
+                ps.setString(6, fila.getCell(5).getStringCellValue());
+                ps.setString(7, fila.getCell(6).getStringCellValue());
+                ps.setString(8, fila.getCell(7).getStringCellValue());                
                 
                 ps.setString(11, fila.getCell(8).getStringCellValue());
                 ps.setDouble(12, fila.getCell(9).getNumericCellValue());
