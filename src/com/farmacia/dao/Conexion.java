@@ -13,12 +13,12 @@ public class Conexion {
     public Connection conectar() {
         Connection conn = null;
         String ip = "172.10.180.234";
-        String iplocal = "localhost";
+        String iplocal = "mysql-asofar.alwaysdata.net";
         String claves = "*ISTG.2007!";
         String clavel = "itsgg";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://"+iplocal+":3307/moduloprueba", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://"+iplocal+":3306/asofar_moduloprueba", "asofar", "asofarLITEbase");
 
             //conn = DriverManager.getConnection("jdbc:mysql://mysql-asofar.alwaysdata.net:3306/asofar_moduloprueba", "asofar", "asofarLITEbase");
 

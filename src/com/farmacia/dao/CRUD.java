@@ -481,7 +481,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{ call listarComboEnvasePro }");
+                    "{ call listarComboEnvasePro() }");
             //   prcProcedimientoAlmacenado.setInt(1, op);
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();

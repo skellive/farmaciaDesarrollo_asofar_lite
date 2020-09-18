@@ -147,7 +147,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuCliente1 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jmDevoluciones = new javax.swing.JMenu();
@@ -477,15 +476,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmCompras.add(jMenuItem9);
 
-        jMenuItem12.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        jMenuItem12.setText("PRODUCTOS FALTANTES");
-        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem12ActionPerformed(evt);
-            }
-        });
-        jmCompras.add(jMenuItem12);
-
         jMenuBar1.add(jmCompras);
 
         jMenu1.setText("STOCK");
@@ -795,13 +785,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             mu.setVisible(true);
     }//GEN-LAST:event_jmEmpleadosActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
-       ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
-            Lp.setVisible(true);
-//        ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
-//        Lp.setVisible(true);
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
-
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
 //        Stock_Productos sp = new Stock_Productos(this, rootPaneCheckingEnabled);
 //        sp.setVisible(rootPaneCheckingEnabled);
@@ -929,7 +912,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
