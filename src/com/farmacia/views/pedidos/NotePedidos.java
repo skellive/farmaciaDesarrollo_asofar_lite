@@ -39,10 +39,8 @@ public class NotePedidos extends javax.swing.JDialog {
     filtrosProductos fil = new filtrosProductos();
     joinProductoDetallesFaltantes objeto = null;
     ListarJoinProveedorNotaPedido proveedorC = null;
-    ArrayList<listarJoinProductosCompras> lista = crud.listarTodoJoinProductos(1);
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
-    
-    
+    ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
     Listar_usuario objUsuario = null;
@@ -65,7 +63,7 @@ public class NotePedidos extends javax.swing.JDialog {
         TotalDescuento2();
         TotalPro();
         TotalIVA2();
-      //  Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
         //FECHA DEL SISTEMA
         java.util.Date sistFecha = new java.util.Date();
@@ -95,7 +93,7 @@ public class NotePedidos extends javax.swing.JDialog {
         TotalDescuento2();
         TotalPro();
         TotalIVA2();
-     //   Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
         //FECHA DEL SISTEMA
         java.util.Date sistFecha = new java.util.Date();
@@ -240,6 +238,7 @@ public class NotePedidos extends javax.swing.JDialog {
         tbaListaFaltantes = new javax.swing.JTable();
         PanelSec = new javax.swing.JPanel();
         tipofiltro = new javax.swing.JComboBox<>();
+        jButton2 = new javax.swing.JButton();
         btnBuscar = new javax.swing.JButton();
         TxtFiltro = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
@@ -646,6 +645,14 @@ public class NotePedidos extends javax.swing.JDialog {
         tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
 
+        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton2.setText("FALTANTES");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBuscar.setText("BUSCAR");
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -690,6 +697,8 @@ public class NotePedidos extends javax.swing.JDialog {
                 .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         PanelSecLayout.setVerticalGroup(
@@ -700,6 +709,7 @@ public class NotePedidos extends javax.swing.JDialog {
                     .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
@@ -1227,6 +1237,15 @@ public class NotePedidos extends javax.swing.JDialog {
             Buscar();
         }
     }//GEN-LAST:event_TxtFiltroKeyPressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
+        Lp.setVisible(true);
+        ////
+        lista.clear();
+        lista = crud.listarFaltantesDetalles(1);
+        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+    }//GEN-LAST:event_jButton2ActionPerformed
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
 
         joinProductoDetallesFaltantes objeto1 = null;
@@ -1284,6 +1303,7 @@ public class NotePedidos extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
