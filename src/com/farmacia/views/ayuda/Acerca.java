@@ -22,13 +22,14 @@ public class Acerca extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(105, 185, 185));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        asofarLite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/asofarLite.png"))); // NOI18N
+        asofarLite.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/asofarLiteAcerca.png"))); // NOI18N
 
         logoClubJava.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Java.png"))); // NOI18N
 
-        cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cerrar.png"))); // NOI18N
+        cerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        cerrar.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         cerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cerrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -37,19 +38,19 @@ public class Acerca extends javax.swing.JFrame {
         });
 
         titulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        titulo.setForeground(java.awt.Color.white);
+        titulo.setForeground(new java.awt.Color(55, 99, 55));
         titulo.setText("SISTEMA DE INVENTARIO");
 
         version.setFont(new java.awt.Font("Arial", 0, 18)); // NOI18N
-        version.setForeground(java.awt.Color.white);
+        version.setForeground(new java.awt.Color(55, 99, 55));
         version.setText("Version 1.0");
 
         copyright.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        copyright.setForeground(java.awt.Color.white);
+        copyright.setForeground(new java.awt.Color(55, 99, 55));
         copyright.setText("Copyright c 2019, 2020 Club de Programación Java ISTG. Todos los derechos reservados.");
 
         director.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        director.setForeground(java.awt.Color.white);
+        director.setForeground(new java.awt.Color(55, 99, 55));
         director.setText("Dirigido por Ing. Jose Luis Tapia");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -57,49 +58,56 @@ public class Acerca extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(139, 139, 139)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(titulo)
-                    .addComponent(asofarLite))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cerrar)
-                .addGap(37, 37, 37))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(81, Short.MAX_VALUE)
+                .addContainerGap(3, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cerrar)
+                        .addGap(24, 24, 24))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(version)
-                        .addGap(252, 252, 252))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(copyright)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(director)
-                                .addGap(142, 142, 142)))
-                        .addComponent(logoClubJava)
-                        .addGap(31, 31, 31))))
+                        .addGap(0, 48, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(asofarLite)
+                                .addGap(69, 69, 69))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(version)
+                                .addGap(215, 215, 215))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(copyright)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(director)
+                                        .addGap(134, 134, 134)))
+                                .addComponent(logoClubJava)
+                                .addContainerGap())))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(titulo)
+                .addGap(112, 112, 112))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cerrar)
-                    .addComponent(titulo))
-                .addGap(20, 20, 20)
+                .addGap(17, 17, 17)
+                .addComponent(cerrar)
+                .addGap(2, 2, 2)
+                .addComponent(titulo)
+                .addGap(18, 18, 18)
                 .addComponent(asofarLite)
-                .addGap(36, 36, 36)
-                .addComponent(version)
-                .addGap(35, 35, 35)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(version)
+                        .addGap(28, 28, 28)
                         .addComponent(copyright)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(director))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(director)
+                        .addGap(16, 16, 16))
                     .addComponent(logoClubJava))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
