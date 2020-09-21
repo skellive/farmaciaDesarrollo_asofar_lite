@@ -91,7 +91,6 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     int dia, mes, ano;
     Calendar c1 = Calendar.getInstance();
-    //Calendar c2 = new GregorianCalendar();
 
 
     public Reporte_DetalleCompra(java.awt.Frame parent, boolean modal) {
@@ -705,7 +704,8 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         ArrayList tablac = new ArrayList();
         for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(txtNombre.getText(),
+            ClaseReporte tabla1 = new ClaseReporte(
+                    txtNombre.getText(),
                     txtCodigoProveedor.getText(),
                     txtNombre.getText(),
                     txtRepresentante.getText(),
@@ -736,11 +736,8 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
             tablac.add(tabla1);
         }
         try {
-            //String dir = System.getProperty("user.dir") + "/Reportes/" + "Reporte_Compra.jrxml";
-            
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"OrdenCompra.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
+            JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("OrdenCompra.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
@@ -897,7 +894,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 ano = (c1.get(Calendar.YEAR));
                 System.out.println(dia + "-" + mes + "-" + ano);
 
-                FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporteCompra\\reporte"+id_cab+"("+dia+"-"+mes+"-"+ano+").xlsx");
+                FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporteDetalleCompra\\reporte"+id_cab+"("+dia+"-"+mes+"-"+ano+").xlsx");
                 book.write(fileout);
                 fileout.close();
 

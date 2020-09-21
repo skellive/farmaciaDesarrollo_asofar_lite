@@ -1267,7 +1267,7 @@ public class Tablas {
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getTipo();
             Filas[3] = lista.get(i).getProducto();
-            Filas[4] = lista.get(i).getEnvase();
+            Filas[4] = lista.get(i).getPresentacion();
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = "" + lista.get(i).getCantidad();
             Filas[7] = "" + lista.get(i).getBono();
@@ -1322,7 +1322,7 @@ public class Tablas {
             Filas[2] = lista.get(i).getMarca();
             Filas[3] = lista.get(i).getTipo();
             Filas[4] = lista.get(i).getProducto();
-            Filas[5] = lista.get(i).getEnvase();
+            Filas[5] = lista.get(i).getPresentacion();
             Filas[6] = lista.get(i).getMedida();
             Filas[7] = "" + lista.get(i).getCantidad();
             Filas[8] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
@@ -1655,7 +1655,7 @@ public class Tablas {
             Filas[1] = lista.get(i).getMarca();
             Filas[2] = lista.get(i).getTipo();
             Filas[3] = lista.get(i).getProducto();
-            Filas[4] = lista.get(i).getEnvase();
+            Filas[4] = lista.get(i).getPresentacion();
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = "" + lista.get(i).getCantidad();
             Filas[7] = lista.get(i).getPrecio().toString();

@@ -128,6 +128,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel26 = new javax.swing.JLabel();
         btnSalir2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -388,6 +389,13 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
             }
         });
 
+        jButton2.setText("IMPRIMIR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -419,6 +427,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TxtSubConIva, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -496,7 +506,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25))))
         );
 
@@ -544,6 +555,10 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_NumeroActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     public void reporte() {
 
         int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
@@ -578,7 +593,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                 Row filaTitulo = sheet.createRow(3);
                 Cell celdaTitulo = filaTitulo.createCell(2);
                 celdaTitulo.setCellStyle(tituloEstilo);
-                celdaTitulo.setCellValue("Reporte de Compras");
+                celdaTitulo.setCellValue("Reporte de Detalle de venta");
 
                 sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 1));
 
@@ -621,22 +636,19 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                 datosEstilo.setBorderRight(BorderStyle.THIN);
                 datosEstilo.setBorderBottom(BorderStyle.THIN);
 
-                ps = conn.prepareStatement("SELECT `detalle_venta`.`id`,\n"
-                        + "concat(t.`nombre`, ' ', `productos`.`nombre`, ' en ',en.`nombre`, ' en ',me.`nombre_medida`) AS 'producto', \n"
+                ps = conn.prepareStatement("SELECT `detalle_venta`.`id`, `detalle_venta`.`id_cabecera_venta` AS 'id_cabecera',`detalle_venta`.`id_control`,`productos`.`id_productos` AS 'Codigo' ,`productos`.`nombre` AS 'Detalle', \n"
                         + "`detalle_venta`.`cantidad` AS 'Cantidad',\n"
                         + "ROUND (detalle_venta.`precio`,2 )AS 'Precio', \n"
                         + "ROUND ((`detalle_venta`.`cantidad` * `detalle_venta`.`precio`),2)AS 'Subtotal',\n"
                         + "ROUND (`detalle_venta`.`descuento`,2) AS 'Descuento',\n"
                         + "ROUND (`detalle_venta`.`iva`,2) AS 'Iva',\n"
                         + "ROUND ((( `detalle_venta`.`precio` * `detalle_venta`.`cantidad`) + `detalle_venta`.`iva` - `detalle_venta`.`descuento` ),2) AS 'Total'\n"
-                        + "FROM detalle_venta \n"
-                        + "INNER JOIN `precios` ON `detalle_venta`.`id_control` = `precios`.`id_precio` \n"
-                        + "INNER JOIN `productos` ON `productos`.`id_productos` = `precios`.`id_producto`\n"
-                        + "JOIN `marcas` m ON m.`id_marcas` = `productos`.`id_marcas`\n"
-                        + "JOIN `tipo` t ON t.`id_tipo` = `productos`.`id_tipo`\n"
-                        + "JOIN `presentaciones` en ON en.`idPresentaciones`= `productos`.`id_presentacion`\n"
-                        + "JOIN `medidas` me ON me.`id_medidas`= `productos`.`id_medidas`\n"
-                        + "WHERE `detalle_venta`.`id_cabecera_venta`= " + id_cab + "");
+                        + "FROM detalle_venta INNER JOIN `precios`\n"
+                        + "ON\n"
+                        + "`detalle_venta`.`id_control` = `precios`.`id_precio` INNER JOIN `productos`\n"
+                        + "ON\n"
+                        + "`productos`.`id_productos` = `precios`.`id_producto`\n"
+                        + "WHERE `detalle_venta`.`id_cabecera_venta`= "+ id_cab +"");
                 rs = ps.executeQuery();
 
                 int numCol = rs.getMetaData().getColumnCount();
@@ -677,7 +689,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                 ano = (c1.get(Calendar.YEAR));
                 System.out.println(dia + "-" + mes + "-" + ano);
 
-                FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporteVenta\\reporte"+id_cab+"("+dia+"-"+mes+"-"+ano+").xlsx");
+                FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporteDetalleVenta\\reporte" + id_cab + "(" + dia + "-" + mes + "-" + ano + ").xlsx");
                 book.write(fileout);
                 fileout.close();
 
@@ -767,6 +779,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
     private javax.swing.JTextField TxtTipoVenta;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

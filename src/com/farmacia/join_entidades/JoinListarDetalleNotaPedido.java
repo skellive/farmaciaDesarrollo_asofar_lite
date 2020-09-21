@@ -21,8 +21,8 @@ public class JoinListarDetalleNotaPedido {
     private String marca;
     private Long  id_tipo;
     private String tipo;
-    private Long id_envase;
-    private String envase;
+    private Long id_Presentacion;
+    private String Presentacion;
     private Long id_medida;
     private String medida;
     private Long id_cabecera_nota_pedido;
@@ -36,7 +36,7 @@ public class JoinListarDetalleNotaPedido {
     public JoinListarDetalleNotaPedido() {
     }
 
-    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_envase, String envase, Long id_medida, String medida, Long id_cabecera_nota_pedido, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total) {
+    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_Presentacion, String Presentacion, Long id_medida, String medida, Long id_cabecera_nota_pedido, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total) {
         this.id_detalle_nota_pedido = id_detalle_nota_pedido;
         this.id_precio = id_precio;
         this.id_producto = id_producto;
@@ -45,8 +45,8 @@ public class JoinListarDetalleNotaPedido {
         this.marca = marca;
         this.id_tipo = id_tipo;
         this.tipo = tipo;
-        this.id_envase = id_envase;
-        this.envase = envase;
+        this.id_Presentacion = id_Presentacion;
+        this.Presentacion = Presentacion;
         this.id_medida = id_medida;
         this.medida = medida;
         this.id_cabecera_nota_pedido = id_cabecera_nota_pedido;
@@ -122,20 +122,20 @@ public class JoinListarDetalleNotaPedido {
         this.tipo = tipo;
     }
 
-    public Long getId_envase() {
-        return id_envase;
+        public Long getId_Presentacion() {
+        return id_Presentacion;
     }
 
-    public void setId_envase(Long id_envase) {
-        this.id_envase = id_envase;
+    public void setId_Presentacion(Long id_Presentacion) {
+        this.id_Presentacion = id_Presentacion;
     }
 
-    public String getEnvase() {
-        return envase;
+    public String getPresentacion() {
+        return Presentacion;
     }
 
-    public void setEnvase(String envase) {
-        this.envase = envase;
+    public void setEnvase(String Presentacion) {
+        this.Presentacion = Presentacion;
     }
 
     public Long getId_medida() {

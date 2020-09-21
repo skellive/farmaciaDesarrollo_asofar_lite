@@ -429,11 +429,8 @@ public class Reporte_Productos_Compras extends javax.swing.JDialog {
     }//GEN-LAST:event_btnimprimirActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-
         Reporte_Productos_Ventas rpv = new Reporte_Productos_Ventas(new javax.swing.JFrame(), true);
         rpv.setVisible(true);
-
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
