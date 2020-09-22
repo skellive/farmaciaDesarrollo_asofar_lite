@@ -12,56 +12,21 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Conexion;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
-import com.itextpdf.io.font.FontConstants;
-import com.itextpdf.io.image.ImageDataFactory;
-//import com.itextpdf.text.pdf.PdfWriter;
-import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.kernel.font.PdfFont;
-import com.itextpdf.kernel.font.PdfFontFactory;
-import com.itextpdf.kernel.geom.PageSize;
-import com.itextpdf.kernel.pdf.PdfDocument;
-import com.itextpdf.kernel.pdf.PdfWriter;
-import com.itextpdf.layout.Document;
-import com.itextpdf.layout.element.Image;
-import com.itextpdf.layout.element.Paragraph;
-import com.itextpdf.layout.element.List;
-import com.itextpdf.layout.element.Table;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.FontFactory;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.math.BigDecimal;
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.UndoableEditListener;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.Element;
-import javax.swing.text.Position;
-import javax.swing.text.Segment;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -481,7 +446,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             }
 
             try {
-                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("ReporteriaCompras.jasper"));
+                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Reporte_Compra.jasper"));
                 JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
                 JDialog ventana = new JDialog();
 
@@ -514,7 +479,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             }
 
             try {
-                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("ReporteriaSinDateCompras.jasper"));
+                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Reporte_ComprasinDate.jasper"));
                 JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
                 JDialog ventana = new JDialog();
 
