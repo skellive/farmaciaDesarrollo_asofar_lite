@@ -35,7 +35,7 @@ public class conexion_Excel {
             Connection con = c.conectar();
         try {
             
-            con.setAutoCommit(false);
+            
             CallableStatement ps;
             FileInputStream file = new FileInputStream(new File(ruta));
 
