@@ -77,6 +77,7 @@ public class Products extends javax.swing.JDialog {
 
     public Products(java.awt.Frame parent, boolean modal, Listar_usuario obj) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
