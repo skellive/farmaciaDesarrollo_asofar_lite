@@ -1709,6 +1709,32 @@ public class CRUD {
         }
         return tp;
     }
+    
+        
+    public int validarCodigo(String cod_barras){
+           ResultSet rs = null;
+        Conexion cc = new Conexion();
+        Connection con = cc.conectar();
+        PreparedStatement pst = null;
+        
+        String sql = "SELECT count(id_productos) FROM productos WHERE codigo_barras = ?";
+        try{
+            
+         pst = con.prepareStatement(sql);
+            pst.setString(1, cod_barras);
+            rs = pst.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt(1);
+            }
+              return 1;
+        } catch (SQLException ex) {                        
+            JOptionPane.showMessageDialog(null,"Error al procesar:"+ ex);
+            return 1;
+        }
+              
+        
+    }
 
     
      public ArrayList<CategoriaProducto> MostrarCategoria() {

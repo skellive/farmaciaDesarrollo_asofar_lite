@@ -12,11 +12,13 @@ import com.farmacia.entities1.Laboratorio;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Telefono_Cliente;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -206,5 +208,6 @@ public class Consultas {
         }
         return precios;
     }
+
 
 }

@@ -5,6 +5,8 @@
  */
 package com.farmacia.views.producto;
 
+import com.farmacia.dao.CRUD;
+import com.farmacia.dao.Consultas;
 import javax.swing.JOptionPane;
 
 /**
@@ -143,10 +145,18 @@ public class CodigoBarras extends javax.swing.JDialog {
 //        setVisible(false);
 //        pr.setVisible(true);
             codigoBarra= codigo.getText();
+            CRUD cs = new CRUD();
           if(codigoBarra==""){
+              
               JOptionPane.showMessageDialog(this, "INGRESE CODIGO");
           }else{
-            setVisible(false);
+              if(cs.validarCodigo(codigo.getText())== 0){
+                  setVisible(false);
+              }else{
+                  JOptionPane.showMessageDialog(null, "CODIGO YA EXISTE");
+                
+              }
+            
             
           }
     }//GEN-LAST:event_jButton1ActionPerformed
