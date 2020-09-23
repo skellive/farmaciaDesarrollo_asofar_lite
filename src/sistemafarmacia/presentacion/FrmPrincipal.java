@@ -41,6 +41,7 @@ import com.farmacia.views.stock.Stock_Productos;
 import com.farmacia.views.usuario.Local;
 import com.farmacia.views.usuario.Mostrar_usuario;
 import com.farmacia.views.ventas.MenuPreVentas;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 
 public class FrmPrincipal extends javax.swing.JFrame {
@@ -58,7 +59,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //        //initComponents();
 //    }
     public FrmPrincipal(Listar_usuario obj2, String tipo) {
-        setContentPane(fondo);
+        setContentPane(fondo);        
         initComponents();
         if ("ADMINISTRADOR".equals(tipo)) {
         } else {
