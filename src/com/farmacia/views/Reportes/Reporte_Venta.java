@@ -424,22 +424,27 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
             for (int i = 0; i < tbaCabeceraVenta.getRowCount(); i++) {
                 ClaseReporte creporte = new ClaseReporte(
-                        fecha,
-                        fecha2,
                         tbaCabeceraVenta.getValueAt(i, 0).toString(),
-                        tbaCabeceraVenta.getValueAt(i, 1).toString(),
                         tbaCabeceraVenta.getValueAt(i, 2).toString(),
                         tbaCabeceraVenta.getValueAt(i, 3).toString(),
                         tbaCabeceraVenta.getValueAt(i, 4).toString(),
                         tbaCabeceraVenta.getValueAt(i, 5).toString(),
                         tbaCabeceraVenta.getValueAt(i, 6).toString(),
                         tbaCabeceraVenta.getValueAt(i, 7).toString(),
-                        Txt_Total.getText().toString());
+                        tbaCabeceraVenta.getValueAt(i, 8).toString(),
+                        tbaCabeceraVenta.getValueAt(i, 9).toString(),
+                        tbaCabeceraVenta.getValueAt(i, 10).toString(),
+                        tbaCabeceraVenta.getValueAt(i, 11).toString(),
+                        tbaCabeceraVenta.getValueAt(i, 12).toString(),
+                        fecha,
+                        fecha2,
+                        Txt_Total.getText().toString(),
+                        Txt_Utilidad.getText().toString());
                 lista.add(creporte);
             }
 
             try {
-                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("ReporteriaCompras.jasper"));
+                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Reporte_Venta.jasper"));
                 JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
                 JDialog ventana = new JDialog();
 
@@ -460,19 +465,24 @@ public class Reporte_Venta extends javax.swing.JDialog {
             for (int i = 0; i < tbaCabeceraVenta.getRowCount(); i++) {
                 ClaseReporte creporte = new ClaseReporte(
                         tbaCabeceraVenta.getValueAt(i, 0).toString(),
-                        tbaCabeceraVenta.getValueAt(i, 1).toString(),
                         tbaCabeceraVenta.getValueAt(i, 2).toString(),
                         tbaCabeceraVenta.getValueAt(i, 3).toString(),
                         tbaCabeceraVenta.getValueAt(i, 4).toString(),
                         tbaCabeceraVenta.getValueAt(i, 5).toString(),
                         tbaCabeceraVenta.getValueAt(i, 6).toString(),
                         tbaCabeceraVenta.getValueAt(i, 7).toString(),
-                        Txt_Total.getText().toString());
+                        tbaCabeceraVenta.getValueAt(i, 8).toString(),
+                        tbaCabeceraVenta.getValueAt(i, 9).toString(),
+                        tbaCabeceraVenta.getValueAt(i, 10).toString(),
+                        tbaCabeceraVenta.getValueAt(i, 11).toString(),
+                        tbaCabeceraVenta.getValueAt(i, 12).toString(),
+                        Txt_Total.getText().toString(),
+                        Txt_Utilidad.getText().toString());
                 lista.add(creporte);
             }
 
             try {
-                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("ReporteriaSinDateCompras.jasper"));
+                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Reporte_VentasinDate.jasper"));
                 JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
                 JDialog ventana = new JDialog();
 

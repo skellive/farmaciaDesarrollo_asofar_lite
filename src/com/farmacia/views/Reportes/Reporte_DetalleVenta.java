@@ -10,9 +10,22 @@ import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Conexion;
+import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Detalle_ventas;
 import com.farmacia.fecha.Fecha;
 import com.farmacia.join_entidades.JoinListarCabeceraVenta;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtCodigoProveedor;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtCorreo;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtDescuento;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtDireccion;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtIva;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtNombre;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtRepresentante;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtRuc;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtTelefono;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtTipo;
+import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtTotal;
+import java.awt.Dimension;
 
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -24,7 +37,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.view.JRViewer;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -49,7 +72,8 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Usuario
  */
 public class Reporte_DetalleVenta extends javax.swing.JDialog {
-
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
     JoinListarCabeceraVenta objCabecera = null;
     int x, y;
@@ -128,7 +152,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel26 = new javax.swing.JLabel();
         btnSalir2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnImprimir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -356,7 +380,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         jLabel23.setText("SUBTOTAL CON IVA:");
 
         jLabel24.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel24.setText("SUBTOTAL CON IVA:");
+        jLabel24.setText("SUBTOTAL SIN IVA:");
 
         jLabel25.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel25.setText("SUBTOTAL:");
@@ -389,10 +413,10 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setText("IMPRIMIR");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnImprimir.setText("IMPRIMIR");
+        btnImprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnImprimirActionPerformed(evt);
             }
         });
 
@@ -427,7 +451,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(TxtSubConIva, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton2)
+                                .addComponent(btnImprimir)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton1)
                                 .addGap(18, 18, 18)
@@ -507,7 +531,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnImprimir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(25, 25, 25))))
         );
 
@@ -555,9 +579,45 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_NumeroActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
+        ArrayList tablac = new ArrayList();
+        for (int i = 0; i < jTable1.getRowCount(); i++) {
+            ClaseReporte tabla1 = new ClaseReporte(
+                    txt_Numero.getText(),
+                    TxtCliente.getText(),
+                    TxtCedula.getText(),
+                    TxtFecha.getText(),
+                    TxtTipoVenta.getText(),
+                    TxtFormaPago.getText(),
+                    jTable1.getValueAt(i, 0).toString(),
+                    jTable1.getValueAt(i, 1).toString(),
+                    jTable1.getValueAt(i, 2).toString(),
+                    jTable1.getValueAt(i, 3).toString(),
+                    jTable1.getValueAt(i, 4).toString(),
+                    jTable1.getValueAt(i, 5).toString(),
+                    jTable1.getValueAt(i, 6).toString(),
+                    jTable1.getValueAt(i, 7).toString(),
+                    TxtSubSinIva.getText().toString(),
+                    TxtSubtotal.getText().toString(),
+                    txtDescuento.getText().toString(),
+                    txtIva.getText().toString(),
+                    txtTotal.getText().toString());
+            tablac.add(tabla1);
+        }
+        try {
+            JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("ordenDetalleVenta.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Reporte_DetalleCompra.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnImprimirActionPerformed
 
     public void reporte() {
 
@@ -777,9 +837,9 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
     public static javax.swing.JTextField TxtSubSinIva;
     public static javax.swing.JTextField TxtSubtotal;
     private javax.swing.JTextField TxtTipoVenta;
+    private javax.swing.JButton btnImprimir;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
