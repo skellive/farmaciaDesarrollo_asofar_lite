@@ -8,6 +8,7 @@ import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
+import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
@@ -42,6 +43,8 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     //PRODUCTOS
     ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
+    //NUEVO
+    ArrayList<joinProductoParaNotaPedido> listaproduct = crud.listarProductoParaNotaPedido(1);
     //usuario
     Listar_usuario objUsuario = null;
     joinProductoDetallesFaltantes objx = new joinProductoDetallesFaltantes();
@@ -64,8 +67,12 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
         TotalPro();
         TotalIVA2();
         
+        //Arreglado 
         //cargar productos en la tabla
-        Tablas.cargarJoinProductosMCompra(tabla_para_productos, listapro);
+        Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaproduct);
+        //cargar productos en la tabla
+        //Tablas.cargarJoinProductosMCompra(tabla_para_productos, listapro);
+        
         //Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
         //FECHA DEL SISTEMA
@@ -911,7 +918,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
         //LISTAR TABLA DE ABAJO
         int i = 0;
         String msg = null;
-        Integer cantidatabla = 0;
+        Integer cantidatabla = 0;//ni idea porq si solo la guarda una vez pero no la utiliza
         try {
             if (evt.getClickCount() == 2) {
                 i = tabla_para_productos.getSelectedRow();

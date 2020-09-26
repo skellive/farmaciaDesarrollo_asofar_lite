@@ -22,7 +22,7 @@ public class joinProductoParaNotaPedido {
     private Long id_marcas;
     private String marca;
     
-      private Long id_categoria;
+    private Long id_categoria;
     private String nombrecategoria;
     private Long id_medida;
     private String medida;

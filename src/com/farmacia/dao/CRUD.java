@@ -54,6 +54,7 @@ import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
+import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ValidarIngresoProducto;
 import java.math.BigDecimal;
@@ -386,6 +387,41 @@ public class CRUD {
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
                 listarJoinProductosCompras obj = EntidadesMappers.getJoinTodosProductosFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+    
+    
+    //PRODUCTOS PARA NOTA DE PEDIDO
+    public ArrayList<joinProductoParaNotaPedido> listarProductoParaNotaPedido(int op) {
+        ArrayList<joinProductoParaNotaPedido> lista = new ArrayList<joinProductoParaNotaPedido>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call listarPoductosCompras(?) }");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                joinProductoParaNotaPedido obj = EntidadesMappers.getJoinProductosNotaPedidoFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
