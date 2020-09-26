@@ -40,10 +40,12 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
     ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
+    //PRODUCTOS
     ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
+    //usuario
     Listar_usuario objUsuario = null;
     joinProductoDetallesFaltantes objx = new joinProductoDetallesFaltantes();
-
+    
     public Nuevo_NotaPedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
 
@@ -51,7 +53,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
         initComponents();
         PanelSec.setEnabled(false);
         TxtFiltro.setEnabled(false);
-        t_Nota_faltantes.setEnabled(false);
+        tabla_para_productos.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnBuscar.setEnabled(false);
         btnGuardar.setEnabled(false);
@@ -61,7 +63,10 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
         TotalDescuento2();
         TotalPro();
         TotalIVA2();
-        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+        
+        //cargar productos en la tabla
+        Tablas.cargarJoinProductosMCompra(tabla_para_productos, listapro);
+        //Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
         //FECHA DEL SISTEMA
         java.util.Date sistFecha = new java.util.Date();
@@ -81,7 +86,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
         initComponents();
         PanelSec.setEnabled(false);
         TxtFiltro.setEnabled(false);
-        t_Nota_faltantes.setEnabled(false);
+        tabla_para_productos.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnBuscar.setEnabled(false);
         btnGuardar.setEnabled(false);
@@ -91,7 +96,11 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
         TotalDescuento2();
         TotalPro();
         TotalIVA2();
-        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+        
+        
+        //cargar productos en la tabla
+        Tablas.cargarJoinProductosMCompra(tabla_para_productos, listapro);
+        //Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
         //FECHA DEL SISTEMA
         java.util.Date sistFecha = new java.util.Date();
@@ -233,7 +242,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
         cbxPlazo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         tblProduc = new javax.swing.JScrollPane();
-        t_Nota_faltantes = new javax.swing.JTable();
+        tabla_para_productos = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaListaFaltantes = new javax.swing.JTable();
@@ -553,7 +562,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        t_Nota_faltantes.setModel(new javax.swing.table.DefaultTableModel(
+        tabla_para_productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -569,15 +578,15 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tabla_para_productos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMouseClicked(evt);
+                tabla_para_productosMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMousePressed(evt);
+                tabla_para_productosMousePressed(evt);
             }
         });
-        tblProduc.setViewportView(t_Nota_faltantes);
+        tblProduc.setViewportView(tabla_para_productos);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -820,7 +829,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
             if (proveedorC != null) {
                 PanelSec.setEnabled(true);
                 TxtFiltro.setEnabled(true);
-                t_Nota_faltantes.setEnabled(true);
+                tabla_para_productos.setEnabled(true);
                 tbaListaFaltantes.setEnabled(true);
                 btnBuscar.setEnabled(true);
                 btnGuardar.setEnabled(true);
@@ -848,10 +857,10 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
 
     }//GEN-LAST:event_txtRepresentanteKeyReleased
 
-    private void t_Nota_faltantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMouseClicked
+    private void tabla_para_productosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_para_productosMouseClicked
 
 
-    }//GEN-LAST:event_t_Nota_faltantesMouseClicked
+    }//GEN-LAST:event_tabla_para_productosMouseClicked
 
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
@@ -897,16 +906,17 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
-
+    private void tabla_para_productosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_para_productosMousePressed
+        
+        //LISTAR TABLA DE ABAJO
         int i = 0;
         String msg = null;
         Integer cantidatabla = 0;
         try {
             if (evt.getClickCount() == 2) {
-                i = t_Nota_faltantes.getSelectedRow();
+                i = tabla_para_productos.getSelectedRow();
 //                objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
+                objeto = devuelveObjeto(tabla_para_productos.getValueAt(i, 0).toString(), lista);
 
                 cantidatabla = objeto.getCantidad();
                 System.out.println("holaaa");
@@ -923,10 +933,10 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
                     msg = ComponentesFaltantes.validarListaFaltantesNota(lista1, np.objf.getId_precios().toString());
 
                     if (msg == null) {
-                        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                        Tablas.cargarJoinProductoDetallesFaltantes(tabla_para_productos, lista);
                         if (np.getObjf().getCantidad() > 0) {
                             //////
-                            Integer Resta = Integer.parseInt(t_Nota_faltantes.getValueAt(i, 6).toString()) - np.getObjf().getCantidad();
+                            Integer Resta = Integer.parseInt(tabla_para_productos.getValueAt(i, 6).toString()) - np.getObjf().getCantidad();
                             getPosicion(objeto.getId_producto(), Resta);
                             //////
                             objx = calcularValores(np.getObjf());
@@ -935,7 +945,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
                             for (joinProductoDetallesFaltantes p : lista1) {
                                 System.out.println("idddddd " + lista1.get(0).getId_precios());
                             }
-                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                            Tablas.cargarJoinProductoDetallesFaltantes(tabla_para_productos, lista);
                             Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
 
                             TotalDescuento2();
@@ -958,7 +968,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
             // Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
 
-    }//GEN-LAST:event_t_Nota_faltantesMousePressed
+    }//GEN-LAST:event_tabla_para_productosMousePressed
 
     public joinProductoDetallesFaltantes calcularValores(joinProductoDetallesFaltantes lista) {
         joinProductoDetallesFaltantes objd = new joinProductoDetallesFaltantes();
@@ -1095,7 +1105,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
 
         TxtFiltro.setText("");
 
-        Tablas.cargarFiltroProductosNota(t_Nota_faltantes, lista);
+        Tablas.cargarFiltroProductosNota(tabla_para_productos, lista);
         query = "";
     }
     private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
@@ -1114,7 +1124,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
                     int i = tbaListaFaltantes.getSelectedRow();
 
 //                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                    objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
+                    objeto = devuelveObjeto(tabla_para_productos.getValueAt(i, 0).toString(), lista);
                     System.out.println("objetoP cANTIDAD" + objeto.getCantidad());
                     System.out.println("lista1" + lista1.get(i).getCantidad());
 
@@ -1122,7 +1132,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
                     getPosicion(objeto.getId_producto(), SUM);
                     System.out.println("suma " + SUM);
                     lista1.remove(i);
-                    Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                    Tablas.cargarJoinProductoDetallesFaltantes(tabla_para_productos, lista);
                     Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
 
                     TotalPro();
@@ -1150,7 +1160,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
 //                    lista1.remove(i);
 //                    Tablas.cargarJoinProductoDetallesFaltantes(tbaListaFaltantes, lista1);
                     Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, lista1);
-                    Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                    Tablas.cargarJoinProductoDetallesFaltantes(tabla_para_productos, lista);
                     TotalPro();
                     TotalIVA2();
                     TotalDescuento2();
@@ -1187,7 +1197,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
         Reiniciar();
         btnBuscar.setEnabled(false);
         btnGuardar.setEnabled(false);
-        t_Nota_faltantes.setEnabled(false);
+        tabla_para_productos.setEnabled(false);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -1239,6 +1249,24 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
 
         return objeto1;
     }
+    
+    //NUEVO   devolver objeto para mandar abajo 
+    public joinProductoDetallesFaltantes devuelveProducto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
+
+        joinProductoDetallesFaltantes objeto1 = null;
+
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+
+        return objeto1;
+    }
+    
+    
+    
 
     private void Reiniciar() {
         txtCodigoProveedor.setText("");
@@ -1310,7 +1338,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable t_Nota_faltantes;
+    private javax.swing.JTable tabla_para_productos;
     private javax.swing.JTable tbaListaFaltantes;
     private javax.swing.JScrollPane tblProduc;
     private javax.swing.JComboBox<String> tipofiltro;
