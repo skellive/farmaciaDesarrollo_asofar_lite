@@ -33,6 +33,7 @@ import com.farmacia.views.devoluciones.ComprasDevueltas;
 import com.farmacia.views.iva.Mostrar_iva;
 import com.farmacia.views.pedidos.MantenimientoNotaPedidos;
 import com.farmacia.views.pedidos.NotePedidos;
+import com.farmacia.views.pedidos.Nuevo_NotaPedidos;
 
 import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.producto.Products;
@@ -721,8 +722,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void mnuRegistrarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVenta1ActionPerformed
 //        NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
 //        np.setVisible(true);
-         NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
+           Nuevo_NotaPedidos np = new Nuevo_NotaPedidos(new javax.swing.JFrame(), true, objUsuario);
             np.setVisible(true);
+         //NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
+            //np.setVisible(true);
     }//GEN-LAST:event_mnuRegistrarVenta1ActionPerformed
 
     private void mnuCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCliente1ActionPerformed
