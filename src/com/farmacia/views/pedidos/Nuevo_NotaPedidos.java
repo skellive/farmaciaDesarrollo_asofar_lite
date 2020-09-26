@@ -44,7 +44,10 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
     //PRODUCTOS
     ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
     //NUEVO
-    ArrayList<joinProductoParaNotaPedido> listaproduct = crud.listarProductoParaNotaPedido(1);
+    joinProductoParaNotaPedido objetoActual = null;
+    ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
+    ArrayList<joinProductoParaNotaPedido> listaPNP1 = new ArrayList<joinProductoParaNotaPedido>();
+    joinProductoParaNotaPedido Objx = new joinProductoParaNotaPedido();
     //usuario
     Listar_usuario objUsuario = null;
     joinProductoDetallesFaltantes objx = new joinProductoDetallesFaltantes();
@@ -69,7 +72,7 @@ public class Nuevo_NotaPedidos extends javax.swing.JDialog {
         
         //Arreglado 
         //cargar productos en la tabla
-        Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaproduct);
+        Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
         //cargar productos en la tabla
         //Tablas.cargarJoinProductosMCompra(tabla_para_productos, listapro);
         
