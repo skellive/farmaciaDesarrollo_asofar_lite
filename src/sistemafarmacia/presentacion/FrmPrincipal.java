@@ -283,7 +283,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                         .addComponent(lblEmpleados)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblClientes)
-                        .addGap(217, 217, 217)
+                        .addGap(220, 220, 220)
                         .addComponent(lblProveedores)
                         .addGap(64, 64, 64))))
         );
