@@ -1735,6 +1735,47 @@ public class CRUD {
               
         
     }
+    
+    public static void ingresoRapido(int id_prov, 
+                                int id_producto, 
+                                String plazo, 
+                                int id_pago, 
+                                String forma_pago,
+                                float iva,
+                                float descuento,
+                                float total,
+                                int id_precio,
+                                float precio,
+                                int cantidad,
+                                int sucursal){
+           Conexion c = new Conexion();
+            Connection con = c.conectar();
+        
+        try {
+            CallableStatement prIngRap;
+            
+            prIngRap = con.prepareCall("{call sp_ingreso_rapido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }");
+            prIngRap.setInt(1, id_prov);
+            prIngRap.setInt(2, id_producto);
+            prIngRap.setString(3, plazo);
+            prIngRap.setInt(4, id_pago);
+            prIngRap.setString(5, forma_pago);
+            prIngRap.setDouble(6, iva);
+            prIngRap.setDouble(7, descuento);
+            prIngRap.setDouble(8, total);
+            prIngRap.setInt(9, id_precio);
+            prIngRap.setDouble(10, precio);
+            prIngRap.setInt(11, cantidad);
+            prIngRap.setInt(12, sucursal);
+            prIngRap.execute();
+            System.out.println("Ingreso rapido correcto");
+        } catch (SQLException ex) {
+            System.out.println("Ingreso rapido error" + ex);
+            JOptionPane.showMessageDialog(null,"Error: "+ ex);
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 
     
      public ArrayList<CategoriaProducto> MostrarCategoria() {

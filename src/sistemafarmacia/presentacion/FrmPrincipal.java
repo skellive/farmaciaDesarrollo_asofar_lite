@@ -30,6 +30,7 @@ import com.farmacia.views.comprasRealizadas.ComprasEfectuadas;
 import com.farmacia.views.contentPane.ContentPanel;
 import com.farmacia.views.covertidor.Convertidor_lista_Productos;
 import com.farmacia.views.devoluciones.ComprasDevueltas;
+import com.farmacia.views.ingresoRapido.ingresoRapido;
 import com.farmacia.views.iva.Mostrar_iva;
 import com.farmacia.views.pedidos.MantenimientoNotaPedidos;
 import com.farmacia.views.pedidos.NotePedidos;
@@ -232,6 +233,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         lblIngresoRapido.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/ingreso.png"))); // NOI18N
         lblIngresoRapido.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblIngresoRapido.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblIngresoRapidoMouseClicked(evt);
+            }
+        });
 
         lblGenerarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/Generar.png"))); // NOI18N
         lblGenerarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -857,6 +863,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Consulta_Proveedor p = new Consulta_Proveedor(new javax.swing.JFrame(), true);
             p.setVisible(true);
     }//GEN-LAST:event_lblProveedoresMouseClicked
+
+    private void lblIngresoRapidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIngresoRapidoMouseClicked
+        ingresoRapido igrp = new ingresoRapido();
+        igrp.setVisible(true);
+    }//GEN-LAST:event_lblIngresoRapidoMouseClicked
 
     public Listar_usuario getUsuario() {
         return objUsuario;

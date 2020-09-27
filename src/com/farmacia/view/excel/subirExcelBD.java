@@ -7,9 +7,7 @@ package com.farmacia.view.excel;
 
 import com.farmacia.dao.conexion_Excel;
 import com.farmacia.views.contentPane.ContentPanel;
-import com.sun.awt.AWTUtilities;
-import java.awt.Shape;
-import java.awt.geom.RoundRectangle2D;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -30,9 +28,7 @@ public class subirExcelBD extends javax.swing.JFrame {
     public subirExcelBD() {
         setContentPane(fondo);
         initComponents();
-        this.setLocationRelativeTo(null);
-        Shape forma = new RoundRectangle2D.Double(0,0,this.getBounds().width, this.getBounds().height, 27,27);
-        AWTUtilities.setWindowShape(this, forma);
+        this.setLocationRelativeTo(null);        
         
     }
 

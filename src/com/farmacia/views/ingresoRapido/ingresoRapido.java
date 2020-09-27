@@ -9,12 +9,9 @@ import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.views.contentPane.ContentPanel;
 import com.farmacia.views.pedidos.Consulta_proveedor_Nota;
 import com.farmacia.views.pedidos.NotePedidos;
-import com.sun.awt.AWTUtilities;
 
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.Shape;
-import java.awt.geom.RoundRectangle2D;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -35,9 +32,7 @@ public class ingresoRapido extends javax.swing.JFrame {
         this.setUndecorated(true);
         setContentPane(fondo);        
         initComponents();
-        this.setLocationRelativeTo(null);
-        Shape forma = new RoundRectangle2D.Double(0,0,this.getBounds().width, this.getBounds().height, 27,27);
-        AWTUtilities.setWindowShape(this, forma);
+        this.setLocationRelativeTo(null);        
     }
 
     /**
