@@ -48,6 +48,7 @@ import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
+import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -132,7 +133,7 @@ public class EntidadesMappers {
             obj.setCodigo_barras(rs.getString("CODIGO_BARRAS"));
             obj.setNombreProductos(rs.getString("NOMBRE"));
             obj.setDescripcion(rs.getString("DESCRIPCION"));
-            obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));
+            //obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));  //<---- hay un error
             obj.setPeso(rs.getDouble("peso"));
             obj.setId_tipo(rs.getLong("ID_TIPO"));
             obj.setNombreTipo(rs.getString("TIPO"));
@@ -149,6 +150,30 @@ public class EntidadesMappers {
             obj.setCantidad_minima(rs.getLong("CANTIDAD_MINIMA"));
             obj.setReceta(rs.getString("RECETA"));
             obj.setUnidades(rs.getLong("UNIDADES"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+    //PRODUCTO PARA NOTA DE PEDIDO
+    public static joinProductoParaNotaPedido getJoinProductosNotaPedidoFromResultSet(ResultSet rs) {
+        joinProductoParaNotaPedido obj = new joinProductoParaNotaPedido();
+        try {
+            obj.setId_producto(rs.getLong("ID_PRODUCTOS"));
+            obj.setNombre_producto(rs.getString("NOMBRE"));
+            obj.setId_tipo(rs.getLong("ID_TIPO"));
+            obj.setNombre_tipo(rs.getString("TIPO"));
+            obj.setId_medida(rs.getLong("ID_MEDIDAS"));
+            obj.setMedida(rs.getString("MEDIDA"));
+            obj.setId_envase(rs.getLong("id_presentacion"));
+            obj.setEnvase(rs.getString("PRESENTACION"));
+            obj.setId_marcas(rs.getLong("ID_MARCAS"));
+            obj.setMarca(rs.getString("MARCA"));
+            obj.setId_categoria(rs.getLong("id_categoria"));
+            obj.setNombrecategoria(rs.getString("categoria"));
+            obj.setIva(rs.getString("IVA"));
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
@@ -920,7 +945,7 @@ public class EntidadesMappers {
             obj.setPeso(rs.getDouble("PESO"));
             obj.setId_tipo(rs.getLong("ID_TIPO"));
             obj.setId_medidas(rs.getLong("ID_MEDIDAS"));
-            obj.setId_envase(rs.getLong("ID_ENVASE"));
+            obj.setId_envase(rs.getLong("ID_PRESENTACION"));//ID_PRESENTACION
             obj.setId_marcas(rs.getLong("ID_MARCAS"));
             obj.setEstado_producto(rs.getString("ESTADO_PRODUCTO"));
             obj.setIva(rs.getString("IVA"));

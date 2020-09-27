@@ -39,6 +39,7 @@ import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
+import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import java.awt.Color;
 import java.math.BigDecimal;
@@ -209,6 +210,47 @@ public class Tablas {
             Filas[4] = lista.get(i).getNombreEnvase();
             Filas[5] = lista.get(i).getNombreMarca();
             Filas[6] = lista.get(i).getNombreCategoria();
+            model.addRow(Filas);
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+           Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
+           Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
+        }
+
+    }
+    
+    //Productos para nota de pedido
+    public static void cargarJoinProductosNotaPedido(JTable Tabla, ArrayList<joinProductoParaNotaPedido> lista) {
+
+        int[] a = {10, 30, 32, 52, 15, 30, 30};
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+        model = Tablas.VaciarTabla(Tabla);
+        String[] Co = {"CODIGO", "PRODUCTO", "TIPO", "MEDIDA", "PRESENTACION", "MARCA", "CATEGORIA"};
+        String[] Filas = new String[7];
+        model = new DefaultTableModel(null, Co);
+        Tabla.setShowGrid(true);
+        for (int i = 0; i < lista.size(); i++) {
+            Filas[0] = "" + lista.get(i).getId_producto().toString();
+            Filas[1] = lista.get(i).getNombre_producto();
+            Filas[2] = lista.get(i).getNombre_tipo();
+            Filas[3] = lista.get(i).getMedida();
+            Filas[4] = lista.get(i).getEnvase();
+            Filas[5] = lista.get(i).getMarca();
+            Filas[6] = lista.get(i).getNombrecategoria();
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -778,7 +820,7 @@ public class Tablas {
         return valorFormateado;
     }
 
-    public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
+    public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoParaNotaPedido> lista) {
 
         int[] a = {10, 30, 32, 70, 15, 30, 10, 20, 30, 30, 5, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();

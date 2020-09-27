@@ -727,8 +727,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void mnuRegistrarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVenta1ActionPerformed
 //        NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
 //        np.setVisible(true);
-         NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
+           NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
             np.setVisible(true);
+         //NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
+            //np.setVisible(true);
     }//GEN-LAST:event_mnuRegistrarVenta1ActionPerformed
 
     private void mnuCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCliente1ActionPerformed

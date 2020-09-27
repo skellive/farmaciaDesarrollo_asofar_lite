@@ -7,6 +7,7 @@ package com.farmacia.validaciones;
 
 import com.farmacia.dao.CRUD;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
+import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import java.util.ArrayList;
 import javax.swing.JTable;
 
@@ -30,7 +31,7 @@ public class ComponentesFaltantes {
 
         return msg;
     }
-    public static String validarListaFaltantesNota(ArrayList<joinProductoDetallesFaltantes> lista1, String id_precio) {
+    public static String validarListaFaltantesNota(ArrayList<joinProductoParaNotaPedido> lista1, String id_precio) {
         String o, msg = null;
         for (int i = 0; i < lista1.size(); i++) {
 
