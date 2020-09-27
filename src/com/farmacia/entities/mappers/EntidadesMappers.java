@@ -945,7 +945,7 @@ public class EntidadesMappers {
             obj.setPeso(rs.getDouble("PESO"));
             obj.setId_tipo(rs.getLong("ID_TIPO"));
             obj.setId_medidas(rs.getLong("ID_MEDIDAS"));
-            obj.setId_envase(rs.getLong("ID_ENVASE"));
+            obj.setId_envase(rs.getLong("ID_PRESENTACION"));//ID_PRESENTACION
             obj.setId_marcas(rs.getLong("ID_MARCAS"));
             obj.setEstado_producto(rs.getString("ESTADO_PRODUCTO"));
             obj.setIva(rs.getString("IVA"));
