@@ -940,8 +940,7 @@ public class NotePedidos extends javax.swing.JDialog {
                     System.out.println(" cantidad " + np.getObjf().getCantidad());
                     
                     //VER DESDE AQUI
-                    
-                    
+                                    
                     //joinProductoParaNotaPedido
                     //compara si tiene el mismo precio para saber si el producto esta dentro
                     msg = ComponentesFaltantes.validarListaFaltantesNota(listaPNP1, np.objf.getId_precios().toString());
