@@ -8,6 +8,7 @@ package com.farmacia.views.pedidos;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
+import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.validaciones.Validacion;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -23,10 +24,10 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
     String CADENA = "";
     int x, y;
-    joinProductoDetallesFaltantes objf = null;
+    joinProductoParaNotaPedido objf = null;
     ListarJoinPrecioNotaPedido objeto = null;
     Validacion v = new Validacion();
-    joinProductoDetallesFaltantes objeto1 = null;
+    joinProductoDetallesFaltantes objeto1 = null;//no se donde lo utilizan
 
     public AgregarProductoNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -40,7 +41,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
     }
 
-    public AgregarProductoNotaPedido(java.awt.Frame parent, boolean modal, joinProductoDetallesFaltantes obj1) {
+    public AgregarProductoNotaPedido(java.awt.Frame parent, boolean modal, joinProductoParaNotaPedido obj1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
@@ -403,8 +404,8 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     private void txtcantidadproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadproActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcantidadproActionPerformed
-    private void llenarFormulario(joinProductoDetallesFaltantes obj) {
-        objf = new joinProductoDetallesFaltantes();
+    private void llenarFormulario(joinProductoParaNotaPedido obj) {
+        objf = new joinProductoParaNotaPedido();
         codigo.setText(obj.getId_producto().toString());
         producto.setText(obj.getNombre_producto());
         Medida.setText(obj.getMedida());
@@ -461,7 +462,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         }
         objf.setBono(Integer.parseInt(bono));
     }//GEN-LAST:event_btnAnadirActionPerformed
-    public joinProductoDetallesFaltantes getObjf() {
+    public joinProductoParaNotaPedido getObjf() { //joinProductoParaNotaPedido
         return objf;
     }
     private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed

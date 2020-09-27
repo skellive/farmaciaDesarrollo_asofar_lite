@@ -820,7 +820,7 @@ public class Tablas {
         return valorFormateado;
     }
 
-    public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoDetallesFaltantes> lista) {
+    public static void cargarJoinProductoIngresoNotas(JTable Tabla, ArrayList<joinProductoParaNotaPedido> lista) {
 
         int[] a = {10, 30, 32, 70, 15, 30, 10, 20, 30, 30, 5, 30};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();

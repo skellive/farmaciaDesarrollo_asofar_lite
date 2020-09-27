@@ -133,7 +133,7 @@ public class EntidadesMappers {
             obj.setCodigo_barras(rs.getString("CODIGO_BARRAS"));
             obj.setNombreProductos(rs.getString("NOMBRE"));
             obj.setDescripcion(rs.getString("DESCRIPCION"));
-            obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));
+           // obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));
             obj.setPeso(rs.getDouble("peso"));
             obj.setId_tipo(rs.getLong("ID_TIPO"));
             obj.setNombreTipo(rs.getString("TIPO"));
