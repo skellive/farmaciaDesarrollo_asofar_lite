@@ -901,7 +901,7 @@
                         <Column editable="false" title="       MARCA" type="java.lang.Object"/>
                         <Column editable="false" title="      TIPO" type="java.lang.Object"/>
                         <Column editable="false" title="     PRODUCTO" type="java.lang.Object"/>
-                        <Column editable="false" title="   ENVASE" type="java.lang.Object"/>
+                        <Column editable="false" title="   PRESENTACION" type="java.lang.Object"/>
                         <Column editable="false" title="   MEDIDA" type="java.lang.Object"/>
                         <Column editable="false" title="  CANTIDAD" type="java.lang.Object"/>
                         <Column editable="false" title="   PRECIO" type="java.lang.Object"/>

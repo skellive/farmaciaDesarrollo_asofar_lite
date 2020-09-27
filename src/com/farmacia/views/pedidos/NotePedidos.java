@@ -615,7 +615,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
             },
             new String [] {
-                " CODIGO", "       MARCA", "      TIPO", "     PRODUCTO", "   ENVASE", "   MEDIDA", "  CANTIDAD", "   PRECIO", " DESCUENTO", "      IVA", "    TOTAL"
+                " CODIGO", "       MARCA", "      TIPO", "     PRODUCTO", "   PRESENTACION", "   MEDIDA", "  CANTIDAD", "   PRECIO", " DESCUENTO", "      IVA", "    TOTAL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
