@@ -42,7 +42,7 @@ public class NotePedidos extends javax.swing.JDialog {
     //ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
     //ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     //PRODUCTOS
-    ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
+    //ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
     //NUEVO
     joinProductoParaNotaPedido objetoActual = null;
     ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
@@ -51,7 +51,7 @@ public class NotePedidos extends javax.swing.JDialog {
     //usuario
     Listar_usuario objUsuario = null;
     //joinProductoDetallesFaltantes objx = new joinProductoDetallesFaltantes();
-    
+
     public NotePedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
 
@@ -69,15 +69,14 @@ public class NotePedidos extends javax.swing.JDialog {
         TotalDescuento2();
         TotalPro();
         TotalIVA2();
-        
+
         //Arreglado 
         //cargar productos en la tabla
         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
         //cargar productos en la tabla
         //Tablas.cargarJoinProductosMCompra(tabla_para_productos, listapro);
-        
-        //Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
 
+        //Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
         //FECHA DEL SISTEMA
         java.util.Date sistFecha = new java.util.Date();
         SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
@@ -106,7 +105,7 @@ public class NotePedidos extends javax.swing.JDialog {
         TotalDescuento2();
         TotalPro();
         TotalIVA2();
-        
+
         //nuevo
         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
         //cargar productos en la tabla
@@ -123,10 +122,8 @@ public class NotePedidos extends javax.swing.JDialog {
         tiempo.start();
         objUsuario = obj;
     }
-    
-    
-    // PROBAR ENLACE A GITHUB
 
+    // PROBAR ENLACE A GITHUB
     class horas implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
@@ -918,7 +915,7 @@ public class NotePedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void tabla_para_productosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_para_productosMousePressed
-        
+
         //LISTAR TABLA DE ABAJO
         int i = 0;
         String msg = null;
@@ -940,15 +937,26 @@ public class NotePedidos extends javax.swing.JDialog {
                     System.out.println(" id precio " + np.objf.getId_precios());
                     np.objf.getId_precios();
                     System.out.println(" id producto " + np.objf.getId_producto());
-                   //joinProductoParaNotaPedido
+                    System.out.println(" cantidad " + np.getObjf().getCantidad());
+                    
+                    //VER DESDE AQUI
+                    
+                    
+                    //joinProductoParaNotaPedido
+                    //compara si tiene el mismo precio para saber si el producto esta dentro
                     msg = ComponentesFaltantes.validarListaFaltantesNota(listaPNP1, np.objf.getId_precios().toString());
 
                     if (msg == null) {
+                        System.out.println(" PASO EL NULL");
+                        //nada nuevo
                         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
                         if (np.getObjf().getCantidad() > 0) {
                             //////
-                            Integer Resta = Integer.parseInt(tabla_para_productos.getValueAt(i, 6).toString()) - np.getObjf().getCantidad();
-                            getPosicion(objetoActual.getId_producto(), Resta);
+                            
+                            //resta y setea la cantidad en 1r array
+                            //Integer Resta = Integer.parseInt(tabla_para_productos.getValueAt(i, 6).toString()) - np.getObjf().getCantidad();
+                            //getPosicion(objetoActual.getId_producto(), Resta);
+                            
                             //////
                             Objx = calcularValores(np.getObjf());
                             ///////   
@@ -957,15 +965,21 @@ public class NotePedidos extends javax.swing.JDialog {
                                 System.out.println("idddddd " + listaPNP1.get(0).getId_precios());
                             }
                             Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
-                            Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
+
+                            try {
+                                Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
+                            } catch (Exception e) {
+                                System.out.println("error en tabla2"+e);
+                            }
+
+                            
 
                             TotalDescuento2();
                             TotalPro();
                             TotalIVA2();
+                        } else {
+                            JOptionPane.showMessageDialog(this, "getCantidad() ->" + np.getObjf().getCantidad());
                         }
-//                        else {
-//                            JOptionPane.showMessageDialog(this, msg);
-//                        }
 
                     } else {
                         JOptionPane.showMessageDialog(this, msg);
@@ -1233,8 +1247,8 @@ public class NotePedidos extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true, objUsuario);
         Prod.setVisible(true);
-        listapro.clear();
-        listapro = crud.listarTodoJoinProductos(1);
+        //listapro.clear();
+        //listapro = crud.listarTodoJoinProductos(1);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -1261,7 +1275,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
         return objeto1;
     }
-    
+
     //NUEVO   devolver objeto para mandar abajo 
     public joinProductoParaNotaPedido devuelveProducto(String datos, ArrayList<joinProductoParaNotaPedido> listarobj) {
 
@@ -1276,9 +1290,6 @@ public class NotePedidos extends javax.swing.JDialog {
 
         return objeto1;
     }
-    
-    
-    
 
     private void Reiniciar() {
         txtCodigoProveedor.setText("");
