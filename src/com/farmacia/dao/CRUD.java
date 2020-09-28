@@ -3743,15 +3743,16 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call insertarDetalleCompras(?,?,?,?,?,?,?,?) }");
-            prodProAlm.setLong(1, obj.getId_cabecera_compra());
-            prodProAlm.setLong(2, obj.getId_precio());
-            prodProAlm.setLong(3, obj.getCantidad());
-            prodProAlm.setBigDecimal(4, obj.getPrecio());
-            prodProAlm.setBigDecimal(5, obj.getDescuento());
-            prodProAlm.setBigDecimal(6, obj.getIva());
-            prodProAlm.setBigDecimal(7, obj.getTotal());
-            prodProAlm.setLong(8, obj.getBono());
+                    "{ call insertarDetalleParaComprar(?,?,?,?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_producto());
+            prodProAlm.setLong(2, obj.getId_cabecera_compra());
+            prodProAlm.setLong(3, obj.getId_precio());
+            prodProAlm.setLong(4, obj.getCantidad());
+            prodProAlm.setBigDecimal(5, obj.getPrecio());
+            prodProAlm.setBigDecimal(6, obj.getDescuento());
+            prodProAlm.setBigDecimal(7, obj.getIva());
+            prodProAlm.setBigDecimal(8, obj.getTotal());
+            prodProAlm.setLong(9, obj.getBono());
 //            prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
 //            valor = prodProAlm.getString("valor1");

@@ -857,6 +857,7 @@ public static String FechaActual() {
             //INTENTO 3 DE RESGISTRAR DETALLE COMPRA!
               for (int i = 0; i < lista3.size(); i++) {
                   Detalle_compra obj = new Detalle_compra();
+                  obj.setId_producto(lista3.get(i).getId_producto());
                   obj.setId_cabecera_compra(Long.valueOf(id_cab));
                   obj.setId_precio(lista3.get(i).getId_precio());
                   obj.setCantidad(lista3.get(i).getCantidad());
@@ -867,6 +868,7 @@ public static String FechaActual() {
                   obj.setBono(lista3.get(i).getBono());
                   crud.insertarDetalleProductoCompra(obj);
               }
+              JOptionPane.showMessageDialog(null, " Guardado con Exito ");
             this.setVisible(false);
         } catch (Exception ex) {
             Logger.getLogger(OrdenCompra.class.getName()).log(Level.SEVERE, null, ex);

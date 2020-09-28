@@ -12,6 +12,7 @@ import java.math.BigDecimal;
  * @author User
  */
 public class Detalle_compra {
+    private Long id_producto;
     private Long id_detalle_compra;
     private Long id_cabecera_compra;
     private Long id_precio;
@@ -25,7 +26,8 @@ public class Detalle_compra {
     public Detalle_compra() {
     }
 
-    public Detalle_compra(Long id_detalle_compra, Long id_cabecera_compra, Long id_precio, Integer cantidad, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer bono) {
+    public Detalle_compra(Long id_producto,Long id_detalle_compra, Long id_cabecera_compra, Long id_precio, Integer cantidad, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer bono) {
+        this.id_producto = id_producto;
         this.id_detalle_compra = id_detalle_compra;
         this.id_cabecera_compra = id_cabecera_compra;
         this.id_precio = id_precio;
@@ -36,6 +38,16 @@ public class Detalle_compra {
         this.total = total;
         this.bono = bono;
     }
+
+    public Long getId_producto() {
+        return id_producto;
+    }
+
+    public void setId_producto(Long id_producto) {
+        this.id_producto = id_producto;
+    }
+    
+    
 
     public Long getId_detalle_compra() {
         return id_detalle_compra;
