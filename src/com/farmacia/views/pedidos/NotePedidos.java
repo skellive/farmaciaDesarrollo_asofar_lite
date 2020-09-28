@@ -919,6 +919,8 @@ public class NotePedidos extends javax.swing.JDialog {
         //LISTAR TABLA DE ABAJO
         int i = 0;
         String msg = null;
+        //Nuevo variable para saber si esta el producto en la lista
+        String id_pro = null;
         Integer cantidatabla = 0;//ni idea porq si solo la guarda una vez pero no la utiliza
         try {
             if (evt.getClickCount() == 2) {
@@ -943,8 +945,9 @@ public class NotePedidos extends javax.swing.JDialog {
                                     
                     //joinProductoParaNotaPedido
                     //compara si tiene el mismo precio para saber si el producto esta dentro
-                    msg = ComponentesFaltantes.validarListaFaltantesNota(listaPNP1, np.objf.getId_precios().toString());
-
+                    //msg = ComponentesFaltantes.validarListaFaltantesNota(listaPNP1, np.objf.getId_precios().toString());
+                      msg = ComponentesFaltantes.validarProductoParaAgregar(listaPNP1,np.objf.getId_producto().toString(),np.getObjf().getCantidad());
+                    
                     if (msg == null) {
                         System.out.println(" PASO EL NULL");
                         //nada nuevo
@@ -981,7 +984,8 @@ public class NotePedidos extends javax.swing.JDialog {
                         }
 
                     } else {
-                        JOptionPane.showMessageDialog(this, msg);
+                        //JOptionPane.showMessageDialog(this, msg);
+                          System.out.println(msg);
                     }
 
                 } else {

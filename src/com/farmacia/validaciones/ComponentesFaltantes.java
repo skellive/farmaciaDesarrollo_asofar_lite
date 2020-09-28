@@ -45,6 +45,26 @@ public class ComponentesFaltantes {
 
         return msg;
     }
+    
+    
+     public static String validarProductoParaAgregar(ArrayList<joinProductoParaNotaPedido> Array2, String id_producto,Integer cantidad) {
+        String o, msg = null;
+        Integer cantActual = null;
+        for (int i = 0; i < Array2.size(); i++){
+            o =  Array2.get(i).getId_producto().toString();
+            if (o.equals(id_producto)) {
+                 cantActual = Array2.get(i).getCantidad();
+                 Array2.get(i).setCantidad(cantidad+cantActual);
+                 msg = "Cantidad Agregada!";
+                 break;
+            }
+
+        }
+
+        return msg;
+    }
+    
+    
 
     public static String validarListaCompras(JTable tabla, String id_producto) {
         String o, msg = null;
