@@ -455,7 +455,7 @@ public class ingresoRapido extends javax.swing.JFrame {
                 txtTipo1.setText(proveedorC.getClase());
                 txtTelefono1.setText(proveedorC.getTelefono());
                 txtDireccion1.setText(proveedorC.getDireccion());
-
+                 
             } else {
                 JOptionPane.showMessageDialog(null, " Elija un Proveedor  ");
             }
