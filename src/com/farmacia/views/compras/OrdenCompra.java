@@ -55,14 +55,14 @@ public class OrdenCompra extends javax.swing.JDialog {
     private Date fecha_nacimiento = null;
     CRUD crud = new CRUD();
     DefaultTableModel model;
-    joinProductoDetallesFaltantes objeto = null;
+    joinProductoDetallesFaltantes objeto = null;//<--
     JoinListarNotaPedidosCabecera objCabecera = null;
     ListarJoinProveedor proveedor = null;
     JoinListarDetalleNotaPedido detalle = null;
-    ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
+    ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();//<--
     ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
-    ArrayList<joinProductoDetallesFaltantes> listaCompra = crud.listarFaltantesDetalles(1);
+    ArrayList<joinProductoDetallesFaltantes> listaCompra = crud.listarFaltantesDetalles(1);//<--
     int id_tipopago = 0;
     String id_cab = "";
     Date date = new Date();
