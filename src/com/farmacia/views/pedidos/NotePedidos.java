@@ -1339,7 +1339,7 @@ public class NotePedidos extends javax.swing.JDialog {
         txtIva.setText("");
         txtTotal.setText("");
         listaPNP1.clear();
-        Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP);
+        Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
         tbaListaFaltantes.clearSelection();
     }
 
