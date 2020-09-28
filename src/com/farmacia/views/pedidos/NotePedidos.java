@@ -1248,6 +1248,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         Reiniciar();
+        TxtFiltro.setEnabled(false);
         btnBuscar.setEnabled(false);
         btnGuardar.setEnabled(false);
         tabla_para_productos.setEnabled(false);
