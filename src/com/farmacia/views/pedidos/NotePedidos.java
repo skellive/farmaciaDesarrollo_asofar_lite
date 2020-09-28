@@ -1128,36 +1128,37 @@ public class NotePedidos extends javax.swing.JDialog {
 
         int pos = tipofiltro.getSelectedIndex();
         if (pos == 0) {
-            //lista = crud.FiltrosProductosNota(query, "TODO");
+            listaPNP = crud.FiltrosProductosNotaPedido(query, "TODO");
 
         }
         if (pos == 1) {
-            //lista = crud.FiltrosProductosNota(query, "CODIGO");
+            listaPNP = crud.FiltrosProductosNotaPedido(query, "CODIGO");
 
         }
         if (pos == 2) {
-            //lista = crud.FiltrosProductosNota(query, "NOMBRE");
+            listaPNP = crud.FiltrosProductosNotaPedido(query, "NOMBRE");
 
         }
         if (pos == 3) {
-            //lista = crud.FiltrosProductosNota(query, "TIPO");
+            listaPNP = crud.FiltrosProductosNotaPedido(query, "TIPO");
 
         }
         if (pos == 4) {
-            //lista = crud.FiltrosProductosNota(query, "MEDIDA");
+            listaPNP = crud.FiltrosProductosNotaPedido(query, "MEDIDA");
 
         }
         if (pos == 5) {
-            //lista = crud.FiltrosProductosNota(query, "ENVASE");
+            listaPNP = crud.FiltrosProductosNotaPedido(query, "PRESENTACIONES");
 
         }
         if (pos == 6) {
-            //lista = crud.FiltrosProductosNota(query, "MARCA");
+            listaPNP = crud.FiltrosProductosNotaPedido(query, "MARCA");
 
         }
 
         TxtFiltro.setText("");
-
+        
+        Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
         //Tablas.cargarFiltroProductosNota(tabla_para_productos, lista);
         query = "";
     }
