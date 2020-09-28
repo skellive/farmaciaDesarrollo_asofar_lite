@@ -135,17 +135,17 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call insertarCabceraCompras(?,?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call insertarCabceraCompras(?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_proveedor());
             prodProAlm.setLong(2, obj.getId_usuario());
-            prodProAlm.setString(3, obj.getFecha_creacion());
-            prodProAlm.setString(4, obj.getPlazo());
-            prodProAlm.setLong(5, obj.getId_sucursal());
-            prodProAlm.setString(6, obj.getId_tipoPago());
-            prodProAlm.setBigDecimal(7, obj.getIva());
-            prodProAlm.setBigDecimal(8, obj.getDescuento());
-            prodProAlm.setBigDecimal(9, obj.getTotal());
-            prodProAlm.setDouble(10, obj.getIdcabecerapedido());
+            //prodProAlm.setString(3, obj.getFecha_creacion());//<--
+            prodProAlm.setString(3, obj.getPlazo());
+            prodProAlm.setLong(4, obj.getId_sucursal());
+            prodProAlm.setString(5, obj.getId_tipoPago());
+            prodProAlm.setBigDecimal(6, obj.getIva());
+            prodProAlm.setBigDecimal(7, obj.getDescuento());
+            prodProAlm.setBigDecimal(8, obj.getTotal());
+            prodProAlm.setDouble(9, obj.getIdcabecerapedido());
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.executeUpdate();
             valor = prodProAlm.getString("valor");
