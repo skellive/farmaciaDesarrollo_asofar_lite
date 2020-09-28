@@ -898,28 +898,36 @@ public class NotePedidos extends javax.swing.JDialog {
             cn.setIva(VGiva);
             cn.setDescuento(VGdescuento);//
             cn.setTotal(VGtotal);//
+
+            try {
+              
             id_cab = crud.insertarCabeceraNotaPedido(cn);
             //String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
             //id_cab = crud.buscarIDCabeceraNotaPedido(query);
-            if(id_cab.isEmpty()){
+            if (id_cab.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "id_cabecera esta vacio");
-                }else{
-            for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-                /////////////////////////////
-                cad1 = "INSERT INTO detalle_nota_pedidos"
-                        + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
-                        + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + listaPNP1.get(i).getPrecios() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + "," + listaPNP1.get(i).getPrecioBono() + ")";
-                queryL1.add(cad1);
-                System.out.println(" " + cad1);
-                //////////////////////////////////
+            } else {
+                for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+                    /////////////////////////////
+                    cad1 = "INSERT INTO detalle_nota_pedidos"
+                            + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
+                            + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + listaPNP1.get(i).getPrecios() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + "," + listaPNP1.get(i).getPrecioBono() + ")";
+                    queryL1.add(cad1);
+                    System.out.println(" " + cad1);
+                    //////////////////////////////////
+                }
+                crud.InsertarDetallesNotaPedidos(queryL1);
+                System.out.println(" " + queryL1);
+                queryL1.clear();
+                JOptionPane.showMessageDialog(null, " Guardado con Exito ");
+                btnGuardar.setEnabled(false);
+                btnNuevo.setEnabled(true);
+            }  
+
+            } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Error en Insertar --> "+e);
             }
-            crud.InsertarDetallesNotaPedidos(queryL1);
-            System.out.println(" " + queryL1);
-            queryL1.clear();
-            JOptionPane.showMessageDialog(null, " Guardado con Exito ");
-            btnGuardar.setEnabled(false);
-            btnNuevo.setEnabled(true);
-            }
+
         } else {
 
             JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
@@ -939,50 +947,44 @@ public class NotePedidos extends javax.swing.JDialog {
                 i = tabla_para_productos.getSelectedRow();
 //                objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
                 objetoActual = devuelveProducto(tabla_para_productos.getValueAt(i, 0).toString(), listaPNP);
-                
+
                 cantidatabla = objetoActual.getCantidad();
                 System.out.println("holaaa");
                 //valida que el objeto no este vacio
                 if (objetoActual != null) {
-                    
-                    id_pro=objetoActual.getId_producto().toString();
-                    System.out.println(id_pro+" <-- Este es el id Producto");
+
+                    id_pro = objetoActual.getId_producto().toString();
+                    System.out.println(id_pro + " <-- Este es el id Producto");
                     //VALIDA SI EL PRODUCTO ESTA AGREGADO
-                    msg = ComponentesFaltantes.validarProductoParaAgregar(listaPNP1,id_pro);
+                    msg = ComponentesFaltantes.validarProductoParaAgregar(listaPNP1, id_pro);
                     System.out.println(msg);
                     //valida el mensaje
                     if (msg == null) {
-                    
-                    
-                    System.out.println("hello");
-                    AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objetoActual);
-                    np.setVisible(true);
 
-                    np.objf.getId_precios();
-                    System.out.println(" id precio " + np.objf.getId_precios());
-                    np.objf.getId_precios();
-                    System.out.println(" id producto " + np.objf.getId_producto());
-                    System.out.println(" cantidad " + np.getObjf().getCantidad());
-                    
-                    //VER DESDE AQUI
-                                    
-                    //joinProductoParaNotaPedido
-                    //compara si tiene el mismo precio para saber si el producto esta dentro
-                    //msg = ComponentesFaltantes.validarListaFaltantesNota(listaPNP1, np.objf.getId_precios().toString());
-                     
-                    //msg = ComponentesFaltantes.validarProductoParaAgregar(listaPNP1,np.objf.getId_producto().toString());
-                    
-                    
+                        System.out.println("hello");
+                        AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objetoActual);
+                        np.setVisible(true);
+
+                        np.objf.getId_precios();
+                        System.out.println(" id precio " + np.objf.getId_precios());
+                        np.objf.getId_precios();
+                        System.out.println(" id producto " + np.objf.getId_producto());
+                        System.out.println(" cantidad " + np.getObjf().getCantidad());
+
+                        //VER DESDE AQUI
+                        //joinProductoParaNotaPedido
+                        //compara si tiene el mismo precio para saber si el producto esta dentro
+                        //msg = ComponentesFaltantes.validarListaFaltantesNota(listaPNP1, np.objf.getId_precios().toString());
+                        //msg = ComponentesFaltantes.validarProductoParaAgregar(listaPNP1,np.objf.getId_producto().toString());
                         System.out.println(" PASO EL NULL");
                         //nada nuevo
                         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
                         if (np.getObjf().getCantidad() > 0) {
                             //////
-                            
+
                             //resta y setea la cantidad en 1r array
                             //Integer Resta = Integer.parseInt(tabla_para_productos.getValueAt(i, 6).toString()) - np.getObjf().getCantidad();
                             //getPosicion(objetoActual.getId_producto(), Resta);
-                            
                             //////
                             Objx = calcularValores(np.getObjf());
                             ///////   
@@ -995,19 +997,19 @@ public class NotePedidos extends javax.swing.JDialog {
                             try {
                                 Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
                             } catch (Exception e) {
-                                System.out.println("error en tabla2"+e);
+                                System.out.println("error en tabla2" + e);
                             }
 
                             TotalDescuento2();
                             TotalPro();
                             TotalIVA2();
-                        }else {
+                        } else {
                             JOptionPane.showMessageDialog(this, "getCantidad() ->" + np.getObjf().getCantidad());
                         }
 
                     } else {
                         JOptionPane.showMessageDialog(this, msg);
-                         // System.out.println(msg);
+                        // System.out.println(msg);
                     }
 
                 } else {
@@ -1175,7 +1177,6 @@ public class NotePedidos extends javax.swing.JDialog {
                     int i = tbaListaFaltantes.getSelectedRow();
 
 //                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                    
                     //usa objetoActual suma para devolver la cantidad a array anterior
                     //objetoActual = devuelveProducto(tabla_para_productos.getValueAt(i, 0).toString(), listaPNP);
                     //System.out.println("objetoP cANTIDAD" + objetoActual.getCantidad());
@@ -1183,8 +1184,6 @@ public class NotePedidos extends javax.swing.JDialog {
                     //SUM = Integer.valueOf(objetoActual.getCantidad()) + listaPNP1.get(i).getCantidad();
                     //getPosicion(objetoActual.getId_producto(), SUM);
                     //System.out.println("suma " + SUM);
-                    
-                    
                     listaPNP1.remove(i);
                     Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
                     Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
