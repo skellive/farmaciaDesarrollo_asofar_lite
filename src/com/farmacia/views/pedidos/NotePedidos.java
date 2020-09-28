@@ -301,6 +301,11 @@ public class NotePedidos extends javax.swing.JDialog {
         txtTotal.setEditable(false);
         txtTotal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
+            }
+        });
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel17.setText("IVA:");
@@ -308,6 +313,11 @@ public class NotePedidos extends javax.swing.JDialog {
         txtIva.setEditable(false);
         txtIva.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtIva.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtIva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIvaActionPerformed(evt);
+            }
+        });
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel18.setText("DESCUENTO:");
@@ -974,18 +984,16 @@ public class NotePedidos extends javax.swing.JDialog {
                                 System.out.println("error en tabla2"+e);
                             }
 
-                            
-
                             TotalDescuento2();
                             TotalPro();
                             TotalIVA2();
-                        } else {
+                        }else {
                             JOptionPane.showMessageDialog(this, "getCantidad() ->" + np.getObjf().getCantidad());
                         }
 
                     } else {
-                        //JOptionPane.showMessageDialog(this, msg);
-                          System.out.println(msg);
+                        JOptionPane.showMessageDialog(this, msg);
+                         // System.out.println(msg);
                     }
 
                 } else {
@@ -1153,13 +1161,16 @@ public class NotePedidos extends javax.swing.JDialog {
                     int i = tbaListaFaltantes.getSelectedRow();
 
 //                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                    objetoActual = devuelveProducto(tabla_para_productos.getValueAt(i, 0).toString(), listaPNP);
-                    System.out.println("objetoP cANTIDAD" + objetoActual.getCantidad());
-                    System.out.println("lista1" + listaPNP1.get(i).getCantidad());
-
-                    SUM = Integer.valueOf(objetoActual.getCantidad()) + listaPNP1.get(i).getCantidad();
-                    getPosicion(objetoActual.getId_producto(), SUM);
-                    System.out.println("suma " + SUM);
+                    
+                    //usa objetoActual suma para devolver la cantidad a array anterior
+                    //objetoActual = devuelveProducto(tabla_para_productos.getValueAt(i, 0).toString(), listaPNP);
+                    //System.out.println("objetoP cANTIDAD" + objetoActual.getCantidad());
+                    //System.out.println("lista1" + listaPNP1.get(i).getCantidad());
+                    //SUM = Integer.valueOf(objetoActual.getCantidad()) + listaPNP1.get(i).getCantidad();
+                    //getPosicion(objetoActual.getId_producto(), SUM);
+                    //System.out.println("suma " + SUM);
+                    
+                    
                     listaPNP1.remove(i);
                     Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
                     Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
@@ -1188,7 +1199,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
 //                    lista1.remove(i);
 //                    Tablas.cargarJoinProductoDetallesFaltantes(tbaListaFaltantes, lista1);
-                    Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP);
+                    Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
                     Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
                     TotalPro();
                     TotalIVA2();
@@ -1265,6 +1276,14 @@ public class NotePedidos extends javax.swing.JDialog {
             Buscar();
         }
     }//GEN-LAST:event_TxtFiltroKeyPressed
+
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
+
+    private void txtIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIvaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIvaActionPerformed
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
 
         joinProductoDetallesFaltantes objeto1 = null;

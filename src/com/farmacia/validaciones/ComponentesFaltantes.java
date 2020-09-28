@@ -53,9 +53,9 @@ public class ComponentesFaltantes {
         for (int i = 0; i < Array2.size(); i++){
             o =  Array2.get(i).getId_producto().toString();
             if (o.equals(id_producto)) {
-                 cantActual = Array2.get(i).getCantidad();
-                 Array2.get(i).setCantidad(cantidad+cantActual);
-                 msg = "Cantidad Agregada!";
+                 //cantActual = Array2.get(i).getCantidad();
+                 //Array2.get(i).setCantidad(cantidad+cantActual);
+                 msg = "El producto ya esta agregado";
                  break;
             }
 
