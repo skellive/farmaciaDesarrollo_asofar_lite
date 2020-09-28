@@ -89,8 +89,6 @@ public class listarJoinProductosCompras {
         this.nombreCategoria = nombreCategoria;
     }
 
-   
-
     public Long getId_productos() {
         return id_productos;
     }

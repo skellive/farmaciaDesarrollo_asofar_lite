@@ -52,11 +52,12 @@ public class modificarProducto extends javax.swing.JDialog {
     ArrayList<EnvaseProducto> listae = null;
     ArrayList<MarcaProducto> listama = null;
     ArrayList<CategoriaProducto> listacau = null;
-    String str_tipo = null, str_medidas = null, str_envase = null, str_marcas = null, strIva = null , strCategoria = null;
+    String str_tipo = null, str_medidas = null, str_envase = null, str_marcas = null, strIva = null, strCategoria = null;
     String error = "", IVA = "";
     Long id_tipo, id_medida, id_envase, id_marca, id_categoria;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+
     public modificarProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
@@ -65,29 +66,29 @@ public class modificarProducto extends javax.swing.JDialog {
     }
 
     public modificarProducto(java.awt.Frame parent, boolean modal, listarJoinProductosCompras obj2) {
-       
+
         super(parent, modal);
-         try{
-        getContentPane().setBackground(Color.white);
-        initComponents();
-        obj1 = obj2;
-        setLocationRelativeTo(null);
-        listarCombos(obj1);
-        llenarFormulario(obj1);
-        Habilitar(false);
-        }catch(Exception ex){
-        Logger.getLogger(modificarProducto.class.getName()).log(Level.SEVERE, null, ex);
+        try {
+            getContentPane().setBackground(Color.white);
+            initComponents();
+            obj1 = obj2;
+            setLocationRelativeTo(null);
+            listarCombos(obj1);
+            llenarFormulario(obj1);
+            Habilitar(false);
+        } catch (Exception ex) {
+            Logger.getLogger(modificarProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     public void listarCombos(listarJoinProductosCompras obj) {
-        
+
         lista = crud.listarTodoTipoProductos1();
         listam = crud.listarTodoMedidasProductos();
         listae = crud.listarTodoEnvaseProductos();
         listama = crud.listarTodoMarcaProductos();
         listacau = crud.listarTodoCategoriaProductos();
-        
+
         cbxTipos1.setModel(Formulario.listarComboTipoPro(lista));
         cbxMedida1.setModel(Formulario.listarComboMedidaPro(listam));
         cbxEnvase1.setModel(Formulario.listarComboEnvasePro(listae));
@@ -107,9 +108,7 @@ public class modificarProducto extends javax.swing.JDialog {
         id_usuario.setText(obj.getId_usuario().toString());
         strIva = crud.getNombreComboProducto(Long.valueOf("5"), obj.getId_productos());
         cbxIva.setSelectedItem(strIva);
-        
-        
-       
+
         cbxReceta.setSelectedItem(obj.getReceta());
     }
 
@@ -736,12 +735,13 @@ public class modificarProducto extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void llenarFormulario(listarJoinProductosCompras obj) {
         codigo.setText(obj.getId_productos().toString());
-        if(obj.getCodigo_barras()==null){
-        codigo2.setText("0000000000000");
-        }else{codigo2.setText(obj.getCodigo_barras());
+        if (obj.getCodigo_barras() == null) {
+            codigo2.setText("0000000000000");
+        } else {
+            codigo2.setText(obj.getCodigo_barras());
         }
         producto.setText(obj.getNombreProductos());
         txtDescripcion1.setText(obj.getDescripcion());
@@ -904,20 +904,20 @@ public class modificarProducto extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-        CodigoBarras cod=new CodigoBarras(null, rootPaneCheckingEnabled,2,codigo2.getText());
+        CodigoBarras cod = new CodigoBarras(null, rootPaneCheckingEnabled, 2, codigo2.getText());
         cod.setVisible(true);
         codigo2.setText(cod.getCodigoBarra());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void cbcucategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbcucategoriaActionPerformed
         // TODO add your handling code here:
-         seleccionId();
+        seleccionId();
     }//GEN-LAST:event_cbcucategoriaActionPerformed
 
     private void btnagregacategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregacategoriaActionPerformed
-         AgregarCategoria agremed = new AgregarCategoria(new javax.swing.JFrame(), true);
+        AgregarCategoria agremed = new AgregarCategoria(new javax.swing.JFrame(), true);
         agremed.setVisible(true);
-          listacau = crud.listarTodoCategoriaProductos();
+        listacau = crud.listarTodoCategoriaProductos();
         cbcucategoria.setModel(Formulario.listarComboCategoriaPro(listacau));
     }//GEN-LAST:event_btnagregacategoriaActionPerformed
 
@@ -969,17 +969,17 @@ public class modificarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_lblGuardarMouseClicked
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
-        ArrayList producto1 = new ArrayList();        
-        ClaseReporte producto2 = new ClaseReporte(id_usuario.getText(),txtFechaActual1.getText(),codigo.getText(),cbxIva.getSelectedItem().toString(),producto.getText(),txtDescripcion1.getText(),txtPeso1.getText(),cbxMedida1.getSelectedItem().toString(),cbxTipos1.getSelectedItem().toString(),cbxEnvase1.getSelectedItem().toString(),cbxMarca1.getSelectedItem().toString(),txtcantMinima.getText());
+        ArrayList producto1 = new ArrayList();
+        ClaseReporte producto2 = new ClaseReporte(id_usuario.getText(), txtFechaActual1.getText(), codigo.getText(), cbxIva.getSelectedItem().toString(), producto.getText(), txtDescripcion1.getText(), txtPeso1.getText(), cbxMedida1.getSelectedItem().toString(), cbxTipos1.getSelectedItem().toString(), cbxEnvase1.getSelectedItem().toString(), cbxMarca1.getSelectedItem().toString(), txtcantMinima.getText());
         producto1.add(producto2);
         try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"modificarProducto.jasper";
-            JasperReport reporte =  (JasperReport) JRLoader.loadObject(dir);            
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(producto1));
+            String dir = System.getProperty("user.dir") + "/Reportes/" + "modificarProducto.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(producto1));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
@@ -1055,8 +1055,8 @@ public class modificarProducto extends javax.swing.JDialog {
             id_envase = listae.get(pos).getId_presentaciones();
             System.err.println(id_envase);
         }
-        
-         pos = (cbcucategoria.getSelectedIndex() - 1);
+
+        pos = (cbcucategoria.getSelectedIndex() - 1);
         if (pos < 0) {
             error = error + "\nCategoria invalido !";
         } else {

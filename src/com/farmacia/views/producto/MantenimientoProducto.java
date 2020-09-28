@@ -322,6 +322,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             Logger.getLogger(MantenimientoProducto.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_tbacargarProductosMousePressed
+    
     public listarJoinProductosCompras devuelveObjeto(String datos, ArrayList<listarJoinProductosCompras> listarobj) {
         listarJoinProductosCompras objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
@@ -332,6 +333,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         }
         return objeto1;
     }
+    
     private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_filtroActionPerformed
@@ -350,6 +352,10 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
     }//GEN-LAST:event_btnProductoActionPerformed
 
+    public listarJoinProductosCompras getProveedor() {
+        return objeto;
+    }
+    
     private void tipofiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipofiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tipofiltroActionPerformed
