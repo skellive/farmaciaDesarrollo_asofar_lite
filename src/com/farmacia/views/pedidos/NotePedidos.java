@@ -899,15 +899,16 @@ public class NotePedidos extends javax.swing.JDialog {
             cn.setDescuento(VGdescuento);//
             cn.setTotal(VGtotal);//
             id_cab = crud.insertarCabeceraNotaPedido(cn);
-            String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
-            id_cab = crud.buscarIDCabeceraNotaPedido(query);
-
+            //String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
+            //id_cab = crud.buscarIDCabeceraNotaPedido(query);
+            if(id_cab.isEmpty()){
+                JOptionPane.showMessageDialog(null, "id_cabecera esta vacio");
+                }else{
             for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
                 /////////////////////////////
-
                 cad1 = "INSERT INTO detalle_nota_pedidos"
                         + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
-                        + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + listaPNP1.get(i).getPrecioBono().toString() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + "," + tbaListaFaltantes.getValueAt(i, 6) + ")";
+                        + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + listaPNP1.get(i).getPrecios() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + "," + listaPNP1.get(i).getPrecioBono() + ")";
                 queryL1.add(cad1);
                 System.out.println(" " + cad1);
                 //////////////////////////////////
@@ -918,6 +919,7 @@ public class NotePedidos extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, " Guardado con Exito ");
             btnGuardar.setEnabled(false);
             btnNuevo.setEnabled(true);
+            }
         } else {
 
             JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
