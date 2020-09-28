@@ -926,7 +926,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
     private void tabla_para_productosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_para_productosMousePressed
 
-        //LISTAR TABLA DE ABAJO
+        //OPERACION PARA LISTAR TABLA DE ABAJO
         int i = 0;
         String msg = null;
         //Nuevo variable para saber si esta el producto en la lista
@@ -937,10 +937,21 @@ public class NotePedidos extends javax.swing.JDialog {
                 i = tabla_para_productos.getSelectedRow();
 //                objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
                 objetoActual = devuelveProducto(tabla_para_productos.getValueAt(i, 0).toString(), listaPNP);
-
+                
                 cantidatabla = objetoActual.getCantidad();
                 System.out.println("holaaa");
+                //valida que el objeto no este vacio
                 if (objetoActual != null) {
+                    
+                    id_pro=objetoActual.getId_producto().toString();
+                    System.out.println(id_pro+" <-- Este es el id Producto");
+                    //VALIDA SI EL PRODUCTO ESTA AGREGADO
+                    msg = ComponentesFaltantes.validarProductoParaAgregar(listaPNP1,id_pro);
+                    System.out.println(msg);
+                    //valida el mensaje
+                    if (msg == null) {
+                    
+                    
                     System.out.println("hello");
                     AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objetoActual);
                     np.setVisible(true);
@@ -956,9 +967,10 @@ public class NotePedidos extends javax.swing.JDialog {
                     //joinProductoParaNotaPedido
                     //compara si tiene el mismo precio para saber si el producto esta dentro
                     //msg = ComponentesFaltantes.validarListaFaltantesNota(listaPNP1, np.objf.getId_precios().toString());
-                      msg = ComponentesFaltantes.validarProductoParaAgregar(listaPNP1,np.objf.getId_producto().toString(),np.getObjf().getCantidad());
+                     
+                    //msg = ComponentesFaltantes.validarProductoParaAgregar(listaPNP1,np.objf.getId_producto().toString());
                     
-                    if (msg == null) {
+                    
                         System.out.println(" PASO EL NULL");
                         //nada nuevo
                         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);

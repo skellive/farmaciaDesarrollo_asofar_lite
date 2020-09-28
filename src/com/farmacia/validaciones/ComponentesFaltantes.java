@@ -47,7 +47,7 @@ public class ComponentesFaltantes {
     }
     
     
-     public static String validarProductoParaAgregar(ArrayList<joinProductoParaNotaPedido> Array2, String id_producto,Integer cantidad) {
+     public static String validarProductoParaAgregar(ArrayList<joinProductoParaNotaPedido> Array2, String id_producto) {
         String o, msg = null;
         Integer cantActual = null;
         for (int i = 0; i < Array2.size(); i++){
