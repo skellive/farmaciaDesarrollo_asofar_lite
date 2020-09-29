@@ -12,6 +12,7 @@ import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
+import com.farmacia.views.compras.CabeceraCompra;
 import com.farmacia.views.compras.ListaDePedidos;
 import com.farmacia.views.producto.MantenimientoProducto;
 import java.awt.MouseInfo;
@@ -922,6 +923,11 @@ public class NotePedidos extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, " Guardado con Exito ");
                 btnGuardar.setEnabled(false);
                 btnNuevo.setEnabled(true);
+                
+                setVisible(false);
+                
+            CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true, objUsuario);
+            CB.setVisible(true);
             }  
 
             } catch (Exception e) {
