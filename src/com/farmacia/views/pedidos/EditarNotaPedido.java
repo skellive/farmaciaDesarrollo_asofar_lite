@@ -914,7 +914,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             actualizarCabecera();
                             btnSalir2.setEnabled(false);
                         }{
-                            JOptionPane.showMessageDialog(this, "getCantidad() ->" +np.getObjf().getCantidad());
+                            //JOptionPane.showMessageDialog(this, "getCantidad() ->" +np.getObjf().getCantidad());
                         }
 
                     }else {
