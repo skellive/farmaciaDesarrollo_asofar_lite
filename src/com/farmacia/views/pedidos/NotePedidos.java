@@ -674,6 +674,11 @@ public class NotePedidos extends javax.swing.JDialog {
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBuscar.setText("BUSCAR");
+        btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBuscarMouseClicked(evt);
+            }
+        });
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
@@ -1299,6 +1304,10 @@ public class NotePedidos extends javax.swing.JDialog {
     private void txtIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIvaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIvaActionPerformed
+
+    private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBuscarMouseClicked
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
 
         joinProductoDetallesFaltantes objeto1 = null;

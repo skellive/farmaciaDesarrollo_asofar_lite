@@ -5,17 +5,44 @@
  */
 package com.farmacia.views.ingresoRapido;
 
+import com.farmacia.conponentes.Formato_Numeros;
+import com.farmacia.conponentes.Tablas;
+import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.Listar_usuario;
+import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
+import com.farmacia.join_entidades.joinProductoParaNotaPedido;
+import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.views.contentPane.ContentPanel;
 import com.farmacia.views.pedidos.Consulta_proveedor_Nota;
 import com.farmacia.views.pedidos.NotePedidos;
+import static com.farmacia.views.pedidos.NotePedidos.txtCodigoProveedor;
+import static com.farmacia.views.pedidos.NotePedidos.txtCorreo1;
+import static com.farmacia.views.pedidos.NotePedidos.txtDescuento;
+import static com.farmacia.views.pedidos.NotePedidos.txtDireccion1;
+import static com.farmacia.views.pedidos.NotePedidos.txtIva;
+import static com.farmacia.views.pedidos.NotePedidos.txtNombre1;
+import static com.farmacia.views.pedidos.NotePedidos.txtRepresentante;
+import static com.farmacia.views.pedidos.NotePedidos.txtRuc1;
+import static com.farmacia.views.pedidos.NotePedidos.txtTelefono1;
+import static com.farmacia.views.pedidos.NotePedidos.txtTipo1;
+import static com.farmacia.views.pedidos.NotePedidos.txtTotal;
 import com.farmacia.views.producto.MantenimientoProducto;
 
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 
 /**
  *
@@ -28,16 +55,115 @@ public class ingresoRapido extends javax.swing.JFrame {
      */
     
     int x, y;
+    CRUD crud = new CRUD();
+    BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
+    filtrosProductos fil = new filtrosProductos();
+    //joinProductoDetallesFaltantes objeto = null;
     ListarJoinProveedorNotaPedido proveedorC = null;
+    public static JTable tabla_para_productos = new presentarProducto().tabla_para_productos;
+    static ArrayList<listarJoinProductosNotaPedidos> listar = null;
+    //ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
+    //ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
+    //PRODUCTOS
+    //ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
+    //NUEVO
+    joinProductoParaNotaPedido objetoActual = null;
+    ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
+    ArrayList<joinProductoParaNotaPedido> listaPNP1 = new ArrayList<joinProductoParaNotaPedido>();
+    joinProductoParaNotaPedido Objx = new joinProductoParaNotaPedido();
+    //usuario
+    Listar_usuario objUsuario = null;
+    
     ContentPanel fondo = new ContentPanel();
     
     public ingresoRapido() {
         this.setUndecorated(true);
         setContentPane(fondo);        
         initComponents();
-        this.setLocationRelativeTo(null);        
+        this.setLocationRelativeTo(null); 
+        TotalDescuento2();
+        TotalPro();
+        TotalIVA2();
     }
 
+    class horas implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            java.util.Date sistHora = new java.util.Date();
+            String pmAm = "HH:mm:ss";
+            SimpleDateFormat format = new SimpleDateFormat(pmAm);
+            Calendar hoy = Calendar.getInstance();
+            txtHora.setText(String.format(format.format(sistHora), hoy));
+
+        }
+    }
+
+    public void TotalPro() {
+        BigDecimal TotalPro = new BigDecimal("0.00");
+        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+            Integer Cant = listaPNP1.get(i).getCantidad();
+            BigDecimal Cantidad = new BigDecimal(Cant);
+            BigDecimal Precio = listaPNP1.get(i).getPrecios();
+            BigDecimal Subtotal = Cantidad.multiply(Precio);
+            BigDecimal PorcentajeDesc = listaPNP1.get(i).getPorcentaje_descuento();
+            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
+            if (listaPNP1.get(i).getIva().equals("NO")) {
+                TotalPro = TotalPro.add(Subtotal).subtract(ValorDes);
+            }
+            if (!"NO".equals(listaPNP1.get(i).getIva())) {
+                String ivaget = listaPNP1.get(i).getIva();
+                BigDecimal IVA = new BigDecimal(ivaget);
+                BigDecimal ValorIVA = IVA.multiply(Subtotal);
+                TotalPro = TotalPro.add(Subtotal).subtract(ValorDes).add(ValorIVA);
+            }
+        }
+        VGtotal = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalPro.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtTotal.setText(Formato_Numeros.formatoNumero(TotalPro.toString()));
+    }
+
+    public void TotalIVA2() {
+        BigDecimal TotalIva = new BigDecimal("0.00");
+
+        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+            BigDecimal ValorIva = new BigDecimal("0.00");
+            BigDecimal Precio = listaPNP1.get(i).getPrecios();
+            Integer Cant = listaPNP1.get(i).getCantidad();
+            BigDecimal Cantidad = new BigDecimal(Cant);
+            BigDecimal Subtotal = Cantidad.multiply(Precio);
+
+            if (!"NO".equals(listaPNP1.get(i).getIva())) {
+                String ivaget = listaPNP1.get(i).getIva();
+                System.out.println("iva get " + ivaget);
+                BigDecimal IVA = new BigDecimal(ivaget);
+                ValorIva = Subtotal.multiply(IVA);
+                TotalIva = TotalIva.add(ValorIva);
+            }
+        }
+        VGiva = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalIva.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtIva.setText(Formato_Numeros.formatoNumero(TotalIva.toString()));
+    }
+
+    public void TotalDescuento2() {
+        BigDecimal TotalDesc = new BigDecimal("0.00");
+        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+            BigDecimal Precio = listaPNP1.get(i).getPrecios();
+            BigDecimal PorcDesc = listaPNP1.get(i).getPorcentaje_descuento();
+            Integer Cant = listaPNP1.get(i).getCantidad();
+            BigDecimal Cantidad = new BigDecimal(Cant);
+            BigDecimal Subtotal = Cantidad.multiply(Precio);
+            BigDecimal ValorDesc = Subtotal.multiply(PorcDesc).divide(new BigDecimal("100"));
+
+            TotalDesc = TotalDesc.add(ValorDesc);
+        }
+        VGdescuento = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalDesc.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
+        txtDescuento.setText(Formato_Numeros.formatoNumero(TotalDesc.toString()));
+    }
+
+    public static String FechaActual() {
+        Date fecha = new Date();
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY/MM/dd");
+        return formatoFecha.format(fecha);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -71,13 +197,26 @@ public class ingresoRapido extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        cbxFormaP = new javax.swing.JComboBox<String>();
+        cbxFormaP = new javax.swing.JComboBox<>();
         jLabel16 = new javax.swing.JLabel();
-        cbxPlazo = new javax.swing.JComboBox<String>();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        cbxPlazo = new javax.swing.JComboBox<>();
+        jLabel9 = new javax.swing.JLabel();
+        txtFecha = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        txtHora = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tbaListaFaltantes = new javax.swing.JTable();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        txtDescuento = new javax.swing.JTextField();
+        txtIva = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -114,7 +253,7 @@ public class ingresoRapido extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(435, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(399, 399, 399)
                 .addComponent(jLabel2)
@@ -315,13 +454,25 @@ public class ingresoRapido extends javax.swing.JFrame {
         jLabel10.setText("PLAZO:");
 
         cbxFormaP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contado", "Credito" }));
+        cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Credito" }));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("FORMA DE PAGO:");
 
         cbxPlazo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
+        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setText("FECHA:");
+
+        txtFecha.setEditable(false);
+        txtFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+
+        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setText("HORA:");
+
+        txtHora.setEditable(false);
+        txtHora.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -329,13 +480,23 @@ public class ingresoRapido extends javax.swing.JFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel10)
-                .addGap(37, 37, 37)
-                .addComponent(cbxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jLabel16)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel10)
+                        .addGap(37, 37, 37)
+                        .addComponent(cbxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jLabel16))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel15)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbxFormaP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxFormaP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -349,21 +510,16 @@ public class ingresoRapido extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cbxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(105, 105, 105))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(68, 68, 68))
         );
-
-        jScrollPane1.setOpaque(false);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jTable1.setOpaque(false);
-        jScrollPane1.setViewportView(jTable1);
 
         jButton1.setText("Escoger Producto");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -379,30 +535,118 @@ public class ingresoRapido extends javax.swing.JFrame {
             }
         });
 
+        tbaListaFaltantes.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, null));
+        tbaListaFaltantes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                " CODIGO", "       MARCA", "      TIPO", "     PRODUCTO", "   PRESENTACION", "   MEDIDA", "  CANTIDAD", "   PRECIO", " DESCUENTO", "      IVA", "    TOTAL"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbaListaFaltantes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tbaListaFaltantesMousePressed(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tbaListaFaltantes);
+
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel18.setText("DESCUENTO:");
+
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel17.setText("IVA:");
+
+        jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setText("TOTAL:");
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("$");
+
+        jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel19.setText("$");
+
+        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel21.setText("$");
+
+        txtDescuento.setEditable(false);
+        txtDescuento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtDescuento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        txtIva.setEditable(false);
+        txtIva.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtIva.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtIva.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIvaActionPerformed(evt);
+            }
+        });
+
+        txtTotal.setEditable(false);
+        txtTotal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(179, 179, 179)
-                                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(179, 179, 179)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(500, 500, 500)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -412,15 +656,31 @@ public class ingresoRapido extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addGap(38, 38, 38)))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(59, 59, 59)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jButton3)
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         pack();
@@ -436,6 +696,85 @@ public class ingresoRapido extends javax.swing.JFrame {
         this.setLocation(p.x-x,p.y-y);
     }//GEN-LAST:event_jPanel1MouseDragged
 
+      public joinProductoParaNotaPedido devuelveProducto(String datos, ArrayList<joinProductoParaNotaPedido> listarobj) {
+
+        joinProductoParaNotaPedido objeto1 = null;
+
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+
+        return objeto1;
+    }
+
+    private void Reiniciar() {
+        txtCodigoProveedor.setText("");
+        txtCorreo1.setText("");
+        txtDescuento.setText("");
+        txtNombre1.setText("");
+        txtRepresentante.setText("");
+        txtDireccion1.setText("");
+        txtRuc1.setText("");
+        txtTipo1.setText("");
+        txtTelefono1.setText("");
+        txtIva.setText("");
+        txtTotal.setText("");
+        listaPNP1.clear();
+        Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
+        tbaListaFaltantes.clearSelection();
+    }
+
+     public joinProductoParaNotaPedido calcularValores(joinProductoParaNotaPedido lista) {
+        //joinProductoParaNotaPedido
+        joinProductoParaNotaPedido objd = new joinProductoParaNotaPedido();
+        objd = lista;
+        BigDecimal PrecioBono = new BigDecimal("0.00");
+
+        BigDecimal Cantidad = BigDecimal.valueOf(lista.getCantidad());
+        BigDecimal Precio = lista.getPrecios();
+        BigDecimal Subtotal = Cantidad.multiply(Precio);
+        BigDecimal Bono1 = BigDecimal.valueOf(lista.getBono())/*new BigDecimal(Bono)*/;
+        BigDecimal CantidadTotal = Cantidad.add(Bono1);
+        PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);
+        objd.setPrecioBono(PrecioBono);
+        BigDecimal PorcentajeDesc = lista.getPorcentaje_descuento();
+        BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
+        objd.setValor_descuento(ValorDes);
+        if (lista.getIva().equals("NO")) {
+            objd.setPrecioiva(new BigDecimal("0.00"));
+            BigDecimal importe = Subtotal.subtract(ValorDes);
+            objd.setImporte(importe);
+        } else {
+            String ivaget = lista.getIva();
+            BigDecimal IVA = new BigDecimal(ivaget);
+            BigDecimal ValorIVA = IVA.multiply(Subtotal);
+            objd.setPrecioiva(ValorIVA);
+            BigDecimal importe = Subtotal.add(ValorIVA).subtract(ValorDes);
+            objd.setImporte(importe);
+        }
+        return objd;
+    }
+
+    private void getPosicion(Long id, int valor) {
+        for (int i = 0; i < listaPNP.size(); i++) {
+            if (id == listaPNP.get(i).getId_producto()) {
+                listaPNP.get(i).setCantidad(valor);
+            }
+        }
+
+    }
+
+    private void getPosicion2(Long id, int valor) {
+        for (int i = 0; i < listaPNP.size(); i++) {
+            if (id == listaPNP.get(i).getId_producto()) {
+                listaPNP.get(i).setCantidad(valor);
+            }
+        }
+
+    }
     private void txtRepresentanteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtRepresentanteKeyReleased
 
     }//GEN-LAST:event_txtRepresentanteKeyReleased
@@ -474,8 +813,9 @@ public class ingresoRapido extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try{
-        MantenimientoProducto Producto = new MantenimientoProducto(new javax.swing.JFrame(), true);
-        Producto.setVisible(true);
+        
+        presentarProducto pPro = new presentarProducto();
+        pPro.setVisible(true);
         }catch(Exception e){
             Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
@@ -484,6 +824,80 @@ public class ingresoRapido extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
+
+        BigDecimal iva = new BigDecimal("0.00");
+        BigDecimal descuento = new BigDecimal("0.00");
+        BigDecimal total = new BigDecimal("0.00");
+        Integer SUM = 0;
+
+        try {
+            if (evt.getClickCount() == 2) {
+                int r = JOptionPane.showConfirmDialog(null, "¿Desea eliminar este producto de la lista?", "", JOptionPane.YES_NO_OPTION);
+
+                if (r == JOptionPane.YES_OPTION) {
+
+                    int i = tbaListaFaltantes.getSelectedRow();
+
+                    //                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
+                    //usa objetoActual suma para devolver la cantidad a array anterior
+                    //objetoActual = devuelveProducto(tabla_para_productos.getValueAt(i, 0).toString(), listaPNP);
+                    //System.out.println("objetoP cANTIDAD" + objetoActual.getCantidad());
+                    //System.out.println("lista1" + listaPNP1.get(i).getCantidad());
+                    //SUM = Integer.valueOf(objetoActual.getCantidad()) + listaPNP1.get(i).getCantidad();
+                    //getPosicion(objetoActual.getId_producto(), SUM);
+                    //System.out.println("suma " + SUM);
+                    listaPNP1.remove(i);
+                    Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
+                    Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
+
+                    TotalPro();
+                    TotalIVA2();
+                    TotalDescuento2();
+                    ///////////////////////////
+                    iva = (BigDecimal) tbaListaFaltantes.getValueAt(i, 9);
+                    descuento = (BigDecimal) tbaListaFaltantes.getValueAt(i, 8);
+                    total = (BigDecimal) tbaListaFaltantes.getValueAt(i, 10);
+
+                    String iva1 = txtIva.getText();
+                    BigDecimal IVA = new BigDecimal(iva1);
+                    String descuento1 = txtDescuento.getText();
+                    BigDecimal DESCUENTO = new BigDecimal(descuento1);
+                    String total1 = txtTotal.getText();
+                    BigDecimal TOTAL = new BigDecimal(total1);
+                    iva = IVA.subtract(iva);
+                    descuento = DESCUENTO.subtract(descuento);
+                    total = TOTAL.subtract(total);
+
+                    txtIva.setText(iva.toString());
+                    txtDescuento.setText(descuento.toString());
+                    txtTotal.setText(total.toString());
+
+                    //                    lista1.remove(i);
+                    //                    Tablas.cargarJoinProductoDetallesFaltantes(tbaListaFaltantes, lista1);
+                    Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
+                    Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
+                    TotalPro();
+                    TotalIVA2();
+                    TotalDescuento2();
+
+                } else {
+
+                }
+
+            }
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_tbaListaFaltantesMousePressed
+
+    private void txtIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIvaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIvaActionPerformed
+
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -531,26 +945,39 @@ public class ingresoRapido extends javax.swing.JFrame {
     public static javax.swing.JLabel jLabel11;
     public static javax.swing.JLabel jLabel12;
     public static javax.swing.JLabel jLabel13;
+    public static javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    public static javax.swing.JLabel jLabel17;
+    public static javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
     public static javax.swing.JLabel jLabel3;
     public static javax.swing.JLabel jLabel4;
     public static javax.swing.JLabel jLabel5;
     public static javax.swing.JLabel jLabel6;
     public static javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tbaListaFaltantes;
     public static javax.swing.JLabel txtCodigoProveedor;
     public static javax.swing.JTextField txtCorreo1;
+    public static javax.swing.JTextField txtDescuento;
     public static javax.swing.JTextField txtDireccion1;
+    private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtHora;
+    public static javax.swing.JTextField txtIva;
     public static javax.swing.JTextField txtNombre1;
     public static javax.swing.JTextField txtRepresentante;
     public static javax.swing.JTextField txtRuc1;
     public static javax.swing.JTextField txtTelefono1;
     public static javax.swing.JTextField txtTipo1;
+    public static javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
