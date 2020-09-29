@@ -9,6 +9,7 @@ import com.farmacia.views.pedidos.*;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.validaciones.Validacion;
+import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
@@ -27,6 +28,7 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
 
     public AgregarProductoEnCompras(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -38,6 +40,7 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
 
     public AgregarProductoEnCompras(java.awt.Frame parent, boolean modal, joinProductoDetallesFaltantes obj1) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -80,7 +83,6 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
         jLabel18 = new javax.swing.JLabel();
         txtBono = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         codigo1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -101,11 +103,13 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
         jLabel22 = new javax.swing.JLabel();
         producto1 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        btnSalir1 = new javax.swing.JButton();
         jLabel19 = new javax.swing.JLabel();
         Medida1 = new javax.swing.JTextField();
         txtPrecio1 = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
 
         jDialog1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -390,27 +394,12 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-
-        jLabel8.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("AÑADIR CANTIDAD ");
-        jLabel8.setOpaque(true);
-        jLabel8.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel8MouseDragged(evt);
-            }
-        });
-        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel8MousePressed(evt);
-            }
-        });
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel4.setOpaque(false);
 
         codigo1.setEditable(false);
         codigo1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        codigo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         codigo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigo1ActionPerformed(evt);
@@ -418,16 +407,20 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
         });
 
         jLabel13.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 27, 134));
         jLabel13.setText("CODIGO:");
 
         jLabel20.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 27, 134));
         jLabel20.setText("IVA:");
 
         jLabel25.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel25.setForeground(new java.awt.Color(0, 27, 134));
         jLabel25.setText("ENVASE:");
 
         txtEnvase4.setEditable(false);
         txtEnvase4.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        txtEnvase4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtEnvase4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEnvase4ActionPerformed(evt);
@@ -435,10 +428,12 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
         });
 
         jLabel26.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(0, 27, 134));
         jLabel26.setText("TIPO:");
 
         txtTipo1.setEditable(false);
         txtTipo1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        txtTipo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtTipo1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTipo1ActionPerformed(evt);
@@ -452,11 +447,14 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
 
         txtIva1.setEditable(false);
         txtIva1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        txtIva1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel11.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 27, 134));
         jLabel11.setText("DESCUENTO:");
 
         txtporcentajeDescuento1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        txtporcentajeDescuento1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtporcentajeDescuento1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtporcentajeDescuento1KeyReleased(evt);
@@ -468,11 +466,14 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
 
         marca1.setEditable(false);
         marca1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        marca1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 27, 134));
         jLabel3.setText("%");
 
         txtcantidadpro1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        txtcantidadpro1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtcantidadpro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtcantidadpro1ActionPerformed(evt);
@@ -485,12 +486,15 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
         });
 
         jLabel21.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel21.setForeground(new java.awt.Color(0, 27, 134));
         jLabel21.setText("BONO:");
 
         jLabel12.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 27, 134));
         jLabel12.setText("MARCA:");
 
         txtBono1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        txtBono1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtBono1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBono1ActionPerformed(evt);
@@ -502,9 +506,11 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
             }
         });
 
+        btnAnadir1.setBackground(new java.awt.Color(0, 27, 134));
         btnAnadir1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        btnAnadir1.setForeground(new java.awt.Color(0, 102, 0));
+        btnAnadir1.setForeground(new java.awt.Color(255, 255, 255));
         btnAnadir1.setText("AÑADIR");
+        btnAnadir1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAnadir1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnadir1ActionPerformed(evt);
@@ -512,29 +518,24 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
         });
 
         jLabel22.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel22.setForeground(new java.awt.Color(0, 27, 134));
         jLabel22.setText("PRODUCTO:");
 
         producto1.setEditable(false);
         producto1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        producto1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel23.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(0, 27, 134));
         jLabel23.setText("CANTIDAD:");
 
-        btnSalir1.setBackground(new java.awt.Color(153, 0, 0));
-        btnSalir1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        btnSalir1.setForeground(new java.awt.Color(255, 255, 255));
-        btnSalir1.setText("SALIR");
-        btnSalir1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalir1ActionPerformed(evt);
-            }
-        });
-
         jLabel19.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 27, 134));
         jLabel19.setText("PRECIO:");
 
         Medida1.setEditable(false);
         Medida1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        Medida1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         Medida1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Medida1ActionPerformed(evt);
@@ -548,6 +549,7 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
 
         txtPrecio1.setEditable(false);
         txtPrecio1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        txtPrecio1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtPrecio1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecio1ActionPerformed(evt);
@@ -560,15 +562,63 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
         });
 
         jLabel24.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel24.setForeground(new java.awt.Color(0, 27, 134));
         jLabel24.setText("MEDIDA:");
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
+        jPanel2.setOpaque(false);
+
+        jLabel8.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 27, 134));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("AÑADIR CANTIDAD ");
+        jLabel8.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel8MouseDragged(evt);
+            }
+        });
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel8MousePressed(evt);
+            }
+        });
+
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(58, 58, 58)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(lblCerrar)
+                .addGap(16, 16, 16))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblCerrar)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addContainerGap(35, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel24)
                     .addComponent(jLabel22)
@@ -601,19 +651,17 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
                     .addComponent(marca1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEnvase4, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTipo1, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 35, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addGap(31, 31, 31))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(126, 126, 126)
                 .addComponent(btnAnadir1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(60, 60, 60))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(codigo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -661,9 +709,7 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
                             .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtIva1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnSalir1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAnadir1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnAnadir1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -671,7 +717,7 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -894,17 +940,6 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
 
     }//GEN-LAST:event_codigo1ActionPerformed
 
-    private void btnSalir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir1ActionPerformed
-        int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
-
-        if (r == JOptionPane.YES_OPTION) {
-            setVisible(false);
-
-        } else {
-
-        }
-    }//GEN-LAST:event_btnSalir1ActionPerformed
-
     private void Medida1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Medida1ActionPerformed
 
     }//GEN-LAST:event_Medida1ActionPerformed
@@ -934,6 +969,17 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel8MouseDragged
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
+
+        if (r == JOptionPane.YES_OPTION) {
+            setVisible(false);
+
+        } else {
+
+        }
+    }//GEN-LAST:event_lblCerrarMouseClicked
     private void llenarFormulario(joinProductoDetallesFaltantes obj) {
         codigo1.setText(obj.getId_producto().toString());
         producto1.setText(obj.getNombre_producto());
@@ -1017,7 +1063,6 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
     private javax.swing.JButton btnAnadir;
     private javax.swing.JButton btnAnadir1;
     private javax.swing.JButton btnSalir;
-    private javax.swing.JButton btnSalir1;
     private javax.swing.JTextField codigo;
     private javax.swing.JTextField codigo1;
     private javax.swing.JDialog jDialog1;
@@ -1048,8 +1093,10 @@ public class AgregarProductoEnCompras extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblCerrar;
     private javax.swing.JTextField marca;
     private javax.swing.JTextField marca1;
     private javax.swing.JTextField producto;
