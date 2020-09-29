@@ -3453,7 +3453,7 @@ public class CRUD {
     }
 //
 
-    public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoDetallesFaltantes> lista) {
+    public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoParaNotaPedido> lista) {
         String cad1 = "";
         String[] Filas = new String[12];
 

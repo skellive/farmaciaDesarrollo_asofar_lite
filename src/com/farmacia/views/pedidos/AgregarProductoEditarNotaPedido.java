@@ -9,6 +9,7 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
+import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.validaciones.Validacion;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -23,7 +24,7 @@ import javax.swing.JOptionPane;
 public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
 
     int x, y;
-    joinProductoDetallesFaltantes objf = new joinProductoDetallesFaltantes();
+    joinProductoParaNotaPedido objf = new joinProductoParaNotaPedido();
     DetalleNotaPedido obj2 = null;
     Validacion v = new Validacion();
     CRUD crud = new CRUD();
@@ -39,11 +40,12 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
 
     }
 
-    public AgregarProductoEditarNotaPedido(java.awt.Frame parent, boolean modal, joinProductoDetallesFaltantes obj1) {
+    public AgregarProductoEditarNotaPedido(java.awt.Frame parent, boolean modal, joinProductoParaNotaPedido obj1) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        //joinProductoParaNotaPedido
         llenarFormulario(obj1);
         txtBono.setEnabled(false);
         txtcantidadpro.setEnabled(false);
@@ -409,7 +411,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
     private void txtcantidadproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantidadproActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtcantidadproActionPerformed
-    private void llenarFormulario(joinProductoDetallesFaltantes obj) {
+    private void llenarFormulario(joinProductoParaNotaPedido obj) {
         codigo.setText(obj.getId_producto().toString());
         producto.setText(obj.getNombre_producto());
         Medida.setText(obj.getMedida());
@@ -467,7 +469,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         }
         objf.setBono(Integer.parseInt(bono));
     }//GEN-LAST:event_btnAnadirActionPerformed
-    public joinProductoDetallesFaltantes getObjf() {
+    public joinProductoParaNotaPedido getObjf() {
         return objf;
     }
 

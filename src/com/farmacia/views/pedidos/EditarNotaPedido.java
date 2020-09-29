@@ -48,19 +48,19 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     filtrosProductos fil = new filtrosProductos();
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
-    joinProductoDetallesFaltantes objeto = null;
-    ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
-    ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
+    //joinProductoDetallesFaltantes objeto = null;
+    //ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
+    //ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     JoinListarNotaPedidosCabecera objf = new JoinListarNotaPedidosCabecera();
     ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
     String codigocabecera = "";
-    ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
+    ArrayList<JoinListarDetalleNotaPedido> lista3 = null;//JoinListarDetalleNotaPedido
     JoinListarDetalleNotaPedido objetop = null;
     Listar_usuario objUsuario = null;
     //NUEVO
     joinProductoParaNotaPedido objetoActual = null;
-    ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
-    ArrayList<joinProductoParaNotaPedido> listaPNP1 = new ArrayList<joinProductoParaNotaPedido>();
+    ArrayList<joinProductoParaNotaPedido> listaP = crud.listarProductoParaNotaPedido(1);
+    ArrayList<joinProductoParaNotaPedido> listaP1 = new ArrayList<joinProductoParaNotaPedido>();
     joinProductoParaNotaPedido Objx = new joinProductoParaNotaPedido();
 
     public EditarNotaPedido(java.awt.Frame parent, boolean modal) {
@@ -79,11 +79,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         setLayout(null);
         //JoinListarNotaPedidosCabecera
         llenarFormulario(obj1);
-        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+        Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
+        //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
         codigocabecera = txtNumero.getText().toString();
 
         lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
-        Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+        Tablas.cargarJoinRegistroDetalleNotas(tbaNotaPedido, lista3);
 
         TotalIVA();
         TotalDescuento();
@@ -99,11 +100,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         setLayout(null);
         llenarFormulario(obj1);
-        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+        Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
+        //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
         codigocabecera = txtNumero.getText().toString();
 
         lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
-        Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+        Tablas.cargarJoinRegistroDetalleNotas(tbaNotaPedido, lista3);
 
         TotalIVA();
         TotalDescuento();
@@ -191,13 +193,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         cbxPlazo = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         tblProduc = new javax.swing.JScrollPane();
-        t_Nota_faltantes = new javax.swing.JTable();
+        tblaProducto = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tbaListaFaltantes = new javax.swing.JTable();
+        tbaNotaPedido = new javax.swing.JTable();
         tipofiltro1 = new javax.swing.JComboBox<>();
         TxtFiltro = new javax.swing.JTextField();
 
@@ -532,14 +533,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        jButton2.setText("FALTANTES");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -549,8 +542,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
@@ -571,7 +562,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(75, 75, 75)
                                 .addComponent(txtFechaCreacion, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(19, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -588,17 +579,16 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxFormaP, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        t_Nota_faltantes.setModel(new javax.swing.table.DefaultTableModel(
+        tblaProducto.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -606,15 +596,15 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8 "
             }
         ));
-        t_Nota_faltantes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tblaProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMouseClicked(evt);
+                tblaProductoMouseClicked(evt);
             }
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                t_Nota_faltantesMousePressed(evt);
+                tblaProductoMousePressed(evt);
             }
         });
-        tblProduc.setViewportView(t_Nota_faltantes);
+        tblProduc.setViewportView(tblaProducto);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -629,8 +619,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
-        tbaListaFaltantes.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, null));
-        tbaListaFaltantes.setModel(new javax.swing.table.DefaultTableModel(
+        tbaNotaPedido.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, null));
+        tbaNotaPedido.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -653,12 +643,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tbaListaFaltantes.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbaNotaPedido.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                tbaListaFaltantesMousePressed(evt);
+                tbaNotaPedidoMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(tbaListaFaltantes);
+        jScrollPane1.setViewportView(tbaNotaPedido);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -810,7 +800,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     public void TotalIVA() {
         BigDecimal Total1Iva = new BigDecimal("0.0000");
 
-        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+        for (int i = 0; i < tbaNotaPedido.getRowCount(); i++) {
             BigDecimal Iva1 = lista3.get(i).getIva();
             Total1Iva = Total1Iva.add(Iva1);
         }
@@ -820,7 +810,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     public void TotalDescuento() {
         BigDecimal TotalDescuento = new BigDecimal("0.0000");
-        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+        for (int i = 0; i < tbaNotaPedido.getRowCount(); i++) {
             BigDecimal descuento = lista3.get(i).getDescuento();
             TotalDescuento = TotalDescuento.add(descuento);
         }
@@ -830,7 +820,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     public void Total() {
         BigDecimal Total_ = new BigDecimal("0.0000");
-        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+        for (int i = 0; i < tbaNotaPedido.getRowCount(); i++) {
             BigDecimal total = lista3.get(i).getTotal();
             Total_ = Total_.add(total);
 
@@ -853,10 +843,10 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     }//GEN-LAST:event_txtRepresentanteKeyReleased
 
-    private void t_Nota_faltantesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMouseClicked
+    private void tblaProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblaProductoMouseClicked
 
 
-    }//GEN-LAST:event_t_Nota_faltantesMouseClicked
+    }//GEN-LAST:event_tblaProductoMouseClicked
 
 
     private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
@@ -876,33 +866,47 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
-    private void t_Nota_faltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_t_Nota_faltantesMousePressed
+    private void tblaProductoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblaProductoMousePressed
         int i = 0;
         String msg = null;
+        String id_pro = null;
         try {
             if (evt.getClickCount() == 2) {
-                i = t_Nota_faltantes.getSelectedRow();
+                i = tblaProducto.getSelectedRow();
+                
+                objetoActual = devuelveProducto(tblaProducto.getValueAt(i, 0).toString(), listaP);
 
 //                objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
-                objeto = devuelveObjeto(t_Nota_faltantes.getValueAt(i, 0).toString(), lista);
-                if (objeto != null) {
-                    AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objeto);
-                    np.setVisible(true);
-                    msg = ComponentesFaltantes.validarListaFaltantes(tbaListaFaltantes, objeto.getId_producto().toString());
-//  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
+                //objeto = devuelveObjeto(tblaProducto.getValueAt(i, 0).toString(), lista);
+                if (objetoActual != null) {
+                    
+                    id_pro = objetoActual.getId_producto().toString();
+                    System.out.println(id_pro + " <-- Este es el id Producto");
+                    //VALIDA SI EL PRODUCTO ESTA AGREGADO
+                    msg = ComponentesFaltantes.validarProductoParaAgregar(listaP1, id_pro);
+                    System.out.println(msg);
+                    //valida el mensaje
                     if (msg == null) {
-                        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                    AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objetoActual);
+                    np.setVisible(true);
+                    //msg = ComponentesFaltantes.validarListaFaltantes(tbaNotaPedido, objeto.getId_producto().toString());
+//  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
+                    
+                        Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
+                        //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
+                        
 
                         if (np.getObjf().getCantidad() > 0 || np.getObjf().getCantidad() != null) {
-                            int suma = Integer.parseInt((String) t_Nota_faltantes.getValueAt(i, 6)) + np.getObjf().getCantidad();
-                            getPosicion(objeto.getId_producto(), suma);
-                            lista1.add(np.getObjf());
+                            //int suma = Integer.parseInt((String) tblaProducto.getValueAt(i, 6)) + np.getObjf().getCantidad();
+                            //getPosicion(objeto.getId_producto(), suma);
+                            listaP1.add(np.getObjf());
 
-                            Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
+                            Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
+                            //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
                             //Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
-                            crud.InsertarBDCompras(txtNumero.getText(), lista1);
+                            crud.InsertarBDCompras(txtNumero.getText(), listaP1);
                             actualizarTabla2();
                             actualizarCabecera();
                             btnSalir2.setEnabled(false);
@@ -914,12 +918,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         } catch (Exception e) {
             Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
-    }//GEN-LAST:event_t_Nota_faltantesMousePressed
+    }//GEN-LAST:event_tblaProductoMousePressed
     public void actualizarTabla2() {
         String id = txtNumero.getText().toString();
         lista3.clear();
         lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
-        Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+        Tablas.cargarJoinRegistroDetalleNotas(tbaNotaPedido, lista3);
 
         Total();
         TotalIVA();
@@ -936,14 +940,14 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         crud.edicionCabeceraNotaPedido(cn);
     }
 
-    private void getPosicion(Long id, int valor) {
-        for (int i = 0; i < lista.size(); i++) {
-            if (id == lista.get(i).getId_producto()) {
-                lista.get(i).setCantidad(valor);
-            }
-        }
-
-    }
+//    private void getPosicion(Long id, int valor) {
+//        for (int i = 0; i < lista.size(); i++) {
+//            if (id == lista.get(i).getId_producto()) {
+//                lista.get(i).setCantidad(valor);
+//            }
+//        }
+//
+//    }
 
     public JoinListarDetalleNotaPedido devuelveObjeto2(String datos, ArrayList<JoinListarDetalleNotaPedido> listarobj) {
         JoinListarDetalleNotaPedido objeto1 = null;
@@ -967,37 +971,38 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         int pos = tipofiltro1.getSelectedIndex();
         if (pos == 0) {
-            lista = crud.FiltrosProductosNota(query, "TODO");
+            listaP = crud.FiltrosProductosNotaPedido(query, "TODO");
 
         }
         if (pos == 1) {
-            lista = crud.FiltrosProductosNota(query, "CODIGO");
+            listaP = crud.FiltrosProductosNotaPedido(query, "CODIGO");
 
         }
         if (pos == 2) {
-            lista = crud.FiltrosProductosNota(query, "NOMBRE");
+            listaP = crud.FiltrosProductosNotaPedido(query, "NOMBRE");
 
         }
         if (pos == 3) {
-            lista = crud.FiltrosProductosNota(query, "TIPO");
+            listaP = crud.FiltrosProductosNotaPedido(query, "TIPO");
 
         }
         if (pos == 4) {
-            lista = crud.FiltrosProductosNota(query, "MEDIDA");
+            listaP = crud.FiltrosProductosNotaPedido(query, "MEDIDA");
 
         }
         if (pos == 5) {
-            lista = crud.FiltrosProductosNota(query, "ENVASE");
+            listaP = crud.FiltrosProductosNotaPedido(query, "PRESENTACIONES");
 
         }
         if (pos == 6) {
-            lista = crud.FiltrosProductosNota(query, "MARCA");
+            listaP = crud.FiltrosProductosNotaPedido(query, "MARCA");
 
         }
 
         TxtFiltro.setText("");
 
-        Tablas.cargarFiltroProductosNota(t_Nota_faltantes, lista);
+        Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
+        //Tablas.cargarFiltroProductosNota(tblaProducto, lista);
         query = "";
     }
 
@@ -1014,6 +1019,25 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
         return objeto1;
     }
+    
+    
+        //NUEVO   devolver objeto para mandar abajo 
+    public joinProductoParaNotaPedido devuelveProducto(String datos, ArrayList<joinProductoParaNotaPedido> listarobj) {
+
+        joinProductoParaNotaPedido objeto1 = null;
+
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+
+        return objeto1;
+    }
+    
+    
+    
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         x = evt.getX();
         y = evt.getY();
@@ -1062,8 +1086,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 
     private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
         ArrayList tablac = new ArrayList();
-        for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(txtNumero.getText(), txtCodigoProveedor.getText(), txtNombre1.getText(), txtRepresentante.getText(), txtTelefono1.getText(), txtRuc1.getText(), txtCorreo1.getText(), txtDireccion1.getText(), txtTipo1.getText(), tbaListaFaltantes.getValueAt(i, 0).toString(), tbaListaFaltantes.getValueAt(i, 1).toString(), tbaListaFaltantes.getValueAt(i, 2).toString(), tbaListaFaltantes.getValueAt(i, 3).toString(), tbaListaFaltantes.getValueAt(i, 4).toString(), tbaListaFaltantes.getValueAt(i, 5).toString(), tbaListaFaltantes.getValueAt(i, 6).toString(), tbaListaFaltantes.getValueAt(i, 7).toString(), tbaListaFaltantes.getValueAt(i, 8).toString(), tbaListaFaltantes.getValueAt(i, 9).toString(), tbaListaFaltantes.getValueAt(i, 10).toString(), tbaListaFaltantes.getValueAt(i, 11).toString(), txtDescuento.getText(), txtIva.getText(), txtTotal.getText(), txtFechaCreacion.getText(), cbxPlazo.getSelectedItem().toString(), cbxFormaP.getSelectedItem().toString());
+        for (int i = 0; i < tbaNotaPedido.getRowCount(); i++) {
+            ClaseReporte tabla1 = new ClaseReporte(txtNumero.getText(), txtCodigoProveedor.getText(), txtNombre1.getText(), txtRepresentante.getText(), txtTelefono1.getText(), txtRuc1.getText(), txtCorreo1.getText(), txtDireccion1.getText(), txtTipo1.getText(), tbaNotaPedido.getValueAt(i, 0).toString(), tbaNotaPedido.getValueAt(i, 1).toString(), tbaNotaPedido.getValueAt(i, 2).toString(), tbaNotaPedido.getValueAt(i, 3).toString(), tbaNotaPedido.getValueAt(i, 4).toString(), tbaNotaPedido.getValueAt(i, 5).toString(), tbaNotaPedido.getValueAt(i, 6).toString(), tbaNotaPedido.getValueAt(i, 7).toString(), tbaNotaPedido.getValueAt(i, 8).toString(), tbaNotaPedido.getValueAt(i, 9).toString(), tbaNotaPedido.getValueAt(i, 10).toString(), tbaNotaPedido.getValueAt(i, 11).toString(), txtDescuento.getText(), txtIva.getText(), txtTotal.getText(), txtFechaCreacion.getText(), cbxPlazo.getSelectedItem().toString(), cbxFormaP.getSelectedItem().toString());
             tablac.add(tabla1);
         }
         try {
@@ -1092,12 +1116,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         y = evt.getY();
     }//GEN-LAST:event_jLabel7MousePressed
 
-    private void tbaListaFaltantesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaListaFaltantesMousePressed
+    private void tbaNotaPedidoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbaNotaPedidoMousePressed
 
         int i = 0;
 
         if (evt.getClickCount() == 2) {
-            i = tbaListaFaltantes.getSelectedRow();
+            i = tbaNotaPedido.getSelectedRow();
 //            objetop = devuelveObjeto(lista3.get(i).getId_precio().toString(), lista3);
 //            objetop = devuelveObjeto(codigocabecera, lista);
             objetop = devuelveObjeto2(lista3.get(i).getId_precio().toString(), lista3);
@@ -1106,14 +1130,14 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 Man.setVisible(true);
                 lista3.clear();
                 lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
-                Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+                Tablas.cargarJoinRegistroDetalleNotas(tbaNotaPedido, lista3);
                 Total();
                 TotalIVA();
                 TotalDescuento();
                 this.btnSalir2.setEnabled(false);
             }
         }
-    }//GEN-LAST:event_tbaListaFaltantesMousePressed
+    }//GEN-LAST:event_tbaNotaPedidoMousePressed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         MantenimientoProducto Prod = new MantenimientoProducto(new javax.swing.JFrame(), true, objUsuario);
@@ -1121,11 +1145,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         listapro.clear();
         listapro = crud.listarTodoJoinProductos(1);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ListaDePedidos Lp = new ListaDePedidos(new javax.swing.JFrame(), true);
-        Lp.setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
@@ -1196,7 +1215,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1225,9 +1243,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable t_Nota_faltantes;
-    private javax.swing.JTable tbaListaFaltantes;
+    private javax.swing.JTable tbaNotaPedido;
     private javax.swing.JScrollPane tblProduc;
+    private javax.swing.JTable tblaProducto;
     private javax.swing.JComboBox<String> tipofiltro1;
     public static javax.swing.JLabel txtCodigoProveedor;
     public static javax.swing.JTextField txtCorreo1;
