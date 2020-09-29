@@ -970,7 +970,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+Buscar();
     }//GEN-LAST:event_btnBuscarActionPerformed
     public void Buscar() {
         String query = "";
