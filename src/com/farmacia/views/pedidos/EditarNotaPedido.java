@@ -11,6 +11,7 @@ import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
+import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosCompras;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
@@ -56,6 +57,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     JoinListarDetalleNotaPedido objetop = null;
     Listar_usuario objUsuario = null;
+    //NUEVO
+    joinProductoParaNotaPedido objetoActual = null;
+    ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
+    ArrayList<joinProductoParaNotaPedido> listaPNP1 = new ArrayList<joinProductoParaNotaPedido>();
+    joinProductoParaNotaPedido Objx = new joinProductoParaNotaPedido();
 
     public EditarNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -71,6 +77,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         setLayout(null);
+        //JoinListarNotaPedidosCabecera
         llenarFormulario(obj1);
         Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
         codigocabecera = txtNumero.getText().toString();
