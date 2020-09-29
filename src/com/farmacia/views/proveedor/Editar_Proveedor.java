@@ -99,7 +99,6 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -120,57 +119,50 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         btnagregarTelf = new javax.swing.JButton();
         cbx2 = new javax.swing.JComboBox<>();
         btnagregarCorreo = new javax.swing.JButton();
-        Guardar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        btnInactivar = new javax.swing.JButton();
-        Reporte = new javax.swing.JButton();
+        lblImprimir = new javax.swing.JLabel();
+        lblInactivar = new javax.swing.JLabel();
+        lblActualizar = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel1.setOpaque(false);
 
-        jLabel9.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("ACTUALIZAR PROVEEDOR");
-        jLabel9.setOpaque(true);
-        jLabel9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel9MouseDragged(evt);
-            }
-        });
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel9MousePressed(evt);
-            }
-        });
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jPanel2.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
         jLabel2.setText("FECHA DE INGRESO:");
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 27, 134));
         jLabel3.setText("ENTIDAD/RAZON SOCIAL:");
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 27, 134));
         jLabel4.setText("CONTACTO:");
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 27, 134));
         jLabel5.setText("TELEFONO:");
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 27, 134));
         jLabel6.setText("CORREO:");
 
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 27, 134));
         jLabel7.setText("DIRECCION:");
 
         fecha.setEditable(false);
         fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         fecha.setPreferredSize(new java.awt.Dimension(10, 25));
         fecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,6 +171,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         });
 
         nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         nombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 nombreFocusLost(evt);
@@ -186,6 +179,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         });
 
         contacto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        contacto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         contacto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 contactoFocusLost(evt);
@@ -200,11 +194,13 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         });
 
         jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 27, 134));
         jLabel8.setText("CEDULA/RUC:");
 
         cedula.setEditable(false);
         cedula.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        cedula.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         cedula.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cedulaActionPerformed(evt);
@@ -217,22 +213,29 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         });
 
         dire.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        dire.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         dire.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 direFocusLost(evt);
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(0, 27, 134));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("AGREGAR IMAGEN");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(0, 27, 134));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("ELIMINAR");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -240,10 +243,13 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         });
 
         imagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imagen.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        imagen.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(50, 99, 50), 2, true));
 
+        btnagregarTelf.setBackground(new java.awt.Color(0, 27, 134));
         btnagregarTelf.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        btnagregarTelf.setForeground(new java.awt.Color(255, 255, 255));
         btnagregarTelf.setText("AGREGAR");
+        btnagregarTelf.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnagregarTelf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnagregarTelfActionPerformed(evt);
@@ -252,8 +258,11 @@ public class Editar_Proveedor extends javax.swing.JDialog {
 
         cbx2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        btnagregarCorreo.setBackground(new java.awt.Color(0, 27, 134));
         btnagregarCorreo.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        btnagregarCorreo.setForeground(new java.awt.Color(255, 255, 255));
         btnagregarCorreo.setText("AGREGAR");
+        btnagregarCorreo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnagregarCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnagregarCorreoActionPerformed(evt);
@@ -295,7 +304,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                                 .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -358,83 +367,117 @@ public class Editar_Proveedor extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        Guardar.setForeground(new java.awt.Color(71, 151, 69));
-        Guardar.setText("ACTUALIZAR");
-        Guardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarActionPerformed(evt);
+        lblImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/imprimir.png"))); // NOI18N
+        lblImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblImprimirMouseClicked(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        jButton4.setText("ATRAS");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        lblInactivar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/personaInactiva.png"))); // NOI18N
+        lblInactivar.setToolTipText("");
+        lblInactivar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblInactivar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblInactivarMouseClicked(evt);
             }
         });
 
-        btnInactivar.setBackground(new java.awt.Color(204, 0, 0));
-        btnInactivar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        btnInactivar.setForeground(new java.awt.Color(255, 255, 255));
-        btnInactivar.setText("INACTIVAR");
-        btnInactivar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnInactivarActionPerformed(evt);
+        lblActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/actualizar.png"))); // NOI18N
+        lblActualizar.setText("ACTUALIZAR");
+        lblActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblActualizarMouseClicked(evt);
             }
         });
 
-        Reporte.setBackground(new java.awt.Color(254, 254, 254));
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        Reporte.setText("IMPRIMIR");
-        Reporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReporteActionPerformed(evt);
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(50, 99, 50)));
+        jPanel3.setOpaque(false);
+
+        jLabel9.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 27, 134));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("ACTUALIZAR PROVEEDOR");
+        jLabel9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel9MouseDragged(evt);
             }
         });
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel9MousePressed(evt);
+            }
+        });
+
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(222, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(134, 134, 134)
+                .addComponent(lblCerrar)
+                .addGap(31, 31, 31))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(lblCerrar)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(128, 128, 128)
-                        .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnInactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(151, 151, 151)
+                .addComponent(lblActualizar)
+                .addGap(80, 80, 80)
+                .addComponent(lblInactivar)
+                .addGap(98, 98, 98)
+                .addComponent(lblImprimir)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnInactivar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblImprimir)
+                    .addComponent(lblInactivar)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
+                        .addComponent(lblActualizar))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -508,132 +551,8 @@ public class Editar_Proveedor extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_btnagregarTelfActionPerformed
-////    public void insertarTelefono(ArrayList<Obcx> lis) {
-////        // System.out.println(lis.get(1));
-////        for (int i = 0; i < lis.size(); i++) {
-////            try {
-////                coneccion = conectar.Conexion("farmacia");
-////                coneccion.setAutoCommit(false);
-////                CallableStatement prcProcedimientoAlmacenado = coneccion.prepareCall(""
-////                        + "{ call insertarTelefono(?,?,?) }");
-////                prcProcedimientoAlmacenado.setString(1, cedula.getText());
-////                prcProcedimientoAlmacenado.setString(2, lis.get(i).getTcd());
-////                prcProcedimientoAlmacenado.setInt(3, lis.get(i).getTipos());
-////                //prcProcedimientoAlmacenado.registerOutParameter("mst", Types.VARCHAR);
-////                prcProcedimientoAlmacenado.executeUpdate();
-////                //mensaje = prcProcedimientoAlmacenado.getString("mst");
-////                coneccion.commit();
-////
-////            } catch (SQLException ex) {
-////                try {
-////                    coneccion.rollback();
-////
-////                } catch (SQLException ex1) {
-////                    Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex1);
-////                }
-////                Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-////            }
-////        }
-////        try {
-////            coneccion.close();
-////        } catch (SQLException ex) {
-////            Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-////        }
-////    }
-////
-////    public void insertarCorreo(ArrayList<Obcx> lis) {
-////        for (int i = 0; i < lis.size(); i++) {
-////            try {
-////                coneccion = conectar.Conexion("farmacia");
-////                coneccion.setAutoCommit(false);
-////                CallableStatement prcProcedimientoAlmacenado = coneccion.prepareCall(""
-////                        + "{ call insertarCorreo(?,?,?) }");
-////                prcProcedimientoAlmacenado.setInt(1, Integer.valueOf(cedula.getText()));
-////                prcProcedimientoAlmacenado.setString(2, lis.get(i).getTcd());
-////                prcProcedimientoAlmacenado.setInt(3, lis.get(i).getTipos());
-////                //prcProcedimientoAlmacenado.registerOutParameter("mst", Types.VARCHAR);
-////                prcProcedimientoAlmacenado.executeUpdate();
-////                //mensaje = prcProcedimientoAlmacenado.getString("mst");
-////                coneccion.commit();
-////
-////            } catch (SQLException ex) {
-////                try {
-////                    coneccion.rollback();
-////
-////                } catch (SQLException ex1) {
-////                    Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex1);
-////                }
-////                Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-////            }
-////        }
-////        try {
-////            coneccion.close();
-////        } catch (SQLException ex) {
-////            Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-////        }
-////    }
-////
-////    public void insertarDireccion(ArrayList<Obcx> lis) {
-////        for (int i = 0; i < lis.size(); i++) {
-////            try {
-////                coneccion = conectar.Conexion("farmacia");
-////                coneccion.setAutoCommit(false);
-////                CallableStatement prcProcedimientoAlmacenado = coneccion.prepareCall(""
-////                        + "{ call insertarDireccion(?,?,?) }");
-////                prcProcedimientoAlmacenado.setInt(1, Integer.valueOf(cedula.getText()));
-////                prcProcedimientoAlmacenado.setString(2, lis.get(i).getTcd());
-////                prcProcedimientoAlmacenado.setInt(3, lis.get(i).getTipos());
-////                //prcProcedimientoAlmacenado.registerOutParameter("mst", Types.VARCHAR);
-////                prcProcedimientoAlmacenado.executeUpdate();
-////                //mensaje = prcProcedimientoAlmacenado.getString("mst");
-////                coneccion.commit();
-////
-////            } catch (SQLException ex) {
-////                try {
-////                    coneccion.rollback();
-////
-////                } catch (SQLException ex1) {
-////                    Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex1);
-////                }
-////                Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-////            }
-////        }
-////        try {
-////            coneccion.close();
-////        } catch (SQLException ex) {
-////            Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-////        }
-////    }
-    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-        int h = Confirmacion("Deseas Actualizar el proveedor con Cedula/Ruc : "
-                + cedula.getText() + " y Nombre : " + nombre.getText());
-        if (h == 0){
-           // ArrayList<ListarJoinProveedor> lista=;
-            ListarJoinProveedor p = new ListarJoinProveedor();            
-            p.setId_proveedor_clase(tip1);
-            p.setCedula_ruc(cedula.getText());
-            p.setEntidad(nombre.getText());
-            p.setRepresentante(contacto.getText());
-            p.setDireccion(dire.getText());
-            System.out.println(fecha_registro);
-            p.setFecha_registro(fecha_registro);
-            p.setEstado(tip2);
-            p.setTelefono(cbx1.getSelectedItem().toString());
-            if(cbx2.getSelectedIndex() >= 1){
-            p.setMail(cbx2.getSelectedItem().toString());
-            }
-            p.setId_proveedor(tip3);
-            p.setDireccionImagen(rutaimagen);
-            String valor = crud.insertarProveedor(p);
-            JOptionPane.showMessageDialog(null, valor);
-            Consulta_Proveedor mp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
-            setVisible(false);
-            mp.setVisible(true);
 
-        }
-        
-    }//GEN-LAST:event_GuardarActionPerformed
-//    public String editarProveedor() {
+///    public String editarProveedor() {
 //        String mensaje = null;
 //
 //        try {
@@ -689,12 +608,6 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         System.out.println(x);
     }//GEN-LAST:event_cbx1ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-    Consulta_Proveedor cp = new Consulta_Proveedor(new javax.swing.JFrame(),true);   
-    setVisible(false);
-    cp.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyTyped
         char car = evt.getKeyChar();
         if (cedula.getText().length() >= 10) {
@@ -713,19 +626,6 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         System.out.println(select);
         return select;
     }
-    private void btnInactivarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInactivarActionPerformed
-        int h = Confirmacion("Deseas Eliminar el proveedor con Cedula/Ruc : "
-                + cedula.getText() + " y Nombre : " + nombre.getText());
-        if (h == 0) {
-            String sol = crud.eliminarProveedor(Long.valueOf("1"),tip3);
-            JOptionPane.showMessageDialog(null, sol);
-            Consulta_Proveedor mp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
-            setVisible(false);
-            mp.setVisible(true);
-
-        }
-    }//GEN-LAST:event_btnInactivarActionPerformed
-
     private void jLabel9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MousePressed
         x = evt.getX();
         y = evt.getY();
@@ -746,27 +646,6 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         contacto.setText(contacto.getText().toUpperCase());
     }//GEN-LAST:event_contactoFocusLost
 
-    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
-        ArrayList proveedor = new ArrayList();        
-        ProveedorRep proveedor1 = new ProveedorRep(cedula.getText(),nombre.getText(),contacto.getText(),dire.getText(),fecha.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),rutaimagen);
-        proveedor.add(proveedor1);
-        try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"Editar_Proveedor.jasper";
-            JasperReport reporte =  (JasperReport) JRLoader.loadObject(dir);            
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(proveedor));
-            JDialog frame = new JDialog(this);
-            JRViewer viewer = new JRViewer(jprint);
-            frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
-            viewer.setFitWidthZoomRatio();
-        } catch (JRException ex) {
-            Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_ReporteActionPerformed
-
     private void direFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_direFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_direFocusLost
@@ -785,6 +664,74 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     private void cedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cedulaActionPerformed
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        Consulta_Proveedor cp = new Consulta_Proveedor(new javax.swing.JFrame(),true);   
+        setVisible(false);
+        cp.setVisible(true);
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
+        ArrayList proveedor = new ArrayList();        
+        ProveedorRep proveedor1 = new ProveedorRep(cedula.getText(),nombre.getText(),contacto.getText(),dire.getText(),fecha.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),rutaimagen);
+        proveedor.add(proveedor1);
+        try {
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"Editar_Proveedor.jasper";
+            JasperReport reporte =  (JasperReport) JRLoader.loadObject(dir);            
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(proveedor));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(Editar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lblImprimirMouseClicked
+
+    private void lblInactivarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInactivarMouseClicked
+        int h = Confirmacion("Deseas Eliminar el proveedor con Cedula/Ruc : "
+                + cedula.getText() + " y Nombre : " + nombre.getText());
+        if (h == 0) {
+            String sol = crud.eliminarProveedor(Long.valueOf("1"),tip3);
+            JOptionPane.showMessageDialog(null, sol);
+            Consulta_Proveedor mp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+            setVisible(false);
+            mp.setVisible(true);
+
+        }
+    }//GEN-LAST:event_lblInactivarMouseClicked
+
+    private void lblActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblActualizarMouseClicked
+        int h = Confirmacion("Deseas Actualizar el proveedor con Cedula/Ruc : "
+                + cedula.getText() + " y Nombre : " + nombre.getText());
+        if (h == 0){
+           // ArrayList<ListarJoinProveedor> lista=;
+            ListarJoinProveedor p = new ListarJoinProveedor();            
+            p.setId_proveedor_clase(tip1);
+            p.setCedula_ruc(cedula.getText());
+            p.setEntidad(nombre.getText());
+            p.setRepresentante(contacto.getText());
+            p.setDireccion(dire.getText());
+            System.out.println(fecha_registro);
+            p.setFecha_registro(fecha_registro);
+            p.setEstado(tip2);
+            p.setTelefono(cbx1.getSelectedItem().toString());
+            if(cbx2.getSelectedIndex() >= 1){
+            p.setMail(cbx2.getSelectedItem().toString());
+            }
+            p.setId_proveedor(tip3);
+            p.setDireccionImagen(rutaimagen);
+            String valor = crud.insertarProveedor(p);
+            JOptionPane.showMessageDialog(null, valor);
+            Consulta_Proveedor mp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+            setVisible(false);
+            mp.setVisible(true);
+
+        }
+    }//GEN-LAST:event_lblActualizarMouseClicked
 //    public String eliminarEditor(String por) {
 //        String mensaje = null;
 //     //   int por1 = Integer.valueOf(por);
@@ -888,7 +835,7 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         //cedula.setEnabled(lok);
         nombre.setEnabled(lok);
         contacto.setEnabled(lok);
-        Guardar.setEnabled(lok);
+        lblActualizar.setEnabled(lok);
     }
 
     public void fe() {
@@ -1000,9 +947,6 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Guardar;
-    private javax.swing.JButton Reporte;
-    private javax.swing.JButton btnInactivar;
     private javax.swing.JButton btnagregarCorreo;
     private javax.swing.JButton btnagregarTelf;
     private javax.swing.JComboBox<String> cbx1;
@@ -1013,7 +957,6 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     private javax.swing.JTextField fecha;
     private javax.swing.JLabel imagen;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1025,6 +968,11 @@ public class Editar_Proveedor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblActualizar;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblImprimir;
+    private javax.swing.JLabel lblInactivar;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 

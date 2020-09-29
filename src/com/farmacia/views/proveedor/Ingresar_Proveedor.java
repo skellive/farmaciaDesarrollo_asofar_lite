@@ -15,6 +15,7 @@ import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Fecha;
 import com.farmacia.entities1.Obcx;
+import java.awt.Color;
 import static java.awt.Frame.ICONIFIED;
 import java.awt.Image;
 import java.awt.MouseInfo;
@@ -50,6 +51,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
 
     public Ingresar_Proveedor(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
@@ -66,7 +68,6 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -87,54 +88,47 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
         imagen = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
-        Guardar = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
+        lblGuardar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(50, 99, 50), 2, true));
+        jPanel1.setOpaque(false);
 
-        jLabel9.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("NUEVO PROVEEDOR");
-        jLabel9.setOpaque(true);
-        jLabel9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel9MouseDragged(evt);
-            }
-        });
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel9MousePressed(evt);
-            }
-        });
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setOpaque(false);
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
         jLabel2.setText("FECHA DE INGRESO:");
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 27, 134));
         jLabel3.setText("ENTIDAD/RAZON SOCIAL:");
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 27, 134));
         jLabel4.setText("CONTACTO:");
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 27, 134));
         jLabel5.setText("TELEFONO:");
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 27, 134));
         jLabel6.setText("CORREO:");
 
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 27, 134));
         jLabel7.setText("DIRECCION:");
 
         fecha.setEditable(false);
         fecha.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         fecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        fecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         fecha.setPreferredSize(new java.awt.Dimension(6, 28));
         fecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,6 +137,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         });
 
         nombre.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         nombre.setMinimumSize(new java.awt.Dimension(6, 28));
         nombre.setPreferredSize(new java.awt.Dimension(6, 28));
         nombre.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -157,6 +152,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         });
 
         contacto.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        contacto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         contacto.setPreferredSize(new java.awt.Dimension(6, 28));
         contacto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -182,16 +178,22 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 27, 134));
         jButton1.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("AGREGAR");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 27, 134));
         jButton2.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("AGREGAR");
+        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -199,10 +201,12 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         });
 
         jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 27, 134));
         jLabel8.setText("CEDULA/RUC:");
 
         cedula.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cedula.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        cedula.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         cedula.setPreferredSize(new java.awt.Dimension(6, 28));
         cedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -214,6 +218,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         });
 
         dir.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        dir.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         dir.setMinimumSize(new java.awt.Dimension(6, 28));
         dir.setPreferredSize(new java.awt.Dimension(6, 28));
         dir.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -227,8 +232,11 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(0, 27, 134));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("AGREGAR IMAGEN");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -236,10 +244,13 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         });
 
         imagen.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
 
+        jButton6.setBackground(new java.awt.Color(0, 27, 134));
         jButton6.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("ELIMINAR");
+        jButton6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
@@ -269,7 +280,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
                             .addComponent(fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -315,8 +326,8 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(dir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 10, Short.MAX_VALUE))
-                    .addComponent(imagen, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(imagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(contacto, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -326,7 +337,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -335,21 +346,58 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        Guardar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        Guardar.setForeground(new java.awt.Color(87, 152, 80));
-        Guardar.setText("GUARDAR");
-        Guardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GuardarActionPerformed(evt);
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
+        jPanel3.setOpaque(false);
+
+        jLabel9.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 27, 134));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("NUEVO PROVEEDOR");
+        jLabel9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel9MouseDragged(evt);
+            }
+        });
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel9MousePressed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(198, 28, 28));
-        jButton4.setText("CANCELAR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(236, 236, 236)
+                .addComponent(jLabel9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrar)
+                .addGap(29, 29, 29))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblCerrar)
+                .addContainerGap())
+        );
+
+        lblGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/guardar.png"))); // NOI18N
+        lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGuardarMouseClicked(evt);
             }
         });
 
@@ -357,29 +405,26 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(167, 167, 167)
-                .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(168, 168, 168))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(331, 331, 331)
+                        .addComponent(lblGuardar))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addComponent(lblGuardar)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -427,115 +472,6 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
     
 
-//    public void insertarCorreo(ArrayList<Obcx> lis) {
-//        for (int i = 0; i < lis.size(); i++) {
-//            try {
-//                coneccion = conectar.Conexion("farmacia");
-//                coneccion.setAutoCommit(false);
-//                CallableStatement prcProcedimientoAlmacenado = coneccion.prepareCall(""
-//                        + "{ call insertarCorreo(?,?,?) }");
-//                prcProcedimientoAlmacenado.setString(1, cedula.getText());
-//                prcProcedimientoAlmacenado.setString(2, lis.get(i).getTcd());
-//                prcProcedimientoAlmacenado.setLong(3, lis.get(i).getTipos());
-//                //prcProcedimientoAlmacenado.registerOutParameter("mst", Types.VARCHAR);
-//                prcProcedimientoAlmacenado.executeUpdate();
-//                //mensaje = prcProcedimientoAlmacenado.getString("mst");
-//                coneccion.commit();
-//
-//            } catch (SQLException ex) {
-//                try {
-//                    coneccion.rollback();
-//
-//                } catch (SQLException ex1) {
-//                    Logger.getLogger(Ingresar_Proveedor.class.getName()).log(Level.SEVERE, null, ex1);
-//                }
-//                Logger.getLogger(Ingresar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//        try {
-//            coneccion.close();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Ingresar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-//
-//    public void insertarDireccion(ArrayList<Obcx> lis) {
-//        for (int i = 0; i < lis.size(); i++) {
-//            try {
-//                coneccion = conectar.Conexion("farmacia");
-//                coneccion.setAutoCommit(false);
-//                CallableStatement prcProcedimientoAlmacenado = coneccion.prepareCall(""
-//                        + "{ call insertarDireccion(?,?,?) }");
-//                prcProcedimientoAlmacenado.setString(1, cedula.getText());
-//                prcProcedimientoAlmacenado.setString(2, lis.get(i).getTcd());
-//                prcProcedimientoAlmacenado.setLong(3, lis.get(i).getTipos());
-//                //prcProcedimientoAlmacenado.registerOutParameter("mst", Types.VARCHAR);
-//                prcProcedimientoAlmacenado.executeUpdate();
-//                //mensaje = prcProcedimientoAlmacenado.getString("mst");
-//                coneccion.commit();
-//
-//            } catch (SQLException ex) {
-//                try {
-//                    coneccion.rollback();
-//
-//                } catch (SQLException ex1) {
-//                    Logger.getLogger(Ingresar_Proveedor.class.getName()).log(Level.SEVERE, null, ex1);
-//                }
-//                Logger.getLogger(Ingresar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-//            }
-//        }
-//        try {
-//            coneccion.close();
-//        } catch (SQLException ex) {
-//            Logger.getLogger(Ingresar_Proveedor.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//    }
-    private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
-       if(cbx1.getSelectedIndex()==0 ){
-          
-           JOptionPane.showMessageDialog(this, "escoja telefono");
-       
-           
-       }else{
-       
-        if (listat.size() >=1) {
-            
-            ListarJoinProveedor p =new ListarJoinProveedor();
-            p.setId_proveedor_clase(Long.valueOf("1"));
-            p.setCedula_ruc(cedula.getText());
-            p.setEntidad(nombre.getText());
-            p.setRepresentante(contacto.getText());
-            p.setDireccion(dir.getText());
-            p.setFecha_registro(fecha_registro);
-            p.setTelefono(cbx1.getSelectedItem().toString());
-            if(listac.size() >= 1){
-            p.setMail(cbx2.getSelectedItem().toString());
-            }
-            p.setDireccionImagen(rutaimagen);
-            
-            String pro = crud.insertarNuevoProveedor(p);
-            
-            if (pro != null) {
-                
-                crud.insertarTelefono(listat,cedula.getText());
-                crud.insertarCorreo(listac,cedula.getText());
-                //insertarDireccion(listad);
-                JOptionPane.showMessageDialog(null, pro);
-                Consulta_Proveedor mp = new Consulta_Proveedor(new javax.swing.JFrame(),true);
-                setVisible(false);
-                mp.setVisible(true);
-                
-
-            } else {
-                JOptionPane.showMessageDialog(null, "Proveedor ya existe");
-            }
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Debe completar todo el formulario");
-        }
-       }
-    }//GEN-LAST:event_GuardarActionPerformed
-
     private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
 
     }//GEN-LAST:event_fechaActionPerformed
@@ -569,12 +505,6 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
     private void cbx1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbx1ActionPerformed
-
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Consulta_Proveedor cp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
-        setVisible(false);
-        cp.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
 
     private void cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyTyped
         /* char car = evt.getKeyChar();
@@ -656,6 +586,58 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         VaciarImagen();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        Consulta_Proveedor cp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
+        setVisible(false);
+        cp.setVisible(true);
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
+        if(cbx1.getSelectedIndex()==0 ){
+          
+           JOptionPane.showMessageDialog(this, "escoja telefono");
+       
+           
+       }else{
+       
+        if (listat.size() >=1) {
+            
+            ListarJoinProveedor p =new ListarJoinProveedor();
+            p.setId_proveedor_clase(Long.valueOf("1"));
+            p.setCedula_ruc(cedula.getText());
+            p.setEntidad(nombre.getText());
+            p.setRepresentante(contacto.getText());
+            p.setDireccion(dir.getText());
+            p.setFecha_registro(fecha_registro);
+            p.setTelefono(cbx1.getSelectedItem().toString());
+            if(listac.size() >= 1){
+            p.setMail(cbx2.getSelectedItem().toString());
+            }
+            p.setDireccionImagen(rutaimagen);
+            
+            String pro = crud.insertarNuevoProveedor(p);
+            
+            if (pro != null) {
+                
+                crud.insertarTelefono(listat,cedula.getText());
+                crud.insertarCorreo(listac,cedula.getText());
+                //insertarDireccion(listad);
+                JOptionPane.showMessageDialog(null, pro);
+                Consulta_Proveedor mp = new Consulta_Proveedor(new javax.swing.JFrame(),true);
+                setVisible(false);
+                mp.setVisible(true);
+                
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Proveedor ya existe");
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Debe completar todo el formulario");
+        }
+       }
+    }//GEN-LAST:event_lblGuardarMouseClicked
     
     private void getPicture(String path) {
         JFileChooser dig = new JFileChooser(path);
@@ -695,7 +677,7 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
         //cedula.setEnabled(lok);
         nombre.setEnabled(lok);
         contacto.setEnabled(lok);
-        Guardar.setEnabled(lok);
+        lblGuardar.setEnabled(lok);
     }
 
     public void fe() {
@@ -796,7 +778,6 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Guardar;
     private javax.swing.JComboBox<String> cbx1;
     private javax.swing.JComboBox<String> cbx2;
     private javax.swing.JTextField cedula;
@@ -807,7 +788,6 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -819,6 +799,9 @@ public class Ingresar_Proveedor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblGuardar;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 
