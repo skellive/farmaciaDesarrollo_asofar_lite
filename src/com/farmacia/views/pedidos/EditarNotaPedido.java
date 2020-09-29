@@ -910,8 +910,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             actualizarTabla2();
                             actualizarCabecera();
                             btnSalir2.setEnabled(false);
+                        }{
+                            JOptionPane.showMessageDialog(this, "getCantidad() ->" +np.getObjf().getCantidad());
                         }
 
+                    }else {
+                        JOptionPane.showMessageDialog(this, msg);
+                        // System.out.println(msg);
                     }
                 }
             }
@@ -1075,8 +1080,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, valor);
                 setVisible(false);
                 
-                MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
-                Man.setVisible(true);
+                //MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+                //Man.setVisible(true);
             }
         } else {
 
