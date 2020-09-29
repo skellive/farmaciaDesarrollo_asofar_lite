@@ -6,6 +6,7 @@
 package com.farmacia.validaciones;
 
 import com.farmacia.dao.CRUD;
+import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import java.util.ArrayList;
@@ -48,7 +49,26 @@ public class ComponentesFaltantes {
     
     
      public static String validarProductoParaAgregar(ArrayList<joinProductoParaNotaPedido> Array2, String id_producto) {
-        String o, msg = null;
+        //JoinListarDetalleNotaPedido
+         String o, msg = null;
+        Integer cantActual = null;
+        for (int i = 0; i < Array2.size(); i++){
+            o =  Array2.get(i).getId_producto().toString();
+            if (o.equals(id_producto)) {
+                 //cantActual = Array2.get(i).getCantidad();
+                 //Array2.get(i).setCantidad(cantidad+cantActual);
+                 msg = "El producto ya esta agregado";
+                 break;
+            }
+
+        }
+
+        return msg;
+    }
+     
+          public static String validarProductoParaAgregar2(ArrayList<JoinListarDetalleNotaPedido> Array2, String id_producto) {
+        //JoinListarDetalleNotaPedido
+         String o, msg = null;
         Integer cantActual = null;
         for (int i = 0; i < Array2.size(); i++){
             o =  Array2.get(i).getId_producto().toString();

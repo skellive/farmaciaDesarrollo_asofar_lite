@@ -869,6 +869,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private void tblaProductoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblaProductoMousePressed
         int i = 0;
         String msg = null;
+        String msg2 = null;
         String id_pro = null;
         try {
             if (evt.getClickCount() == 2) {
@@ -883,7 +884,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     id_pro = objetoActual.getId_producto().toString();
                     System.out.println(id_pro + " <-- Este es el id Producto");
                     //VALIDA SI EL PRODUCTO ESTA AGREGADO
-                    msg = ComponentesFaltantes.validarProductoParaAgregar(listaP1, id_pro);
+                    //lista3
+                    msg = ComponentesFaltantes.validarProductoParaAgregar2(lista3, id_pro);
+                    //msg2=listaP1.
                     System.out.println(msg);
                     //valida el mensaje
                     if (msg == null) {
