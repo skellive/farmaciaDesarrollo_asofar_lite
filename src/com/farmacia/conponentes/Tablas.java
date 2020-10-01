@@ -1782,13 +1782,13 @@ public class Tablas {
     
     //LISTAR KARDEX
         public static void ListarKardexProductos(ArrayList<ListarKardex> lista, JTable Tabla) {
-        int[] a = {10, 100, 150, 100, 100, 100, 50, 100, 100, 100};
+        int[] a = {80, 100, 100, 100, 80, 70, 50, 70, 70, 80};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "TIPO","PRESENTACION","STOCK","IVA","PRECIO COMPRA", "PRECIO VENTA", "TOTAL"};
+        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "TIPO","PRESENTACION","STOCK","IVA","PRE.COMPRA", "PRE.VENTA", "TOTAL"};
         //   Date[] Ca = {Date.valueOf("Fecha")};
         String[] Filas = new String[10];
         //  Date[] Fila = new Date [1];
