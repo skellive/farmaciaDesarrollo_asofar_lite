@@ -3829,8 +3829,8 @@ public class CRUD {
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                //ListarKardex obj = EntidadesMappers.getStockProductosFromResultSet(rs);
-                //lista.add(obj);
+                ListarKardex obj = EntidadesMappers.getKardexFromResultSet(rs);
+                lista.add(obj);
             }
             conect.commit();
         } catch (Exception e) {
