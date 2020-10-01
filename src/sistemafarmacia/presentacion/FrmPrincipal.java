@@ -38,6 +38,7 @@ import com.farmacia.views.pedidos.NotePedidos;
 import com.farmacia.views.producto.MantenimientoProducto;
 import com.farmacia.views.producto.Products;
 import com.farmacia.views.proveedor.Consulta_Proveedor;
+import com.farmacia.views.stock.Kardex_Productos;
 import com.farmacia.views.stock.Stock_Productos;
 import com.farmacia.views.usuario.Local;
 import com.farmacia.views.usuario.Mostrar_usuario;
@@ -774,7 +775,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
 //        Stock_Productos sp = new Stock_Productos(this, rootPaneCheckingEnabled);
 //        sp.setVisible(rootPaneCheckingEnabled);
-        Stock_Productos sp = new Stock_Productos(this, rootPaneCheckingEnabled);
+        Kardex_Productos sp = new Kardex_Productos(this, rootPaneCheckingEnabled);
             sp.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
