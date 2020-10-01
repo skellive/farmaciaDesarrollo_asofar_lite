@@ -48,6 +48,7 @@ import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
+import com.farmacia.join_entidades.ListarKardex;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import java.sql.ResultSet;
@@ -839,6 +840,33 @@ public class EntidadesMappers {
             obj.setEnvase(rs.getString("ENVASE"));
             obj.setMarca(rs.getString("MARCA"));
             obj.setCantidad(rs.getLong("CANTIDAD"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+    
+    
+    //Listar Kardex
+    public static ListarKardex getKardexFromResultSet(ResultSet rs) {
+        ListarKardex obj = new ListarKardex();
+        try {
+            //13
+            obj.setId_kardex(rs.getLong("IDKARDEX"));
+            obj.setId_producto(rs.getLong("ID_PRODUCTOS"));
+            obj.setNombre_Producto(rs.getString("PRODUCTO"));
+            obj.setDescripcion(rs.getString("DESCRIPCION"));
+            obj.setTipo(rs.getString("TIPO"));
+            obj.setPresentacion(rs.getString("PRESENTACION"));
+            obj.setCantidad(rs.getLong("CANTIDAD"));
+            obj.setIva(rs.getString("IVA"));
+            obj.setPrecio_compra(rs.getDouble("PRECIO_COMPRA"));
+            obj.setPrecio_venta(rs.getDouble("PRECIO_VENTA"));
+            obj.setTotal(rs.getDouble("TOTAL"));
+            obj.setCompra(rs.getLong("COMPRA"));
+            obj.setVenta(rs.getLong("VENTA"));
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);

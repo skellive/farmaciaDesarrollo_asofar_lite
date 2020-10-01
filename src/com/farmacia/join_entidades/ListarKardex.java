@@ -3,12 +3,13 @@ package com.farmacia.join_entidades;
 
 public class ListarKardex {
     
-    //12 variables
+    //13 variables
     Long id_kardex;
     Long id_producto;
     String nombre_Producto;
     String descripcion;
     String tipo;
+    String presentacion;
     Long cantidad;
     String iva;
     Double precio_compra;
@@ -20,12 +21,13 @@ public class ListarKardex {
     public ListarKardex() {
     }
 
-    public ListarKardex(Long id_kardex, Long id_producto, String nombre_Producto, String descripcion, String tipo, Long cantidad, String iva, Double precio_compra, Double precio_venta, Double total, Long compra, Long venta) {
+    public ListarKardex(Long id_kardex, Long id_producto, String nombre_Producto, String descripcion, String tipo, String presentacion, Long cantidad, String iva, Double precio_compra, Double precio_venta, Double total, Long compra, Long venta) {
         this.id_kardex = id_kardex;
         this.id_producto = id_producto;
         this.nombre_Producto = nombre_Producto;
         this.descripcion = descripcion;
         this.tipo = tipo;
+        this.presentacion = presentacion;
         this.cantidad = cantidad;
         this.iva = iva;
         this.precio_compra = precio_compra;
@@ -73,6 +75,14 @@ public class ListarKardex {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public String getPresentacion() {
+        return presentacion;
+    }
+
+    public void setPresentacion(String presentacion) {
+        this.presentacion = presentacion;
     }
 
     public Long getCantidad() {
@@ -130,7 +140,6 @@ public class ListarKardex {
     public void setVenta(Long venta) {
         this.venta = venta;
     }
-    
-    
 
+    
 }

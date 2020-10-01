@@ -54,6 +54,7 @@ import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
+import com.farmacia.join_entidades.ListarKardex;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ValidarIngresoProducto;
@@ -3817,8 +3818,8 @@ public class CRUD {
     
     
     //ParaListarkardex
-    public ArrayList<Productos_Stock> listarKardex() {
-        ArrayList<Productos_Stock> lista = new ArrayList<Productos_Stock>();
+    public ArrayList<ListarKardex> listarKardex() {
+        ArrayList<ListarKardex> lista = new ArrayList<ListarKardex>();
 
         try {
             conect = con.conectar();
@@ -3828,8 +3829,8 @@ public class CRUD {
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                Productos_Stock obj = EntidadesMappers.getStockProductosFromResultSet(rs);
-                lista.add(obj);
+                //ListarKardex obj = EntidadesMappers.getStockProductosFromResultSet(rs);
+                //lista.add(obj);
             }
             conect.commit();
         } catch (Exception e) {
