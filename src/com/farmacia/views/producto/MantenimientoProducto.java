@@ -333,10 +333,6 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         //        String dat = Filtro.getText();
         //        Tablas.filtro(dat, Tabla);
     }//GEN-LAST:event_filtroKeyReleased
-
-    public listarJoinProductosCompras getProveedor() {
-        return objeto;
-    }
     
     private void tipofiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipofiltroActionPerformed
         // TODO add your handling code here:

@@ -444,7 +444,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             }
 
             try {
-                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Reporte_Venta.jasper"));
+                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Venta.jasper"));
                 JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
                 JDialog ventana = new JDialog();
 
@@ -482,7 +482,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             }
 
             try {
-                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Reporte_VentasinDate.jasper"));
+                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("ventaSinDate.jasper"));
                 JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
                 JDialog ventana = new JDialog();
 
