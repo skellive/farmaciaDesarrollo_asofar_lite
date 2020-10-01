@@ -3814,6 +3814,42 @@ public class CRUD {
         return lista;
 
     }
+    
+    
+    //ParaListarkardex
+    public ArrayList<Productos_Stock> listarKardex() {
+        ArrayList<Productos_Stock> lista = new ArrayList<Productos_Stock>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call ListarKardex()}");
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                Productos_Stock obj = EntidadesMappers.getStockProductosFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+
+    }
+    
 
     public String edicionCompra(Cabecera_compra cc) {
         String valor = null;
