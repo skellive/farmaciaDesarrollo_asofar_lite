@@ -15,7 +15,7 @@ import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
-import static com.farmacia.views.ingresoRapido.ingresoRapido.tabla_para_productos;
+//import static com.farmacia.views.ingresoRapido.ingresoRapido.tabla_para_productos;
 import com.farmacia.views.pedidos.AgregarProductoNotaPedido;
 import static com.farmacia.views.pedidos.NotePedidos.txtCodigoProveedor;
 import static com.farmacia.views.pedidos.NotePedidos.txtCorreo1;
@@ -61,7 +61,7 @@ public class presentarProducto extends javax.swing.JFrame {
     //joinProductoDetallesFaltantes objeto = null;
     ListarJoinProveedorNotaPedido proveedorC = null;
     
-    public static JTable tbaListaFaltantes = new ingresoRapido().tabla_para_productos;   
+    //public static JTable tbaListaFaltantes = new ingresoRapido().tabla_para_productos;   
     
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
     //ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
@@ -622,6 +622,24 @@ public class presentarProducto extends javax.swing.JFrame {
 
         return objeto1;
     }
+      
+     
+    public joinProductoParaNotaPedido getProducto(String datos, ArrayList<joinProductoParaNotaPedido> listarobj) {
+                joinProductoParaNotaPedido objeto1 = null;
+
+        for (int i = 0; i < listarobj.size(); i++) {
+            if (datos.equals(listarobj.get(i).getId_producto().toString())) {
+                objeto1 = listarobj.get(i);
+                break;
+            }
+        }
+        
+        return objeto1;
+    }
+
+    public void setProducto(joinProductoParaNotaPedido objetoActual) {
+        this.objetoActual = objetoActual;
+    }
 
     private void Reiniciar() {
         txtCodigoProveedor.setText("");
@@ -636,8 +654,8 @@ public class presentarProducto extends javax.swing.JFrame {
         txtIva.setText("");
         txtTotal.setText("");
         listaPNP1.clear();
-        Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
-        tbaListaFaltantes.clearSelection();
+        //Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
+        //tbaListaFaltantes.clearSelection();
     }
 
     private void lblNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoMouseClicked
@@ -684,10 +702,11 @@ public class presentarProducto extends javax.swing.JFrame {
                         np.setVisible(true);
 
                         //np.objf.getId_precios();
-                        //System.out.println(" id precio " + np.objf.getId_precios());
+                        np.getObjf().getId_precios();
+                        //System.out.println(" id precio " + np.getObjf().getId_precios());
                         //np.objf.getId_precios();
                         //System.out.println(" id producto " + np.objf.getId_producto());
-                        System.out.println(" cantidad " + np.getObjf().getCantidad());
+                        //System.out.println(" cantidad " + np.getObjf().getCantidad());
 
                         //VER DESDE AQUI
                         //joinProductoParaNotaPedido
@@ -713,7 +732,7 @@ public class presentarProducto extends javax.swing.JFrame {
                             Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
 
                             try {
-                                Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
+                                //Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
                             } catch (Exception e) {
                                 System.out.println("error en tabla2" + e);
                             }
@@ -760,7 +779,7 @@ public class presentarProducto extends javax.swing.JFrame {
         //listapro.clear();
         //listapro = crud.listarTodoJoinProductos(1);
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */

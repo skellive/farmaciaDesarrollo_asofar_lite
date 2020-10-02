@@ -462,6 +462,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         }
         objf.setBono(Integer.parseInt(bono));
     }//GEN-LAST:event_btnAnadirActionPerformed
+    
     public joinProductoParaNotaPedido getObjf() { //joinProductoParaNotaPedido
         return objf;
     }

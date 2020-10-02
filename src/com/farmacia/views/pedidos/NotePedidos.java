@@ -244,11 +244,11 @@ public class NotePedidos extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        cbxFormaP = new javax.swing.JComboBox<>();
+        cbxFormaP = new javax.swing.JComboBox<String>();
         jLabel15 = new javax.swing.JLabel();
         txtHora = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        cbxPlazo = new javax.swing.JComboBox<>();
+        cbxPlazo = new javax.swing.JComboBox<String>();
         jPanel3 = new javax.swing.JPanel();
         tblProduc = new javax.swing.JScrollPane();
         tabla_para_productos = new javax.swing.JTable();
@@ -256,7 +256,7 @@ public class NotePedidos extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaListaFaltantes = new javax.swing.JTable();
         PanelSec = new javax.swing.JPanel();
-        tipofiltro = new javax.swing.JComboBox<>();
+        tipofiltro = new javax.swing.JComboBox<String>();
         btnBuscar = new javax.swing.JButton();
         TxtFiltro = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
@@ -524,7 +524,7 @@ public class NotePedidos extends javax.swing.JDialog {
         jLabel10.setText("PLAZO:");
 
         cbxFormaP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Credito" }));
+        cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contado", "Credito" }));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setText("HORA:");
@@ -536,7 +536,7 @@ public class NotePedidos extends javax.swing.JDialog {
         jLabel16.setText("FORMA DE PAGO:");
 
         cbxPlazo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
+        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -671,7 +671,7 @@ public class NotePedidos extends javax.swing.JDialog {
         PanelSec.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
 
         tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "PRESENTACION", "MARCA" }));
+        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "PRESENTACION", "MARCA" }));
 
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBuscar.setText("BUSCAR");
@@ -890,7 +890,7 @@ public class NotePedidos extends javax.swing.JDialog {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (!"0,00".equals(txtTotal.getText())) {
 
-            ArrayList<String> queryL = new ArrayList<String>();
+            //ArrayList<String> queryL = new ArrayList<String>();
             ArrayList<String> queryL1 = new ArrayList<String>();
             String id_cab = "";
             String cad = "";
