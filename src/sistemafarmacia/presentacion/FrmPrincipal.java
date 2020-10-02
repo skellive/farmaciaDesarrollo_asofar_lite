@@ -25,6 +25,7 @@ import com.farmacia.views.Reportes.Reporte_Venta;
 import com.farmacia.views.ayuda.Acerca;
 //import com.farmacia.views.ayuda.AcercaDe;
 import com.farmacia.views.compras.CabeceraCompra;
+import com.farmacia.views.compras.ListaCompras;
 import com.farmacia.views.compras.ListaDePedidos;
 import com.farmacia.views.comprasRealizadas.ComprasEfectuadas;
 import com.farmacia.views.contentPane.ContentPanel;
@@ -150,6 +151,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuCliente1 = new javax.swing.JMenuItem();
         jMenuItem8 = new javax.swing.JMenuItem();
         jMenuItem9 = new javax.swing.JMenuItem();
+        mnuMantCompra = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem13 = new javax.swing.JMenuItem();
         jmDevoluciones = new javax.swing.JMenu();
@@ -490,6 +492,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jmCompras.add(jMenuItem9);
+
+        mnuMantCompra.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuMantCompra.setText("MANTENIMIENTO COMPRA");
+        mnuMantCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuMantCompraActionPerformed(evt);
+            }
+        });
+        jmCompras.add(mnuMantCompra);
 
         jMenuBar1.add(jmCompras);
 
@@ -872,6 +883,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         igrp.setVisible(true);
     }//GEN-LAST:event_lblIngresoRapidoMouseClicked
 
+    private void mnuMantCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMantCompraActionPerformed
+        ListaCompras Rc = new ListaCompras(this, rootPaneCheckingEnabled);
+        Rc.setVisible(rootPaneCheckingEnabled);
+    }//GEN-LAST:event_mnuMantCompraActionPerformed
+
     public Listar_usuario getUsuario() {
         return objUsuario;
     }
@@ -963,6 +979,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuCliente;
     private javax.swing.JMenuItem mnuCliente1;
     private javax.swing.JMenuItem mnuLaboratorio;
+    private javax.swing.JMenuItem mnuMantCompra;
     private javax.swing.JMenuItem mnuRegistrarVenta;
     private javax.swing.JMenuItem mnuRegistrarVenta1;
     private javax.swing.JPanel pnlBanner;
