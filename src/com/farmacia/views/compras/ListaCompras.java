@@ -285,7 +285,7 @@ public class ListaCompras extends javax.swing.JDialog {
             lista = crud.listarCabeceraNotaPedidoEnCompras(4);
             objeto = devuelveObjeto(tbaCabeceraCompra.getValueAt(i, 0).toString(), lista);
             if (objeto != null) {
-                Reporte_DetalleCompra Man = new Reporte_DetalleCompra(new javax.swing.JFrame(), true, objeto);
+                Detalle_Compra Man = new Detalle_Compra(new javax.swing.JFrame(), true, objeto);
                 Man.setVisible(true);
 
             }
