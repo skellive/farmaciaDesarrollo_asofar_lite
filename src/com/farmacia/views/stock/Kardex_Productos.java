@@ -11,9 +11,11 @@ import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -30,16 +32,24 @@ public class Kardex_Productos extends javax.swing.JDialog {
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
     //ListarKardex
+    ArrayList<ListarKardex> listaKardex = null;
+   static ArrayList<ListarKardex> listaPrueba = new ArrayList<ListarKardex>();
+    //static ArrayList<ListarKardex> listaPrueba2 = new ArrayList<ListarKardex>();
     ArrayList<ListarKardex> listaStock = null;
     //ArrayList<Productos_Stock> listaStock = null;
     String Buscar = "";
+    String mensaje = null;
+    ListarKardex objet = null;
 
     public Kardex_Productos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        listaKardex = crud.listarKardex();
+        probar();
         listaStock = crud.listarKardex();
+        //listarStock();
         Tablas.ListarKardexProductos(listaStock, tabla_stock);
         this.sumarTotalStock();
     }
@@ -47,12 +57,99 @@ public class Kardex_Productos extends javax.swing.JDialog {
     public void sumarTotalStock() {
         Double total = 0.00;
         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
-            String ao = tabla_stock.getValueAt(i,9).toString();
+            String ao = tabla_stock.getValueAt(i, 9).toString();
             String cadenaDeDecimales = ao;
             String resultado = cadenaDeDecimales.replace(',', '.');
             total = total + Double.valueOf(resultado);
         }
         txtTotal.setText(Formato_Numeros.formatoNumero(total.toString()));
+    }
+
+    public void probar() {
+        ListarKardex obj ;
+        Iterator<ListarKardex> it = listaKardex.iterator();
+        String id_pro,msj=null;
+        Double preC = null; 
+        while (it.hasNext()) {
+            msj=null;
+            obj = it.next();
+            
+            id_pro = obj.getId_producto().toString();
+            preC = obj.getPrecio_compra();
+            System.out.println(preC);
+            Iterator<ListarKardex> ita = listaPrueba.iterator();
+                while (ita.hasNext()) {//it.next()
+                    if (id_pro.equals(ita.next().getId_producto().toString())) {
+                        msj = "El producto ya esta agregado";
+                        break;
+                    }
+                }
+            
+            //System.out.println(""+preC);
+            if(msj==null){
+            System.out.println(""+obj.getNombre_Producto());
+            listaPrueba.add(obj);
+            }
+        }
+
+          
+    }
+
+    public void listarStock() {
+        try {
+            Iterator<ListarKardex> it = listaKardex.iterator();
+            while (it.hasNext()) {//it.next()
+                objet = it.next();
+                mensaje = buscarProduct(objet);
+                if (mensaje == null) {
+                    listaStock.add(objet);
+                }
+            }
+
+//            for (int i = 0; i < listaKardex.size(); i++) {
+//                objet = listaKardex.get(i);
+//                mensaje = buscarProduct(objet);
+//                if (mensaje == null) {
+//                    listaStock.add(objet);
+//                }
+//            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en : " + e);
+        }
+
+    }
+
+    public String buscarProduct(ListarKardex obj) {
+
+        String id_pro, preC, msj = null;
+        id_pro = obj.getId_producto().toString();
+        preC = obj.getPrecio_compra().toString();
+        //preV=obj.getPrecio_venta().toString();
+
+        try {
+            if (listaStock != null) {
+                Iterator<ListarKardex> ita = listaStock.iterator();
+                while (ita.hasNext()) {//it.next()
+                    if (id_pro.equals(ita.next().getId_producto().toString())) {
+                        msj = "El producto ya esta agregado";
+                        break;
+                    }
+                }
+
+//                for (int i = 0; i < listaStock.size(); i++) {
+//                    if (id_pro.equals(listaStock.get(i).getId_producto().toString())) {
+//                        msj = "El producto ya esta agregado";
+//                        break;
+//                    }
+//                }
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error en : " + e);
+        }
+
+        return msj;
+
     }
 
     /**
