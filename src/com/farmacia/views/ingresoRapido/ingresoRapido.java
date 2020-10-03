@@ -52,9 +52,7 @@ public class ingresoRapido extends javax.swing.JFrame {
     joinProductoParaNotaPedido objetoActual = null;
     ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
     ArrayList<joinProductoParaNotaPedido> listaPNP1 = new ArrayList<joinProductoParaNotaPedido>();
-    ArrayList<Cabecera_compra> cabeceraC = new ArrayList<Cabecera_compra>();
     joinProductoParaNotaPedido Objx = new joinProductoParaNotaPedido();
-    //Cabecera_compra cabeceraC = null;
     //usuario
     Listar_usuario objUsuario = null;
 
@@ -855,7 +853,15 @@ public class ingresoRapido extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (!"0,00".equals(txtTotal.getText())) {
-
+            //double iva = 0.15f;
+            //double iva = (float) 0.15;
+            //float iva = Float.parseFloat(txtIva.getText());
+            //Float iva1 = Float.parseFloat();
+            //float iva;
+            //iva = Float.parseFloat(txtIva.getText().replaceAll(",", "."));
+            //Float iva1 = Float.valueOf(iva);
+            //float iva1 = (float) iva;
+            //System.out.println(iva);
             try {
                 for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
 
@@ -866,12 +872,9 @@ public class ingresoRapido extends javax.swing.JFrame {
                             1,
                             //Integer.parseInt(cabeceraC.get(i).getId_tipoPago().toString()),
                             cbxFormaP.getSelectedItem().toString(),
-                            5,
-                            //Integer.parseInt(txtIva.getText().toString()),
-                            4,
-                            //Integer.parseInt(txtDescuento.getText().toString()),
-                            3,
-                            //Integer.parseInt(txtTotal.getText().toString()),
+                            Float.parseFloat(txtIva.getText().replaceAll(",", ".")),
+                            Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
+                            Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
                             Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
                             Float.parseFloat(tbaListaFaltantes.getValueAt(i, 7).toString()),
                             Integer.parseInt(tbaListaFaltantes.getValueAt(i, 6).toString()),
