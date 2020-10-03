@@ -668,9 +668,9 @@ public class Detalle_Compra extends javax.swing.JDialog {
       int r = JOptionPane.showConfirmDialog(null, "¿Seguro que Deseas eliminar esta Compra?", "", JOptionPane.YES_NO_OPTION);
         if (r == JOptionPane.YES_OPTION) {
             String id_cab = txt_Numero.getText().toString();
-            //elimina la Cabecera
+            // Elimina la Compra si quitas el --> //
             //crud.EliminarCabeceraCompra(Long.parseLong(id_cab));
-            JOptionPane.showMessageDialog(null, id_cab);
+            JOptionPane.showMessageDialog(null, "La Nota de Pedido Nº"+id_cab+" se Activo");
             this.setVisible(false);
         } else {
         }        
