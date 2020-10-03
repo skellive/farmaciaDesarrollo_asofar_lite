@@ -372,11 +372,8 @@ public class ListaCompras extends javax.swing.JDialog {
     }//GEN-LAST:event_buscar1ActionPerformed
 
     private void btnSalir3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir3ActionPerformed
-        int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
-        if (r == JOptionPane.YES_OPTION) {
-            setVisible(false);
-        } else {
-        }
+       setVisible(false);
+       
     }//GEN-LAST:event_btnSalir3ActionPerformed
 
     private void btnNuevaCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevaCompraActionPerformed
