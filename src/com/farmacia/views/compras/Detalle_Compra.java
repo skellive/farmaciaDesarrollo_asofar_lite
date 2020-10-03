@@ -181,6 +181,7 @@ public class Detalle_Compra extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbaListaComprasB = new javax.swing.JTable();
+        btnEliminarCompra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -497,52 +498,57 @@ public class Detalle_Compra extends javax.swing.JDialog {
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        btnEliminarCompra.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnEliminarCompra.setText("ELIMINAR COMPRA");
+        btnEliminarCompra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarCompraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6)
+                                .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel17)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel18)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(6, 6, 6)
+                                    .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addGap(50, 50, 50)
+                                .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 656, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(6, 6, 6)
-                                .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap())
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel17)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(6, 6, 6)
-                                        .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addContainerGap())))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel21)
-                        .addGap(50, 50, 50)
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())))
+                                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(385, 385, 385))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnEliminarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(352, 352, 352))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -554,7 +560,7 @@ public class Detalle_Compra extends javax.swing.JDialog {
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1)
@@ -569,8 +575,10 @@ public class Detalle_Compra extends javax.swing.JDialog {
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19)
                     .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEliminarCompra, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -656,148 +664,17 @@ public class Detalle_Compra extends javax.swing.JDialog {
         TotalIVA();
     }//GEN-LAST:event_txtIvaActionPerformed
 
-    public void reporte() {
+    private void btnEliminarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCompraActionPerformed
+      int r = JOptionPane.showConfirmDialog(null, "¿Seguro que Deseas eliminar esta Compra?", "", JOptionPane.YES_NO_OPTION);
+        if (r == JOptionPane.YES_OPTION) {
+            String id_cab = txt_Numero.getText().toString();
+            JOptionPane.showMessageDialog(null, id_cab);
+            this.setVisible(false);
+        } else {
+        }        
+    }//GEN-LAST:event_btnEliminarCompraActionPerformed
 
-        int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
 
-        try {
-            if (r == JOptionPane.YES_OPTION) {
-                Workbook book = new XSSFWorkbook();
-                Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\asofarLite.png");
-                byte[] bytes = IOUtils.toByteArray(is);
-                int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
-                is.close();
-
-                CreationHelper help = book.getCreationHelper();
-                Drawing draw = sheet.createDrawingPatriarch();
-
-                ClientAnchor anchor = help.createClientAnchor();
-                anchor.setCol1(0);
-                anchor.setRow1(1);
-                Picture pict = draw.createPicture(anchor, imgIndex);
-                pict.resize(2, 5);
-
-                CellStyle tituloEstilo = book.createCellStyle();
-                tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
-                tituloEstilo.setVerticalAlignment(VerticalAlignment.CENTER);
-                Font fuenteTitulo = book.createFont();
-                fuenteTitulo.setFontName("Arial");
-                fuenteTitulo.setBold(true);
-                fuenteTitulo.setFontHeightInPoints((short) 14);
-                tituloEstilo.setFont(fuenteTitulo);
-
-                Row filaTitulo = sheet.createRow(3);
-                Cell celdaTitulo = filaTitulo.createCell(2);
-                celdaTitulo.setCellStyle(tituloEstilo);
-                celdaTitulo.setCellValue("Reporte de Compras");
-
-                sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 1));
-
-                String[] cabecera = new String[]{"CODIGO", "PRODUCTO", "MARCA", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
-
-                CellStyle headerStyle = book.createCellStyle();
-                headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
-                headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
-                headerStyle.setBorderBottom(BorderStyle.THIN);
-                headerStyle.setBorderLeft(BorderStyle.THIN);
-                headerStyle.setBorderRight(BorderStyle.THIN);
-                headerStyle.setBorderBottom(BorderStyle.THIN);
-
-                Font font = book.createFont();
-                font.setFontName("Arial");
-                font.setBold(true);
-                font.setColor(IndexedColors.WHITE.getIndex());
-                font.setFontHeightInPoints((short) 12);
-                headerStyle.setFont(font);
-
-                Row filaEncabezados = sheet.createRow(6);
-
-                for (int i = 0; i < cabecera.length; i++) {
-                    Cell celdaEnzabezado = filaEncabezados.createCell(i);
-                    celdaEnzabezado.setCellStyle(headerStyle);
-                    celdaEnzabezado.setCellValue(cabecera[i]);
-                }
-
-                Conexion con = new Conexion();
-                PreparedStatement ps;
-                ResultSet rs;
-                java.sql.Connection conn = con.conectar();
-
-                String id_cab = txt_Numero.getText().toString();;
-                int numFilaDatos = 7;
-
-                CellStyle datosEstilo = book.createCellStyle();
-                datosEstilo.setBorderBottom(BorderStyle.THIN);
-                datosEstilo.setBorderLeft(BorderStyle.THIN);
-                datosEstilo.setBorderRight(BorderStyle.THIN);
-                datosEstilo.setBorderBottom(BorderStyle.THIN);
-
-                ps = conn.prepareStatement("SELECT dnp.`id_detalle_nota_pedidos`, concat(t.`nombre`, ' ', pro.`nombre`, ' en ',en.`nombre`, ' en ',me.`nombre_medida`) AS producto,  m.`nombre` AS marca,\n"
-                        + "                        dnp.`cantidad`,dnp.`precio`,dnp.`descuento`,dnp.`iva`,dnp.`total`\n"
-                        + "                        FROM `detalle_nota_pedidos` dnp\n"
-                        + "                        JOIN `cabecera_nota_pedidos` cnp ON cnp.`id_cabecera_nota_pedidos`= dnp.`id_cabecera_nota_pedidos`\n"
-                        + "                        JOIN `precios` pre ON pre.`id_precio` = dnp.`id_precio`\n"
-                        + "                        JOIN `productos` pro ON pro.`id_productos`= pre.`id_producto`\n"
-                        + "                        JOIN `marcas` m ON m.`id_marcas` = pro.`id_marcas`\n"
-                        + "                        JOIN `tipo` t ON t.`id_tipo` = pro.`id_tipo`\n"
-                        + "                        JOIN `presentaciones` en ON en.`idPresentaciones`= pro.`id_presentacion`\n"
-                        + "                        JOIN `medidas` me ON me.`id_medidas`= pro.`id_medidas`\n"
-                        + "                        WHERE dnp.`id_cabecera_nota_pedidos`= " + id_cab + "\n"
-                        + "                        ORDER BY dnp.`id_cabecera_nota_pedidos`");
-                rs = ps.executeQuery();
-
-                int numCol = rs.getMetaData().getColumnCount();
-
-                while (rs.next()) {
-                    Row filaDatos = sheet.createRow(numFilaDatos);
-
-                    for (int a = 0; a < numCol; a++) {
-
-                        Cell CeldaDatos = filaDatos.createCell(a);
-                        CeldaDatos.setCellStyle(datosEstilo);
-
-                        if (a == 0) {
-                            CeldaDatos.setCellValue(rs.getInt(a + 1));
-                        } else {
-                            CeldaDatos.setCellValue(rs.getString(a + 1));
-                        }
-                    }
-
-                    numFilaDatos++;
-
-                }
-
-                conn.close();
-                sheet.autoSizeColumn(0);
-                sheet.autoSizeColumn(1);
-                sheet.autoSizeColumn(2);
-                sheet.autoSizeColumn(3);
-                sheet.autoSizeColumn(4);
-                sheet.autoSizeColumn(5);
-                sheet.autoSizeColumn(6);
-                sheet.autoSizeColumn(7);
-
-                sheet.setZoom(120);
-
-                dia = (c1.get(Calendar.DATE));
-                mes = (c1.get(Calendar.MONTH));
-                ano = (c1.get(Calendar.YEAR));
-                System.out.println(dia + "-" + mes + "-" + ano);
-
-                FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporteDetalleCompra\\reporte"+id_cab+"("+dia+"-"+mes+"-"+ano+").xlsx");
-                book.write(fileout);
-                fileout.close();
-
-                JOptionPane.showMessageDialog(null, "Generado con exito");
-            } else {
-                JOptionPane.showMessageDialog(null, "Error al generar el reporte");
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex);
-            System.out.println(ex);
-        }
-    }
 
 
     /**
@@ -846,6 +723,7 @@ public class Detalle_Compra extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnEliminarCompra;
     private javax.swing.JButton btnSalir2;
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;

@@ -884,7 +884,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_lblIngresoRapidoMouseClicked
 
     private void mnuMantCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMantCompraActionPerformed
-        ListaCompras Rc = new ListaCompras(this, rootPaneCheckingEnabled);
+        ListaCompras Rc = new ListaCompras(this, rootPaneCheckingEnabled,objUsuario);
         Rc.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_mnuMantCompraActionPerformed
 
