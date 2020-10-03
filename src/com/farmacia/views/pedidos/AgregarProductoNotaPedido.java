@@ -475,9 +475,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
         if (r == JOptionPane.YES_OPTION) {
             setVisible(false);
-
-        } else {
-
         }
     }//GEN-LAST:event_btnSalirActionPerformed
 
@@ -570,7 +567,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         Pnp.setVisible(true);
         Pnp.getPrecio();
         txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
-        
         txtBono.setEnabled(true);
         txtporcentajeDescuento.setEnabled(true);
         txtcantidadpro.setEnabled(true);

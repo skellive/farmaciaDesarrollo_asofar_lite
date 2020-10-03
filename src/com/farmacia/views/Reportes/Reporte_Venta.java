@@ -425,6 +425,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             for (int i = 0; i < tbaCabeceraVenta.getRowCount(); i++) {
                 ClaseReporte creporte = new ClaseReporte(
                         tbaCabeceraVenta.getValueAt(i, 0).toString(),
+                        tbaCabeceraVenta.getValueAt(i, 1).toString(),
                         tbaCabeceraVenta.getValueAt(i, 2).toString(),
                         tbaCabeceraVenta.getValueAt(i, 3).toString(),
                         tbaCabeceraVenta.getValueAt(i, 4).toString(),

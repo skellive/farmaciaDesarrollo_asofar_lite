@@ -1773,7 +1773,8 @@ public class CRUD {
         
     }
     
-    public static void ingresoRapido(int id_prov, 
+    public static void ingresoRapido(
+                                int id_prov, 
                                 int id_producto, 
                                 String plazo, 
                                 int id_pago, 

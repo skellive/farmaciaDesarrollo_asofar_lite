@@ -8,6 +8,7 @@ package com.farmacia.views.ingresoRapido;
 import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
@@ -15,23 +16,9 @@ import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.views.contentPane.ContentPanel;
-//import static com.farmacia.views.ingresoRapido.presentarProducto.tbaListaFaltantes;
 import com.farmacia.views.pedidos.AgregarProductoNotaPedido;
 import com.farmacia.views.pedidos.Consulta_proveedor_Nota;
 import com.farmacia.views.pedidos.NotePedidos;
-import static com.farmacia.views.pedidos.NotePedidos.txtCodigoProveedor;
-import static com.farmacia.views.pedidos.NotePedidos.txtCorreo1;
-import static com.farmacia.views.pedidos.NotePedidos.txtDescuento;
-import static com.farmacia.views.pedidos.NotePedidos.txtDireccion1;
-import static com.farmacia.views.pedidos.NotePedidos.txtIva;
-import static com.farmacia.views.pedidos.NotePedidos.txtNombre1;
-import static com.farmacia.views.pedidos.NotePedidos.txtRepresentante;
-import static com.farmacia.views.pedidos.NotePedidos.txtRuc1;
-import static com.farmacia.views.pedidos.NotePedidos.txtTelefono1;
-import static com.farmacia.views.pedidos.NotePedidos.txtTipo1;
-import static com.farmacia.views.pedidos.NotePedidos.txtTotal;
-import com.farmacia.views.producto.MantenimientoProducto;
-
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -60,19 +47,14 @@ public class ingresoRapido extends javax.swing.JFrame {
     CRUD crud = new CRUD();
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     filtrosProductos fil = new filtrosProductos();
-    //joinProductoDetallesFaltantes objeto = null;
     ListarJoinProveedorNotaPedido proveedorC = null;
-    //public static JTable tabla_para_productos = new presentarProducto().tabla_para_productos;
     static ArrayList<listarJoinProductosNotaPedidos> listar = null;
-    //ArrayList<joinProductoDetallesFaltantes> lista = crud.listarFaltantesDetalles(1);
-    //ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
-    //PRODUCTOS
-    //ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
-    //NUEVO
     joinProductoParaNotaPedido objetoActual = null;
     ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
     ArrayList<joinProductoParaNotaPedido> listaPNP1 = new ArrayList<joinProductoParaNotaPedido>();
+    ArrayList<Cabecera_compra> cabeceraC = new ArrayList<Cabecera_compra>();
     joinProductoParaNotaPedido Objx = new joinProductoParaNotaPedido();
+    //Cabecera_compra cabeceraC = null;
     //usuario
     Listar_usuario objUsuario = null;
 
@@ -87,6 +69,7 @@ public class ingresoRapido extends javax.swing.JFrame {
         btnGuardar.setEnabled(false);
         this.setLocationRelativeTo(null);
         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
+        Reiniciar();
         TotalDescuento2();
         TotalPro();
         TotalIVA2();
@@ -211,7 +194,6 @@ public class ingresoRapido extends javax.swing.JFrame {
         txtFecha = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtHora = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaListaFaltantes = new javax.swing.JTable();
@@ -227,6 +209,7 @@ public class ingresoRapido extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_para_productos = new javax.swing.JTable();
         jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -465,6 +448,11 @@ public class ingresoRapido extends javax.swing.JFrame {
 
         cbxFormaP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contado", "Credito" }));
+        cbxFormaP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxFormaPActionPerformed(evt);
+            }
+        });
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("FORMA DE PAGO:");
@@ -530,13 +518,6 @@ public class ingresoRapido extends javax.swing.JFrame {
                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(68, 68, 68))
         );
-
-        jButton1.setText("Escoger Producto");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
 
         btnGuardar.setText("Guardar");
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -643,6 +624,8 @@ public class ingresoRapido extends javax.swing.JFrame {
 
         jLabel22.setText("            ESCOGER PRODUCTO");
 
+        jLabel23.setText("LISTA DE PRODUCTOS PARA EL PEDIDO");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -653,19 +636,19 @@ public class ingresoRapido extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(179, 179, 179)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(15, 15, 15)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(334, 334, 334)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(18, 18, 18)
@@ -693,30 +676,22 @@ public class ingresoRapido extends javax.swing.JFrame {
                                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(379, 379, 379)
+                .addGap(380, 380, 380)
                 .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
                         .addGap(38, 38, 38)))
-                .addComponent(jLabel22)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -733,8 +708,18 @@ public class ingresoRapido extends javax.swing.JFrame {
                             .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(btnGuardar)))
-                .addGap(22, 22, 22))
+                        .addComponent(btnGuardar)
+                        .addGap(61, 61, 61))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel22)
+                        .addGap(14, 14, 14)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10))))
         );
 
         pack();
@@ -843,7 +828,6 @@ public class ingresoRapido extends javax.swing.JFrame {
 
                 tabla_para_productos.setEnabled(true);
                 tbaListaFaltantes.setEnabled(true);
-                btnGuardar.setEnabled(true);
                 txtCodigoProveedor.setText(proveedorC.getId_proveedor().toString());
                 txtRuc1.setText(proveedorC.getCedula_ruc());
                 txtNombre1.setText(proveedorC.getEntidad());
@@ -869,64 +853,38 @@ public class ingresoRapido extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNombre1ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-            if (!"0,00".equals(txtTotal.getText())) {
-
-            //ArrayList<String> queryL = new ArrayList<String>();
-            ArrayList<String> queryL1 = new ArrayList<String>();
-            String id_cab = "";
-            String cad = "";
-            String cad1 = "";
-            /*CabeceraNotaPedido cn = new CabeceraNotaPedido();
-            cn.setId_proveedor(Long.parseLong(txtCodigoProveedor.getText()));
-            cn.setId_usuario(Long.valueOf("2"));
-            cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
-            cn.setPlazo(cbxPlazo.getSelectedItem().toString());
-            cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-            cn.setIva(VGiva);
-            cn.setDescuento(VGdescuento);//
-            cn.setTotal(VGtotal);//*/
+        if (!"0,00".equals(txtTotal.getText())) {
 
             try {
-            //String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
-            //id_cab = crud.buscarIDCabeceraNotaPedido(query);
-            /*if (id_cab.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "id_cabecera esta vacio");
-            } else {*/
                 for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-                    /////////////////////////////
-                    /*cad1 = "INSERT INTO detalle_nota_pedidos"
-                            + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
-                            + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + listaPNP1.get(i).getPrecioBono() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + "," + listaPNP1.get(i).getBono() + ")";
-                    queryL1.add(cad1);
-                    System.out.println(" " + cad1);*/
-                    //////////////////////////////////
-                    crud.ingresoRapido(listaPNP1.get(i).getId_producto().intValue(),
-                            listaPNP1.get(i).getId_precios().intValue(),
-                            listaPNP1.get(i).getId_precios().toString(),
-                            listaPNP1.get(i).getId_precios().intValue(),
-                            listaPNP1.get(i).getId_precios().toString(),
-                            listaPNP1.get(i).getId_precios(),
-                            listaPNP1.get(i).getId_precios(),
-                            listaPNP1.get(i).getId_precios(),
-                            listaPNP1.get(i).getId_precios().intValue(),
-                            listaPNP1.get(i).getId_precios(),
-                            listaPNP1.get(i).getId_precios().intValue(),
-                            listaPNP1.get(i).getId_precios().intValue());
+
+                    crud.ingresoRapido(
+                            Integer.parseInt(txtCodigoProveedor.getText()),
+                            Integer.parseInt(tbaListaFaltantes.getValueAt(i, 0).toString()),
+                            cbxPlazo.getSelectedItem().toString(),
+                            1,
+                            //Integer.parseInt(cabeceraC.get(i).getId_tipoPago().toString()),
+                            cbxFormaP.getSelectedItem().toString(),
+                            5,
+                            //Integer.parseInt(txtIva.getText().toString()),
+                            4,
+                            //Integer.parseInt(txtDescuento.getText().toString()),
+                            3,
+                            //Integer.parseInt(txtTotal.getText().toString()),
+                            Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
+                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 7).toString()),
+                            Integer.parseInt(tbaListaFaltantes.getValueAt(i, 6).toString()),
+                            2);
+                    //Integer.parseInt(cabeceraC.get(i).getId_sucursal().toString()));
                 }
-                
-                System.out.println(" " + queryL1);
-                queryL1.clear();
                 JOptionPane.showMessageDialog(null, " Guardado con Exito ");
                 btnGuardar.setEnabled(false);
+                Reiniciar();
 
-            //}  
-
+                //}  
             } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Error en Insertar --> "+e);
+                JOptionPane.showMessageDialog(null, "Error en Insertar --> " + e);
             }
 
         } else {
@@ -950,14 +908,6 @@ public class ingresoRapido extends javax.swing.JFrame {
 
                     int i = tbaListaFaltantes.getSelectedRow();
 
-                    //                    objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
-                    //usa objetoActual suma para devolver la cantidad a array anterior
-                    //objetoActual = devuelveProducto(tabla_para_productos.getValueAt(i, 0).toString(), listaPNP);
-                    //System.out.println("objetoP cANTIDAD" + objetoActual.getCantidad());
-                    //System.out.println("lista1" + listaPNP1.get(i).getCantidad());
-                    //SUM = Integer.valueOf(objetoActual.getCantidad()) + listaPNP1.get(i).getCantidad();
-                    //getPosicion(objetoActual.getId_producto(), SUM);
-                    //System.out.println("suma " + SUM);
                     listaPNP1.remove(i);
                     Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
                     Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
@@ -983,9 +933,6 @@ public class ingresoRapido extends javax.swing.JFrame {
                     txtIva.setText(iva.toString());
                     txtDescuento.setText(descuento.toString());
                     txtTotal.setText(total.toString());
-
-                    //                    lista1.remove(i);
-                    //                    Tablas.cargarJoinProductoDetallesFaltantes(tbaListaFaltantes, lista1);
                     Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
                     Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
                     TotalPro();
@@ -995,7 +942,6 @@ public class ingresoRapido extends javax.swing.JFrame {
                 } else {
 
                 }
-
             }
         } catch (Exception e) {
         }
@@ -1023,7 +969,7 @@ public class ingresoRapido extends javax.swing.JFrame {
         try {
             if (evt.getClickCount() == 2) {
                 i = tabla_para_productos.getSelectedRow();
-                //                objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
+                //objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
                 objetoActual = devuelveProducto(tabla_para_productos.getValueAt(i, 0).toString(), listaPNP);
 
                 cantidatabla = objetoActual.getCantidad();
@@ -1042,62 +988,41 @@ public class ingresoRapido extends javax.swing.JFrame {
                         System.out.println("hello");
                         AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objetoActual);
                         np.setVisible(true);
-
-                        //np.objf.getId_precios();
-                        //np.getObjf().getId_precios();
-                        //System.out.println(" id precio " + np.getObjf().getId_precios());
-                        //np.objf.getId_precios();
-                        //System.out.println(" id producto " + np.objf.getId_producto());
-                        //System.out.println(" cantidad " + np.getObjf().getCantidad());
-                        //VER DESDE AQUI
-                        //joinProductoParaNotaPedido
-                        //compara si tiene el mismo precio para saber si el producto esta dentro
-                        //msg = ComponentesFaltantes.validarListaFaltantesNota(listaPNP1, np.objf.getId_precios().toString());
-                        //msg = ComponentesFaltantes.validarProductoParaAgregar(listaPNP1,np.objf.getId_producto().toString());
                         System.out.println(" PASO EL NULL");
-                        //nada nuevo
                         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
                         if (np.getObjf().getCantidad() > 0) {
-                            //////
-
-                            //resta y setea la cantidad en 1r array
-                            //Integer Resta = Integer.parseInt(tabla_para_productos.getValueAt(i, 6).toString()) - np.getObjf().getCantidad();
-                            //getPosicion(objetoActual.getId_producto(), Resta);
-                            //////
                             Objx = calcularValores(np.getObjf());
-                            ///////
                             listaPNP1.add(Objx);
                             for (joinProductoParaNotaPedido p : listaPNP1) {
                                 System.out.println("idddddd " + listaPNP1.get(0).getId_precios());
                             }
                             Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
-
                             try {
                                 Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
                             } catch (Exception e) {
                                 System.out.println("error en tabla2" + e);
                             }
-
+                            btnGuardar.setEnabled(true);
                             TotalDescuento2();
                             TotalPro();
                             TotalIVA2();
                         } else {
                             JOptionPane.showMessageDialog(this, "getCantidad() ->" + np.getObjf().getCantidad());
                         }
-
                     } else {
                         JOptionPane.showMessageDialog(this, msg);
-                        // System.out.println(msg);
                     }
-
                 } else {
                 }
-
             }
         } catch (Exception e) {
             // Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_tabla_para_productosMousePressed
+
+    private void cbxFormaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFormaPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxFormaPActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1138,7 +1063,6 @@ public class ingresoRapido extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1155,6 +1079,7 @@ public class ingresoRapido extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     public static javax.swing.JLabel jLabel3;
     public static javax.swing.JLabel jLabel4;
     public static javax.swing.JLabel jLabel5;
