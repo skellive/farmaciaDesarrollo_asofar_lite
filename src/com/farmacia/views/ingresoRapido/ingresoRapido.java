@@ -11,6 +11,7 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.filtros.filtrosProductos;
+import com.farmacia.join_entidades.JoinListarCabeceraVenta;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
@@ -53,6 +54,8 @@ public class ingresoRapido extends javax.swing.JFrame {
     ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
     ArrayList<joinProductoParaNotaPedido> listaPNP1 = new ArrayList<joinProductoParaNotaPedido>();
     joinProductoParaNotaPedido Objx = new joinProductoParaNotaPedido();
+     //cabeceraC = null;
+    ArrayList<JoinListarCabeceraVenta> cabeceraC = null;
     //usuario
     Listar_usuario objUsuario = null;
 
@@ -463,6 +466,11 @@ public class ingresoRapido extends javax.swing.JFrame {
 
         txtFecha.setEditable(false);
         txtFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFechaActionPerformed(evt);
+            }
+        });
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel15.setText("HORA:");
@@ -648,27 +656,25 @@ public class ingresoRapido extends javax.swing.JFrame {
                                 .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(334, 334, 334)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(jLabel14)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel17)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel18)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                    .addComponent(jLabel14)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel17)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel18)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(48, 48, 48)
                                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -685,9 +691,7 @@ public class ingresoRapido extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -853,33 +857,25 @@ public class ingresoRapido extends javax.swing.JFrame {
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         if (!"0,00".equals(txtTotal.getText())) {
-            //double iva = 0.15f;
-            //double iva = (float) 0.15;
-            //float iva = Float.parseFloat(txtIva.getText());
-            //Float iva1 = Float.parseFloat();
-            //float iva;
-            //iva = Float.parseFloat(txtIva.getText().replaceAll(",", "."));
-            //Float iva1 = Float.valueOf(iva);
-            //float iva1 = (float) iva;
-            //System.out.println(iva);
             try {
                 for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-
+                    /*int ia = Integer.parseInt(tbaListaFaltantes.getValueAt(i, 6).toString());
+                    System.out.println(ia);*/
                     crud.ingresoRapido(
-                            Integer.parseInt(txtCodigoProveedor.getText()),
-                            Integer.parseInt(tbaListaFaltantes.getValueAt(i, 0).toString()),
-                            cbxPlazo.getSelectedItem().toString(),
-                            1,
-                            //Integer.parseInt(cabeceraC.get(i).getId_tipoPago().toString()),
-                            cbxFormaP.getSelectedItem().toString(),
-                            Float.parseFloat(txtIva.getText().replaceAll(",", ".")),
-                            Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
-                            Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
-                            Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
-                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 7).toString()),
-                            Integer.parseInt(tbaListaFaltantes.getValueAt(i, 6).toString()),
-                            2);
-                    //Integer.parseInt(cabeceraC.get(i).getId_sucursal().toString()));
+                     Integer.parseInt(txtCodigoProveedor.getText()),
+                     Integer.parseInt(tbaListaFaltantes.getValueAt(i, 0).toString()),
+                     cbxPlazo.getSelectedItem().toString(),
+                     1,
+                     //Integer.parseInt(cabeceraC.get(i).getId_tipoPago().toString()),
+                     cbxFormaP.getSelectedItem().toString(),
+                     Float.parseFloat(txtIva.getText().replaceAll(",", ".")),
+                     Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
+                     Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
+                     Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
+                     Float.parseFloat(tbaListaFaltantes.getValueAt(i, 8).toString().replaceAll(",", ".")),
+                     Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
+                     2);
+                     //Integer.parseInt(cabeceraC.get(i).getId_sucursal().toString()));
                 }
                 JOptionPane.showMessageDialog(null, " Guardado con Exito ");
                 btnGuardar.setEnabled(false);
@@ -1026,6 +1022,10 @@ public class ingresoRapido extends javax.swing.JFrame {
     private void cbxFormaPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxFormaPActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxFormaPActionPerformed
+
+    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFechaActionPerformed
 
     /**
      * @param args the command line arguments
