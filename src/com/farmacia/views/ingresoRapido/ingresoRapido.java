@@ -54,8 +54,8 @@ public class ingresoRapido extends javax.swing.JFrame {
     ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
     ArrayList<joinProductoParaNotaPedido> listaPNP1 = new ArrayList<joinProductoParaNotaPedido>();
     joinProductoParaNotaPedido Objx = new joinProductoParaNotaPedido();
-     //cabeceraC = null;
-    ArrayList<JoinListarCabeceraVenta> cabeceraC = null;
+//    JoinListarCabeceraVenta cabecera = null;
+    ArrayList<JoinListarCabeceraVenta> cabeceraC = new ArrayList<JoinListarCabeceraVenta>();
     //usuario
     Listar_usuario objUsuario = null;
 
@@ -501,7 +501,7 @@ public class ingresoRapido extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxFormaP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -638,24 +638,24 @@ public class ingresoRapido extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(380, 380, 380)
+                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
+                                .addGap(21, 21, 21)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(334, 334, 334)))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 900, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                     .addComponent(jLabel14)
@@ -674,15 +674,12 @@ public class ingresoRapido extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(48, 48, 48)
-                                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(380, 380, 380)
-                .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -764,6 +761,9 @@ public class ingresoRapido extends javax.swing.JFrame {
         txtIva.setText("");
         txtTotal.setText("");
         listaPNP1.clear();
+        tabla_para_productos.setEnabled(false);
+        tbaListaFaltantes.setEnabled(false);
+        btnGuardar.setEnabled(false);
         Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
         tbaListaFaltantes.clearSelection();
     }
@@ -859,23 +859,21 @@ public class ingresoRapido extends javax.swing.JFrame {
         if (!"0,00".equals(txtTotal.getText())) {
             try {
                 for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-                    /*int ia = Integer.parseInt(tbaListaFaltantes.getValueAt(i, 6).toString());
-                    System.out.println(ia);*/
                     crud.ingresoRapido(
-                     Integer.parseInt(txtCodigoProveedor.getText()),
-                     Integer.parseInt(tbaListaFaltantes.getValueAt(i, 0).toString()),
-                     cbxPlazo.getSelectedItem().toString(),
-                     1,
-                     //Integer.parseInt(cabeceraC.get(i).getId_tipoPago().toString()),
-                     cbxFormaP.getSelectedItem().toString(),
-                     Float.parseFloat(txtIva.getText().replaceAll(",", ".")),
-                     Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
-                     Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
-                     Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
-                     Float.parseFloat(tbaListaFaltantes.getValueAt(i, 8).toString().replaceAll(",", ".")),
-                     Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
-                     2);
-                     //Integer.parseInt(cabeceraC.get(i).getId_sucursal().toString()));
+                            Integer.parseInt(txtCodigoProveedor.getText()),
+                            Integer.parseInt(tbaListaFaltantes.getValueAt(i, 0).toString()),
+                            cbxPlazo.getSelectedItem().toString(),
+                            //1,
+                            //Integer.parseInt(cabeceraC.get(i).getId_tipoPago().toString()),
+                            cbxFormaP.getSelectedItem().toString(),
+                            Float.parseFloat(txtIva.getText().replaceAll(",", ".")),
+                            Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
+                            Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
+                            Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
+                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 8).toString().replaceAll(",", ".")),
+                            Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
+                            2);
+                    //Integer.parseInt(cabeceraC.get(i).getId_sucursal().toString()));
                 }
                 JOptionPane.showMessageDialog(null, " Guardado con Exito ");
                 btnGuardar.setEnabled(false);

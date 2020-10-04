@@ -1777,7 +1777,7 @@ public class CRUD {
                                 int id_prov, 
                                 int id_producto, 
                                 String plazo, 
-                                int id_pago, 
+                                //int id_pago, 
                                 String forma_pago,
                                 float iva,
                                 float descuento,
@@ -1792,19 +1792,19 @@ public class CRUD {
         try {
             CallableStatement prIngRap;
             
-            prIngRap = con.prepareCall("{call sp_ingreso_rapido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }");
+            prIngRap = con.prepareCall("{call sp_ingreso_rapido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }");
             prIngRap.setInt(1, id_prov);
             prIngRap.setInt(2, id_producto);
             prIngRap.setString(3, plazo);
-            prIngRap.setInt(4, id_pago);
-            prIngRap.setString(5, forma_pago);
-            prIngRap.setDouble(6, iva);
-            prIngRap.setDouble(7, descuento);
-            prIngRap.setDouble(8, total);
-            prIngRap.setInt(9, id_precio);
-            prIngRap.setDouble(10, precio);
-            prIngRap.setInt(11, cantidad);
-            prIngRap.setInt(12, sucursal);
+            //prIngRap.setInt(4, id_pago);
+            prIngRap.setString(4, forma_pago);
+            prIngRap.setDouble(5, iva);
+            prIngRap.setDouble(6, descuento);
+            prIngRap.setDouble(7, total);
+            prIngRap.setInt(8, id_precio);
+            prIngRap.setDouble(9, precio);
+            prIngRap.setInt(10, cantidad);
+            prIngRap.setInt(11, sucursal);
             prIngRap.execute();
             System.out.println("Ingreso rapido correcto");
         } catch (SQLException ex) {
