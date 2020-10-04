@@ -49,9 +49,9 @@ public class Kardex_Productos extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         listaKardex = crud.listarKardex();
         //probar();
-        //listaStock = crud.listarKardex();
+        listaStock = crud.listarKardex();
         //listarStock();
-        Tablas.ListarKardexProductos(listaPrueba, tabla_stock);
+        Tablas.ListarKardexProductos(listaStock, tabla_stock);
         this.sumarTotalStock();
     }
 
