@@ -12,6 +12,7 @@ import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -47,10 +48,10 @@ public class Kardex_Productos extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         listaKardex = crud.listarKardex();
-        probar();
-        listaStock = crud.listarKardex();
+        //probar();
+        //listaStock = crud.listarKardex();
         //listarStock();
-        Tablas.ListarKardexProductos(listaStock, tabla_stock);
+        Tablas.ListarKardexProductos(listaPrueba, tabla_stock);
         this.sumarTotalStock();
     }
 
@@ -68,22 +69,37 @@ public class Kardex_Productos extends javax.swing.JDialog {
     public void probar() {
         ListarKardex obj ;
         Iterator<ListarKardex> it = listaKardex.iterator();
-        String id_pro,msj=null;
-        Double preC = null; 
+        String id_pro,msj,precio,valor=null;
+        Double cant;
+        int can = 0;
+        Double tot,tota=null;
+            
         while (it.hasNext()) {
             msj=null;
             obj = it.next();
             
             id_pro = obj.getId_producto().toString();
-            preC = obj.getPrecio_compra();
-            System.out.println(preC);
-            Iterator<ListarKardex> ita = listaPrueba.iterator();
-                while (ita.hasNext()) {//it.next()
-                    if (id_pro.equals(ita.next().getId_producto().toString())) {
+            precio = obj.getId_precio().toString();
+            cant = Double.parseDouble(obj.getCantidad().toString());
+            if(cant.toString().isEmpty()){
+            }else{
+            tot = obj.getTotal();
+            System.out.println(precio);
+            Iterator<ListarKardex> ita = listaPrueba.iterator();//id_pro.equals(ita.next().getId_producto().toString())
+                while (ita.hasNext()) {//it.next()  //&& precio.equals(ita.next().getId_precio().toString())
+                    if (precio.equals(ita.next().getId_precio().toString())) {
                         msj = "El producto ya esta agregado";
-                        break;
+                        if(ita.next().getCantidad().toString().isEmpty()){
+                        }else{
+                            can = (int)((cant)+(ita.next().getCantidad()));
+                        }
+                         //tota = tot+(ita.next().getTotal());
+                        ita.next().setCantidad(Long.parseLong(cant+""));
+                        break; 
+                        
                     }
-                }
+                }  
+            }
             
             //System.out.println(""+preC);
             if(msj==null){
@@ -330,6 +346,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();
+        listaPrueba.clear();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
