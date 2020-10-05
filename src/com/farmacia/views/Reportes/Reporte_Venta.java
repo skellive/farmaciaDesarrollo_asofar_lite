@@ -404,30 +404,35 @@ public class Reporte_Venta extends javax.swing.JDialog {
         String F2 = F.getFecha(Chooser2);
         dc.setFecha1(F1);
         dc.setFecha2(F2);
+        try {
+            if (F1 == null) {
+                JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
+            }
 
-        if (F1 == null) {
-            JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
-        }
-        if (F1 != null && F2 == null) {
+            if (F1 != null && F2 == null) {
 
-            dc.setFecha1(F1);
-            dc.setFecha2((F1) + " 23:59:59");
-            lista = crud.RangoFechaVenta(1, dc);
-            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+                dc.setFecha1(F1);
+                dc.setFecha2((F1) + " 23:59:59");
+                lista = crud.RangoFechaVenta(1, dc);
+                Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+                TotalPro();
+                TotalUti();
+            }
+            if (F1 != null && F2 != null) {
+
+                dc.setFecha1(F.getFecha(Chooser1));
+                dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
+                lista = crud.RangoFechaVenta(1, dc);
+                Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+                TotalPro();
+                TotalUti();
+            }
             TotalPro();
             TotalUti();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
         }
-        if (F1 != null && F2 != null) {
-
-            dc.setFecha1(F.getFecha(Chooser1));
-            dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
-            lista = crud.RangoFechaVenta(1, dc);
-            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
-            TotalPro();
-            TotalUti();
-        }
-        TotalPro();
-        TotalUti();
+        
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyReleased
@@ -438,7 +443,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             TotalPro();
             TotalUti();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo "+e+", se recomienda cerrar esta ventana y reabrirla.");
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
         }
         TotalPro();
         TotalUti();
@@ -452,7 +457,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             TotalPro();
             TotalUti();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo "+e+", se recomienda cerrar esta ventana y reabrirla.");
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
         }
         TotalPro();
         TotalUti();

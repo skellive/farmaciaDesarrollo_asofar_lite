@@ -388,8 +388,9 @@ public class Reporte_Compra extends javax.swing.JDialog {
         String F2 = F.getFecha(Chooser2);
         dc.setFecha1(F1);
         dc.setFecha2(F2);
-
-        if (F1 == null) {
+        
+        try {
+            if (F1 == null) {
             JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
         }
         if (F1 != null && F2 == null) {
@@ -409,6 +410,10 @@ public class Reporte_Compra extends javax.swing.JDialog {
             TotalPro();
         }
         TotalPro();
+        } catch (Exception e) {
+        }
+
+        
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyReleased
