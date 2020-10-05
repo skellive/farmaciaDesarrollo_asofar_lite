@@ -200,6 +200,11 @@ public class Reporte_Venta extends javax.swing.JDialog {
         Txt_Total.setEditable(false);
         Txt_Total.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Txt_Total.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        Txt_Total.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Txt_TotalActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("TOTAL VENTAS:");
@@ -370,29 +375,29 @@ public class Reporte_Venta extends javax.swing.JDialog {
     }//GEN-LAST:event_tbaCabeceraVentaMousePressed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-//        JoinListarCabeceraVenta dc = new JoinListarCabeceraVenta();
-//        String F1 = F.getFecha(Chooser1);
-//        String F2 = F.getFecha(Chooser2);
-//        dc.setFecha1(F1);
-//        dc.setFecha2(F2);
-//
-//        if (F1 == null) {
-//            JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
-//        }
-//        if (F1 != null && F2 == null) {
-//
-//            dc.setFecha1(F1);
-//            dc.setFecha2((F1) + " 23:59:59");
-//            lista = crud.RangoFechaVenta(1, dc);
-//            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
-//        }
-//        if (F1 != null && F2 != null) {
-//
-//            dc.setFecha1(F.getFecha(Chooser1));
-//            dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
-//            lista = crud.RangoFechaVenta(1, dc);
-//            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
-//        }
+        JoinListarCabeceraVenta dc = new JoinListarCabeceraVenta();
+        String F1 = F.getFecha(Chooser1);
+        String F2 = F.getFecha(Chooser2);
+        dc.setFecha1(F1);
+        dc.setFecha2(F2);
+
+        if (F1 == null) {
+            JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
+        }
+        if (F1 != null && F2 == null) {
+
+            dc.setFecha1(F1);
+            dc.setFecha2((F1) + " 23:59:59");
+            lista = crud.RangoFechaVenta(1, dc);
+            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+        }
+        if (F1 != null && F2 != null) {
+
+            dc.setFecha1(F.getFecha(Chooser1));
+            dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
+            lista = crud.RangoFechaVenta(1, dc);
+            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+        }
 
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
@@ -500,6 +505,10 @@ public class Reporte_Venta extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void Txt_TotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_TotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Txt_TotalActionPerformed
 
     public void reporte() {
 

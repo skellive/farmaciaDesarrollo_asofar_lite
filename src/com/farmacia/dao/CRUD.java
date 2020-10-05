@@ -4696,8 +4696,10 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
-                    "{ call FiltroRangoFechaVenta(?,?,?)}");
+                    "{ call FiltroRangoFecha3(?,?,?)}");
             prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.setString(2, cab.getFecha1());
+            prcProcedimientoAlmacenado.setString(3, cab.getFecha2());
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {

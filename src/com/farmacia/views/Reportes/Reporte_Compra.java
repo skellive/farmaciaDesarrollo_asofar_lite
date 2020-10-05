@@ -378,7 +378,6 @@ public class Reporte_Compra extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-
         JoinListarNotaPedidosCabecera dc = new JoinListarNotaPedidosCabecera();
         String F1 = F.getFecha(Chooser1);
         String F2 = F.getFecha(Chooser2);

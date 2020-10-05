@@ -27,6 +27,8 @@ public class JoinListarCabeceraVenta {
     private BigDecimal iva_total;
     private BigDecimal descuento_total;
     private BigDecimal total;
+    private String fecha2;
+    private String fecha1;
     private BigDecimal utilidad;
     private String estado;
 
@@ -34,7 +36,7 @@ public class JoinListarCabeceraVenta {
     public JoinListarCabeceraVenta() {
     }
 
-    public JoinListarCabeceraVenta(Long id_cabecera_venta, String mun_venta, Long id_sucursal, String surcusal, String ruc, String direccion, String telefono, Long id_cliente, String nombre_completo_cliente, String cedula_cliente, Long id_usuario, String nombre_completo_usuario, String fecha_creacion, String tipo_pago, String tipo_venta, BigDecimal subtotal_con_iva, BigDecimal subtotal_sin_iva, BigDecimal subtotal, BigDecimal iva_total, BigDecimal descuento_total, BigDecimal total, BigDecimal utilidad, String estado) {
+    public JoinListarCabeceraVenta(Long id_cabecera_venta, String mun_venta, Long id_sucursal, String surcusal, String ruc, String direccion, String telefono, Long id_cliente, String nombre_completo_cliente, String cedula_cliente, Long id_usuario, String nombre_completo_usuario, String fecha_creacion, String tipo_pago, String tipo_venta, BigDecimal subtotal_con_iva, BigDecimal subtotal_sin_iva, BigDecimal subtotal, BigDecimal iva_total, BigDecimal descuento_total, BigDecimal total, String fecha2, String fecha1, BigDecimal utilidad, String estado) {
         this.id_cabecera_venta = id_cabecera_venta;
         this.mun_venta = mun_venta;
         this.id_sucursal = id_sucursal;
@@ -56,6 +58,8 @@ public class JoinListarCabeceraVenta {
         this.iva_total = iva_total;
         this.descuento_total = descuento_total;
         this.total = total;
+        this.fecha2 = fecha2;
+        this.fecha1 = fecha1;
         this.utilidad = utilidad;
         this.estado = estado;
     }
@@ -227,6 +231,22 @@ public class JoinListarCabeceraVenta {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
+    
+       public String getFecha2() {
+        return fecha2;
+    }
+
+    public void setFecha2(String fecha2) {
+        this.fecha2 = fecha2;
+    }
+
+    public String getFecha1() {
+        return fecha1;
+    }
+
+    public void setFecha1(String fecha1) {
+        this.fecha1 = fecha1;
+    } 
 
     public BigDecimal getUtilidad() {
         return utilidad;

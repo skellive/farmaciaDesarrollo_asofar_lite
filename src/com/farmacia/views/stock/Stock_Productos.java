@@ -263,7 +263,14 @@ public class Stock_Productos extends javax.swing.JDialog {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ArrayList tabla = new ArrayList();
         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(tabla_stock.getValueAt(i, 0).toString(), tabla_stock.getValueAt(i, 1).toString(), tabla_stock.getValueAt(i, 2).toString(), tabla_stock.getValueAt(i, 3).toString(), tabla_stock.getValueAt(i, 4).toString(), tabla_stock.getValueAt(i, 5).toString(), txtTotal.getText());
+            ClaseReporte tabla1 = new ClaseReporte(
+                    tabla_stock.getValueAt(i, 0).toString(), 
+                    tabla_stock.getValueAt(i, 1).toString(), 
+                    tabla_stock.getValueAt(i, 2).toString(), 
+                    tabla_stock.getValueAt(i, 3).toString(), 
+                    tabla_stock.getValueAt(i, 4).toString(), 
+                    tabla_stock.getValueAt(i, 5).toString(), 
+                    txtTotal.getText());
             tabla.add(tabla1);
         }
         try {
