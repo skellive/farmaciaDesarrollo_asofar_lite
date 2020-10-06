@@ -43,6 +43,7 @@ import com.farmacia.views.stock.Kardex_Productos;
 import com.farmacia.views.stock.Stock_Productos;
 import com.farmacia.views.usuario.Local;
 import com.farmacia.views.usuario.Mostrar_usuario;
+import com.farmacia.views.ventas.ListarVentas;
 import com.farmacia.views.ventas.MenuPreVentas;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -145,7 +146,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmVenta = new javax.swing.JMenu();
         mnuRegistrarVenta = new javax.swing.JMenuItem();
         mnuCliente = new javax.swing.JMenuItem();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMnuListVentas = new javax.swing.JMenuItem();
         jmCompras = new javax.swing.JMenu();
         mnuRegistrarVenta1 = new javax.swing.JMenuItem();
         mnuCliente1 = new javax.swing.JMenuItem();
@@ -443,14 +444,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jmVenta.add(mnuCliente);
 
-        jMenuItem1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        jMenuItem1.setText("LISTA DE VENTAS");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMnuListVentas.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        jMnuListVentas.setText("LISTA DE VENTAS");
+        jMnuListVentas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMnuListVentasActionPerformed(evt);
             }
         });
-        jmVenta.add(jMenuItem1);
+        jmVenta.add(jMnuListVentas);
 
         jMenuBar1.add(jmVenta);
 
@@ -818,9 +819,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
             Rv.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jmVentaReporteActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    private void jMnuListVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuListVentasActionPerformed
+       ListarVentas livt = new ListarVentas(); 
+       livt.setVisible(true);
+    }//GEN-LAST:event_jMnuListVentasActionPerformed
 
     private void jmLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLocalActionPerformed
 //        if ("ADMINISTRADOR".equals(objUsuario.getCargo())) {
@@ -859,8 +861,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_lblProductosMouseClicked
 
     private void lblGenerarVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGenerarVentaMouseClicked
-        //        DlgGenerarVenta generarVenta= new DlgGenerarVenta(this, rootPaneCheckingEnabled);
-//        generarVenta.setVisible(rootPaneCheckingEnabled);
+      MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true,objUsuario);
+        mp.setVisible(true);
     }//GEN-LAST:event_lblGenerarVentaMouseClicked
 
     private void lblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEmpleadosMouseClicked
@@ -937,7 +939,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem13;
@@ -952,6 +953,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JMenuItem jMnuListVentas;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JPopupMenu.Separator jSeparator3;
     private javax.swing.JMenu jmCompras;

@@ -1020,7 +1020,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento.setText("");
         TxtProdIva.setText("");
         TxtProdtotal.setText("");
-
         TxtProdNombre.setEnabled(true);
         TxtProdPrecio.setEnabled(true);
         TxtProdCantidad.setEnabled(true);
@@ -1029,7 +1028,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento.setEnabled(true);
         TxtProdIva.setEnabled(true);
         TxtProdtotal.setEnabled(true);
-
         TxtProdNombre.setEditable(false);
         TxtProdPrecio.setEditable(false);
         TxtProdCantidad.setEditable(true);
