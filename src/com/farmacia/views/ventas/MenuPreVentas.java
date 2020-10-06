@@ -428,7 +428,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel1.setText("%DESCUENTO:");
 
-        jButton2.setText("editar");
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
+        jButton2.setText("EDITAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -1163,8 +1164,14 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
         if (!TxtProdSubtotal.getText().equals("")) {
+        
+        int r = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos?", "", JOptionPane.YES_NO_OPTION);
+                if (r == JOptionPane.YES_OPTION) {
+                     TxtDescuentoPorcentaje.setEditable(true);
+                }
+        }
+     /*   if (!TxtProdSubtotal.getText().equals("")) {
 
             VerificarAcceso va = new VerificarAcceso(new javax.swing.JFrame(), true);
 
@@ -1174,7 +1181,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 TxtDescuentoPorcentaje.setEditable(true);
             }
 
-        }
+        }*/
 
 
     }//GEN-LAST:event_jButton2ActionPerformed
