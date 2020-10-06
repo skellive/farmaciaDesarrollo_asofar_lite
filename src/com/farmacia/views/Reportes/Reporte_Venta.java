@@ -5,6 +5,7 @@
  */
 package com.farmacia.views.Reportes;
 
+import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
@@ -17,6 +18,7 @@ import java.awt.Point;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -65,19 +67,25 @@ public class Reporte_Venta extends javax.swing.JDialog {
     Formulario F = new Formulario();
     ArrayList<JoinListarCabeceraVenta> lista = null;
     JoinListarCabeceraVenta objeto = null;
-    int dia, mes, ano;
     Calendar c1 = Calendar.getInstance();
+    int dia = (c1.get(Calendar.DATE));
+    int mes = (c1.get(Calendar.MONTH));
+    int ano = (c1.get(Calendar.YEAR));
 
     /**
      * Creates new form Reporte_Venta
      */
     public Reporte_Venta(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+        super(parent, modal = false);
         setUndecorated(true);
         initComponents();
-        setLocationRelativeTo(null);
+        this.setLocationRelativeTo(null);
         lista = crud.ListarCabeceraVentas(1);
         Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+        /*        lista = crud.ListarCabeceraVentas(1);
+         Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);*/
+        TotalPro();
+        TotalUti();
 
     }
 
@@ -165,7 +173,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(tblProduc, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE)
+            .addComponent(tblProduc, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -248,17 +256,16 @@ public class Reporte_Venta extends javax.swing.JDialog {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(11, 11, 11))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(248, 248, 248)
+                        .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
@@ -325,6 +332,24 @@ public class Reporte_Venta extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void TotalPro() {
+        Double total1 = 0.0;
+        BigDecimal Suma = new BigDecimal("0.00");
+        for (int i = 0; i < tbaCabeceraVenta.getRowCount(); i++) {
+            total1 = total1 + Double.parseDouble("" + lista.get(i).getTotal());
+        }
+        Txt_Total.setText(Formato_Numeros.formatoNumero(total1.toString()));
+    }
+
+    public void TotalUti() {
+        Double total1 = 0.0;
+        BigDecimal Suma = new BigDecimal("0.00");
+        for (int i = 0; i < tbaCabeceraVenta.getRowCount(); i++) {
+            total1 = total1 + Double.parseDouble("" + lista.get(i).getUtilidad());
+        }
+        Txt_Utilidad.setText(Formato_Numeros.formatoNumero(total1.toString()));
+    }
+
     private void jLabel7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseDragged
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
@@ -364,8 +389,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             lista = crud.ListarCabeceraVentas(1);
             objeto = devuelveObjeto(tbaCabeceraVenta.getValueAt(i, 0).toString(), lista);
 
-            System.out.println("ventas " + objeto.getNombre_completo_cliente());
-
+            //System.out.println("ventas " + objeto.getNombre_completo_cliente());
             if (objeto != null) {
                 Reporte_DetalleVenta Rdv = new Reporte_DetalleVenta(new javax.swing.JFrame(), true, objeto);
                 Rdv.setVisible(true);
@@ -380,35 +404,63 @@ public class Reporte_Venta extends javax.swing.JDialog {
         String F2 = F.getFecha(Chooser2);
         dc.setFecha1(F1);
         dc.setFecha2(F2);
+        try {
+            if (F1 == null) {
+                JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
+            }
 
-        if (F1 == null) {
-            JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
+            if (F1 != null && F2 == null) {
+
+                dc.setFecha1(F1);
+                dc.setFecha2((F1) + " 23:59:59");
+                lista = crud.RangoFechaVenta(1, dc);
+                Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+                TotalPro();
+                TotalUti();
+            }
+            if (F1 != null && F2 != null) {
+
+                dc.setFecha1(F.getFecha(Chooser1));
+                dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
+                lista = crud.RangoFechaVenta(1, dc);
+                Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+                TotalPro();
+                TotalUti();
+            }
+            TotalPro();
+            TotalUti();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
         }
-        if (F1 != null && F2 == null) {
-
-            dc.setFecha1(F1);
-            dc.setFecha2((F1) + " 23:59:59");
-            lista = crud.RangoFechaVenta(1, dc);
-            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
-        }
-        if (F1 != null && F2 != null) {
-
-            dc.setFecha1(F.getFecha(Chooser1));
-            dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
-            lista = crud.RangoFechaVenta(1, dc);
-            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
-        }
-
+        
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyReleased
 
+        try {
+            buscar = buscar1.getText();
+            Tablas.filtro(buscar, tbaCabeceraVenta);
+            TotalPro();
+            TotalUti();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
+        }
+        TotalPro();
+        TotalUti();
     }//GEN-LAST:event_buscar1KeyReleased
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        lista = crud.ListarCabeceraVentas(1);
-        Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
 
+        try {
+            lista = crud.ListarCabeceraVentas(1);
+            Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
+            TotalPro();
+            TotalUti();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
+        }
+        TotalPro();
+        TotalUti();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -430,7 +482,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             for (int i = 0; i < tbaCabeceraVenta.getRowCount(); i++) {
                 ClaseReporte creporte = new ClaseReporte(
                         tbaCabeceraVenta.getValueAt(i, 0).toString(),
-                        tbaCabeceraVenta.getValueAt(i, 1).toString(),
+                        //tbaCabeceraVenta.getValueAt(i, 1).toString(),
                         tbaCabeceraVenta.getValueAt(i, 2).toString(),
                         tbaCabeceraVenta.getValueAt(i, 3).toString(),
                         tbaCabeceraVenta.getValueAt(i, 4).toString(),
@@ -450,7 +502,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             }
 
             try {
-                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Venta.jasper"));
+                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("ventaSinDate.jasper"));
                 JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
                 JDialog ventana = new JDialog();
 
@@ -488,8 +540,9 @@ public class Reporte_Venta extends javax.swing.JDialog {
             }
 
             try {
-                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("ventaSinDate.jasper"));
+                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Venta.jasper"));
                 JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
+                //JDialog ventana = new JDialog();
                 JDialog ventana = new JDialog();
 
 //            JRViewer jviewer = new JRViewer(jprint);
@@ -640,18 +693,17 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 sheet.autoSizeColumn(7);
                 sheet.autoSizeColumn(8);
                 sheet.autoSizeColumn(9);
-                sheet.autoSizeColumn(10);                
+                sheet.autoSizeColumn(10);
                 sheet.autoSizeColumn(11);
                 sheet.autoSizeColumn(12);
                 sheet.autoSizeColumn(13);
 
                 sheet.setZoom(120);
 
-                dia = (c1.get(Calendar.DATE));
-                mes = (c1.get(Calendar.MONTH));
-                ano = (c1.get(Calendar.YEAR));
-                System.out.println(dia + "-" + mes + "-" + ano);
-
+                /*dia = (c1.get(Calendar.DATE));
+                 mes = (c1.get(Calendar.MONTH));
+                 ano = (c1.get(Calendar.YEAR));
+                 System.out.println(dia + "-" + mes + "-" + ano);*/
                 FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporteVenta\\reporte" + dia + "-" + mes + "-" + ano + ".xlsx");
                 book.write(fileout);
                 fileout.close();
