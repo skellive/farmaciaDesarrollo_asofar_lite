@@ -7,6 +7,7 @@ package com.farmacia.views.medida;
 
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.MedidaProducto;
+import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.logging.Level;
@@ -26,6 +27,7 @@ public class EditarMedida extends javax.swing.JDialog {
 
     public EditarMedida(java.awt.Frame parent, boolean modal, MedidaProducto mdp) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         initComponents();
         setLocationRelativeTo(null);
         obj = mdp;
@@ -49,29 +51,24 @@ public class EditarMedida extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnaceptar = new javax.swing.JButton();
         txtnuevaMedida = new javax.swing.JTextField();
-        btnCancelar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
+        lblGuardar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel1.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 27, 134));
         jLabel1.setText("NUEVA MEDIDA:");
 
-        btnaceptar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        btnaceptar.setForeground(new java.awt.Color(51, 109, 62));
-        btnaceptar.setText("LISTO");
-        btnaceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnaceptarActionPerformed(evt);
-            }
-        });
-
         txtnuevaMedida.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtnuevaMedida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtnuevaMedida.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 txtnuevaMedidaFocusLost(evt);
@@ -83,22 +80,14 @@ public class EditarMedida extends javax.swing.JDialog {
             }
         });
 
-        btnCancelar.setBackground(new java.awt.Color(206, 19, 36));
-        btnCancelar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        btnCancelar.setForeground(new java.awt.Color(254, 254, 254));
-        btnCancelar.setText("CANCELAR");
-        btnCancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCancelarActionPerformed(evt);
-            }
-        });
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
+        jPanel2.setOpaque(false);
 
         jLabel2.setBackground(new java.awt.Color(0, 153, 153));
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("TIPO DE MEDIDAS");
-        jLabel2.setOpaque(true);
         jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jLabel2MouseDragged(evt);
@@ -110,37 +99,66 @@ public class EditarMedida extends javax.swing.JDialog {
             }
         });
 
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(29, 29, 29)
+                .addComponent(lblCerrar)
+                .addGap(15, 15, 15))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCerrar)
+                .addContainerGap())
+        );
+
+        lblGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/guardar.png"))); // NOI18N
+        lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGuardarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(jLabel1)
+                .addGap(3, 3, 3)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(3, 3, 3)
-                        .addComponent(txtnuevaMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(83, 83, 83)
-                        .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblGuardar)
+                    .addComponent(txtnuevaMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(19, Short.MAX_VALUE))
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtnuevaMedida, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnaceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addComponent(lblGuardar))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -161,23 +179,6 @@ public class EditarMedida extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnuevaMedidaActionPerformed
 
-    private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaceptarActionPerformed
-        try {
-            String d = validar.editarMedidaProducto(txtnuevaMedida.getText(), obj.getId_medidas());
-            JOptionPane.showMessageDialog(this, d);
-            ConsultaMedidas mm = new ConsultaMedidas(new javax.swing.JFrame(), true);
-            setVisible(false);
-            mm.setVisible(true);
-        } catch (Exception ex) {
-            Logger.getLogger(EditarMedida.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }//GEN-LAST:event_btnaceptarActionPerformed
-
-    private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        this.setVisible(false);
-    }//GEN-LAST:event_btnCancelarActionPerformed
-
     private void txtnuevaMedidaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtnuevaMedidaFocusLost
         txtnuevaMedida.setText(txtnuevaMedida.getText().toUpperCase());
     }//GEN-LAST:event_txtnuevaMedidaFocusLost
@@ -191,6 +192,22 @@ public class EditarMedida extends javax.swing.JDialog {
         Point point = MouseInfo.getPointerInfo().getLocation();
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel2MouseDragged
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        this.setVisible(false);
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
+         try {
+            String d = validar.editarMedidaProducto(txtnuevaMedida.getText(), obj.getId_medidas());
+            JOptionPane.showMessageDialog(this, d);
+            ConsultaMedidas mm = new ConsultaMedidas(new javax.swing.JFrame(), true);
+            setVisible(false);
+            mm.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(EditarMedida.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lblGuardarMouseClicked
 
     /**
      * @param args the command line arguments
@@ -250,11 +267,12 @@ public class EditarMedida extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCancelar;
-    private javax.swing.JButton btnaceptar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblGuardar;
     private javax.swing.JTextField txtnuevaMedida;
     // End of variables declaration//GEN-END:variables
 }

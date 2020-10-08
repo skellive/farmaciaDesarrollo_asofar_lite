@@ -14,6 +14,7 @@ import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Laboratorio;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -48,6 +49,7 @@ public class Consulta_Lab extends javax.swing.JDialog {
      */
     public Consulta_Lab(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
 //        
@@ -74,22 +76,25 @@ public class Consulta_Lab extends javax.swing.JDialog {
 
         jPanel1 = new javax.swing.JPanel();
         filtro = new javax.swing.JTextField();
-        BotonNuevo = new javax.swing.JButton();
-        BotonSalir = new javax.swing.JButton();
         tipofiltro = new javax.swing.JComboBox<>();
-        BotonBuscar = new javax.swing.JButton();
-        btnReporte = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         Tabla = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
+        lblBuscar = new javax.swing.JLabel();
+        lblImprimir = new javax.swing.JLabel();
+        lblNuevo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(50, 99, 50), 2, true));
+        jPanel1.setOpaque(false);
 
         filtro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        filtro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         filtro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 filtroActionPerformed(evt);
@@ -101,25 +106,6 @@ public class Consulta_Lab extends javax.swing.JDialog {
             }
         });
 
-        BotonNuevo.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BotonNuevo.setForeground(new java.awt.Color(0, 102, 0));
-        BotonNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/añadir1.jpg"))); // NOI18N
-        BotonNuevo.setText("NUEVO");
-        BotonNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonNuevoActionPerformed(evt);
-            }
-        });
-
-        BotonSalir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/eliminar1.png"))); // NOI18N
-        BotonSalir.setText("SALIR");
-        BotonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSalirActionPerformed(evt);
-            }
-        });
-
         tipofiltro.setFont(new java.awt.Font("Cambria", 1, 12)); // NOI18N
         tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "RUC", "Nombre", "Direccion", "Telefono" }));
         tipofiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -128,41 +114,8 @@ public class Consulta_Lab extends javax.swing.JDialog {
             }
         });
 
-        BotonBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        BotonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/buscar1.jpg"))); // NOI18N
-        BotonBuscar.setText("BUSCAR");
-        BotonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonBuscarActionPerformed(evt);
-            }
-        });
-
-        btnReporte.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        btnReporte.setText("IMPRIMIR");
-        btnReporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReporteActionPerformed(evt);
-            }
-        });
-
-        jLabel2.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("LABORATORIOS");
-        jLabel2.setOpaque(true);
-        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel2MouseDragged(evt);
-            }
-        });
-        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel2MousePressed(evt);
-            }
-        });
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel2.setOpaque(false);
 
         Tabla.setFont(new java.awt.Font("Cambria", 0, 13)); // NOI18N
         Tabla.setModel(new javax.swing.table.DefaultTableModel(
@@ -194,50 +147,120 @@ public class Consulta_Lab extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
+        jPanel3.setOpaque(false);
+
+        jLabel2.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("LABORATORIOS");
+        jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel2MouseDragged(evt);
+            }
+        });
+        jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel2MousePressed(evt);
+            }
+        });
+
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(192, 192, 192)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrar)
+                .addGap(24, 24, 24))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(lblCerrar)
+                .addContainerGap())
+        );
+
+        lblBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/buscar.png"))); // NOI18N
+        lblBuscar.setText("BUSCAR");
+        lblBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblBuscarMouseClicked(evt);
+            }
+        });
+
+        lblImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/imprimir.png"))); // NOI18N
+        lblImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblImprimirMouseClicked(evt);
+            }
+        });
+
+        lblNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/agregar.png"))); // NOI18N
+        lblNuevo.setText("NUEVO");
+        lblNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNuevoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 9, Short.MAX_VALUE)
+                .addContainerGap(111, Short.MAX_VALUE)
+                .addComponent(lblBuscar)
+                .addGap(18, 18, 18)
+                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(85, 85, 85))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(BotonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(107, 107, 107))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(BotonBuscar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(85, 85, 85))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(lblNuevo)
+                .addGap(154, 154, 154)
+                .addComponent(lblImprimir)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblBuscar))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnReporte, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblImprimir)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(lblNuevo))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -275,21 +298,6 @@ public class Consulta_Lab extends javax.swing.JDialog {
 //        Tablas.filtro(dat, Tabla);
     }//GEN-LAST:event_filtroKeyReleased
 
-    private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-
-    }//GEN-LAST:event_BotonSalirActionPerformed
-
-    private void BotonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonNuevoActionPerformed
-        // TODO add your handling code here:
-        Ingresar_Lab obj = new Ingresar_Lab(new javax.swing.JFrame(), true);
-        obj.setVisible(true);
-        // listar = Archivos.leerLab("Lab.txt");
-        listar = cr.ListarLab();
-        Tablas.listarLab(listar, Tabla);
-    }//GEN-LAST:event_BotonNuevoActionPerformed
-
     private void TablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaMousePressed
         // TODO add your handling code here:
         int i = 0;
@@ -313,7 +321,21 @@ public class Consulta_Lab extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TablaMousePressed
 
-    private void BotonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonBuscarActionPerformed
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel2MousePressed
+
+    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jLabel2MouseDragged
+
+    private void tipofiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipofiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipofiltroActionPerformed
+
+    private void lblBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblBuscarMouseClicked
         String f = filtro.getText().toUpperCase();
 //        if(f==null || "".equals(f)){
 //              JOptionPane.showMessageDialog(null, "Filtro invalido!");
@@ -328,10 +350,13 @@ public class Consulta_Lab extends javax.swing.JDialog {
             
           
 //        }
+    }//GEN-LAST:event_lblBuscarMouseClicked
 
-    }//GEN-LAST:event_BotonBuscarActionPerformed
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        this.setVisible(false);
+    }//GEN-LAST:event_lblCerrarMouseClicked
 
-    private void btnReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReporteActionPerformed
+    private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList tablac = new ArrayList();
         for(int i=0;i<Tabla.getRowCount();i++){
             Laboratorio tabla1 = new Laboratorio (Tabla.getValueAt(i,0).toString(),Tabla.getValueAt(i,1).toString(),Tabla.getValueAt(i,2).toString(),Tabla.getValueAt(i,3).toString(),Tabla.getValueAt(i,4).toString());
@@ -350,21 +375,15 @@ public class Consulta_Lab extends javax.swing.JDialog {
         } catch (JRException ex) {
             Logger.getLogger(Consulta_Lab.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_btnReporteActionPerformed
+    }//GEN-LAST:event_lblImprimirMouseClicked
 
-    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
-        x = evt.getX();
-        y = evt.getY();
-    }//GEN-LAST:event_jLabel2MousePressed
-
-    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
-        Point point = MouseInfo.getPointerInfo().getLocation();
-        setLocation(point.x - x, point.y - y);
-    }//GEN-LAST:event_jLabel2MouseDragged
-
-    private void tipofiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipofiltroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tipofiltroActionPerformed
+    private void lblNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoMouseClicked
+        Ingresar_Lab obj = new Ingresar_Lab(new javax.swing.JFrame(), true);
+        obj.setVisible(true);
+        // listar = Archivos.leerLab("Lab.txt");
+        listar = cr.ListarLab();
+        Tablas.listarLab(listar, Tabla);
+    }//GEN-LAST:event_lblNuevoMouseClicked
 
 //    public void Eliminar(String datos) {
 //
@@ -463,16 +482,17 @@ public class Consulta_Lab extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonBuscar;
-    private javax.swing.JButton BotonNuevo;
-    private javax.swing.JButton BotonSalir;
     private javax.swing.JTable Tabla;
-    private javax.swing.JButton btnReporte;
     private javax.swing.JTextField filtro;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblBuscar;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblImprimir;
+    private javax.swing.JLabel lblNuevo;
     private javax.swing.JComboBox<String> tipofiltro;
     // End of variables declaration//GEN-END:variables
 }

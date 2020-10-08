@@ -47,18 +47,18 @@ public class Kardex_Productos extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        listaKardex = crud.listarKardex();
+        //listaKardex = crud.listarKardex();
         //probar();
-        listaStock = crud.listarKardex();
+        listaStock = crud.ListarKardexStock();
         //listarStock();
-        Tablas.ListarKardexProductos(listaStock, tabla_stock);
+        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
         this.sumarTotalStock();
     }
 
     public void sumarTotalStock() {
         Double total = 0.00;
         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
-            String ao = tabla_stock.getValueAt(i, 9).toString();
+            String ao = tabla_stock.getValueAt(i, 6).toString();
             String cadenaDeDecimales = ao;
             String resultado = cadenaDeDecimales.replace(',', '.');
             total = total + Double.valueOf(resultado);
@@ -299,9 +299,9 @@ public class Kardex_Productos extends javax.swing.JDialog {
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91)
-                .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(35, 35, 35)
                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37))
         );

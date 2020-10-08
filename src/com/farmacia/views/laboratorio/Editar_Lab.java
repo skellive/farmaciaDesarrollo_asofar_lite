@@ -16,6 +16,7 @@ import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Laboratorio;
 import com.farmacia.fecha.Fecha;
 import com.farmacia.validaciones.Validacion;
+import java.awt.Color;
 import java.awt.Dimension;
 //import static com.objetos.views.Consulta_Lab.listar;
 import java.awt.Image;
@@ -68,8 +69,8 @@ public class Editar_Lab extends javax.swing.JDialog {
 
     public Editar_Lab(java.awt.Frame parent, boolean modal, Laboratorio obj, int poss) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
-
         initComponents();
         VaciarImagen();
         this.setLocationRelativeTo(null);
@@ -135,24 +136,28 @@ public class Editar_Lab extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         ruc = new javax.swing.JTextField();
         nombre = new javax.swing.JTextField();
-        BotonImagen = new javax.swing.JButton();
-        BotonSinImagen = new javax.swing.JButton();
+        lblVaciar = new javax.swing.JLabel();
+        lblAgregar = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        BotonGuardar = new javax.swing.JButton();
-        BotonSalir = new javax.swing.JButton();
-        BotonEliminar = new javax.swing.JButton();
-        Reporte = new javax.swing.JButton();
+        lblCerrar = new javax.swing.JLabel();
+        lblGuardar = new javax.swing.JLabel();
+        lblImprimir = new javax.swing.JLabel();
+        lblEliminar = new javax.swing.JLabel();
 
         jButton5.setText("Salir");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(50, 99, 50), 2, true));
+        jPanel1.setOpaque(false);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(1, 1, 1), 2));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel2.setOpaque(false);
 
         telefono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        telefono.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         telefono.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 telefonoKeyTyped(evt);
@@ -160,11 +165,12 @@ public class Editar_Lab extends javax.swing.JDialog {
         });
 
         jLabel6.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel6.setForeground(new java.awt.Color(0, 27, 134));
         jLabel6.setText("E-MAIL:");
 
         fecha.setEditable(false);
         fecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        fecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         fecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 fechaActionPerformed(evt);
@@ -172,6 +178,7 @@ public class Editar_Lab extends javax.swing.JDialog {
         });
 
         correo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        correo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         correo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 correoFocusLost(evt);
@@ -184,9 +191,11 @@ public class Editar_Lab extends javax.swing.JDialog {
         });
 
         imagen.setForeground(new java.awt.Color(1, 1, 1));
-        imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(1, 1, 1), 2));
+        imagen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
 
+        BotonFecha.setBackground(new java.awt.Color(0, 27, 134));
         BotonFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BotonFecha.setForeground(new java.awt.Color(255, 255, 255));
         BotonFecha.setText("...");
         BotonFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,10 +204,11 @@ public class Editar_Lab extends javax.swing.JDialog {
         });
 
         jLabel7.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel7.setForeground(new java.awt.Color(0, 27, 134));
         jLabel7.setText("FECHA:");
 
         direccion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        direccion.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         direccion.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 direccionFocusLost(evt);
@@ -206,27 +216,28 @@ public class Editar_Lab extends javax.swing.JDialog {
         });
 
         jLabel2.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("RUC:");
 
         jLabel3.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel3.setForeground(new java.awt.Color(0, 27, 134));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("NOMBRE:");
 
         jLabel4.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel4.setForeground(new java.awt.Color(0, 27, 134));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("DIRECCION:");
 
         jLabel5.setFont(new java.awt.Font("Cambria", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel5.setForeground(new java.awt.Color(0, 27, 134));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("TELEFONO:");
 
         ruc.setEditable(false);
         ruc.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        ruc.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         ruc.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 rucKeyReleased(evt);
@@ -237,28 +248,26 @@ public class Editar_Lab extends javax.swing.JDialog {
         });
 
         nombre.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        nombre.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         nombre.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 nombreFocusLost(evt);
             }
         });
 
-        BotonImagen.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        BotonImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/imagen1.jpg"))); // NOI18N
-        BotonImagen.setText("AGREGAR FOTO"); // NOI18N
-        BotonImagen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        BotonImagen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonImagenActionPerformed(evt);
+        lblVaciar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/eliminar.png"))); // NOI18N
+        lblVaciar.setText("VACIAR");
+        lblVaciar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblVaciarMouseClicked(evt);
             }
         });
 
-        BotonSinImagen.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        BotonSinImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/sinimagen1.jpeg"))); // NOI18N
-        BotonSinImagen.setText("VACIAR FOTO");
-        BotonSinImagen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSinImagenActionPerformed(evt);
+        lblAgregar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/agregar.png"))); // NOI18N
+        lblAgregar.setText("AGREGAR");
+        lblAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAgregarMouseClicked(evt);
             }
         });
 
@@ -295,15 +304,14 @@ public class Editar_Lab extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(BotonImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BotonSinImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(40, 40, 40))))
+                .addGap(43, 43, 43)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblAgregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblVaciar)))
+                .addGap(40, 40, 40))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,19 +345,21 @@ public class Editar_Lab extends javax.swing.JDialog {
                             .addComponent(correo, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(imagen, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(BotonImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(BotonSinImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(lblVaciar)
+                            .addComponent(lblAgregar))))
                 .addContainerGap())
         );
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
+        jPanel3.setOpaque(false);
+
         jLabel1.setBackground(new java.awt.Color(0, 153, 153));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel1.setForeground(new java.awt.Color(0, 27, 134));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LABORATORIO");
-        jLabel1.setOpaque(true);
         jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jLabel1MouseDragged(evt);
@@ -361,40 +371,55 @@ public class Editar_Lab extends javax.swing.JDialog {
             }
         });
 
-        BotonGuardar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        BotonGuardar.setForeground(new java.awt.Color(0, 102, 0));
-        BotonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/guardar1.jpg"))); // NOI18N
-        BotonGuardar.setText("GUARDAR");
-        BotonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonGuardarActionPerformed(evt);
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
             }
         });
 
-        BotonSalir.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/salir1.png"))); // NOI18N
-        BotonSalir.setText("SALIR");
-        BotonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSalirActionPerformed(evt);
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(211, 211, 211)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrar)
+                .addGap(24, 24, 24))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(lblCerrar)
+                .addGap(12, 12, 12))
+        );
+
+        lblGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/guardar.png"))); // NOI18N
+        lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGuardarMouseClicked(evt);
             }
         });
 
-        BotonEliminar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        BotonEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/eliminar1.png"))); // NOI18N
-        BotonEliminar.setText("ELIMINAR");
-        BotonEliminar.setToolTipText("");
-        BotonEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonEliminarActionPerformed(evt);
+        lblImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/imprimir.png"))); // NOI18N
+        lblImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblImprimirMouseClicked(evt);
             }
         });
 
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        Reporte.setText("IMPRIMIR");
-        Reporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReporteActionPerformed(evt);
+        lblEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/eliminar.png"))); // NOI18N
+        lblEliminar.setText("ELIMINAR");
+        lblEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblEliminar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblEliminarMouseClicked(evt);
             }
         });
 
@@ -402,35 +427,37 @@ public class Editar_Lab extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
-                .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BotonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(93, 93, 93)
+                .addComponent(lblGuardar)
+                .addGap(109, 109, 109)
+                .addComponent(lblEliminar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblImprimir)
+                .addGap(79, 79, 79))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblImprimir)
+                            .addComponent(lblGuardar))
+                        .addContainerGap(12, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblEliminar)
+                        .addGap(26, 26, 26))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -441,7 +468,7 @@ public class Editar_Lab extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -450,26 +477,6 @@ public class Editar_Lab extends javax.swing.JDialog {
     private void fechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fechaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_fechaActionPerformed
-
-    private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
-        Guardar();
-    }//GEN-LAST:event_BotonGuardarActionPerformed
-
-    private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
-        // TODO add your handling code here:
-        this.setVisible(false);
-    }//GEN-LAST:event_BotonSalirActionPerformed
-
-    private void BotonImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonImagenActionPerformed
-        // TODO add your handling code here:
-        String pass = "";
-        getPicture1(pass);
-    }//GEN-LAST:event_BotonImagenActionPerformed
-
-    private void BotonSinImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSinImagenActionPerformed
-        // TODO add your handling code here:
-        VaciarImagen();
-    }//GEN-LAST:event_BotonSinImagenActionPerformed
 
     private void BotonFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonFechaActionPerformed
         // TODO add your handling code here:
@@ -518,11 +525,6 @@ public class Editar_Lab extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_rucKeyTyped
 
-    private void BotonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonEliminarActionPerformed
-        Eliminar();
-
-    }//GEN-LAST:event_BotonEliminarActionPerformed
-
     private void correoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_correoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_correoActionPerformed
@@ -543,7 +545,34 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
         direccion.setText(direccion.getText().toUpperCase());
     }//GEN-LAST:event_direccionFocusLost
 
-    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel1MousePressed
+
+    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jLabel1MouseDragged
+
+    private void lblAgregarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAgregarMouseClicked
+        String pass = "";
+        getPicture1(pass);
+    }//GEN-LAST:event_lblAgregarMouseClicked
+
+    private void lblVaciarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblVaciarMouseClicked
+        VaciarImagen();
+    }//GEN-LAST:event_lblVaciarMouseClicked
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        this.setVisible(false);
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
+        Guardar();
+    }//GEN-LAST:event_lblGuardarMouseClicked
+
+    private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList Laboratorio = new ArrayList();
         ClaseReporte lab = new ClaseReporte(ruc.getText(), nombre.getText(), direccion.getText(), telefono.getText(), fecha.getText(), rutaimagen, correo.getText());
         Laboratorio.add(lab);
@@ -561,17 +590,11 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
         } catch (JRException ex) {
             Logger.getLogger(Editar_Lab.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_ReporteActionPerformed
+    }//GEN-LAST:event_lblImprimirMouseClicked
 
-    private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
-        x = evt.getX();
-        y = evt.getY();
-    }//GEN-LAST:event_jLabel1MousePressed
-
-    private void jLabel1MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseDragged
-        Point point = MouseInfo.getPointerInfo().getLocation();
-        setLocation(point.x - x, point.y - y);
-    }//GEN-LAST:event_jLabel1MouseDragged
+    private void lblEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEliminarMouseClicked
+        Eliminar();
+    }//GEN-LAST:event_lblEliminarMouseClicked
 
     public void Eliminar() {
 
@@ -589,10 +612,10 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
         fecha.setEnabled(valor);
         correo.setEnabled(valor);
         BotonFecha.setEnabled(valor);
-        BotonGuardar.setEnabled(valor);
-        BotonImagen.setEnabled(valor);
-        BotonSinImagen.setEnabled(valor);
-        BotonEliminar.setEnabled(valor);
+        lblGuardar.setEnabled(valor);
+        lblAgregar.setEnabled(valor);
+        lblVaciar.setEnabled(valor);
+        lblEliminar.setEnabled(valor);
     }
 
     public void VaciarImagen() {
@@ -753,13 +776,7 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BotonEliminar;
     private javax.swing.JButton BotonFecha;
-    private javax.swing.JButton BotonGuardar;
-    private javax.swing.JButton BotonImagen;
-    private javax.swing.JButton BotonSalir;
-    private javax.swing.JButton BotonSinImagen;
-    private javax.swing.JButton Reporte;
     private javax.swing.JTextField correo;
     private javax.swing.JTextField direccion;
     private javax.swing.JTextField fecha;
@@ -774,6 +791,13 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblAgregar;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblEliminar;
+    private javax.swing.JLabel lblGuardar;
+    private javax.swing.JLabel lblImprimir;
+    private javax.swing.JLabel lblVaciar;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField ruc;
     private javax.swing.JTextField telefono;

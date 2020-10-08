@@ -505,11 +505,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jmCompras);
 
-        jMenu1.setText("STOCK");
+        jMenu1.setText("INVENTARIO");
         jMenu1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
         jMenuItem13.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        jMenuItem13.setText("PRODUCTOS EN STOCK");
+        jMenuItem13.setText("PRODUCTOS EN INVENTARIO");
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);

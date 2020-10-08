@@ -10,6 +10,7 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.validaciones.ValidarIngresoProducto;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -45,6 +46,7 @@ public class ConsultaMarcas extends javax.swing.JDialog {
 
     public ConsultaMarcas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         this.medidas = crud.listarTodoMarcaProductos();
         setUndecorated(true);
         initComponents();
@@ -72,30 +74,23 @@ public class ConsultaMarcas extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        salir_btn = new javax.swing.JButton();
         busqueda_tf = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        actualizar_bt = new javax.swing.JButton();
-        Reporte = new javax.swing.JButton();
-        nuevo_btn = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablamedidas = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
+        lblActualizar = new javax.swing.JLabel();
+        lblImprimir = new javax.swing.JLabel();
+        lblNuevo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-
-        salir_btn.setBackground(new java.awt.Color(235, 4, 4));
-        salir_btn.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        salir_btn.setText("SALIR");
-        salir_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salir_btnActionPerformed(evt);
-            }
-        });
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel1.setOpaque(false);
 
         busqueda_tf.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         busqueda_tf.setBorder(null);
@@ -111,33 +106,10 @@ public class ConsultaMarcas extends javax.swing.JDialog {
         });
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel1.setText("BUSQUEDA:");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/buscar.png"))); // NOI18N
 
-        actualizar_bt.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        actualizar_bt.setText("ACTUALIZAR");
-        actualizar_bt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actualizar_btActionPerformed(evt);
-            }
-        });
-
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        Reporte.setText("IMPRIMIR");
-        Reporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReporteActionPerformed(evt);
-            }
-        });
-
-        nuevo_btn.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        nuevo_btn.setText("NUEVO");
-        nuevo_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_btnActionPerformed(evt);
-            }
-        });
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel2.setOpaque(false);
 
         tablamedidas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -183,12 +155,14 @@ public class ConsultaMarcas extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
+        jPanel3.setOpaque(false);
+
         jLabel2.setBackground(new java.awt.Color(0, 153, 153));
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("MARCAS");
-        jLabel2.setOpaque(true);
         jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jLabel2MouseDragged(evt);
@@ -200,56 +174,109 @@ public class ConsultaMarcas extends javax.swing.JDialog {
             }
         });
 
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(124, 124, 124)
+                .addComponent(lblCerrar)
+                .addGap(21, 21, 21))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(lblCerrar)
+                .addContainerGap())
+        );
+
+        lblActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/actualizar.png"))); // NOI18N
+        lblActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblActualizarMouseClicked(evt);
+            }
+        });
+
+        lblImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/imprimir.png"))); // NOI18N
+        lblImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblImprimirMouseClicked(evt);
+            }
+        });
+
+        lblNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/agregar.png"))); // NOI18N
+        lblNuevo.setText("NUEVO");
+        lblNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNuevoMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(105, 105, 105)
                 .addComponent(jLabel1)
                 .addGap(2, 2, 2)
                 .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(85, 85, 85))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
+                .addComponent(lblActualizar)
+                .addGap(30, 30, 30))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(nuevo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(actualizar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(salir_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 1, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addGap(93, 93, 93)
+                .addComponent(lblNuevo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblImprimir)
+                .addGap(74, 74, 74))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblActualizar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(nuevo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(actualizar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(salir_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblImprimir)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(lblNuevo)))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,17 +303,25 @@ public class ConsultaMarcas extends javax.swing.JDialog {
         Tablas.filtro(valor, tablamedidas);
     }//GEN-LAST:event_busqueda_tfKeyReleased
 
-    private void salir_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir_btnActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-    }//GEN-LAST:event_salir_btnActionPerformed
-
     private void busqueda_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busqueda_tfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_busqueda_tfActionPerformed
 
-    private void actualizar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizar_btActionPerformed
-        // TODO add your handling code here:
+    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
+        x = evt.getX();
+        y = evt.getY();
+    }//GEN-LAST:event_jLabel2MousePressed
+
+    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
+    }//GEN-LAST:event_jLabel2MouseDragged
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        setVisible(false);
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblActualizarMouseClicked
         int id = tablamedidas.getSelectedRow();
         if (tablamedidas.getSelectedRow() >= 0) {
             medidap = devuelveObjeto(Integer.valueOf(tablamedidas.getValueAt(id, 0).toString()), medidas);
@@ -298,17 +333,9 @@ public class ConsultaMarcas extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(null, "Selecione un registro de la tabla primero");
         }
+    }//GEN-LAST:event_lblActualizarMouseClicked
 
-    }//GEN-LAST:event_actualizar_btActionPerformed
-
-    private void nuevo_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_btnActionPerformed
-        // TODO add your handling code here:
-        AgregarMarcas1 am = new AgregarMarcas1(new javax.swing.JFrame(), true);
-        setVisible(false);
-        am.setVisible(true);
-    }//GEN-LAST:event_nuevo_btnActionPerformed
-
-    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+    private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tablamedidas.getRowCount(); i++) {
             ClaseReporte medida = new ClaseReporte (tablamedidas.getValueAt(i, 0).toString(),tablamedidas.getValueAt(i, 1).toString());
@@ -328,17 +355,13 @@ public class ConsultaMarcas extends javax.swing.JDialog {
         } catch (JRException ex) {
             Logger.getLogger(ConsultaMarcas.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_ReporteActionPerformed
+    }//GEN-LAST:event_lblImprimirMouseClicked
 
-    private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MousePressed
-        x = evt.getX();
-        y = evt.getY();
-    }//GEN-LAST:event_jLabel2MousePressed
-
-    private void jLabel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseDragged
-        Point point = MouseInfo.getPointerInfo().getLocation();
-        setLocation(point.x - x, point.y - y);
-    }//GEN-LAST:event_jLabel2MouseDragged
+    private void lblNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoMouseClicked
+        AgregarMarcas1 am = new AgregarMarcas1(new javax.swing.JFrame(), true);
+        setVisible(false);
+        am.setVisible(true);
+    }//GEN-LAST:event_lblNuevoMouseClicked
     public MarcaProducto devuelveObjeto(int cas, ArrayList<MarcaProducto> lista) {
         MarcaProducto objeto1 = null;
         for (int i = 0; i < lista.size(); i++) {
@@ -408,16 +431,17 @@ public class ConsultaMarcas extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Reporte;
-    private javax.swing.JButton actualizar_bt;
     private javax.swing.JTextField busqueda_tf;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton nuevo_btn;
-    private javax.swing.JButton salir_btn;
+    private javax.swing.JLabel lblActualizar;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblImprimir;
+    private javax.swing.JLabel lblNuevo;
     private javax.swing.JTable tablamedidas;
     // End of variables declaration//GEN-END:variables
 }
