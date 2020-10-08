@@ -274,6 +274,7 @@ public class CRUD {
             pskar = conkar.prepareStatement(sqlkar);  
             System.out.println(sqlkar);
             rskar = pskar.executeQuery();
+            System.out.println("Ingresado al kardex");
         } catch (SQLException ex) {
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }

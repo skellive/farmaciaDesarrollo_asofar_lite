@@ -748,15 +748,15 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
             }
             listaStockVentas = crud.listarStockVentas(Long.parseLong(id_cab));
-
+            
             for (int i = 0; i < listaStockVentas.size(); i++) {
                 System.out.println("id control " + listaStockVentas.get(i).getId_control());
                 System.out.println("cantidad " + listaStockVentas.get(i).getCantidad());
 
                 crud.ActulizarStockVentas(listaStockVentas.get(i));
-
+               // crud.insertarKardex_ventas();
             }
-            crud.insertarKardex_ventas();
+            
             this.setVisible(false);
             ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
             ov.setVisible(true);
