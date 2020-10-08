@@ -1788,15 +1788,15 @@ public class Tablas {
     
 
     public static void ListarKardexStockProductos(ArrayList<ListarKardex> lista, JTable Tabla) {
-        int[] a = {100, 150, 160, 80, 80, 100, 100, 100};
+        int[] a = {100, 150, 160, 100, 80, 80, 100, 100};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "PRE.COMPRA", "PRE.VENTA", "CANTIDAD", "TOTAL"};
+        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION","PRESENTACION", "PRE.COMPRA", "PRE.VENTA", "CANTIDAD", "TOTAL"};
         //   Date[] Ca = {Date.valueOf("Fecha")};
-        String[] Filas = new String[7];
+        String[] Filas = new String[8];
         //  Date[] Fila = new Date [1];
         model = new DefaultTableModel(null, Co);
         //  laboratorio = new DefaultTableModel(null, Ca);
@@ -1805,11 +1805,12 @@ public class Tablas {
             Filas[0] = lista.get(i).getId_producto().toString();
             Filas[1] = lista.get(i).getNombre_Producto();
             Filas[2] = lista.get(i).getDescripcion();
-            Filas[3] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio_compra().toString());
-            Filas[4] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio_venta().toString());
-            Filas[5] = lista.get(i).getCantidad().toString();
+            Filas[3] = lista.get(i).getPresentacion();
+            Filas[4] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio_compra().toString());
+            Filas[5] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio_venta().toString());
+            Filas[6] = lista.get(i).getCantidad().toString();
             Double ao = lista.get(i).getCantidad() * (lista.get(i).getPrecio_venta());
-            Filas[6] = Formato_Numeros.formatoNumero(ao.toString());
+            Filas[7] = Formato_Numeros.formatoNumero(ao.toString());
 
             model.addRow(Filas);
             //     laboratorio.addRow(Fila);
@@ -1826,8 +1827,11 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[5]);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
             Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
+            Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
+            
 
         }
 
