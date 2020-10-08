@@ -262,7 +262,23 @@ public class CRUD {
         }
 
     }
-
+    public void insertarKardex_ventas(){
+      
+         
+        try {
+            PreparedStatement pskar=null;
+            ResultSet rskar = null;
+            Conexion connkar = new Conexion();
+            Connection conkar = connkar.conectar();            
+            String sqlkar= "{call sp_ventas_kardex() }";
+            pskar = conkar.prepareStatement(sqlkar);  
+            System.out.println(sqlkar);
+            rskar = pskar.executeQuery();
+            System.out.println("Ingresado al kardex");
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void insertarBitacoraFaltantes(ArrayList<String> queryL) {
         try {
             conect = con.conectar();
@@ -3855,6 +3871,41 @@ public class CRUD {
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
                 ListarKardex obj = EntidadesMappers.getKardexFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+
+    }
+    
+    
+        //ParaListarkardex
+    public ArrayList<ListarKardex> ListarKardexStock() {
+        ArrayList<ListarKardex> lista = new ArrayList<ListarKardex>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call ListarKardexStock()}");
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                ListarKardex obj = EntidadesMappers.getKardexStockFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();

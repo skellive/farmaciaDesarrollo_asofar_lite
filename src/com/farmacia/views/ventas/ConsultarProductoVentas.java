@@ -51,6 +51,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         TxtFiltro = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        lblId = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -85,7 +86,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         jLabel1.setBackground(new java.awt.Color(0, 153, 153));
@@ -134,7 +135,10 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                         .addGap(179, 179, 179)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
@@ -145,8 +149,10 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblId, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -206,11 +212,14 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
     public JoinListarProductosVentas devuelveObjeto(String datos, ArrayList<JoinListarProductosVentas> listarobj) {
         JoinListarProductosVentas objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
+            
             System.out.println("id " + datos);
+            lblId.setText(datos);
             if (datos.equals(listarobj.get(i).getId_producto().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
             }
+            
         }
         return objeto1;
     }
@@ -268,5 +277,6 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblId;
     // End of variables declaration//GEN-END:variables
 }

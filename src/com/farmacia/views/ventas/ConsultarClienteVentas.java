@@ -188,7 +188,7 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         if (evt.getClickCount() == 2) {
             i = TablaClienteVentas.getSelectedRow();
             objeto = devuelveObjeto(TablaClienteVentas.getValueAt(i, 0).toString(), listaCliente);
-
+            
             if (objeto != null) {
 
                 this.setVisible(false);

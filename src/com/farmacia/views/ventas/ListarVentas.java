@@ -103,7 +103,7 @@ public class ListarVentas extends javax.swing.JFrame {
         jtblistVentas = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtVenta = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
+        btnEditar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -174,9 +174,14 @@ public class ListarVentas extends javax.swing.JFrame {
 
         txtVenta.setEnabled(false);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/editar.png"))); // NOI18N
-        jLabel2.setText("EDITAR");
+        btnEditar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/editar.png"))); // NOI18N
+        btnEditar.setText("EDITAR");
+        btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEditarMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -194,7 +199,7 @@ public class ListarVentas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
-                                .addComponent(jLabel2)
+                                .addComponent(btnEditar)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(0, 0, 0))
         );
@@ -208,7 +213,7 @@ public class ListarVentas extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
+                    .addComponent(btnEditar))
                 .addGap(0, 49, Short.MAX_VALUE))
         );
 
@@ -226,7 +231,7 @@ public class ListarVentas extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.conectar();
             int Filas = jtblistVentas.getSelectedRow();
-            String codigo= jtblistVentas.getValueAt(Filas, 0).toString();
+            String codigo= jtblistVentas.getValueAt(Filas, 1).toString();
             
             ps = con.prepareStatement("SELECT num_venta FROM cabecera_venta WHERE num_venta =?");
             ps.setString(1, codigo);
@@ -269,6 +274,19 @@ public class ListarVentas extends javax.swing.JFrame {
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel7MouseDragged
 
+    private void btnEditarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditarMouseClicked
+        int r = JOptionPane.showConfirmDialog(null, "Desea Editar la venta: " + txtVenta.getText(), "", JOptionPane.YES_NO_OPTION);
+
+        if (r == JOptionPane.YES_OPTION) {
+            editarVentas edv = new editarVentas(txtVenta.getText());
+            edv.setVisible(true);
+
+        } else {
+
+        }
+        
+    }//GEN-LAST:event_btnEditarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -305,25 +323,13 @@ public class ListarVentas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel btnEditar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jtblistVentas;
-    private javax.swing.JLabel lblCerrar;
-    private javax.swing.JLabel lblCerrar1;
-    private javax.swing.JLabel lblCerrar2;
-    private javax.swing.JLabel lblCerrar3;
     private javax.swing.JLabel lblCerrar4;
-    private javax.swing.JTextField txtVenta;
+    public javax.swing.JTextField txtVenta;
     // End of variables declaration//GEN-END:variables
 }

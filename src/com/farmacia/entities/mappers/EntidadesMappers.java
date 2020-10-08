@@ -874,6 +874,32 @@ public class EntidadesMappers {
         }
         return obj;
     }
+    
+    //Listar Kardex
+    public static ListarKardex getKardexStockFromResultSet(ResultSet rs) {
+        ListarKardex obj = new ListarKardex();
+        try {
+            //13
+            //obj.setId_kardex(rs.getLong("IDKARDEX"));
+            obj.setId_producto(rs.getLong("ID_PRODUCTO"));
+            obj.setNombre_Producto(rs.getString("PRODUCTO"));
+            obj.setDescripcion(rs.getString("DESCRIPCION"));
+            obj.setTipo(rs.getString("TIPO"));
+            obj.setPresentacion(rs.getString("PRESENTACION"));
+            obj.setCantidad(rs.getLong("CANTIDAD_UNIDAD"));
+            obj.setIva(rs.getString("IVA"));
+            //obj.setId_precio(rs.getLong("ID_PRECIO"));//id_precio
+            obj.setPrecio_compra(rs.getDouble("PRECIO_COMPRA"));
+            obj.setPrecio_venta(rs.getDouble("PRECIO_VENTA"));
+            //obj.setTotal(rs.getDouble("TOTAL"));
+            //obj.setCompra(rs.getLong("COMPRA"));
+            //obj.setVenta(rs.getLong("VENTA"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
 
     public static StockVentas getStockVentasFromResultSet(ResultSet rs) {
         StockVentas obj = new StockVentas();
