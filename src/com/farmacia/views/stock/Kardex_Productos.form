@@ -108,7 +108,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="PRODUCTOS EN STOCK"/>
+            <Property name="text" type="java.lang.String" value="PRODUCTOS EN INVENTARIO"/>
             <Property name="opaque" type="boolean" value="true"/>
           </Properties>
           <Events>
