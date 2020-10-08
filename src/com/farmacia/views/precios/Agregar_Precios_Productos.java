@@ -448,10 +448,10 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         boolean valor = false;
         Double comboA = Double.valueOf(nuevo1.getText());
         Double comboB = Double.valueOf(nuevo2.getText());
-        if (comboA > comboB) {
-            JOptionPane.showMessageDialog(this, "el precio de venta debe ser mayor al de compras");
-            return valor;
-        }
+//        if (comboA > comboB) {
+//            JOptionPane.showMessageDialog(this, "el precio de venta debe ser mayor al de compras");
+//            return valor;
+//        }
 
         return valor = true;
     }

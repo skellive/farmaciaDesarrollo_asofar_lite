@@ -276,7 +276,7 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMenu1">
           <Properties>
-            <Property name="text" type="java.lang.String" value="STOCK"/>
+            <Property name="text" type="java.lang.String" value="INVENTARIO"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Ubuntu" size="13" style="1"/>
             </Property>
@@ -287,7 +287,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Ubuntu" size="13" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="PRODUCTOS EN STOCK"/>
+                <Property name="text" type="java.lang.String" value="PRODUCTOS EN INVENTARIO"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem13ActionPerformed"/>
