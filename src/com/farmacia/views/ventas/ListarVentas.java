@@ -278,9 +278,11 @@ public class ListarVentas extends javax.swing.JFrame {
         int r = JOptionPane.showConfirmDialog(null, "Desea Editar la venta: " + txtVenta.getText(), "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
+            setVisible(false);
             editarVentas edv = new editarVentas(txtVenta.getText());
+            
             edv.setVisible(true);
-
+            
         } else {
 
         }
