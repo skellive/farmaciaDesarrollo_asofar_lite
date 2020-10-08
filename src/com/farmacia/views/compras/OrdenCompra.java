@@ -1028,7 +1028,7 @@ public static String FechaActual() {
             tablac.add(tabla1);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"OrdenCompra.jasper";
+            String dir = System.getProperty("user.dir") + "/Reportes/" +"Compra.jasper";
             JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog(this);
