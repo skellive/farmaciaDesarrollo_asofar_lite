@@ -262,7 +262,22 @@ public class CRUD {
         }
 
     }
-
+    public void insertarKardex_ventas(){
+      
+         
+        try {
+            PreparedStatement pskar=null;
+            ResultSet rskar = null;
+            Conexion connkar = new Conexion();
+            Connection conkar = connkar.conectar();            
+            String sqlkar= "{call sp_ventas_kardex() }";
+            pskar = conkar.prepareStatement(sqlkar);  
+            System.out.println(sqlkar);
+            rskar = pskar.executeQuery();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     public void insertarBitacoraFaltantes(ArrayList<String> queryL) {
         try {
             conect = con.conectar();

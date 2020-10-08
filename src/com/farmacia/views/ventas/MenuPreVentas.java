@@ -16,6 +16,7 @@ import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.StockVentas;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import java.awt.Dimension;
+import java.awt.Label;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.math.BigDecimal;
@@ -40,6 +41,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
     ArrayList<StockVentas> listaStockVentas = null;
     Listar_usuario objUsuario = null;
+   // Label jlId_pro = new ConsultarProductoVentas().lblId.getText();
     CRUD crud = new CRUD();
     JoinListarProductosVentas objProd = new JoinListarProductosVentas();
     Persona objCliente = new Persona();
@@ -754,6 +756,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 crud.ActulizarStockVentas(listaStockVentas.get(i));
 
             }
+            crud.insertarKardex_ventas();
             this.setVisible(false);
             ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
             ov.setVisible(true);
@@ -1042,7 +1045,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         objProd = cp.getProducto();
         if (objProd != null) {
 
-            TxtProdNombre.setText(objProd.getProducto_nombre());
+            TxtProdNombre.setText(objProd.getProducto_nombre());            
             TxtProdPrecio.setText(objProd.getPrecio_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
             TxtDescuentoPorcentaje.setText(objProd.getDescuento().toString());
         }
