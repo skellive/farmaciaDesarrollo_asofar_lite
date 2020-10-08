@@ -49,7 +49,7 @@ public class ListarVentas extends javax.swing.JFrame {
             ps = con.prepareStatement(sql);  
             System.out.println(sql);
             rs = ps.executeQuery();
-            ResultSetMetaData rsMD = rs.getMetaData();
+            ResultSetMetaData rsMD = rs.getMetaData(); 
             int cantidadColumnas = rsMD.getColumnCount();
             
             modelo.addColumn("Id");
@@ -200,7 +200,7 @@ public class ListarVentas extends javax.swing.JFrame {
                                 .addComponent(txtVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
                                 .addComponent(btnEditar)
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(

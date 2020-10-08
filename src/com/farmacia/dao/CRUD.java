@@ -4392,6 +4392,51 @@ public class CRUD {
 
     }
 
+    
+    
+    public void eliminarVentaCompleta(int num_venta){
+         try{
+        PreparedStatement pskar=null;
+            ResultSet rskar = null;
+            Conexion connkar = new Conexion();
+            Connection conkar = connkar.conectar();            
+            String sqlkar= "{CALL eliminar_venta_completa("+num_venta+") }";
+            pskar = conkar.prepareStatement(sqlkar);  
+            System.out.println(sqlkar);
+            rskar = pskar.executeQuery();
+            System.out.println("Eliminado"+num_venta);  
+           
+               
+            
+            
+            
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.toString());
+        }
+    }
+    
+    public void eliminarProDetalleVenta(int det_venta){
+         try{
+        PreparedStatement pskar=null;
+            ResultSet rskar = null;
+            Conexion connkar = new Conexion();
+            Connection conkar = connkar.conectar();            
+            String sqlkar= "{CALL eliminar_producto_venta("+det_venta+") }";
+            pskar = conkar.prepareStatement(sqlkar);  
+            System.out.println(sqlkar);
+            rskar = pskar.executeQuery();
+            System.out.println("Eliminado"+det_venta);         
+               
+            
+            
+            
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.toString());
+        }
+    }
+    
     public ArrayList<Listar_usuario> filtroApellidoUs(Listar_usuario lu) {
         ArrayList<Listar_usuario> valor = new ArrayList<Listar_usuario>();
         try {

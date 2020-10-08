@@ -754,7 +754,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 System.out.println("cantidad " + listaStockVentas.get(i).getCantidad());
 
                 crud.ActulizarStockVentas(listaStockVentas.get(i));
-               // crud.insertarKardex_ventas();
+                //crud.insertarKardex_ventas();
             }
             
             this.setVisible(false);
