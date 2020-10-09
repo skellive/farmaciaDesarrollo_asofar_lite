@@ -3250,6 +3250,43 @@ public class CRUD {
         }
         return lista;
     }
+    
+    
+    
+        public ArrayList<JoinListarProductosVentas> ListarTodoJoinProductosParaVender() {
+        ArrayList<JoinListarProductosVentas> lista = new ArrayList<JoinListarProductosVentas>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call ListarProductosParaVender()}");
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                JoinListarProductosVentas obj = EntidadesMappers.getJoinTodosProductosKardexVentasFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+    
+    
+    
 
     //////  listar Producto venta  
     public ArrayList<JoinListarProductosVentas> ListarTodoJoinProductosVentas(String op1) {
