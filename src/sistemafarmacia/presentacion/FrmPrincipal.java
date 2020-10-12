@@ -45,6 +45,7 @@ import com.farmacia.views.usuario.Local;
 import com.farmacia.views.usuario.Mostrar_usuario;
 import com.farmacia.views.ventas.ListarVentas;
 import com.farmacia.views.ventas.MenuPreVentas;
+import com.farmacia.views.ventas.ventasEliminadas;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -147,6 +148,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuRegistrarVenta = new javax.swing.JMenuItem();
         mnuCliente = new javax.swing.JMenuItem();
         jMnuListVentas = new javax.swing.JMenuItem();
+        mnEliminadas = new javax.swing.JMenuItem();
         jmCompras = new javax.swing.JMenu();
         mnuRegistrarVenta1 = new javax.swing.JMenuItem();
         mnuCliente1 = new javax.swing.JMenuItem();
@@ -452,6 +454,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jmVenta.add(jMnuListVentas);
+
+        mnEliminadas.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnEliminadas.setText("VENTAS ELIMINADAS");
+        mnEliminadas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnEliminadasActionPerformed(evt);
+            }
+        });
+        jmVenta.add(mnEliminadas);
 
         jMenuBar1.add(jmVenta);
 
@@ -890,6 +901,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
         Rc.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_mnuMantCompraActionPerformed
 
+    private void mnEliminadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnEliminadasActionPerformed
+        ventasEliminadas ve= new ventasEliminadas();
+        ve.setVisible(true);
+    }//GEN-LAST:event_mnEliminadasActionPerformed
+
     public Listar_usuario getUsuario() {
         return objUsuario;
     }
@@ -974,6 +990,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel lblProductos;
     private javax.swing.JLabel lblProveedores;
     private javax.swing.JMenu menuProducto;
+    private javax.swing.JMenuItem mnEliminadas;
     private javax.swing.JMenuItem mnuAcerca;
     private javax.swing.JMenuItem mnuAcerca1;
     private javax.swing.JMenu mnuAyuda;

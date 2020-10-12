@@ -9,7 +9,6 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Conexion;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import static java.lang.Integer.parseInt;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,24 +16,22 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author User
  */
-public class editarVentas extends javax.swing.JFrame {
+public class ventasProEliminadas extends javax.swing.JFrame {
 
     /**
-     * Creates new form editarVentas
+     * Creates new form ventasProEliminadas
      */
     CRUD crud = new CRUD();
     int x, y;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-
-    public editarVentas(String numVenta) {
+    public ventasProEliminadas(String numVenta) {
         initComponents();
         this.setLocationRelativeTo(this);
         txtVentaNumero.setText(numVenta);
@@ -47,7 +44,7 @@ public class editarVentas extends javax.swing.JFrame {
             Connection con = conn.conectar();
             CallableStatement listVent;
 
-            String sql = "{call listarVentaUnico('" + numVenta + "', 1) }";
+            String sql = "{call listarVentaUnico('" + numVenta + "', 2) }";
             ps = con.prepareStatement(sql);
             System.out.println(sql);
             rs = ps.executeQuery();
@@ -67,8 +64,8 @@ public class editarVentas extends javax.swing.JFrame {
             modelo.addColumn("IVA total");
             modelo.addColumn("Descuento");
             modelo.addColumn("Total");
-
-            int[] anchos = {10, 10, 20, 10, 50, 20, 20, 20, 20, 30, 30, 30, 20, 30};
+            modelo.addColumn("Observacion");    
+            int[] anchos = {10, 10, 20, 10, 50, 20, 20, 20, 20, 30, 30, 30, 20, 30,50};
 
             for (int x = 0; x < cantidadColumnas; x++) {
 
@@ -92,10 +89,6 @@ public class editarVentas extends javax.swing.JFrame {
         }
     }
 
-    private editarVentas() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -109,18 +102,14 @@ public class editarVentas extends javax.swing.JFrame {
         txtVentaNumero = new javax.swing.JLabel();
         lblCerrar4 = new javax.swing.JLabel();
         txtVentaNum1 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        txtDatos = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbNumeroVenta = new javax.swing.JTable();
-        btnEliminarProducto = new javax.swing.JLabel();
         btnEliminarVenta = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtObProducto = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
         jPanel7.setOpaque(false);
@@ -187,9 +176,6 @@ public class editarVentas extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 11)); // NOI18N
-        jLabel1.setText("PRODUCTO DE VENTA A ELIMINAR");
-
         jtbNumeroVenta.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -204,14 +190,6 @@ public class editarVentas extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jtbNumeroVenta);
-
-        btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/eliminar.png"))); // NOI18N
-        btnEliminarProducto.setText("ELIMINAR PRODUCTO");
-        btnEliminarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEliminarProductoMouseClicked(evt);
-            }
-        });
 
         btnEliminarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/eliminar1.png"))); // NOI18N
         btnEliminarVenta.setText("ELIMINAR VENTA");
@@ -234,21 +212,16 @@ public class editarVentas extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(30, 30, 30)
-                .addComponent(btnEliminarProducto)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEliminarVenta)
                 .addGap(94, 94, 94))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 803, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(txtDatos, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 579, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -256,18 +229,12 @@ public class editarVentas extends javax.swing.JFrame {
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(82, 82, 82)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEliminarProducto)
-                    .addComponent(btnEliminarVenta))
+                .addComponent(btnEliminarVenta)
                 .addGap(25, 25, 25))
         );
 
@@ -295,6 +262,14 @@ public class editarVentas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblCerrar4lblCerrarMouseClicked
 
+    private void txtVentaNum1jLabel7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVentaNum1jLabel7MouseDragged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVentaNum1jLabel7MouseDragged
+
+    private void txtVentaNum1jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVentaNum1jLabel7MousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtVentaNum1jLabel7MousePressed
+
     private void jtbNumeroVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbNumeroVentaMouseClicked
         try {
 
@@ -306,12 +281,14 @@ public class editarVentas extends javax.swing.JFrame {
             String codigo = jtbNumeroVenta.getValueAt(Filas, 1).toString();
             String codigo_pro = jtbNumeroVenta.getValueAt(Filas, 2).toString();
             String producto = jtbNumeroVenta.getValueAt(Filas, 3).toString();
-            ps = con.prepareStatement("SELECT id FROM detalle_venta WHERE id = ? ");
+           ps = con.prepareStatement("SELECT observacion FROM detalle_venta WHERE id = ? ");
             ps.setString(1, codigo);
             rs = ps.executeQuery();
 
+            
+
             while (rs.next()) {
-                txtDatos.setText(rs.getString("id") + ": " + producto);
+                txtObProducto.setText(rs.getString("observacion"));
 
             }
 
@@ -320,24 +297,10 @@ public class editarVentas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtbNumeroVentaMouseClicked
 
-    private void btnEliminarProductoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarProductoMouseClicked
-        int Filas = jtbNumeroVenta.getSelectedRow();
-        String codigo = jtbNumeroVenta.getValueAt(Filas, 1).toString();
-        String obse = txtObProducto.getText();
-        if (txtObProducto.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Ingrese observacion de producto para continuar ");
-        } else {
-            crud.eliminarProDetalleVenta(parseInt(codigo), obse);
-            JOptionPane.showMessageDialog(null, "Producto eliminado " + codigo);
-            setVisible(false);
-        }
-
-    }//GEN-LAST:event_btnEliminarProductoMouseClicked
-
     private void btnEliminarVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarVentaMouseClicked
-        
+
         int Filas = jtbNumeroVenta.getSelectedRow();
-            String codigo = jtbNumeroVenta.getValueAt(Filas, 0).toString();
+        String codigo = jtbNumeroVenta.getValueAt(Filas, 0).toString();
         int r = JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar venta?" + codigo, "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
@@ -346,16 +309,7 @@ public class editarVentas extends javax.swing.JFrame {
             obsV.setVisible(true);
         }
 
-
     }//GEN-LAST:event_btnEliminarVentaMouseClicked
-
-    private void txtVentaNum1jLabel7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVentaNum1jLabel7MouseDragged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVentaNum1jLabel7MouseDragged
-
-    private void txtVentaNum1jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVentaNum1jLabel7MousePressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtVentaNum1jLabel7MousePressed
 
     /**
      * @param args the command line arguments
@@ -374,35 +328,32 @@ public class editarVentas extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(editarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventasProEliminadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(editarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventasProEliminadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(editarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventasProEliminadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(editarVentas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ventasProEliminadas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new editarVentas().setVisible(true);
+                new ventasProEliminadas(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnEliminarProducto;
     private javax.swing.JLabel btnEliminarVenta;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jtbNumeroVenta;
     private javax.swing.JLabel lblCerrar4;
-    private javax.swing.JTextField txtDatos;
     private javax.swing.JTextArea txtObProducto;
     private javax.swing.JLabel txtVentaNum1;
     private javax.swing.JLabel txtVentaNumero;
