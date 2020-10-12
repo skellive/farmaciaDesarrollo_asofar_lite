@@ -759,6 +759,41 @@ public class EntidadesMappers {
         }
         return obj;
     }
+    
+    
+        //LISTAR INVENTARIO del Kardex
+        public static JoinListarProductosVentas getJoinTodosProductosKardexVentasFromResultSet(ResultSet rs) {
+        JoinListarProductosVentas obj = new JoinListarProductosVentas();
+
+        try {
+            //obj.setId_control(rs.getLong("Control"));
+            obj.setId_producto(rs.getLong("Codigo"));
+            obj.setProducto_nombre(rs.getString("Nombre del producto"));
+            obj.setProducto_descripcion(rs.getString("Descripcion"));
+            //obj.setId_tipo(rs.getLong("ID_TIPO"));
+            obj.setTipo_nombre(rs.getString("Tipo"));
+            //obj.setId_medida(rs.getLong("ID_MEDIDAS"));
+            obj.setMedida_nombre(rs.getString("Medida"));
+            //obj.setId_envase(rs.getLong("ID_ENVASE"));
+            obj.setEnvase_nombre(rs.getString("Presentaciones"));
+            //obj.setId_marca(rs.getLong("ID_MARCAS"));
+            obj.setMarca_nombre(rs.getString("Marca"));
+            //obj.setId_stock(rs.getLong("ID_PRODUCTO"));
+            obj.setStock(rs.getLong("Stock"));
+            obj.setIva(rs.getString("Iva"));
+            //obj.setId_precio(rs.getLong("ID_PRECIO"));
+            obj.setPrecio_venta(rs.getBigDecimal("Precio de Venta"));
+            //obj.setDescuento(rs.getLong("Descuento de Venta"));
+            obj.setPrecio_compra(rs.getBigDecimal("Precio de Compra"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+    
+    
 
     /////////// mapper identidad listar producto ventas
     public static JoinListarProductosVentas getJoinTodosProductosVentasFromResultSet(ResultSet rs) {
