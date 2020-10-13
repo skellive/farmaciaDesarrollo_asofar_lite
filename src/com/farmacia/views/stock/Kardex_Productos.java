@@ -368,10 +368,6 @@ public class Kardex_Productos extends javax.swing.JDialog {
                       listaStock = crud.ListarKardexStock();
                       Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
                       this.sumarTotalStock();
-                      }else{
-                      listaStock = crud.ListarKardexStock();
-                      Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-                      this.sumarTotalStock();
                       }
                       }else{
                         JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
