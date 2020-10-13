@@ -11,6 +11,7 @@ public class ListarKardex {
     String tipo;
     String presentacion;
     Long cantidad;
+    Long cantidad_unidad;
     String iva;
     Long id_precio;
     Double precio_compra;
@@ -22,7 +23,7 @@ public class ListarKardex {
     public ListarKardex() {
     }
 
-    public ListarKardex(Long id_kardex, Long id_producto, String nombre_Producto, String descripcion, String tipo, String presentacion, Long cantidad, String iva,Long id_precio, Double precio_compra, Double precio_venta, Double total, Long compra, Long venta) {
+    public ListarKardex(Long id_kardex, Long id_producto, String nombre_Producto, String descripcion, String tipo, String presentacion, Long cantidad, Long cantidad_unidad, String iva,Long id_precio, Double precio_compra, Double precio_venta, Double total, Long compra, Long venta) {
         this.id_kardex = id_kardex;
         this.id_producto = id_producto;
         this.nombre_Producto = nombre_Producto;
@@ -30,6 +31,7 @@ public class ListarKardex {
         this.tipo = tipo;
         this.presentacion = presentacion;
         this.cantidad = cantidad;
+        this.cantidad_unidad = cantidad_unidad;
         this.iva = iva;
         this.id_precio = id_precio;
         this.precio_compra = precio_compra;
@@ -94,6 +96,15 @@ public class ListarKardex {
     public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
     }
+
+    public Long getCantidad_unidad() {
+        return cantidad_unidad;
+    }
+
+    public void setCantidad_unidad(Long cantidad_unidad) {
+        this.cantidad_unidad = cantidad_unidad;
+    }
+    
 
     public String getIva() {
         return iva;

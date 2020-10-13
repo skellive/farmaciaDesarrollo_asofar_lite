@@ -58,7 +58,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
     public void sumarTotalStock() {
         Double total = 0.00;
         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
-            String ao = tabla_stock.getValueAt(i, 7).toString();
+            String ao = tabla_stock.getValueAt(i,8).toString();
             String cadenaDeDecimales = ao;
             String resultado = cadenaDeDecimales.replace(',', '.');
             total = total + Double.valueOf(resultado);

@@ -921,9 +921,10 @@ public class EntidadesMappers {
             obj.setDescripcion(rs.getString("DESCRIPCION"));
             obj.setTipo(rs.getString("TIPO"));
             obj.setPresentacion(rs.getString("PRESENTACION"));
-            obj.setCantidad(rs.getLong("CANTIDAD_UNIDAD"));
+            obj.setCantidad(rs.getLong("CANTIDAD"));
+            obj.setCantidad_unidad(rs.getLong("CANTIDAD_UNIDAD"));
             obj.setIva(rs.getString("IVA"));
-            //obj.setId_precio(rs.getLong("ID_PRECIO"));//id_precio
+            obj.setId_precio(rs.getLong("ID_PRECIO"));//id_precio
             obj.setPrecio_compra(rs.getDouble("PRECIO_COMPRA"));
             obj.setPrecio_venta(rs.getDouble("PRECIO_VENTA"));
             //obj.setTotal(rs.getDouble("TOTAL"));
