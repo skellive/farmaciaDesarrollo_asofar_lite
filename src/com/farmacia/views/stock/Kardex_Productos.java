@@ -322,7 +322,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
 
         //OPERACION PARA LISTAR TABLA DE ABAJO
         int i = 0;
-        String idpro,preCom,preVen;
+        String idpro,preCom,preVen,mostar,msje;
         int cantidad,unidad_acep,stock_caja,unidad_insertar=0;
         try {
             if (evt.getClickCount() == 2) {
@@ -347,12 +347,25 @@ public class Kardex_Productos extends javax.swing.JDialog {
                     cantidad= Integer.parseInt(cant);
                      if(cantidad!=0 || cantidad>0 ){
                       if(cantidad<=stock_caja){
-                      JOptionPane.showMessageDialog(null, "cantidad que pediste: "+cantidad);
+                      //JOptionPane.showMessageDialog(null, "cantidad que pediste: "+cantidad);
                       unidad_acep=objetoInv.getUnidad_aceptada().intValue();
-                      JOptionPane.showMessageDialog(null, "unidad aceptada: "+objetoInv.getUnidad_aceptada());
+                      //JOptionPane.showMessageDialog(null, "unidad aceptada: "+objetoInv.getUnidad_aceptada());
                       unidad_insertar=cantidad*unidad_acep;
                       //JOptionPane.showMessageDialog(null, "insertar en kardex unidad: "+unidad_insertar);
-                      JOptionPane.showMessageDialog(null, cantidad+ " cajas se convertiran en "+unidad_insertar+" unidades");
+                      //JOptionPane.showMessageDialog(null, cantidad+ " cajas se convertiran en "+unidad_insertar+" unidades");
+                      objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad q pediste
+                      objetoInv.setCantidad_unidad(Long.valueOf(unidad_insertar));//unidades q se insertaran
+                      mostar="idproducto:"+objetoInv.getId_producto().toString()+"\n"+
+                             "idprecio:"+objetoInv.getId_precio().toString()+"\n"+
+                             "cantidad en caja:"+objetoInv.getCantidad().toString()+"\n"+
+                             "unidades: "+objetoInv.getCantidad_unidad().toString();
+                      //JOptionPane.showMessageDialog(null,mostar);
+                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de convertir "+cantidad+" cajas en "+unidad_insertar+" unidades ?", "", JOptionPane.YES_NO_OPTION);
+                      if (m == JOptionPane.YES_OPTION) {
+                      //msje=crud.insertarConversionUnidades(objetoInv);
+                      JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
+                      //JOptionPane.showMessageDialog(null,msje);
+                      }
                       }else{
                         JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
                       }   
