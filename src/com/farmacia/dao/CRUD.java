@@ -3828,8 +3828,9 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call DesactivarNotaPedido(?,?)}");
+                    "{ call DesactivarNotaPedido(?,?,?)}");
             pro.setLong(1, cab.getId_cabecera_nota_pedidos());
+            pro.setString(2,cab.getObservacion());
             pro.executeUpdate();
             //pro.execute();
             valor = pro.getString("valor");
