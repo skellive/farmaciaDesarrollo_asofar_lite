@@ -5,6 +5,7 @@
  */
 package com.farmacia.views.usuario;
 
+import com.farmacia.AES.hash;
 import com.farmacia.conponentes.Formulario;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.ClaseReporte;
@@ -888,7 +889,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
             
 //            System.out.println("apellido prueba:"+obj1.getApellidos());
             
-            
+            String pass = new String(txtPass.getPassword());
+            String nuevoPass = hash.sha1(pass);
             obj.setCedula(txtCedula.getText());
             obj.setNombre(txtNombre.getText());
             obj.setApellido(txtApellido.getText());
@@ -904,7 +906,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
 //            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
             obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
             obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
-            obj.setPassword(txtPass.getText());
+            obj.setPassword(nuevoPass);
             obj.setEstado(cbEstado.getSelectedItem().toString());
             obj.setId_sesion(Long.valueOf(txtId.getText()));
             try {

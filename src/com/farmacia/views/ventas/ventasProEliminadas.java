@@ -104,12 +104,12 @@ public class ventasProEliminadas extends javax.swing.JFrame {
         txtVentaNum1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbNumeroVenta = new javax.swing.JTable();
-        btnEliminarVenta = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtObProducto = new javax.swing.JTextArea();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         jPanel7.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
         jPanel7.setOpaque(false);
@@ -191,14 +191,6 @@ public class ventasProEliminadas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtbNumeroVenta);
 
-        btnEliminarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/eliminar1.png"))); // NOI18N
-        btnEliminarVenta.setText("ELIMINAR VENTA");
-        btnEliminarVenta.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnEliminarVentaMouseClicked(evt);
-            }
-        });
-
         txtObProducto.setColumns(20);
         txtObProducto.setRows(5);
         jScrollPane2.setViewportView(txtObProducto);
@@ -211,10 +203,6 @@ public class ventasProEliminadas extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnEliminarVenta)
-                .addGap(94, 94, 94))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -233,9 +221,7 @@ public class ventasProEliminadas extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnEliminarVenta)
-                .addGap(25, 25, 25))
+                .addGap(70, 70, 70))
         );
 
         pack();
@@ -297,20 +283,6 @@ public class ventasProEliminadas extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jtbNumeroVentaMouseClicked
 
-    private void btnEliminarVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarVentaMouseClicked
-
-        int Filas = jtbNumeroVenta.getSelectedRow();
-        String codigo = jtbNumeroVenta.getValueAt(Filas, 0).toString();
-        int r = JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar venta?" + codigo, "", JOptionPane.YES_NO_OPTION);
-
-        if (r == JOptionPane.YES_OPTION) {
-            setVisible(false);
-            observacionVenta obsV = new observacionVenta(codigo);
-            obsV.setVisible(true);
-        }
-
-    }//GEN-LAST:event_btnEliminarVentaMouseClicked
-
     /**
      * @param args the command line arguments
      */
@@ -347,7 +319,6 @@ public class ventasProEliminadas extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel btnEliminarVenta;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;

@@ -1,5 +1,6 @@
 package sistemafarmacia.presentacion;
 
+import com.farmacia.AES.hash;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Listar_usuario;
 import java.awt.Color;
@@ -204,10 +205,12 @@ public class FrmLogin extends javax.swing.JFrame {
         } else if (txtContrasenia.getText().length() < 2) {
             JOptionPane.showMessageDialog(null, "Ingrese una contraseña válida");
         } else {
+            String pass = new String(txtContrasenia.getPassword());
+            String nuevoPass = hash.sha1(pass);
             Listar_usuario obj = new Listar_usuario();
             obj.setCorreo(txtUsuario.getText());
-            obj.setPassword(txtContrasenia.getText());
-            System.out.println("contraseña " + txtContrasenia.getText());
+            obj.setPassword(nuevoPass);
+            System.out.println("contraseña " + nuevoPass);
             obj.setIp_equipo(Operaciones.getIpDispositivo());
 //            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
             obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
