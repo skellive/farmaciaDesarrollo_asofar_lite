@@ -479,6 +479,7 @@ public class EntidadesMappers {
             obj.setIva(rs.getBigDecimal("IVA"));
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
             obj.setTotal(rs.getBigDecimal("TOTAL"));
+            obj.setObservacion(rs.getString("OBSERVACION"));
 //            obj.setPlazo(rs.getString("PLAZO"));
 
         } catch (SQLException ex) {
