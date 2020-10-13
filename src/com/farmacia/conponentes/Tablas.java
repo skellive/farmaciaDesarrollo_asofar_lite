@@ -1788,15 +1788,15 @@ public class Tablas {
     
 
     public static void ListarKardexStockProductos(ArrayList<ListarKardex> lista, JTable Tabla) {
-        int[] a = {100, 150, 160, 100, 80, 80, 100, 100};
+        int[] a = {100,150,160,100,80,80,80,80,100};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION","PRESENTACION", "PRE.COMPRA", "PRE.VENTA", "CANTIDAD", "TOTAL"};
+        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION","PRESENTACION", "PRE.COMPRA", "PRE.VENTA", "CANTIDAD","UNIDADES", "TOTAL"};
         //   Date[] Ca = {Date.valueOf("Fecha")};
-        String[] Filas = new String[8];
+        String[] Filas = new String[9];
         //  Date[] Fila = new Date [1];
         model = new DefaultTableModel(null, Co);
         //  laboratorio = new DefaultTableModel(null, Ca);
@@ -1809,8 +1809,9 @@ public class Tablas {
             Filas[4] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio_compra().toString());
             Filas[5] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio_venta().toString());
             Filas[6] = lista.get(i).getCantidad().toString();
-            Double ao = lista.get(i).getCantidad() * (lista.get(i).getPrecio_venta());
-            Filas[7] = Formato_Numeros.formatoNumero(ao.toString());
+            Filas[7] = lista.get(i).getCantidad_unidad().toString();
+            Double ao = lista.get(i).getCantidad() * (lista.get(i).getPrecio_compra());
+            Filas[8] = Formato_Numeros.formatoNumero(ao.toString());
 
             model.addRow(Filas);
             //     laboratorio.addRow(Fila);
@@ -1831,6 +1832,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
             Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(8).setPreferredWidth(a[8]);
+            Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
             
 
         }
