@@ -66,107 +66,11 @@ public class Kardex_Productos extends javax.swing.JDialog {
         txtTotal.setText(Formato_Numeros.formatoNumero(total.toString()));
     }
 
-    public void probar() {
-        ListarKardex obj ;
-        Iterator<ListarKardex> it = listaKardex.iterator();
-        String id_pro,msj,precio,valor=null;
-        Double cant;
-        int can = 0;
-        Double tot,tota=null;
-            
-        while (it.hasNext()) {
-            msj=null;
-            obj = it.next();
-            
-            id_pro = obj.getId_producto().toString();
-            precio = obj.getId_precio().toString();
-            cant = Double.parseDouble(obj.getCantidad().toString());
-            if(cant.toString().isEmpty()){
-            }else{
-            tot = obj.getTotal();
-            System.out.println(precio);
-            Iterator<ListarKardex> ita = listaPrueba.iterator();//id_pro.equals(ita.next().getId_producto().toString())
-                while (ita.hasNext()) {//it.next()  //&& precio.equals(ita.next().getId_precio().toString())
-                    if (precio.equals(ita.next().getId_precio().toString())) {
-                        msj = "El producto ya esta agregado";
-                        if(ita.next().getCantidad().toString().isEmpty()){
-                        }else{
-                            can = (int)((cant)+(ita.next().getCantidad()));
-                        }
-                         //tota = tot+(ita.next().getTotal());
-                        ita.next().setCantidad(Long.parseLong(cant+""));
-                        break; 
-                        
-                    }
-                }  
-            }
-            
-            //System.out.println(""+preC);
-            if(msj==null){
-            System.out.println(""+obj.getNombre_Producto());
-            listaPrueba.add(obj);
-            }
-        }
 
-          
-    }
 
-    public void listarStock() {
-        try {
-            Iterator<ListarKardex> it = listaKardex.iterator();
-            while (it.hasNext()) {//it.next()
-                objet = it.next();
-                mensaje = buscarProduct(objet);
-                if (mensaje == null) {
-                    listaStock.add(objet);
-                }
-            }
 
-//            for (int i = 0; i < listaKardex.size(); i++) {
-//                objet = listaKardex.get(i);
-//                mensaje = buscarProduct(objet);
-//                if (mensaje == null) {
-//                    listaStock.add(objet);
-//                }
-//            }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error en : " + e);
-        }
 
-    }
 
-    public String buscarProduct(ListarKardex obj) {
-
-        String id_pro, preC, msj = null;
-        id_pro = obj.getId_producto().toString();
-        preC = obj.getPrecio_compra().toString();
-        //preV=obj.getPrecio_venta().toString();
-
-        try {
-            if (listaStock != null) {
-                Iterator<ListarKardex> ita = listaStock.iterator();
-                while (ita.hasNext()) {//it.next()
-                    if (id_pro.equals(ita.next().getId_producto().toString())) {
-                        msj = "El producto ya esta agregado";
-                        break;
-                    }
-                }
-
-//                for (int i = 0; i < listaStock.size(); i++) {
-//                    if (id_pro.equals(listaStock.get(i).getId_producto().toString())) {
-//                        msj = "El producto ya esta agregado";
-//                        break;
-//                    }
-//                }
-            }
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error en : " + e);
-        }
-
-        return msj;
-
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
