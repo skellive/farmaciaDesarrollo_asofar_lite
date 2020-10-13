@@ -362,9 +362,11 @@ public class Kardex_Productos extends javax.swing.JDialog {
                       //JOptionPane.showMessageDialog(null,mostar);
                       int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de convertir "+cantidad+" cajas en "+unidad_insertar+" unidades ?", "", JOptionPane.YES_NO_OPTION);
                       if (m == JOptionPane.YES_OPTION) {
-                      //msje=crud.insertarConversionUnidades(objetoInv);
-                      JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
-                      //JOptionPane.showMessageDialog(null,msje);
+                      msje=crud.insertarConversionUnidades(objetoInv);
+                      //JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
+                      JOptionPane.showMessageDialog(null,msje);
+                      listaStock = crud.ListarKardexStock();
+                      Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
                       }
                       }else{
                         JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
