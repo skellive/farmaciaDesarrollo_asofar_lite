@@ -74,12 +74,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmCompras.setVisible(false);
                 jmDevoluciones.setVisible(false);
                 jmReporteCompra.setVisible(false);
+                mnEliminadas.setVisible(false);
+                lblIngresoRapido.setVisible(false);
+                lblEmpleados.setVisible(false);
+                lblProveedores.setVisible(false);
+                mnuExcel.setVisible(false);
             }
             if ("BODEGUERO".equals(tipo)) {
                 jmLocal.setVisible(false);
                 jmVenta.setVisible(false);
                 jmIva.setVisible(false);
                 jmVentaReporte.setVisible(false);
+                lblEmpleados.setVisible(false);
+                lblProveedores.setVisible(false);
+                 mnEliminadas.setVisible(false);
             }
             if ("SUPERVISOR".equals(tipo)) {
                 jmLocal.setVisible(false);
@@ -167,7 +175,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmReporteCompra = new javax.swing.JMenuItem();
         jmVentaReporte = new javax.swing.JMenuItem();
         jMenuItem11 = new javax.swing.JMenuItem();
-        mnuAyuda1 = new javax.swing.JMenu();
+        mnuExcel = new javax.swing.JMenu();
         mnuAcerca1 = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
         mnuAcerca = new javax.swing.JMenuItem();
@@ -600,8 +608,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu8);
 
-        mnuAyuda1.setText("EXCEL");
-        mnuAyuda1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuExcel.setText("EXCEL");
+        mnuExcel.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
         mnuAcerca1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         mnuAcerca1.setText("SUBIR EXCEL");
@@ -615,9 +623,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 mnuAcerca1ActionPerformed(evt);
             }
         });
-        mnuAyuda1.add(mnuAcerca1);
+        mnuExcel.add(mnuAcerca1);
 
-        jMenuBar1.add(mnuAyuda1);
+        jMenuBar1.add(mnuExcel);
 
         mnuAyuda.setText("AYUDA");
         mnuAyuda.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
@@ -994,9 +1002,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuAcerca;
     private javax.swing.JMenuItem mnuAcerca1;
     private javax.swing.JMenu mnuAyuda;
-    private javax.swing.JMenu mnuAyuda1;
     private javax.swing.JMenuItem mnuCliente;
     private javax.swing.JMenuItem mnuCliente1;
+    private javax.swing.JMenu mnuExcel;
     private javax.swing.JMenuItem mnuLaboratorio;
     private javax.swing.JMenuItem mnuMantCompra;
     private javax.swing.JMenuItem mnuRegistrarVenta;

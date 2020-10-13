@@ -404,7 +404,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="mnuAyuda1">
+        <Menu class="javax.swing.JMenu" name="mnuExcel">
           <Properties>
             <Property name="text" type="java.lang.String" value="EXCEL"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
