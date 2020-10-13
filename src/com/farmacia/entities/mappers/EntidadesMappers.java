@@ -921,6 +921,7 @@ public class EntidadesMappers {
             obj.setDescripcion(rs.getString("DESCRIPCION"));
             obj.setTipo(rs.getString("TIPO"));
             obj.setPresentacion(rs.getString("PRESENTACION"));
+            obj.setUnidad_aceptada(rs.getLong("UNIDAD_ACEPTADA"));//unidad_aceptada
             obj.setCantidad(rs.getLong("CANTIDAD"));
             obj.setCantidad_unidad(rs.getLong("CANTIDAD_UNIDAD"));
             obj.setIva(rs.getString("IVA"));

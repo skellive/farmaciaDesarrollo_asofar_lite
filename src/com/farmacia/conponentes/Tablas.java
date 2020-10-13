@@ -1783,10 +1783,10 @@ public class Tablas {
     }
     
     
-    
-    
-    
 
+    
+    
+    
     public static void ListarKardexStockProductos(ArrayList<ListarKardex> lista, JTable Tabla) {
         int[] a = {100,150,160,100,80,80,80,80,100};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
@@ -1806,8 +1806,8 @@ public class Tablas {
             Filas[1] = lista.get(i).getNombre_Producto();
             Filas[2] = lista.get(i).getDescripcion();
             Filas[3] = lista.get(i).getPresentacion();
-            Filas[4] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio_compra().toString());
-            Filas[5] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio_venta().toString());
+            Filas[4] = lista.get(i).getPrecio_compra().toString();
+            Filas[5] = lista.get(i).getPrecio_venta().toString();
             Filas[6] = lista.get(i).getCantidad().toString();
             Filas[7] = lista.get(i).getCantidad_unidad().toString();
             Double ao = lista.get(i).getCantidad() * (lista.get(i).getPrecio_compra());
@@ -1893,7 +1893,7 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
 
         }
-
+               
     }
     
     
