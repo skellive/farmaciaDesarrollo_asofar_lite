@@ -27,6 +27,7 @@ public class observacionVenta extends javax.swing.JFrame {
     public observacionVenta(String numVenta) {
         initComponents();
         this.setLocationRelativeTo(this);
+        this.setEnabled(false);
         txtVentaNumero.setText(numVenta);
     }
 
@@ -44,7 +45,6 @@ public class observacionVenta extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         txtVentaNumero = new javax.swing.JLabel();
-        lblCerrar4 = new javax.swing.JLabel();
         txtVentaNum1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtObservacion = new javax.swing.JTextArea();
@@ -71,18 +71,11 @@ public class observacionVenta extends javax.swing.JFrame {
             }
         });
 
-        lblCerrar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
-        lblCerrar4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblCerrar4lblCerrarMouseClicked(evt);
-            }
-        });
-
         txtVentaNum1.setBackground(new java.awt.Color(2, 184, 184));
         txtVentaNum1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         txtVentaNum1.setForeground(new java.awt.Color(0, 27, 134));
         txtVentaNum1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        txtVentaNum1.setText("OBSERVACION");
+        txtVentaNum1.setText("OBSERVACION DE VENTA");
         txtVentaNum1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 txtVentaNum1jLabel7MouseDragged(evt);
@@ -99,13 +92,11 @@ public class observacionVenta extends javax.swing.JFrame {
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
-                .addGap(168, 168, 168)
+                .addGap(82, 82, 82)
                 .addComponent(txtVentaNum1)
-                .addGap(27, 27, 27)
+                .addGap(113, 113, 113)
                 .addComponent(txtVentaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                .addComponent(lblCerrar4)
-                .addGap(18, 18, 18))
+                .addContainerGap(98, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -113,8 +104,7 @@ public class observacionVenta extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtVentaNum1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtVentaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCerrar4))
+                    .addComponent(txtVentaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -180,17 +170,6 @@ public class observacionVenta extends javax.swing.JFrame {
         y = evt.getY();
     }//GEN-LAST:event_txtVentaNumerojLabel7MousePressed
 
-    private void lblCerrar4lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrar4lblCerrarMouseClicked
-        int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
-
-        if (r == JOptionPane.YES_OPTION) {
-            setVisible(false);
-
-        } else {
-            
-        }
-    }//GEN-LAST:event_lblCerrar4lblCerrarMouseClicked
-
     private void txtVentaNum1jLabel7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVentaNum1jLabel7MouseDragged
         // TODO add your handling code here:
     }//GEN-LAST:event_txtVentaNum1jLabel7MouseDragged
@@ -251,7 +230,6 @@ public class observacionVenta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblCerrar4;
     private javax.swing.JTextArea txtObservacion;
     private javax.swing.JLabel txtVentaNum1;
     private javax.swing.JLabel txtVentaNumero;

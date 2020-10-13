@@ -174,8 +174,8 @@ public class ventasEliminadas extends javax.swing.JFrame {
         txtVenta.setEnabled(false);
 
         btnEditar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/editar.png"))); // NOI18N
-        btnEditar.setText("EDITAR");
+        btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/preview_search_find_locate_1551.png"))); // NOI18N
+        btnEditar.setText("REVISAR");
         btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditarMouseClicked(evt);
@@ -210,7 +210,7 @@ public class ventasEliminadas extends javax.swing.JFrame {
                     .addComponent(jLabel1)
                     .addComponent(txtVenta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEditar))
-                .addGap(0, 49, Short.MAX_VALUE))
+                .addGap(0, 36, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

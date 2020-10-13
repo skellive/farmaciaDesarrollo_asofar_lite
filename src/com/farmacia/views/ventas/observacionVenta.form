@@ -82,13 +82,11 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="168" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
                       <Component id="txtVentaNum1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="113" max="-2" attributes="0"/>
                       <Component id="txtVentaNumero" min="-2" pref="107" max="-2" attributes="0"/>
-                      <EmptySpace pref="188" max="32767" attributes="0"/>
-                      <Component id="lblCerrar4" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <EmptySpace pref="98" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -99,7 +97,6 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="txtVentaNum1" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
                           <Component id="txtVentaNumero" alignment="0" min="-2" pref="45" max="-2" attributes="0"/>
-                          <Component id="lblCerrar4" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -125,16 +122,6 @@
                 <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="txtVentaNumerojLabel7MousePressed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="lblCerrar4">
-              <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/img/iconos/cerrar.png"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblCerrar4lblCerrarMouseClicked"/>
-              </Events>
-            </Component>
             <Component class="javax.swing.JLabel" name="txtVentaNum1">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -147,7 +134,7 @@
                   <Color blue="86" green="1b" red="0" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="OBSERVACION"/>
+                <Property name="text" type="java.lang.String" value="OBSERVACION DE VENTA"/>
               </Properties>
               <Events>
                 <EventHandler event="mouseDragged" listener="java.awt.event.MouseMotionListener" parameters="java.awt.event.MouseEvent" handler="txtVentaNum1jLabel7MouseDragged"/>

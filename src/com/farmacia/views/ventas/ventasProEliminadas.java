@@ -264,9 +264,7 @@ public class ventasProEliminadas extends javax.swing.JFrame {
             Conexion conn = new Conexion();
             Connection con = conn.conectar();
             int Filas = jtbNumeroVenta.getSelectedRow();
-            String codigo = jtbNumeroVenta.getValueAt(Filas, 1).toString();
-            String codigo_pro = jtbNumeroVenta.getValueAt(Filas, 2).toString();
-            String producto = jtbNumeroVenta.getValueAt(Filas, 3).toString();
+            String codigo = jtbNumeroVenta.getValueAt(Filas, 1).toString();           
            ps = con.prepareStatement("SELECT observacion FROM detalle_venta WHERE id = ? ");
             ps.setString(1, codigo);
             rs = ps.executeQuery();
