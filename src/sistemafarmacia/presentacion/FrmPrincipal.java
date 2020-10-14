@@ -26,7 +26,9 @@ import com.farmacia.views.ayuda.Acerca;
 //import com.farmacia.views.ayuda.AcercaDe;
 import com.farmacia.views.compras.CabeceraCompra;
 import com.farmacia.views.compras.ListaCompras;
+import com.farmacia.views.compras.ListaComprasDesactivadas;
 import com.farmacia.views.compras.ListaDePedidos;
+import com.farmacia.views.compras.VentanaComprasDesactivadas;
 import com.farmacia.views.comprasRealizadas.ComprasEfectuadas;
 import com.farmacia.views.contentPane.ContentPanel;
 import com.farmacia.views.covertidor.Convertidor_lista_Productos;
@@ -168,8 +170,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmDevoluciones = new javax.swing.JMenu();
         jMenuItem14 = new javax.swing.JMenuItem();
         jMenuItem15 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem10 = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jmReporteCompra = new javax.swing.JMenuItem();
@@ -561,20 +561,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         jMenuBar1.add(jmDevoluciones);
 
-        jMenu2.setText("CONVERTIDOR");
-        jMenu2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-
-        jMenuItem10.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        jMenuItem10.setText("CONVERTIR");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem10);
-
-        jMenuBar1.add(jMenu2);
-
         jMenu8.setText("REPORTES");
         jMenu8.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         jMenu8.add(jSeparator3);
@@ -813,15 +799,19 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
 //        ComprasEfectuadas ce = new ComprasEfectuadas(this, rootPaneCheckingEnabled);
 //        ce.setVisible(rootPaneCheckingEnabled);
-        ComprasEfectuadas ce = new ComprasEfectuadas(this, rootPaneCheckingEnabled);
-            ce.setVisible(rootPaneCheckingEnabled);
+//        ComprasEfectuadas ce = new ComprasEfectuadas(this, rootPaneCheckingEnabled);
+//            ce.setVisible(rootPaneCheckingEnabled);
+ListaCompras Rc = new ListaCompras(this, rootPaneCheckingEnabled,objUsuario);
+Rc.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
 //        ComprasDevueltas cd = new ComprasDevueltas(this, rootPaneCheckingEnabled);
 //        cd.setVisible(rootPaneCheckingEnabled);
-        ComprasDevueltas cd = new ComprasDevueltas(this, rootPaneCheckingEnabled);
-            cd.setVisible(rootPaneCheckingEnabled);
+//        ComprasDevueltas cd = new ComprasDevueltas(this, rootPaneCheckingEnabled);
+//            cd.setVisible(rootPaneCheckingEnabled);
+VentanaComprasDesactivadas RIN = new VentanaComprasDesactivadas(new javax.swing.JFrame(), true);
+RIN.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jmReporteCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmReporteCompraActionPerformed
@@ -850,11 +840,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //            jmLocal2.setVisible(false);
 //        }
     }//GEN-LAST:event_jmLocalActionPerformed
-
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-       Convertidor_lista_Productos scc = new Convertidor_lista_Productos(this, rootPaneCheckingEnabled);
-       scc.setVisible(rootPaneCheckingEnabled);
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         Reporte_Productos_Compras rpc = new Reporte_Productos_Compras(new javax.swing.JFrame(), true);
@@ -958,12 +943,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
