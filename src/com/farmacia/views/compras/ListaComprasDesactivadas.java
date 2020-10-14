@@ -262,21 +262,14 @@ public class ListaComprasDesactivadas extends javax.swing.JDialog {
              lista = crud.listarCabeceraCompras(2);
             objeto = devuelveObjeto(tblCompraDesactivadas.getValueAt(i, 0).toString(), lista);
             if (objeto != null) {
+                JOptionPane.showMessageDialog(null, "ID COMPRA : "+objeto.getId_cabecera_compra());
                 JOptionPane.showMessageDialog(null, ""+objeto.getObservacion(), "Motivo porque se Desactivo", JOptionPane.INFORMATION_MESSAGE);
-                int r = JOptionPane.showConfirmDialog(null, "¿Desea Activar este Pedido?", "", JOptionPane.YES_NO_OPTION);
+                int r = JOptionPane.showConfirmDialog(null, "¿Desea Activar esta Compra?", "", JOptionPane.YES_NO_OPTION);
                 if (r == JOptionPane.YES_OPTION) {
-
-//                    String id_cab = "";
-//                    CabeceraNotaPedido cn = new CabeceraNotaPedido();
-//                    cn.setId_cabecera_nota_pedidos(objeto.getId_cabecera_nota_pedidos());
-//                    id_cab = crud.ActivarEstadoNotaPedido(cn);
-//                    
-//                    
-//                    Tablas.CargarJoinListadoCabeceraNotaPedidos(tblCompraDesactivadas, lista);
-//                    RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
-//                    this.setVisible(false);
-//                    RIN.setVisible(true);
-
+                    crud.ActivarCabeceraCompra(objeto.getId_cabecera_compra());
+                    ListaCompras Rc = new ListaCompras(new javax.swing.JFrame(),true);
+                    setVisible(false);
+                    Rc.setVisible(true);
                 } else {
 
                 }

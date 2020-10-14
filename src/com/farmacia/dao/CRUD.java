@@ -2034,6 +2034,35 @@ public class CRUD {
             }
         }
     }
+     
+     
+     
+     
+     //--
+      public void ActivarCabeceraCompra(Long id) {
+        String msg;
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement cs = conect.prepareCall(
+                    "{ call ActivarCabeceraCompra(?,?) }");
+            cs.setLong(1,id);
+            cs.registerOutParameter("salida", Types.VARCHAR);
+            cs.executeUpdate();
+            msg = cs.getString("salida");
+            JOptionPane.showMessageDialog(null, msg);
+            conect.commit();
+        } catch (SQLException e) {
+            try {
+                conect.rollback();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+     
+     
+     
     
     
     
