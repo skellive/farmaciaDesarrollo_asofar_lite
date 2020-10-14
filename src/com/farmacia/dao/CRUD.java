@@ -2491,6 +2491,43 @@ public class CRUD {
         return lista;
     }
 
+    
+    //--
+        public ArrayList<JoinListarDetalleNotaPedido> listarDetalleCompra(String id) {
+        ArrayList<JoinListarDetalleNotaPedido> lista = new ArrayList<JoinListarDetalleNotaPedido>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ListarDetalleCompra(?)}");
+            prcProcedimientoAlmacenado.setString(1, id);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                JoinListarDetalleNotaPedido obj = EntidadesMappers.getDetalleCompraFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+    
+    
+    
+    
     public ArrayList<JoinListarDetalleNotaPedido> listarDetalleNotaPedido(int op, String id) {
         ArrayList<JoinListarDetalleNotaPedido> lista = new ArrayList<JoinListarDetalleNotaPedido>();
         try {

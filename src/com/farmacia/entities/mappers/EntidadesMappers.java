@@ -510,6 +510,7 @@ public class EntidadesMappers {
             obj.setTotal(rs.getBigDecimal("TOTAL"));
             obj.setPlazo(rs.getString("PLAZO"));
             obj.setForma_pago(rs.getString("FORMA_PAGO"));
+            obj.setObservacion(rs.getString("OBSERVACION"));//observacion
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
@@ -548,6 +549,36 @@ public class EntidadesMappers {
         return obj;
     }
 
+    
+    //--
+    public static JoinListarDetalleNotaPedido getDetalleCompraFromResultSet(ResultSet rs) {
+        JoinListarDetalleNotaPedido obj = new JoinListarDetalleNotaPedido();
+        try {
+            obj.setId_detalle_nota_pedido(rs.getLong("ID_DETALLE_COMPRA"));
+            obj.setId_producto(rs.getLong("ID_PRODUCTO"));
+            obj.setId_precio(rs.getLong("ID_PRECIO"));
+            obj.setMarca(rs.getString("MARCA"));
+            obj.setTipo(rs.getString("TIPO"));
+            obj.setProducto(rs.getString("PRODUCTO"));
+            //obj.setEnvase(rs.getString("ENVASE"));
+            obj.setEnvase(rs.getString("PRESENTACION"));
+            obj.setMedida(rs.getString("MEDIDA"));
+            obj.setCantidad(rs.getInt("CANTIDAD"));
+            obj.setBono(rs.getInt("BONO"));
+            obj.setPrecio(rs.getBigDecimal("PRECIO"));
+            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
+            obj.setIva(rs.getBigDecimal("IVA"));
+            obj.setTotal(rs.getBigDecimal("TOTAL"));
+            obj.setId_precio(rs.getLong("id_precio"));
+            obj.setId_cabecera_nota_pedido(rs.getLong("id_cabecera_compra"));
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+    
+    
     public static JoinListarDetalleNotaPedido getDetallePedidosFromResultSet(ResultSet rs) {
         JoinListarDetalleNotaPedido obj = new JoinListarDetalleNotaPedido();
         try {
