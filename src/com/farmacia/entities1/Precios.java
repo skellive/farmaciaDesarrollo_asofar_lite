@@ -15,6 +15,7 @@ public class Precios {
     private Double precio_base;
     private Double precio_compra;
     private Double precio_venta;
+    private Double venta_unidad;
     private String estado;
     private String estadoPrecio;
     private String fecha_registro;
@@ -25,12 +26,13 @@ public class Precios {
     public Precios() {
     }
 
-    public Precios(Long id_precio, Long id_producto, Double precio_base, Double precio_compra, Double precio_venta, String estado, String estadoPrecio, String fecha_registro, Long id_usuario, Long porcentaje, Long descuentoVenta) {
+    public Precios(Long id_precio, Long id_producto, Double precio_base, Double precio_compra, Double precio_venta, Double venta_unidad,String estado, String estadoPrecio, String fecha_registro, Long id_usuario, Long porcentaje, Long descuentoVenta) {
         this.id_precio = id_precio;
         this.id_producto = id_producto;
         this.precio_base = precio_base;
         this.precio_compra = precio_compra;
         this.precio_venta = precio_venta;
+        this.venta_unidad = venta_unidad;
         this.estado = estado;
         this.estadoPrecio = estadoPrecio;
         this.fecha_registro = fecha_registro;
@@ -79,6 +81,13 @@ public class Precios {
         this.precio_venta = precio_venta;
     }
 
+    public Double getVenta_unidad(){
+        return venta_unidad;
+    }
+    
+    public void setVenta_unidad(Double venta_unidad){
+        this.venta_unidad = venta_unidad;
+    }
     public String getEstado() {
         return estado;
     }

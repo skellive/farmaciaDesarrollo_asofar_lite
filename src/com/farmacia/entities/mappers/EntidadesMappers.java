@@ -74,7 +74,7 @@ public class EntidadesMappers {
             obj.setNombre(rs.getString("NOMBRE"));
             obj.setDescripcion(rs.getString("DESCRIPCION"));
             obj.setPeso(rs.getDouble("PESO"));
-            obj.setFecha_registro(rs.getDate("FECHA_REGISTRO"));
+            obj.setFecha_registro(rs.getString("FECHA_REGISTRO"));
 
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
