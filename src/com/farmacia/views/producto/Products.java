@@ -32,6 +32,7 @@ import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -558,6 +559,21 @@ public class Products extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+     public static Date ParseFecha(String fecha)
+    {
+        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+        Date fechaDate = null;
+        try {
+            fechaDate = formato.parse(fecha);
+        } 
+        catch (ParseException ex) 
+        {
+            System.out.println(ex);
+        }
+        return fechaDate;
+    }
+     
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String valor = "";
         if (cbxIva.getSelectedIndex() == 0) {
@@ -574,7 +590,7 @@ public class Products extends javax.swing.JDialog {
                 p.setCodigo_barras(codigo2.getText());
                 p.setNombre(nombre1.getText());
                 p.setDescripcion(txtDescripcion.getText());
-                p.setFecha_registro(Fecha.FechaSql());
+                p.setFecha_registro(String.valueOf(Fecha.FechaSql()));
                 try {
                     p.setPeso(Double.parseDouble(txtPeso1.getText()));
                 } catch (Exception e) {
@@ -605,7 +621,7 @@ public class Products extends javax.swing.JDialog {
                 Productos p2 = new Productos();
                 p2.setNombre(nombre1.getText());
                 p2.setDescripcion(txtDescripcion.getText());
-                p2.setFecha_registro(Fecha.FechaSql());
+                p2.setFecha_registro(String.valueOf(Fecha.FechaSql()));
                 try {
                     p2.setPeso(Double.parseDouble(txtPeso1.getText()));
                 } catch (Exception e) {

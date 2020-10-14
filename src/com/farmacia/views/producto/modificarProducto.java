@@ -21,15 +21,23 @@ import com.farmacia.views.compras.AgregarEnvase;
 import com.farmacia.views.compras.AgregarMarca;
 import com.farmacia.views.compras.AgregarMedida;
 import com.farmacia.views.compras.AgregarTipo;
+import com.farmacia.views.compras.OrdenCompra;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -52,6 +60,9 @@ public class modificarProducto extends javax.swing.JDialog {
     ArrayList<EnvaseProducto> listae = null;
     ArrayList<MarcaProducto> listama = null;
     ArrayList<CategoriaProducto> listacau = null;
+    Date date = new Date();
+    DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
+    String FechaActual;
     String str_tipo = null, str_medidas = null, str_envase = null, str_marcas = null, strIva = null, strCategoria = null;
     String error = "", IVA = "";
     Long id_tipo, id_medida, id_envase, id_marca, id_categoria;
@@ -63,6 +74,14 @@ public class modificarProducto extends javax.swing.JDialog {
         getContentPane().setBackground(Color.white);
         initComponents();
         setLocationRelativeTo(null);
+        //FECHA DEL SISTEMA
+        java.util.Date sistFecha = new java.util.Date();
+        SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
+        //    txtFecha.setText(formato.format(sistFecha));
+
+        //HORA DEL SISTEMA
+        Timer tiempo = new Timer(100, new modificarProducto.horas());
+        tiempo.start();
     }
 
     public modificarProducto(java.awt.Frame parent, boolean modal, listarJoinProductosCompras obj2) {
@@ -76,11 +95,30 @@ public class modificarProducto extends javax.swing.JDialog {
             listarCombos(obj1);
             llenarFormulario(obj1);
             Habilitar(false);
+            //FECHA DEL SISTEMA
+        java.util.Date sistFecha = new java.util.Date();
+        SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
+        //    txtFecha.setText(formato.format(sistFecha));
+
+        //HORA DEL SISTEMA
+        Timer tiempo = new Timer(100, new modificarProducto.horas());
+        tiempo.start();
         } catch (Exception ex) {
             Logger.getLogger(modificarProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    class horas implements ActionListener {
+
+        public void actionPerformed(ActionEvent e) {
+            java.util.Date sistHora = new java.util.Date();
+            String pmAm = "HH:mm:ss";
+            SimpleDateFormat format = new SimpleDateFormat(pmAm);
+            Calendar hoy = Calendar.getInstance();
+            //txtHora.setText(String.format(format.format(sistHora), hoy));
+
+        }
+    }
     public void listarCombos(listarJoinProductosCompras obj) {
 
         lista = crud.listarTodoTipoProductos1();
@@ -735,7 +773,15 @@ public class modificarProducto extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    public static String FechaActual() {
+        Date fecha = new Date();
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY-MM-dd");
+        return formatoFecha.format(fecha);
+    }
+    
     private void llenarFormulario(listarJoinProductosCompras obj) {
+        
         codigo.setText(obj.getId_productos().toString());
         if (obj.getCodigo_barras() == null) {
             codigo2.setText("0000000000000");
@@ -745,7 +791,7 @@ public class modificarProducto extends javax.swing.JDialog {
         producto.setText(obj.getNombreProductos());
         txtDescripcion1.setText(obj.getDescripcion());
         txtPeso1.setText(obj.getPeso().toString());
-//        txtFechaActual1.setText(obj.getFecha_registro().toString());
+        txtFechaActual1.setText(FechaActual);
         txtUnidades.setText(obj.getUnidades().toString());
         txtcantMinima.setText(obj.getCantidad_minima().toString());
         System.out.println(//"id_medida: "+obj.getId_medida()+"/n"+
@@ -937,6 +983,7 @@ public class modificarProducto extends javax.swing.JDialog {
 
     private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
         String valor = "";
+        FechaActual = hourdateFormat.format(date);
         //        listarJoinProductosCompras cp =new listarJoinProductosCompras();
         //        cp.setNombreProductos(producto.getText());
         //        cp.setDescripcion(txtDescripcion1.getText());
@@ -959,6 +1006,7 @@ public class modificarProducto extends javax.swing.JDialog {
         p.setId_productos(Long.valueOf(codigo.getText()));
         p.setId_usuario(Long.valueOf(id_usuario.getText()));
         p.setIva(IVA);
+        p.setFecha_registro(FechaActual);
         p.setCantidad_minima(Long.valueOf(txtcantMinima.getText()));
         p.setReceta(String.valueOf(cbxReceta.getSelectedItem()));
         p.setUnidades(Long.valueOf(txtUnidades.getText()));
