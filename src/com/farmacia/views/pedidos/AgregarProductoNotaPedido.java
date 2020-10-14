@@ -566,12 +566,16 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         PrecioNotaPedido Pnp = new PrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(),producto.getText());
         Pnp.setVisible(true);
         Pnp.getPrecio();
+        if(txtPrecio.equals("")){
+            txtPrecio.setText("");
+        }else{
         txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
         txtBono.setEnabled(true);
         txtporcentajeDescuento.setEnabled(true);
         txtcantidadpro.setEnabled(true);
         objf.setPrecios(Pnp.getPrecio().getPrecio_compra());
         objf.setId_precios(Pnp.getPrecio().getId_precio());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

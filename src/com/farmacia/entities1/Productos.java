@@ -18,7 +18,7 @@ public class Productos {
     private String nombre;
     private String descripcion;
     private double peso;
-    private String fecha_registro;
+    private Date fecha_registro;
     private String estado;
     private Long id_usuario;
     private String iva;
@@ -30,7 +30,7 @@ public class Productos {
     public Productos() {
     }
 
-    public Productos(Long id_productos, Long id_tipo, Long id_marcas, Long id_medidas, Long id_envase,Long id_categoria, String nombre, String descripcion, double peso, String fecha_registro, String estado, Long id_usuario, String iva, Long cantidad_minima, String receta, Long unidades, String codigo_barras) {
+    public Productos(Long id_productos, Long id_tipo, Long id_marcas, Long id_medidas, Long id_envase,Long id_categoria, String nombre, String descripcion, double peso, Date fecha_registro, String estado, Long id_usuario, String iva, Long cantidad_minima, String receta, Long unidades, String codigo_barras) {
         this.id_productos = id_productos;
         this.id_tipo = id_tipo;
         this.id_marcas = id_marcas;
@@ -122,11 +122,11 @@ public class Productos {
         this.peso = peso;
     }
 
-    public String getFecha_registro() {
+    public Date getFecha_registro() {
         return fecha_registro;
     }
 
-    public void setFecha_registro(String fecha_registro) {
+    public void setFecha_registro(Date fecha_registro) {
         this.fecha_registro = fecha_registro;
     }
 

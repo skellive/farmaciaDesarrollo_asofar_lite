@@ -689,7 +689,7 @@ public class CRUD {
             prodProAlm.setString(1, obj.getCodigo_barras());
             prodProAlm.setString(2, obj.getNombre());
             prodProAlm.setString(3, obj.getDescripcion());
-            prodProAlm.setDate(4, ParseFecha(obj.getFecha_registro()));
+            prodProAlm.setDate(4, obj.getFecha_registro());
             prodProAlm.setDouble(5, obj.getPeso());
             prodProAlm.setLong(6, obj.getId_tipo());
             prodProAlm.setLong(7, obj.getId_medidas());
@@ -2351,7 +2351,7 @@ public class CRUD {
                     "{ call BuscarIDProductoNuevo(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getNombre());
             prodProAlm.setString(2, obj.getDescripcion());
-            prodProAlm.setDate(3, ParseFecha(obj.getFecha_registro()));
+            prodProAlm.setDate(3, obj.getFecha_registro());
             prodProAlm.setDouble(4, obj.getPeso());
             prodProAlm.setLong(5, obj.getId_tipo());
             prodProAlm.setLong(6, obj.getId_medidas());
@@ -5256,7 +5256,7 @@ public class CRUD {
                     "{ call ingresarProductoConvertidor(?,?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setString(1, obj.getNombre());
             prodProAlm.setString(2, obj.getDescripcion());
-            prodProAlm.setDate(3, ParseFecha(obj.getFecha_registro()));
+            prodProAlm.setDate(3, obj.getFecha_registro());
             prodProAlm.setDouble(4, obj.getPeso());
             prodProAlm.setLong(5, obj.getId_tipo());
             prodProAlm.setLong(6, obj.getId_medidas());

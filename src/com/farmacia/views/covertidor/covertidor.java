@@ -1125,7 +1125,7 @@ public class covertidor extends javax.swing.JDialog {
             Productos p = new Productos();
             p.setNombre(producto4.getText());
             p.setDescripcion(descripcion4.getText());
-            p.setFecha_registro(String.valueOf(Fecha.FechaSql()));
+            p.setFecha_registro(Fecha.FechaSql());
             p.setPeso(Double.parseDouble(obj1.getPeso().toString()));
             p.setId_tipo(id_tipo);
             p.setId_medidas(id_medida);

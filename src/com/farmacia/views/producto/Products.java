@@ -26,6 +26,7 @@ import com.farmacia.views.compras.AgregarMarca;
 import com.farmacia.views.compras.AgregarMedida;
 import com.farmacia.views.compras.AgregarTipo;
 import com.farmacia.views.precios.Ingreso_de_Precios;
+import com.farmacia.views.precios.Mantenimiento_Precio;
 import com.farmacia.views.precios.Mantenimiento_Precios_Productos;
 import java.awt.Color;
 
@@ -560,19 +561,7 @@ public class Products extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     
-     public static Date ParseFecha(String fecha)
-    {
-        SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-        Date fechaDate = null;
-        try {
-            fechaDate = formato.parse(fecha);
-        } 
-        catch (ParseException ex) 
-        {
-            System.out.println(ex);
-        }
-        return fechaDate;
-    }
+ 
      
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         String valor = "";
@@ -590,7 +579,7 @@ public class Products extends javax.swing.JDialog {
                 p.setCodigo_barras(codigo2.getText());
                 p.setNombre(nombre1.getText());
                 p.setDescripcion(txtDescripcion.getText());
-                p.setFecha_registro(String.valueOf(Fecha.FechaSql()));
+                p.setFecha_registro(Fecha.FechaSql());
                 try {
                     p.setPeso(Double.parseDouble(txtPeso1.getText()));
                 } catch (Exception e) {
@@ -621,7 +610,7 @@ public class Products extends javax.swing.JDialog {
                 Productos p2 = new Productos();
                 p2.setNombre(nombre1.getText());
                 p2.setDescripcion(txtDescripcion.getText());
-                p2.setFecha_registro(String.valueOf(Fecha.FechaSql()));
+                p2.setFecha_registro(Fecha.FechaSql());
                 try {
                     p2.setPeso(Double.parseDouble(txtPeso1.getText()));
                 } catch (Exception e) {
@@ -725,8 +714,10 @@ public class Products extends javax.swing.JDialog {
     private void ingresoDePrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresoDePrecioActionPerformed
          //      Ingreso_de_Precios p = new Ingreso_de_Precios(new javax.swing.JFrame(), true,Long.valueOf(valorIDProd),nombre1.getText());
         //        p.setVisible(true);
-        Mantenimiento_Precios_Productos p = new Mantenimiento_Precios_Productos(new javax.swing.JFrame(), true, Long.valueOf(valorIDProd), nombre1.getText());
-        p.setVisible(true);
+     //   Mantenimiento_Precios_Productos p = new Mantenimiento_Precios_Productos(new javax.swing.JFrame(), true, Long.valueOf(valorIDProd), nombre1.getText());
+       // p.setVisible(true);
+        Mantenimiento_Precio mp = new Mantenimiento_Precio(new javax.swing.JFrame(), true, Long.valueOf(valorIDProd), nombre1.getText());
+        mp.setVisible(true);
     }//GEN-LAST:event_ingresoDePrecioActionPerformed
 
     private void txtcantMinimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcantMinimaActionPerformed
