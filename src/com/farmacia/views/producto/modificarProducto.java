@@ -21,6 +21,7 @@ import com.farmacia.views.compras.AgregarEnvase;
 import com.farmacia.views.compras.AgregarMarca;
 import com.farmacia.views.compras.AgregarMedida;
 import com.farmacia.views.compras.AgregarTipo;
+import com.farmacia.views.precios.Mantenimiento_Precio;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
@@ -880,8 +881,12 @@ public class modificarProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxIvaActionPerformed
 
     private void editarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPrecioActionPerformed
-        Mantenimiento_Precios_Productos mp = new Mantenimiento_Precios_Productos(new javax.swing.JFrame(), true, Long.valueOf(codigo.getText()), producto.getText());
+        //Mantenimiento_Precios_Productos mp = new Mantenimiento_Precios_Productos(new javax.swing.JFrame(), true, Long.valueOf(codigo.getText()), producto.getText());
+        //mp.setVisible(true);
+        
+        Mantenimiento_Precio mp = new Mantenimiento_Precio(new javax.swing.JFrame(), true, Long.valueOf(codigo.getText()), producto.getText());
         mp.setVisible(true);
+        
     }//GEN-LAST:event_editarPrecioActionPerformed
 
     private void txtUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidadesActionPerformed

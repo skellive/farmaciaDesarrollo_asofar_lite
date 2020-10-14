@@ -488,6 +488,39 @@ public class EntidadesMappers {
         return obj;
     }
 
+    
+    //
+        public static JoinListarNotaPedidosCabecera getListadoCabeceraComprasFromResultSet(ResultSet rs) {
+        JoinListarNotaPedidosCabecera obj = new JoinListarNotaPedidosCabecera();
+        try {
+
+            obj.setId_cabecera_compra(rs.getLong("ID_CABECERA_COMPRA"));
+            obj.setId_proveedor(rs.getLong("ID_PROVEEDOR"));
+            obj.setCorreo(rs.getString("CORREO"));
+            obj.setId_proveedor_clase(rs.getLong("ID_PROVEEDOR_CLASE"));
+            obj.setClase(rs.getString("CLASE"));
+            obj.setDireccion(rs.getString("DIRECCION"));
+            obj.setCedula_ruc(rs.getString("CEDULA_RUC"));
+            obj.setRepresentante(rs.getString("REPRESENTANTE"));
+            obj.setEntidad(rs.getString("PROVEEDOR"));
+            obj.setTelefono(rs.getString("TELEFONO"));
+            obj.setFecha_creacion(rs.getString("FECHA_CREACION"));
+            obj.setIva(rs.getBigDecimal("IVA"));
+            obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
+            obj.setTotal(rs.getBigDecimal("TOTAL"));
+            obj.setPlazo(rs.getString("PLAZO"));
+            obj.setForma_pago(rs.getString("FORMA_PAGO"));
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+    
+    
+    
+    
+    
     public static JoinListarNotaPedidosCabecera getListadoCabeceraNotaPedidoEnComprasFromResultSet(ResultSet rs) {
         JoinListarNotaPedidosCabecera obj = new JoinListarNotaPedidosCabecera();
         try {

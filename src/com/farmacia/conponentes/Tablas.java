@@ -758,6 +758,59 @@ public class Tablas {
 
     }
 
+    
+    //--
+        public static void CargarListaCabeceraDeCompra(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
+
+        int[] a = {50, 80, 180, 190, 180, 180, 100, 100};
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+        model = Tablas.VaciarTabla(Tabla);
+        String[] Co = {"N° ", "CODIGO", "PROVEEDOR", "REPRESENTANTE", "TELEFONO", "FECHA DE CREACION", "PLAZO", "TOTAL"};
+        String[] Filas = new String[9];
+        model = new DefaultTableModel(null, Co);
+        Tabla.setShowGrid(true);
+        for (int i = 0; i < lista.size(); i++) {
+            Filas[0] = "" + lista.get(i).getId_cabecera_compra().toString();
+            Filas[1] = lista.get(i).getId_proveedor().toString();
+            Filas[2] = lista.get(i).getEntidad();
+            Filas[3] = lista.get(i).getRepresentante();
+            Filas[4] = lista.get(i).getTelefono();
+            String j = Fecha.getStringFecha1(lista.get(i).getFecha_creacion());
+            System.out.println(" fec " + j);
+            Filas[5] = Fecha.getStringFecha(Date.valueOf(j));
+            //   Filas[5] = lista.get(i).getFecha_creacion();
+            Filas[6] = "" + lista.get(i).getPlazo();
+            Filas[7] = Formato_Numeros.formatoNumero("" + lista.get(i).getTotal().toString());
+
+            model.addRow(Filas);
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
+            Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
+            Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
+
+        }
+
+    }
+    
+    
+    
+    
     public static void CargarJoinListaCabeceraPedido(JTable Tabla, ArrayList<JoinListarNotaPedidosCabecera> lista) {
 
         int[] a = {50, 80, 180, 190, 180, 180, 100, 100};

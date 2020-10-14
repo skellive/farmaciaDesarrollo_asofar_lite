@@ -665,11 +665,20 @@ public class Detalle_Compra extends javax.swing.JDialog {
     }//GEN-LAST:event_txtIvaActionPerformed
 
     private void btnEliminarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarCompraActionPerformed
-      int r = JOptionPane.showConfirmDialog(null, "¿Seguro que Deseas eliminar esta Compra?", "", JOptionPane.YES_NO_OPTION);
+        String observacion= "";
+        int r = JOptionPane.showConfirmDialog(null, "¿Seguro que Deseas eliminar esta Compra?", "", JOptionPane.YES_NO_OPTION);
         if (r == JOptionPane.YES_OPTION) {
+            String motivo = JOptionPane.showInputDialog("Motivo por el cual esta Desactivando");
+            if(motivo.isEmpty()){
+                observacion="NINGUNO";
+            }else{
+                observacion=motivo;
+            }
+            
+            
             String id_cab = txt_Numero.getText().toString();
             // Elimina la Compra si quitas el --> //
-            //crud.EliminarCabeceraCompra(Long.parseLong(id_cab));
+            crud.EliminarCabeceraCompra(Long.parseLong(id_cab),observacion);
             JOptionPane.showMessageDialog(null, "La Nota de Pedido Nº"+id_cab+" se Activo");
             this.setVisible(false);
         } else {

@@ -1998,14 +1998,15 @@ public class CRUD {
      
      
      //Eliminar Compra
-     public void EliminarCabeceraCompra(Long id) {
+     public void EliminarCabeceraCompra(Long id,String mensaje) {
         String msg;
         try {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement cs = conect.prepareCall(
-                    "{ call eliminarCabeceraCompra(?,?) }");
+                    "{ call eliminarCabeceraCompra(?,?,?) }");
             cs.setLong(1,id);
+            cs.setString(2,mensaje);
             cs.registerOutParameter("salida", Types.VARCHAR);
             cs.executeUpdate();
             msg = cs.getString("salida");
@@ -2370,6 +2371,48 @@ public class CRUD {
 
     }//getListadoCabeceraNotaPedidoEnComprasFromResultSet
 
+    
+    
+    
+        public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraCompras(int op) {
+        ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{ call ListarCabeceraCompra(?)}");
+            prcProcedimientoAlmacenado.setInt(1, op);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                JoinListarNotaPedidosCabecera obj = EntidadesMappers.getListadoCabeceraComprasFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
     public ArrayList<JoinListarNotaPedidosCabecera> listarCabeceraNotaPedidoEnCompras(int op) {
         ArrayList<JoinListarNotaPedidosCabecera> lista = new ArrayList<JoinListarNotaPedidosCabecera>();
         try {

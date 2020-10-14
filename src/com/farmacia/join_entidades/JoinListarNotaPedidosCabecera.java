@@ -7,6 +7,7 @@ import java.sql.Time;
 
 
 public class JoinListarNotaPedidosCabecera {
+    private Long id_cabecera_compra;
     private Long id_cabecera_nota_pedidos;
     private Long id_proveedor;
     private String entidad;
@@ -30,7 +31,8 @@ public class JoinListarNotaPedidosCabecera {
     public JoinListarNotaPedidosCabecera() {
     }
 
-    public JoinListarNotaPedidosCabecera(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String Plazo, String forma_pago, String fecha_creacion, String fecha2, String fecha1, BigDecimal iva, BigDecimal descuento, BigDecimal total,String observacion) {
+    public JoinListarNotaPedidosCabecera(Long id_cabecera_compra,Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String Plazo, String forma_pago, String fecha_creacion, String fecha2, String fecha1, BigDecimal iva, BigDecimal descuento, BigDecimal total,String observacion) {
+        this.id_cabecera_compra = id_cabecera_compra;
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
         this.id_proveedor = id_proveedor;
         this.entidad = entidad;
@@ -52,6 +54,14 @@ public class JoinListarNotaPedidosCabecera {
         this.observacion = observacion;
     }
 
+    public Long getId_cabecera_compra() {
+        return id_cabecera_compra;
+    }
+
+    public void setId_cabecera_compra(Long id_cabecera_compra) {
+        this.id_cabecera_compra = id_cabecera_compra;
+    }
+    
     public Long getId_cabecera_nota_pedidos() {
         return id_cabecera_nota_pedidos;
     }
