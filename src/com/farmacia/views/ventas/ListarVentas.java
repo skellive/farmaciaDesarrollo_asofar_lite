@@ -7,6 +7,7 @@ package com.farmacia.views.ventas;
 
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Conexion;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -33,7 +34,7 @@ public class ListarVentas extends javax.swing.JFrame {
     int x, y;    
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-    public ListarVentas() {
+    public ListarVentas(Listar_usuario obj) {
         initComponents();
         this.setLocationRelativeTo(this);
         try{
@@ -316,7 +317,7 @@ public class ListarVentas extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ListarVentas().setVisible(true);
+                new ListarVentas(null).setVisible(true);
             }
         });
     }

@@ -707,7 +707,7 @@ public class Products extends javax.swing.JDialog {
     }//GEN-LAST:event_cbxMedidaActionPerformed
 
     private void ingresoDePrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresoDePrecioActionPerformed
-        //        Ingreso_de_Precios p = new Ingreso_de_Precios(new javax.swing.JFrame(), true,Long.valueOf(valorIDProd),nombre1.getText());
+         //      Ingreso_de_Precios p = new Ingreso_de_Precios(new javax.swing.JFrame(), true,Long.valueOf(valorIDProd),nombre1.getText());
         //        p.setVisible(true);
         Mantenimiento_Precios_Productos p = new Mantenimiento_Precios_Productos(new javax.swing.JFrame(), true, Long.valueOf(valorIDProd), nombre1.getText());
         p.setVisible(true);

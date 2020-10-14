@@ -839,7 +839,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jmVentaReporteActionPerformed
 
     private void jMnuListVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuListVentasActionPerformed
-       ListarVentas livt = new ListarVentas(); 
+       ListarVentas livt = new ListarVentas(objUsuario); 
        livt.setVisible(true);
     }//GEN-LAST:event_jMnuListVentasActionPerformed
 

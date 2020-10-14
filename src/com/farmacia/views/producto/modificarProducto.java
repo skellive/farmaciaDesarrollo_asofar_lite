@@ -745,7 +745,7 @@ public class modificarProducto extends javax.swing.JDialog {
         producto.setText(obj.getNombreProductos());
         txtDescripcion1.setText(obj.getDescripcion());
         txtPeso1.setText(obj.getPeso().toString());
-        txtFechaActual1.setText(obj.getFecha_registro().toString());
+//        txtFechaActual1.setText(obj.getFecha_registro().toString());
         txtUnidades.setText(obj.getUnidades().toString());
         txtcantMinima.setText(obj.getCantidad_minima().toString());
         System.out.println(//"id_medida: "+obj.getId_medida()+"/n"+
