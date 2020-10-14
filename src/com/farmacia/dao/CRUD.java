@@ -2499,6 +2499,42 @@ public class CRUD {
         }
         return lista;
     }
+    
+    
+    
+        public String insertarConversionUnidades(ListarKardex obj) {
+
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call InsertarConversion(?,?,?,?,?) }");
+            prodProAlm.setLong(1, obj.getId_producto());
+            prodProAlm.setLong(2, obj.getId_precio());
+            prodProAlm.setLong(3, obj.getCantidad());
+            prodProAlm.setLong(4, obj.getCantidad_unidad());
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
 
     public String insertarCabeceraNotaPedido(CabeceraNotaPedido obj) {
 
@@ -3792,8 +3828,9 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement pro = conect.prepareCall(
-                    "{ call DesactivarNotaPedido(?,?)}");
+                    "{ call DesactivarNotaPedido(?,?,?)}");
             pro.setLong(1, cab.getId_cabecera_nota_pedidos());
+            pro.setString(2,cab.getObservacion());
             pro.executeUpdate();
             //pro.execute();
             valor = pro.getString("valor");

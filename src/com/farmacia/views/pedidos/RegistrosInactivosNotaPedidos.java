@@ -222,16 +222,9 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_tblRegistrodeNotasMouseClicked
 
     private void btnSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalir2ActionPerformed
-        int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
-
-        if (r == JOptionPane.YES_OPTION) {
             setVisible(false);
             MantenimientoNotaPedidos Mant = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
             Mant.setVisible(true);
-
-        } else {
-
-        }
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
@@ -267,7 +260,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             i = tblRegistrodeNotas.getSelectedRow();
             objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
             if (objeto != null) {
-                
+                JOptionPane.showMessageDialog(null, ""+objeto.getObservacion(), "Motivo porque se Desactivo", JOptionPane.INFORMATION_MESSAGE);
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea Activar este Pedido?", "", JOptionPane.YES_NO_OPTION);
                 if (r == JOptionPane.YES_OPTION) {
 

@@ -1156,16 +1156,26 @@ Buscar();
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        String id_cab = "";
-
+        String id_cab,observacion = "";
         CabeceraNotaPedido cn = new CabeceraNotaPedido();
-
         cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
-        id_cab = crud.DesactivarEstadoNotaPedido(cn);
-        setVisible(false);
-        RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
-
-        RIN.setVisible(true);
+        int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Desactivar la nota de pedido?", "", JOptionPane.YES_NO_OPTION);
+        if (m == JOptionPane.YES_OPTION) {
+            String motivo = JOptionPane.showInputDialog("Motivo por el cual esta Desactivando");
+            if(motivo.isEmpty()){
+                observacion="NINGUNO";
+            }else{
+                observacion=motivo;
+            }
+            JOptionPane.showMessageDialog(null,observacion);
+            cn.setObservacion(observacion);
+            id_cab = crud.DesactivarEstadoNotaPedido(cn);
+            JOptionPane.showMessageDialog(null,id_cab);
+            setVisible(false);
+            RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
+            RIN.setVisible(true);
+        }
+        
 
     }//GEN-LAST:event_jButton3ActionPerformed
 

@@ -41,6 +41,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
     String Buscar = "";
     String mensaje = null;
     ListarKardex objet = null;
+    ListarKardex objetoInv = null;
 
     public Kardex_Productos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -52,6 +53,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
         listaStock = crud.ListarKardexStock();
         //listarStock();
         Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        //Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
         this.sumarTotalStock();
     }
 
@@ -65,6 +67,23 @@ public class Kardex_Productos extends javax.swing.JDialog {
         }
         txtTotal.setText(Formato_Numeros.formatoNumero(total.toString()));
     }
+    
+    public ListarKardex devuelveObjeto(String idproducto,String preCompra,String preVenta, ArrayList<ListarKardex> lista) {
+        ListarKardex objeto1 = null;
+        for (int i = 0; i < lista.size(); i++) {
+            if (idproducto.equals(lista.get(i).getId_producto().toString()) && 
+                preCompra.equals(lista.get(i).getPrecio_compra().toString()) &&
+                preVenta.equals(lista.get(i).getPrecio_venta().toString()) ) {
+                objeto1 = lista.get(i);
+                //JOptionPane.showMessageDialog(this,"Encontrado");
+                System.out.println("Encontrado");
+                break;
+            }
+        }
+        return objeto1;
+    }
+    
+    //JOptionPane.showMessageDialog(this, "2 click");
 
 
 
@@ -87,7 +106,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        tblProduc = new javax.swing.JScrollPane();
         tabla_stock = new javax.swing.JTable();
         jButton2 = new javax.swing.JButton();
         txtTotal = new javax.swing.JTextField();
@@ -138,32 +157,41 @@ public class Kardex_Productos extends javax.swing.JDialog {
 
         tabla_stock.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+
             },
             new String [] {
-
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8 "
             }
-        ));
-        tabla_stock.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         tabla_stock.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tabla_stockMouseClicked(evt);
+            }
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 tabla_stockMousePressed(evt);
             }
         });
-        jScrollPane1.setViewportView(tabla_stock);
+        tblProduc.setViewportView(tabla_stock);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 800, Short.MAX_VALUE)
+            .addComponent(tblProduc)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 205, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(tblProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jButton2.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
@@ -192,22 +220,22 @@ public class Kardex_Productos extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(97, 97, 97)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(txtbusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(322, 322, 322))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(249, 249, 249)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(35, 35, 35)
-                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,13 +247,13 @@ public class Kardex_Productos extends javax.swing.JDialog {
                     .addComponent(txtbusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -286,17 +314,80 @@ public class Kardex_Productos extends javax.swing.JDialog {
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void tabla_stockMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_stockMouseClicked
+
+    }//GEN-LAST:event_tabla_stockMouseClicked
+
     private void tabla_stockMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_stockMousePressed
-//        int i = 0;
-//        try {
-//            if (evt.getClickCount() == 2) {
-//                i = tabla_stock.getSelectedRow();
-//                    covertidor acc = new covertidor(new javax.swing.JFrame(), true, tabla_stock.getValueAt(i, 0).toString());
-//                    acc.setVisible(true);
-//            }
-//        } catch (Exception e) {
-//            Logger.getLogger(Stock_Productos.class.getName()).log(Level.SEVERE, null, e);
-//        }
+
+        //OPERACION PARA LISTAR TABLA DE ABAJO
+        int i = 0;
+        String idpro,preCom,preVen,mostar,msje;
+        int cantidad,unidad_acep,stock_caja,unidad_insertar=0;
+        try {
+            if (evt.getClickCount() == 2) {
+                i = tabla_stock.getSelectedRow();
+                //JOptionPane.showMessageDialog(this, "2 click");
+                idpro= tabla_stock.getValueAt(i,0).toString();
+                preCom= tabla_stock.getValueAt(i,4).toString();
+                preVen= tabla_stock.getValueAt(i,5).toString();
+                stock_caja= Integer.parseInt(tabla_stock.getValueAt(i,6).toString());
+                System.out.println(idpro+":"+preCom+"-"+preVen);
+                //JOptionPane.showMessageDialog(this, idpro+":"+preCom+"-"+preVen);
+                objetoInv=devuelveObjeto(idpro,preCom,preVen,listaStock);
+                if(objetoInv==null){JOptionPane.showMessageDialog(this, "Valor no encontrado");
+                }else{
+                if(tabla_stock.getValueAt(i,3).toString().equals("CAJA")){
+                 //JOptionPane.showMessageDialog(null, "stock en caja: "+stock_caja);// en stock
+                 int r = JOptionPane.showConfirmDialog(null, "¿Desea convertir a unidades?", "", JOptionPane.YES_NO_OPTION);
+                 if (r == JOptionPane.YES_OPTION) {
+                    if(stock_caja>0 ){
+                     //JOptionPane.showMessageDialog(this, "si");
+                    String cant = JOptionPane.showInputDialog("¿Cuántas cajas deseas convertir a unidades?");
+                    cantidad= Integer.parseInt(cant);
+                     if( cantidad>0){
+                      if(cantidad<=stock_caja){
+                      //JOptionPane.showMessageDialog(null, "cantidad que pediste: "+cantidad);
+                      unidad_acep=objetoInv.getUnidad_aceptada().intValue();
+                      //JOptionPane.showMessageDialog(null, "unidad aceptada: "+objetoInv.getUnidad_aceptada());
+                      unidad_insertar=cantidad*unidad_acep;
+                      //JOptionPane.showMessageDialog(null, "insertar en kardex unidad: "+unidad_insertar);
+                      //JOptionPane.showMessageDialog(null, cantidad+ " cajas se convertiran en "+unidad_insertar+" unidades");
+                      objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad q pediste
+                      objetoInv.setCantidad_unidad(Long.valueOf(unidad_insertar));//unidades q se insertaran
+                      mostar="idproducto:"+objetoInv.getId_producto().toString()+"\n"+
+                             "idprecio:"+objetoInv.getId_precio().toString()+"\n"+
+                             "cantidad en caja:"+objetoInv.getCantidad().toString()+"\n"+
+                             "unidades: "+objetoInv.getCantidad_unidad().toString();
+                      //JOptionPane.showMessageDialog(null,mostar);
+                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de convertir "+cantidad+" cajas en "+unidad_insertar+" unidades ?", "", JOptionPane.YES_NO_OPTION);
+                      if (m == JOptionPane.YES_OPTION) {
+                      msje=crud.insertarConversionUnidades(objetoInv);
+                      //JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
+                      JOptionPane.showMessageDialog(null,msje);
+                      listaStock = crud.ListarKardexStock();
+                      Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                      this.sumarTotalStock();
+                      }
+                      }else{
+                        JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
+                      }   
+                     }else{
+                        JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                     }   
+                    }else{
+                        JOptionPane.showMessageDialog(null, "No hay Cajas");
+                    } 
+                    
+                 }   
+                } 
+                }
+                
+                
+            }
+        } catch (Exception e) {
+            // Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
+        }
     }//GEN-LAST:event_tabla_stockMousePressed
 
     /**
@@ -350,8 +441,8 @@ public class Kardex_Productos extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tabla_stock;
+    private javax.swing.JScrollPane tblProduc;
     private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtbusqueda;
     // End of variables declaration//GEN-END:variables

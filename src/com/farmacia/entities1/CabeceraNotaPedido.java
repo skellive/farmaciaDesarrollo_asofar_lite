@@ -19,12 +19,13 @@ public class CabeceraNotaPedido {
     private BigDecimal iva;
     private BigDecimal descuento;
     private BigDecimal total;
+    private String observacion;
  
 
     public CabeceraNotaPedido() {
     }
 
-    public CabeceraNotaPedido(Long id_cabecera_nota_pedidos, Long id_proveedor, Long id_usuario, String fecha_creacion, String estado, String plazo, String forma_pago, BigDecimal iva, BigDecimal descuento, BigDecimal total) {
+    public CabeceraNotaPedido(Long id_cabecera_nota_pedidos, Long id_proveedor, Long id_usuario, String fecha_creacion, String estado, String plazo, String forma_pago, BigDecimal iva, BigDecimal descuento, BigDecimal total,String observacion) {
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
         this.id_proveedor = id_proveedor;
         this.id_usuario = id_usuario;
@@ -35,6 +36,7 @@ public class CabeceraNotaPedido {
         this.iva = iva;
         this.descuento = descuento;
         this.total = total;
+        this.observacion = observacion;
     }
 
     public Long getId_cabecera_nota_pedidos() {
@@ -116,5 +118,15 @@ public class CabeceraNotaPedido {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+    
+    
 
 }

@@ -25,11 +25,12 @@ public class JoinListarNotaPedidosCabecera {
     private BigDecimal iva;
     private BigDecimal descuento;
     private BigDecimal total;
+    private String observacion;
 
     public JoinListarNotaPedidosCabecera() {
     }
 
-    public JoinListarNotaPedidosCabecera(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String Plazo, String forma_pago, String fecha_creacion, String fecha2, String fecha1, BigDecimal iva, BigDecimal descuento, BigDecimal total) {
+    public JoinListarNotaPedidosCabecera(Long id_cabecera_nota_pedidos, Long id_proveedor, String entidad, String representante, String telefono, Long id_proveedor_clase, String clase, String direccion, String cedula_ruc, String correo, String Plazo, String forma_pago, String fecha_creacion, String fecha2, String fecha1, BigDecimal iva, BigDecimal descuento, BigDecimal total,String observacion) {
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
         this.id_proveedor = id_proveedor;
         this.entidad = entidad;
@@ -48,6 +49,7 @@ public class JoinListarNotaPedidosCabecera {
         this.iva = iva;
         this.descuento = descuento;
         this.total = total;
+        this.observacion = observacion;
     }
 
     public Long getId_cabecera_nota_pedidos() {
@@ -193,6 +195,16 @@ public class JoinListarNotaPedidosCabecera {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+    
+    
 
 
 }
