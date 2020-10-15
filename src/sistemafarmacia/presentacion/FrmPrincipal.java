@@ -174,7 +174,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jmReporteCompra = new javax.swing.JMenuItem();
         jmVentaReporte = new javax.swing.JMenuItem();
-        jMenuItem11 = new javax.swing.JMenuItem();
         mnuExcel = new javax.swing.JMenu();
         mnuAcerca1 = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
@@ -583,15 +582,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu8.add(jmVentaReporte);
 
-        jMenuItem11.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        jMenuItem11.setText("MOVIMIENTO DE PRODUCTOS");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem11);
-
         jMenuBar1.add(jMenu8);
 
         mnuExcel.setText("EXCEL");
@@ -841,11 +831,6 @@ RIN.setVisible(true);
 //        }
     }//GEN-LAST:event_jmLocalActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-        Reporte_Productos_Compras rpc = new Reporte_Productos_Compras(new javax.swing.JFrame(), true);
-        rpc.setVisible(true);
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
-
     private void mnuAcercaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAcercaMouseClicked
 
     }//GEN-LAST:event_mnuAcercaMouseClicked
@@ -947,7 +932,6 @@ RIN.setVisible(true);
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
