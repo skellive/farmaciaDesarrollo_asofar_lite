@@ -286,9 +286,8 @@ public class Reporte_Compra extends javax.swing.JDialog {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Chooser1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -428,18 +427,6 @@ public class Reporte_Compra extends javax.swing.JDialog {
         TotalPro();
     }//GEN-LAST:event_buscar1KeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-
-        try {
-            lista = crud.listarCabeceraNotaPedidoEnCompras(4);
-            Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
-            TotalPro();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo "+e+", se recomienda cerrar esta ventana y reabrirla.");
-        }
-        TotalPro();
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void btnimprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimirActionPerformed
         if (Chooser1.getDate() != null || Chooser2.getDate() != null) {
             String dia = Integer.toString(Chooser1.getCalendar().get(Calendar.DAY_OF_MONTH));
@@ -531,6 +518,18 @@ public class Reporte_Compra extends javax.swing.JDialog {
     private void Txt_TotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_TotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Txt_TotalActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        try {
+            //lista = crud.listarCabeceraNotaPedidoEnCompras(4);
+            Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
+            TotalPro();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo "+e+", se recomienda cerrar esta ventana y reabrirla.");
+        }
+        TotalPro();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     public void reporte() {
 

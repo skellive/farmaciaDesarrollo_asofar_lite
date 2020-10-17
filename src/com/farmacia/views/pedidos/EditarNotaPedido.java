@@ -188,9 +188,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         txtFechaCreacion = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        cbxFormaP = new javax.swing.JComboBox<>();
+        cbxFormaP = new javax.swing.JComboBox<String>();
         jLabel16 = new javax.swing.JLabel();
-        cbxPlazo = new javax.swing.JComboBox<>();
+        cbxPlazo = new javax.swing.JComboBox<String>();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -199,7 +199,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaNotaPedido = new javax.swing.JTable();
-        tipofiltro1 = new javax.swing.JComboBox<>();
+        tipofiltro1 = new javax.swing.JComboBox<String>();
         TxtFiltro = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -509,13 +509,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         jLabel10.setText("PLAZO:");
 
         cbxFormaP.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Credito" }));
+        cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contado", "Credito" }));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setText("FORMA DE PAGO:");
 
         cbxPlazo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
+        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
 
         jButton1.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
         jButton1.setText("PRODUCTO");
@@ -662,7 +662,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         );
 
         tipofiltro1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tipofiltro1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
+        tipofiltro1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
+        tipofiltro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tipofiltro1ActionPerformed(evt);
+            }
+        });
 
         TxtFiltro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
@@ -869,36 +874,26 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     private void tblaProductoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblaProductoMousePressed
         int i = 0;
         String msg = null;
-        String msg2 = null;
         String id_pro = null;
         try {
             if (evt.getClickCount() == 2) {
                 i = tblaProducto.getSelectedRow();
-                
                 objetoActual = devuelveProducto(tblaProducto.getValueAt(i, 0).toString(), listaP);
-
-//                objeto = devuelveObjeto2(lista.get(i).getId_precios().toString(), lista);
-                //objeto = devuelveObjeto(tblaProducto.getValueAt(i, 0).toString(), lista);
                 if (objetoActual != null) {
-                    
+
                     id_pro = objetoActual.getId_producto().toString();
                     System.out.println(id_pro + " <-- Este es el id Producto");
                     //VALIDA SI EL PRODUCTO ESTA AGREGADO
-                    //lista3
                     msg = ComponentesFaltantes.validarProductoParaAgregar2(lista3, id_pro);
-                    //msg2=listaP1.
                     System.out.println(msg);
                     //valida el mensaje
                     if (msg == null) {
-                    AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objetoActual);
-                    np.setVisible(true);
+                        AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objetoActual);
+                        np.setVisible(true);
                     //msg = ComponentesFaltantes.validarListaFaltantes(tbaNotaPedido, objeto.getId_producto().toString());
 //  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
-                    
                         Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
                         //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
-                        
-
                         if (np.getObjf().getCantidad() > 0 || np.getObjf().getCantidad() != null) {
                             //int suma = Integer.parseInt((String) tblaProducto.getValueAt(i, 6)) + np.getObjf().getCantidad();
                             //getPosicion(objeto.getId_producto(), suma);
@@ -913,11 +908,12 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             actualizarTabla2();
                             actualizarCabecera();
                             btnSalir2.setEnabled(false);
-                        }{
+                        }
+                        {
                             //JOptionPane.showMessageDialog(this, "getCantidad() ->" +np.getObjf().getCantidad());
                         }
 
-                    }else {
+                    } else {
                         JOptionPane.showMessageDialog(this, msg);
                         // System.out.println(msg);
                     }
@@ -927,6 +923,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_tblaProductoMousePressed
+    
     public void actualizarTabla2() {
         String id = txtNumero.getText().toString();
         lista3.clear();
@@ -956,7 +953,6 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //        }
 //
 //    }
-
     public JoinListarDetalleNotaPedido devuelveObjeto2(String datos, ArrayList<JoinListarDetalleNotaPedido> listarobj) {
         JoinListarDetalleNotaPedido objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
@@ -970,7 +966,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-Buscar();
+        Buscar();
     }//GEN-LAST:event_btnBuscarActionPerformed
     public void Buscar() {
         String query = "";
@@ -1027,9 +1023,8 @@ Buscar();
 
         return objeto1;
     }
-    
-    
-        //NUEVO   devolver objeto para mandar abajo 
+
+    //NUEVO   devolver objeto para mandar abajo 
     public joinProductoParaNotaPedido devuelveProducto(String datos, ArrayList<joinProductoParaNotaPedido> listarobj) {
 
         joinProductoParaNotaPedido objeto1 = null;
@@ -1043,9 +1038,8 @@ Buscar();
 
         return objeto1;
     }
-    
-    
-    
+
+
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         x = evt.getX();
         y = evt.getY();
@@ -1082,7 +1076,7 @@ Buscar();
             if (!"".equals(valor)) {
                 JOptionPane.showMessageDialog(null, valor);
                 setVisible(false);
-                
+
                 //MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
                 //Man.setVisible(true);
             }
@@ -1156,26 +1150,26 @@ Buscar();
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 
-        String id_cab,observacion = "";
+        String id_cab, observacion = "";
         CabeceraNotaPedido cn = new CabeceraNotaPedido();
         cn.setId_cabecera_nota_pedidos(Long.valueOf(txtNumero.getText()));
         int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Desactivar la nota de pedido?", "", JOptionPane.YES_NO_OPTION);
         if (m == JOptionPane.YES_OPTION) {
             String motivo = JOptionPane.showInputDialog("Motivo por el cual esta Desactivando");
-            if(motivo.isEmpty()){
-                observacion="NINGUNO";
-            }else{
-                observacion=motivo;
+            if (motivo.isEmpty()) {
+                observacion = "NINGUNO";
+            } else {
+                observacion = motivo;
             }
-            JOptionPane.showMessageDialog(null,observacion);
+            JOptionPane.showMessageDialog(null, observacion);
             cn.setObservacion(observacion);
             id_cab = crud.DesactivarEstadoNotaPedido(cn);
-            JOptionPane.showMessageDialog(null,id_cab);
+            JOptionPane.showMessageDialog(null, id_cab);
             setVisible(false);
             RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
             RIN.setVisible(true);
         }
-        
+
 
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -1207,6 +1201,10 @@ Buscar();
         //        String buscar = filtro.getText();
         //        Tablas.filtro(buscar, t_Nota_faltantes);
     }//GEN-LAST:event_TxtFiltroKeyReleased
+
+    private void tipofiltro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipofiltro1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tipofiltro1ActionPerformed
 
     public static void main(String args[]) {
 

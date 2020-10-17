@@ -135,6 +135,11 @@ public class Categoria extends javax.swing.JDialog {
 
         busqueda_tf.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         busqueda_tf.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
+        busqueda_tf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busqueda_tfActionPerformed(evt);
+            }
+        });
         busqueda_tf.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 busqueda_tfKeyReleased(evt);
@@ -345,6 +350,10 @@ public class Categoria extends javax.swing.JDialog {
         Categoria_Nuevo tn = new Categoria_Nuevo(new javax.swing.JFrame(), true);
         tn.setVisible(true);
     }//GEN-LAST:event_lblNuevoMouseClicked
+
+    private void busqueda_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busqueda_tfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_busqueda_tfActionPerformed
 
     public CategoriaProducto devuelveObjeto(int id, ArrayList<CategoriaProducto> lista) {
         CategoriaProducto gh = new CategoriaProducto();

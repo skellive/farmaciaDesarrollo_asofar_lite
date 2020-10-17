@@ -138,6 +138,11 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
 
         buscar1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         buscar1.setPreferredSize(new java.awt.Dimension(6, 28));
+        buscar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscar1ActionPerformed(evt);
+            }
+        });
         buscar1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 buscar1KeyReleased(evt);
@@ -305,6 +310,10 @@ public class Consulta_proveedor_Nota extends javax.swing.JDialog {
         Tablas.listarProveedorNotaPedido(lista, tabla);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void buscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscar1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buscar1ActionPerformed
 
     /**
      * @param args the command line arguments

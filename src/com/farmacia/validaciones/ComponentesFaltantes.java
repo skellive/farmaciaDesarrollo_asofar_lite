@@ -17,6 +17,7 @@ import javax.swing.JTable;
  * @author alumno
  */
 public class ComponentesFaltantes {
+
     joinProductoDetallesFaltantes objeto = null;
 
     public static String validarListaFaltantes(JTable tabla, String id_producto) {
@@ -27,16 +28,15 @@ public class ComponentesFaltantes {
                 msg = "El producto ya fue Seleccionado!";
                 break;
             }
-
         }
-
         return msg;
     }
+
     public static String validarListaFaltantesNota(ArrayList<joinProductoParaNotaPedido> lista1, String id_precio) {
         String o, msg = null;
         for (int i = 0; i < lista1.size(); i++) {
 
-            o =  lista1.get(i).getId_precios().toString();
+            o = lista1.get(i).getId_precios().toString();
             if (o.equals(id_precio)) {
                 msg = "El producto ya fue Seleccionado!!!";
                 break;
@@ -46,45 +46,40 @@ public class ComponentesFaltantes {
 
         return msg;
     }
-    
-    
-     public static String validarProductoParaAgregar(ArrayList<joinProductoParaNotaPedido> Array2, String id_producto) {
+
+    public static String validarProductoParaAgregar(ArrayList<joinProductoParaNotaPedido> Array2, String id_producto) {
         //JoinListarDetalleNotaPedido
-         String o, msg = null;
+        String o, msg = null;
         Integer cantActual = null;
-        for (int i = 0; i < Array2.size(); i++){
-            o =  Array2.get(i).getId_producto().toString();
+        for (int i = 0; i < Array2.size(); i++) {
+            o = Array2.get(i).getId_producto().toString();
+            System.out.println(o + " o");
             if (o.equals(id_producto)) {
                  //cantActual = Array2.get(i).getCantidad();
-                 //Array2.get(i).setCantidad(cantidad+cantActual);
-                 msg = "El producto ya esta agregado";
-                 break;
+                //Array2.get(i).setCantidad(cantidad+cantActual);
+                msg = "El producto ya esta agregado";
+                break;
             }
-
         }
-
-        return msg;
-    }
-     
-          public static String validarProductoParaAgregar2(ArrayList<JoinListarDetalleNotaPedido> Array2, String id_producto) {
-        //JoinListarDetalleNotaPedido
-         String o, msg = null;
-        Integer cantActual = null;
-        for (int i = 0; i < Array2.size(); i++){
-            o =  Array2.get(i).getId_producto().toString();
-            if (o.equals(id_producto)) {
-                 //cantActual = Array2.get(i).getCantidad();
-                 //Array2.get(i).setCantidad(cantidad+cantActual);
-                 msg = "El producto ya esta agregado";
-                 break;
-            }
-
-        }
-
         return msg;
     }
     
-    
+    public static String validarProductoParaAgregar2(ArrayList<JoinListarDetalleNotaPedido> Array2, String id_producto) {
+        //JoinListarDetalleNotaPedido
+        String o, msg = null;
+        Integer cantActual = null;
+        for (int i = 0; i < Array2.size(); i++) {
+            o = Array2.get(i).getId_producto().toString();
+            System.out.println(o + " o");
+            if (o.equals(id_producto)) {
+                 //cantActual = Array2.get(i).getCantidad();
+                //Array2.get(i).setCantidad(cantidad+cantActual);
+                msg = "El producto ya esta agregado";
+                break;
+            }
+        }
+        return msg;
+    }
 
     public static String validarListaCompras(JTable tabla, String id_producto) {
         String o, msg = null;
