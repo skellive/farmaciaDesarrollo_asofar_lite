@@ -777,7 +777,7 @@ public class ingresoRapido extends javax.swing.JFrame {
 
         joinProductoParaNotaPedido objeto1 = null;
 
-        for (int i = 0; i < listarobj.size() - 1; i++) {
+        for (int i = 0; i < listarobj.size(); i++) {
             if (datos.equals(listarobj.get(i).getId_producto().toString())) {
                 objeto1 = listarobj.get(i);
                 break;
@@ -799,6 +799,10 @@ public class ingresoRapido extends javax.swing.JFrame {
         txtTelefono1.setText("");
         txtIva.setText("");
         txtTotal.setText("");
+        TxtFiltro.setText("");
+        tipofiltro1.setEnabled(false);
+        TxtFiltro.setEnabled(false);
+        btnBuscar.setEnabled(false);
         listaPNP1.clear();
         tabla_para_productos.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
@@ -1003,6 +1007,7 @@ public class ingresoRapido extends javax.swing.JFrame {
             if (evt.getClickCount() == 2) {
                 i = tabla_para_productos.getSelectedRow();
                 objetoActual = devuelveProducto(tabla_para_productos.getValueAt(i, 0).toString(), listaPNP);
+                System.out.println(objetoActual);
                 if (objetoActual != null) {
 
                     id_pro = objetoActual.getId_producto().toString();
@@ -1043,7 +1048,7 @@ public class ingresoRapido extends javax.swing.JFrame {
                 }
             }
         } catch (Exception e) {
-            Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
+            //Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_tabla_para_productosMousePressed
 
@@ -1117,7 +1122,7 @@ public class ingresoRapido extends javax.swing.JFrame {
         if (pos == 6) {
             listaPNP = crud.FiltrosProductosNotaPedido(query, "MARCA");
         }
-        TxtFiltro.setText("");
+        //TxtFiltro.setText("");
 
         //Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
