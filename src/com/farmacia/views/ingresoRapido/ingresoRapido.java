@@ -909,11 +909,11 @@ public class ingresoRapido extends javax.swing.JFrame {
                             Integer.parseInt(tbaListaFaltantes.getValueAt(i, 0).toString()),
                             cbxPlazo.getSelectedItem().toString(),
                             cbxFormaP.getSelectedItem().toString(),
-                            Float.parseFloat(txtIva.getText().replaceAll(",", ".")),
-                            Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
-                            Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
+                            Float.parseFloat(txtIva.getText().replaceAll(",", ".").replaceAll(",", ".")),
+                            Float.parseFloat(txtDescuento.getText().replaceAll(",", ".").replaceAll(",", ".")),
+                            Float.parseFloat(txtTotal.getText().replaceAll(",", ".").replaceAll(",", ".")),
                             Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
-                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 8).toString().replaceAll(",", ".")),
+                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 8).toString().replaceAll(",", ".").replaceAll(",", ".")),
                             Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
                             2);
                 }
