@@ -803,12 +803,13 @@ public class ingresoRapido extends javax.swing.JFrame {
         tipofiltro1.setEnabled(false);
         TxtFiltro.setEnabled(false);
         btnBuscar.setEnabled(false);
-        listaPNP1.clear();
+        btnGuardar.setEnabled(false);
         tabla_para_productos.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnGuardar.setEnabled(false);
         Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
         tbaListaFaltantes.clearSelection();
+        listaPNP1.clear();
     }
 
     public joinProductoParaNotaPedido calcularValores(joinProductoParaNotaPedido lista) {
@@ -909,18 +910,16 @@ public class ingresoRapido extends javax.swing.JFrame {
                             Integer.parseInt(tbaListaFaltantes.getValueAt(i, 0).toString()),
                             cbxPlazo.getSelectedItem().toString(),
                             cbxFormaP.getSelectedItem().toString(),
-                            Float.parseFloat(txtIva.getText().replaceAll(",", ".").replaceAll(",", ".")),
-                            Float.parseFloat(txtDescuento.getText().replaceAll(",", ".").replaceAll(",", ".")),
-                            Float.parseFloat(txtTotal.getText().replaceAll(",", ".").replaceAll(",", ".")),
+                            Float.parseFloat(txtIva.getText().replaceAll(",", ".")),
+                            Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
+                            Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
                             Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
-                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 8).toString().replaceAll(",", ".").replaceAll(",", ".")),
+                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 8).toString().replaceAll(",", ".")),
                             Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
                             2);
                 }
                 JOptionPane.showMessageDialog(null, " Guardado con Exito ");
-                btnGuardar.setEnabled(false);
                 Reiniciar();
-
                 //}  
             } catch (Exception e) {
                 //JOptionPane.showMessageDialog(null, "Error en Insertar --> " + e);
@@ -928,7 +927,6 @@ public class ingresoRapido extends javax.swing.JFrame {
             }
 
         } else {
-
             JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
