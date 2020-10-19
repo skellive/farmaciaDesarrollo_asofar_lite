@@ -807,10 +807,11 @@ public class ingresoRapido extends javax.swing.JFrame {
         tabla_para_productos.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnGuardar.setEnabled(false);
+        ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
+        Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
         listaPNP1.clear();
         Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
         tbaListaFaltantes.clearSelection();
-
     }
 
     public joinProductoParaNotaPedido calcularValores(joinProductoParaNotaPedido lista) {
