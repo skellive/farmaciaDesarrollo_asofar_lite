@@ -14,6 +14,9 @@ import java.math.BigDecimal;
 public class JoinListarProductosVentas {
 
     private Long id_control;
+    private Long stock_unidad;
+    private Long unidad_aceptada;
+    private BigDecimal venta_unidad;
     private Long id_producto;
     private String producto_nombre;
     private String producto_descripcion;
@@ -36,6 +39,7 @@ public class JoinListarProductosVentas {
     private BigDecimal precio_compra;
     private BigDecimal descuento_compra;
     private String estado;
+    private int empaque;
     
     
     
@@ -43,8 +47,11 @@ public class JoinListarProductosVentas {
         
     }
 
-    public JoinListarProductosVentas(Long id_control, Long id_producto, String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, Long descuento, String iva, BigDecimal precio_compra, BigDecimal descuento_compra, String estado) {
+    public JoinListarProductosVentas(Long id_control,Long stock_unidad,Long unidad_aceptada,BigDecimal venta_unidad, Long id_producto, String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, Long descuento, String iva, BigDecimal precio_compra, BigDecimal descuento_compra, String estado,int empaque) {
         this.id_control = id_control;
+        this.stock_unidad = stock_unidad;
+        this.unidad_aceptada = unidad_aceptada;
+        this.venta_unidad = venta_unidad;
         this.id_producto = id_producto;
         this.producto_nombre = producto_nombre;
         this.producto_descripcion = producto_descripcion;
@@ -66,7 +73,8 @@ public class JoinListarProductosVentas {
         this.iva = iva;
         this.precio_compra = precio_compra;
         this.descuento_compra = descuento_compra;
-        this.estado = estado;
+        this.estado = estado;//empaque
+        this.empaque = empaque;
     }
 
     public Long getId_control() {
@@ -76,6 +84,40 @@ public class JoinListarProductosVentas {
     public void setId_control(Long id_control) {
         this.id_control = id_control;
     }
+
+    public Long getStock_unidad() {
+        return stock_unidad;
+    }
+
+    public void setStock_unidad(Long stock_unidad) {
+        this.stock_unidad = stock_unidad;
+    }
+
+    public Long getUnidad_aceptada() {
+        return unidad_aceptada;
+    }
+
+    public void setUnidad_aceptada(Long unidad_aceptada) {
+        this.unidad_aceptada = unidad_aceptada;
+    }
+
+    public BigDecimal getVenta_unidad() {
+        return venta_unidad;
+    }
+
+    public void setVenta_unidad(BigDecimal venta_unidad) {
+        this.venta_unidad = venta_unidad;
+    }
+
+    public int getEmpaque() {
+        return empaque;
+    }
+
+    public void setEmpaque(int empaque) {
+        this.empaque = empaque;
+    }
+    
+    
 
     public Long getId_producto() {
         return id_producto;

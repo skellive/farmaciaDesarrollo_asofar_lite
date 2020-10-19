@@ -730,6 +730,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
             cv.setId_cabecera_venta(Long.parseLong(id_cab));
 
             objeto = cv;
+            
+           
 
             for (int i = 0; i < ListarDetalle.size(); i++) {
 
@@ -739,7 +741,13 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 dv.setId_cabecera_venta(cv.getId_cabecera_venta());
                 dv.setId_control(ListarDetalle.get(i).getId_control());
                 dv.setPrecio(ListarDetalle.get(i).getPrecio());
+                if(ListarDetalle.get(i).getEmpaque()==1){
                 dv.setCantidad(ListarDetalle.get(i).getCantidad());
+                dv.setCantidad_unidad(Long.valueOf(0));  
+                }else{
+                dv.setCantidad(Long.valueOf(0));
+                dv.setCantidad_unidad(ListarDetalle.get(i).getCantidad());    
+                }
                 dv.setIva(ListarDetalle.get(i).getIva());
                 dv.setDescuento(ListarDetalle.get(i).getDescuento());
 
@@ -782,6 +790,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
                 JOptionPane.showMessageDialog(rootPane, msg);
             } else {
+                //JOptionPane.showMessageDialog(this,""+objProd.getEmpaque());  //<---
                 System.out.println(" se repite  " + verificarObjeto(objProd.getId_producto().toString()));
                 if (verificarObjeto(objProd.getId_producto().toString()).equals("si")) {
 
@@ -789,7 +798,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 } else {
                     Detalle_ventas RegDetalleVentas = new Detalle_ventas();
 
-                    RegDetalleVentas.setId_control(objProd.getId_control());
+                    RegDetalleVentas.setId_control(objProd.getId_precio());//nuevo
                     RegDetalleVentas.setId_producto(objProd.getId_producto());
                     RegDetalleVentas.setNombre_producto(objProd.getProducto_nombre());
                     RegDetalleVentas.setCantidad(Long.parseLong(TxtProdCantidad.getText()));
@@ -799,6 +808,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                     RegDetalleVentas.setDescuento(objeto1.getDescuento());
                     RegDetalleVentas.setIva(objeto1.getIva());
                     RegDetalleVentas.setTotal(objeto1.getTotal());
+                    RegDetalleVentas.setEmpaque(objProd.getEmpaque());
+                    //JOptionPane.showMessageDialog(this,""+objProd.getEmpaque());  //<---
 
                     ListarDetalle.add(RegDetalleVentas);
 
@@ -958,17 +969,18 @@ public class MenuPreVentas extends javax.swing.JDialog {
             TotalDescuento = TotalDescuento.add(Descuento);
 
             TxtSubtotalconIva.setText("0.00");
-            TxtSubtotalsinIva.setText("0.00");
+            TxtSubtotalsinIva.setText("0.00");//
+            // cambio
 
-            if ("0.0".equals(ListarDetalle.get(i).getIva().toEngineeringString())) {
+            if ("0.00".equals(ListarDetalle.get(i).getIva().toEngineeringString()) || "0.0".equals(ListarDetalle.get(i).getIva().toEngineeringString())) {
 
                 TotalSubSinIva = TotalSubSinIva.add(Subtotal);
                 System.out.println("TotalSub SinIva " + TotalSubSinIva);
                 TotalSubSinIvaCompra = TotalSubSinIvaCompra.add(SubtotalCompra);
                 System.out.println("TotalSubCompra SinIva " + TotalSubSinIvaCompra);
+                Iva=BigDecimal.valueOf(0.00);
 
-            }
-            if (!"0.0".equals(ListarDetalle.get(i).getIva().toEngineeringString())) {
+            }else{
 
                 TotalIva = TotalIva.add(Subtotal.multiply(Iva));
                 System.out.println("total iva " + TotalIva);
@@ -1047,7 +1059,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
             TxtProdNombre.setText(objProd.getProducto_nombre());            
             TxtProdPrecio.setText(objProd.getPrecio_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
-            TxtDescuentoPorcentaje.setText(objProd.getDescuento().toString());
+            //TxtDescuentoPorcentaje.setText(objProd.getDescuento().toString());
         }
 
 

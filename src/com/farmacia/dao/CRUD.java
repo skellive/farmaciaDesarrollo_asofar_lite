@@ -3413,7 +3413,7 @@ public class CRUD {
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
-                JoinListarProductosVentas obj = EntidadesMappers.getJoinTodosProductosKardexVentasFromResultSet(rs);
+                JoinListarProductosVentas obj = EntidadesMappers.getTodosProductosParaVentasFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();
@@ -4479,13 +4479,14 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call InsertarDetalleVentas(?,?,?,?,?,?,?) }");
+                    "{ call InsertarDetalleVentas(?,?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_cabecera_venta());
             prodProAlm.setLong(2, obj.getId_control());
             prodProAlm.setBigDecimal(3, obj.getPrecio());
             prodProAlm.setLong(4, obj.getCantidad());
-            prodProAlm.setBigDecimal(5, obj.getIva());
-            prodProAlm.setBigDecimal(6, obj.getDescuento());
+            prodProAlm.setLong(5, obj.getCantidad_unidad());
+            prodProAlm.setBigDecimal(6, obj.getIva());
+            prodProAlm.setBigDecimal(7, obj.getDescuento());
 
             prodProAlm.registerOutParameter("valor", Types.VARCHAR);
             prodProAlm.executeUpdate();

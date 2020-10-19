@@ -857,6 +857,36 @@ public class EntidadesMappers {
         }
         return obj;
     }
+        
+        
+        
+        
+        //--
+       public static JoinListarProductosVentas getTodosProductosParaVentasFromResultSet(ResultSet rs) {
+        JoinListarProductosVentas obj = new JoinListarProductosVentas();
+
+        try {
+            obj.setId_producto(rs.getLong("id_producto"));
+            obj.setProducto_nombre(rs.getString("producto"));
+            obj.setProducto_descripcion(rs.getString("descripcion"));
+            obj.setTipo_nombre(rs.getString("tipo"));
+            obj.setEnvase_nombre(rs.getString("presentacion"));//unidad_aceptada
+            obj.setUnidad_aceptada(rs.getLong("unidad_aceptada"));
+            obj.setStock(rs.getLong("cantidad"));
+            obj.setStock_unidad(rs.getLong("cantidad_unidad"));
+            obj.setIva(rs.getString("iva"));
+            obj.setId_precio(rs.getLong("id_precio"));
+            obj.setPrecio_compra(rs.getBigDecimal("precio_compra"));
+            obj.setPrecio_venta(rs.getBigDecimal("precio_venta"));//venta_unidad
+            obj.setVenta_unidad(rs.getBigDecimal("venta_unidad"));//getVenta_unidad
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return obj;
+    }
+        
+        
     
     
     
