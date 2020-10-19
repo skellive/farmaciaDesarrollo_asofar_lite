@@ -61,6 +61,7 @@ public class editarVentas extends javax.swing.JFrame {
             modelo.addColumn("Descripcion");
             modelo.addColumn("Control");
             modelo.addColumn("Cantidad");
+            modelo.addColumn("Unidad");
             modelo.addColumn("Precio");
             modelo.addColumn("Subtotal con IVA");
             modelo.addColumn("Subtotal sin IVA");
@@ -68,7 +69,7 @@ public class editarVentas extends javax.swing.JFrame {
             modelo.addColumn("Descuento");
             modelo.addColumn("Total");
 
-            int[] anchos = {10, 10, 20, 10, 50, 20, 20, 20, 20, 30, 30, 30, 20, 30};
+            int[] anchos = {10, 10, 20, 10, 50, 20, 20, 20, 20, 20, 30, 30, 30, 20, 30};
 
             for (int x = 0; x < cantidadColumnas; x++) {
 
