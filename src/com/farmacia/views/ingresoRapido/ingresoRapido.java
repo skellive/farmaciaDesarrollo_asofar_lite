@@ -807,9 +807,10 @@ public class ingresoRapido extends javax.swing.JFrame {
         tabla_para_productos.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnGuardar.setEnabled(false);
+        listaPNP1.clear();
         Tablas.cargarJoinProductoIngresoNotas(tbaListaFaltantes, listaPNP1);
         tbaListaFaltantes.clearSelection();
-        listaPNP1.clear();
+
     }
 
     public joinProductoParaNotaPedido calcularValores(joinProductoParaNotaPedido lista) {
@@ -914,8 +915,9 @@ public class ingresoRapido extends javax.swing.JFrame {
                             Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
                             Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
                             Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
-                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 8).toString().replaceAll(",", ".")),
+                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 11).toString().replaceAll(",", ".")),
                             Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
+                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 8).toString().replaceAll(",", ".")),
                             2);
                 }
                 JOptionPane.showMessageDialog(null, " Guardado con Exito ");
