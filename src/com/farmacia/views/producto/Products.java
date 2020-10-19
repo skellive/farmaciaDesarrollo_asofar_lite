@@ -370,7 +370,7 @@ public class Products extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 27, 134));
         jLabel11.setText("UNIDADES:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, 25));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, -1, 25));
 
         txtUnidades.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtUnidades.setText("1");
@@ -388,7 +388,7 @@ public class Products extends javax.swing.JDialog {
                 txtUnidadesKeyTyped(evt);
             }
         });
-        jPanel1.add(txtUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 220, 80, 25));
+        jPanel1.add(txtUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 80, 25));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 27, 134));
@@ -511,7 +511,7 @@ public class Products extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 639, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel1)
