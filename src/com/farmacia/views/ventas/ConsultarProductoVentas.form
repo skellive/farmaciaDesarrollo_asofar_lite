@@ -66,7 +66,7 @@
                           <Component id="lblId" min="-2" pref="54" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="12" max="32767" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
           </Group>
@@ -83,13 +83,8 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-<<<<<<< HEAD
                   <Component id="lblId" max="32767" attributes="0"/>
                   <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-=======
-                  <Component id="lblId" pref="8" max="32767" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
->>>>>>> 87e3c6857c88b00e7fbcdfd21f8f570d4972f5dc
               </Group>
           </Group>
         </DimensionLayout>
