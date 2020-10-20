@@ -128,6 +128,7 @@ public class ventasEliminadas extends javax.swing.JFrame {
         });
 
         lblCerrar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCerrar4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCerrar4lblCerrarMouseClicked(evt);
@@ -173,9 +174,9 @@ public class ventasEliminadas extends javax.swing.JFrame {
 
         txtVenta.setEnabled(false);
 
-        btnEditar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/preview_search_find_locate_1551.png"))); // NOI18N
         btnEditar.setText("REVISAR");
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditarMouseClicked(evt);

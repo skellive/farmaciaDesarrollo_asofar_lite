@@ -13,6 +13,7 @@ import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Clientes;
 import com.farmacia.entities1.Obcx;
 import com.farmacia.fecha.Fecha;
+import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.sql.CallableStatement;
@@ -43,6 +44,7 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
 
     public Ingresar_Cliente_Venta(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
@@ -75,20 +77,22 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         cedula = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        BotonGuardar = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
-        BotonSalir = new javax.swing.JButton();
         fecha_reg = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
         apellido = new javax.swing.JTextField();
         cbx1 = new javax.swing.JComboBox<>();
         direccion = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
+        lblGuardar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(1, 1, 1), 2, true));
+        jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(50, 99, 50), 2, true));
+        jPanel1.setOpaque(false);
 
         cbx2.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         cbx2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione...." }));
@@ -100,9 +104,12 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
         });
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
         jLabel2.setText("FECHA DE REGISTRO:");
 
+        BotonTelefono.setBackground(new java.awt.Color(0, 27, 134));
         BotonTelefono.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        BotonTelefono.setForeground(new java.awt.Color(255, 255, 255));
         BotonTelefono.setText("+");
         BotonTelefono.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,9 +118,12 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
         });
 
         jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 27, 134));
         jLabel3.setText("NOMBRE:");
 
+        BotonCorreo.setBackground(new java.awt.Color(0, 27, 134));
         BotonCorreo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        BotonCorreo.setForeground(new java.awt.Color(255, 255, 255));
         BotonCorreo.setText("+");
         BotonCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,12 +132,15 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
         });
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 27, 134));
         jLabel4.setText("APELLIDO:");
 
         jLabel8.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 27, 134));
         jLabel8.setText("CEDULA:");
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 27, 134));
         jLabel5.setText("TELEFONO:");
 
         cedula.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
@@ -146,28 +159,12 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
         });
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 27, 134));
         jLabel6.setText("CORREO:");
 
-        BotonGuardar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        BotonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/guardar1.jpg"))); // NOI18N
-        BotonGuardar.setText("GUARDAR");
-        BotonGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonGuardarActionPerformed(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 27, 134));
         jLabel7.setText("DIRECCION:");
-
-        BotonSalir.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        BotonSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/salir1.png"))); // NOI18N
-        BotonSalir.setText("SALIR");
-        BotonSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BotonSalirActionPerformed(evt);
-            }
-        });
 
         fecha_reg.setEditable(false);
         fecha_reg.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
@@ -184,23 +181,6 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 fecha_regKeyTyped(evt);
-            }
-        });
-
-        jLabel9.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("NUEVO CLIENTE");
-        jLabel9.setOpaque(true);
-        jLabel9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel9MouseDragged(evt);
-            }
-        });
-        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel9MousePressed(evt);
             }
         });
 
@@ -249,62 +229,115 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
             }
         });
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
+        jPanel2.setOpaque(false);
+
+        jLabel9.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel9.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 27, 134));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("NUEVO CLIENTE");
+        jLabel9.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel9MouseDragged(evt);
+            }
+        });
+        jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel9MousePressed(evt);
+            }
+        });
+
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel9)
+                .addGap(150, 150, 150)
+                .addComponent(lblCerrar)
+                .addGap(20, 20, 20))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(lblCerrar)
+                .addContainerGap())
+        );
+
+        lblGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/guardar.png"))); // NOI18N
+        lblGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGuardarMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(22, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7)
-                            .addGap(18, 18, 18)
-                            .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(166, 166, 166))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(87, 87, 87))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel8)
-                                        .addComponent(jLabel2))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(cedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(fecha_reg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(cbx2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(BotonCorreo))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(BotonTelefono))
-                                .addComponent(apellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGap(21, 21, 21)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(108, 108, 108)
-                        .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(133, 133, 133))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(166, 166, 166))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(87, 87, 87))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel8)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cedula, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fecha_reg, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cbx2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BotonCorreo))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cbx1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BotonTelefono))
+                            .addComponent(apellido, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(21, 21, 21))))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(281, 281, 281)
+                .addComponent(lblGuardar)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(fecha_reg, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -329,11 +362,9 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(BotonSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BotonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(lblGuardar)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -382,36 +413,6 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_BotonTelefonoActionPerformed
-// 
-    private void BotonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonGuardarActionPerformed
-
-        if (listat.size() >= 1 && listac.size() >= 1 && nombre.getText().length()>2
-                && apellido.getText().length() >2 && direccion.getText().length() >2) {
-
-             String pro = cc.insertarClientes(cedula.getText(),
-          //  String pro = cc.insertarClientes("Modulo_Cliente", cedula.getText(),
-                    nombre.getText(), apellido.getText(), direccion.getText(),
-                    cbx1.getSelectedItem().toString(), cbx2.getSelectedItem().toString());
-            if (pro != null) {
-
-                cc.insertarTelefonoCliente(listat, cedula.getText());
-                cc.insertarCorreoCliente(listac, cedula.getText());
-
-                JOptionPane.showMessageDialog(null, pro);
-//                Consulta_Clientes mp = new Consulta_Clientes(new javax.swing.JFrame(), true);
-//                setVisible(false);
-//                mp.setVisible(true);
-
-            } else {
-                JOptionPane.showMessageDialog(null, "El Cliente ingresado ya existe");
-            }
-        } else {
-
-            JOptionPane.showMessageDialog(null, "Debe completar todo el formulario");
-        }
-
-
-    }//GEN-LAST:event_BotonGuardarActionPerformed
 
 
     private void fecha_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha_regActionPerformed
@@ -447,12 +448,6 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
     private void cbx1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbx1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbx1ActionPerformed
-
-    private void BotonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonSalirActionPerformed
-        setVisible(false);
-//        Consulta_Clientes cc =new Consulta_Clientes(new javax.swing.JFrame(), true);
-//        cc.setVisible(true);
-    }//GEN-LAST:event_BotonSalirActionPerformed
 
 
     private void cedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cedulaKeyTyped
@@ -522,6 +517,37 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
     private void direccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_direccionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_direccionActionPerformed
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        setVisible(false);
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
+        if (listat.size() >= 1 && listac.size() >= 1 && nombre.getText().length()>2
+                && apellido.getText().length() >2 && direccion.getText().length() >2) {
+
+             String pro = cc.insertarClientes(cedula.getText(),
+          //  String pro = cc.insertarClientes("Modulo_Cliente", cedula.getText(),
+                    nombre.getText(), apellido.getText(), direccion.getText(),
+                    cbx1.getSelectedItem().toString(), cbx2.getSelectedItem().toString());
+            if (pro != null) {
+
+                cc.insertarTelefonoCliente(listat, cedula.getText());
+                cc.insertarCorreoCliente(listac, cedula.getText());
+
+                JOptionPane.showMessageDialog(null, pro);
+//                Consulta_Clientes mp = new Consulta_Clientes(new javax.swing.JFrame(), true);
+//                setVisible(false);
+//                mp.setVisible(true);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El Cliente ingresado ya existe");
+            }
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Debe completar todo el formulario");
+        }
+    }//GEN-LAST:event_lblGuardarMouseClicked
     public void Habilitar(boolean lok) {
         BotonTelefono.setEnabled(lok);
         BotonCorreo.setEnabled(lok);
@@ -529,7 +555,7 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
         //cedula.setEnabled(lok);
         nombre.setEnabled(lok);
         apellido.setEnabled(lok);
-        BotonGuardar.setEnabled(lok);
+        lblGuardar.setEnabled(lok);
     }
 
 //    public void fe() {
@@ -604,8 +630,6 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BotonCorreo;
-    private javax.swing.JButton BotonGuardar;
-    private javax.swing.JButton BotonSalir;
     private javax.swing.JButton BotonTelefono;
     private javax.swing.JTextField apellido;
     private javax.swing.JComboBox<String> cbx1;
@@ -622,6 +646,9 @@ public class Ingresar_Cliente_Venta extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblGuardar;
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 

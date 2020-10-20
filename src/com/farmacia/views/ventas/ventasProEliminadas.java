@@ -130,6 +130,7 @@ public class ventasProEliminadas extends javax.swing.JFrame {
         });
 
         lblCerrar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCerrar4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCerrar4lblCerrarMouseClicked(evt);
@@ -195,7 +196,6 @@ public class ventasProEliminadas extends javax.swing.JFrame {
         txtObProducto.setRows(5);
         jScrollPane2.setViewportView(txtObProducto);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel2.setText("OBSERVACION DE PRODUCTO:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

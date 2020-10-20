@@ -5,6 +5,7 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.EnvaseProducto;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -43,6 +44,7 @@ public class Envases extends javax.swing.JDialog {
      */
     public Envases(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
@@ -74,20 +76,23 @@ public class Envases extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         envase_tb = new javax.swing.JTable();
-        nuevo_btn = new javax.swing.JButton();
-        actualizar_bt = new javax.swing.JButton();
-        salir_btn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         busqueda_tf = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        Reporte = new javax.swing.JButton();
+        lblCerrar = new javax.swing.JLabel();
+        lblActualizar = new javax.swing.JLabel();
+        lblImprimir = new javax.swing.JLabel();
+        lblNuevo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel4.setOpaque(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel1.setOpaque(false);
 
         envase_tb.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -123,44 +128,8 @@ public class Envases extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        nuevo_btn.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        nuevo_btn.setForeground(new java.awt.Color(31, 115, 36));
-        nuevo_btn.setText("NUEVO");
-        nuevo_btn.setFocusable(false);
-        nuevo_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        nuevo_btn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        nuevo_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nuevo_btnActionPerformed(evt);
-            }
-        });
-
-        actualizar_bt.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        actualizar_bt.setText("ACTUALIZAR");
-        actualizar_bt.setFocusable(false);
-        actualizar_bt.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        actualizar_bt.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        actualizar_bt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                actualizar_btActionPerformed(evt);
-            }
-        });
-
-        salir_btn.setBackground(new java.awt.Color(235, 4, 4));
-        salir_btn.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        salir_btn.setForeground(new java.awt.Color(254, 254, 254));
-        salir_btn.setText("SALIR");
-        salir_btn.setFocusable(false);
-        salir_btn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        salir_btn.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        salir_btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                salir_btnActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(1, 1, 1));
+        jLabel1.setForeground(new java.awt.Color(0, 27, 134));
         jLabel1.setText("BUSQUEDA:");
 
         busqueda_tf.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
@@ -170,12 +139,14 @@ public class Envases extends javax.swing.JDialog {
             }
         });
 
+        jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
+        jPanel2.setOpaque(false);
+
         jLabel2.setBackground(new java.awt.Color(0, 153, 153));
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("PRESENTACIONES");
-        jLabel2.setOpaque(true);
         jLabel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jLabel2MouseDragged(evt);
@@ -187,11 +158,56 @@ public class Envases extends javax.swing.JDialog {
             }
         });
 
-        Reporte.setFont(new java.awt.Font("Ubuntu", 1, 10)); // NOI18N
-        Reporte.setText("IMPRIMIR");
-        Reporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ReporteActionPerformed(evt);
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addGap(64, 64, 64)
+                .addComponent(lblCerrar)
+                .addGap(11, 11, 11))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblCerrar)
+                .addGap(12, 12, 12))
+        );
+
+        lblActualizar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/actualizar.png"))); // NOI18N
+        lblActualizar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblActualizar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblActualizarMouseClicked(evt);
+            }
+        });
+
+        lblImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/imprimir.png"))); // NOI18N
+        lblImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblImprimir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblImprimirMouseClicked(evt);
+            }
+        });
+
+        lblNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/agregar.png"))); // NOI18N
+        lblNuevo.setText("NUEVO");
+        lblNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNuevoMouseClicked(evt);
             }
         });
 
@@ -199,45 +215,47 @@ public class Envases extends javax.swing.JDialog {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(72, 72, 72)
-                .addComponent(jLabel1)
-                .addGap(18, 18, 18)
-                .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addComponent(lblActualizar))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(89, 89, 89)
+                        .addComponent(lblNuevo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblImprimir)
+                        .addGap(82, 82, 82)))
                 .addContainerGap())
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(nuevo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(actualizar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(salir_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(busqueda_tf, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblActualizar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(salir_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(actualizar_bt, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(nuevo_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblImprimir))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(lblNuevo)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -248,23 +266,11 @@ public class Envases extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void nuevo_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevo_btnActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-        Envases_Nuevo tn = new Envases_Nuevo(new javax.swing.JFrame(), true);
-        tn.setVisible(true);
-    }//GEN-LAST:event_nuevo_btnActionPerformed
-
-    private void salir_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir_btnActionPerformed
-        // TODO add your handling code here:
-        setVisible(false);
-    }//GEN-LAST:event_salir_btnActionPerformed
 
     private void envase_tbMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_envase_tbMousePressed
         int id = envase_tb.getSelectedRow();
@@ -277,19 +283,6 @@ public class Envases extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_envase_tbMousePressed
-
-    private void actualizar_btActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizar_btActionPerformed
-        // TODO add your handling code here:
-        int id = envase_tb.getSelectedRow();
-        if (envase_tb.getSelectedRow() >= 0) {
-            tp = devuelveObjeto(Integer.valueOf(envase_tb.getValueAt(id, 0).toString()), altp);
-            setVisible(false);
-            Envases_Actualizado ta = new Envases_Actualizado(new javax.swing.JFrame(), true, tp);
-            ta.setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Selecione un registro de la tabla primero");
-        }
-    }//GEN-LAST:event_actualizar_btActionPerformed
 
     private void busqueda_tfKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_busqueda_tfKeyReleased
         String valor = busqueda_tf.getText();
@@ -306,7 +299,23 @@ public class Envases extends javax.swing.JDialog {
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel2MouseDragged
 
-    private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        setVisible(false);
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblActualizarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblActualizarMouseClicked
+        int id = envase_tb.getSelectedRow();
+        if (envase_tb.getSelectedRow() >= 0) {
+            tp = devuelveObjeto(Integer.valueOf(envase_tb.getValueAt(id, 0).toString()), altp);
+            setVisible(false);
+            Envases_Actualizado ta = new Envases_Actualizado(new javax.swing.JFrame(), true, tp);
+            ta.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Selecione un registro de la tabla primero");
+        }
+    }//GEN-LAST:event_lblActualizarMouseClicked
+
+    private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         java.util.List lista = new ArrayList();
         for (int i = 0; i < envase_tb.getRowCount(); i++) {
             ClaseReporte Envases = new ClaseReporte (envase_tb.getValueAt(i, 0).toString(),envase_tb.getValueAt(i, 1).toString());
@@ -326,7 +335,13 @@ public class Envases extends javax.swing.JDialog {
         } catch (JRException ex) {
             Logger.getLogger(Envases.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_ReporteActionPerformed
+    }//GEN-LAST:event_lblImprimirMouseClicked
+
+    private void lblNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoMouseClicked
+        setVisible(false);
+        Envases_Nuevo tn = new Envases_Nuevo(new javax.swing.JFrame(), true);
+        tn.setVisible(true);
+    }//GEN-LAST:event_lblNuevoMouseClicked
 
     public EnvaseProducto devuelveObjeto(int id, ArrayList<EnvaseProducto> lista) {
         EnvaseProducto gh = new EnvaseProducto();
@@ -379,16 +394,17 @@ public class Envases extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Reporte;
-    private javax.swing.JButton actualizar_bt;
     private javax.swing.JTextField busqueda_tf;
     private javax.swing.JTable envase_tb;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JButton nuevo_btn;
-    private javax.swing.JButton salir_btn;
+    private javax.swing.JLabel lblActualizar;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblImprimir;
+    private javax.swing.JLabel lblNuevo;
     // End of variables declaration//GEN-END:variables
 }

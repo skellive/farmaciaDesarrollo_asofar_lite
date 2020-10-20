@@ -136,6 +136,9 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/iconos/cerrar.png"/>
             </Property>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor de Mano"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="lblCerrar4lblCerrarMouseClicked"/>
@@ -203,6 +206,9 @@
           <Image iconType="3" name="/img/iconos/eliminar.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="ELIMINAR PRODUCTO"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEliminarProductoMouseClicked"/>
@@ -214,6 +220,9 @@
           <Image iconType="3" name="/com/farmacia/icono/eliminar1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="ELIMINAR VENTA"/>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Cursor de Mano"/>
+        </Property>
       </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnEliminarVentaMouseClicked"/>
@@ -236,9 +245,6 @@
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Dialog" size="12" style="1"/>
-        </Property>
         <Property name="text" type="java.lang.String" value="OBSERVACION DE PRODUCTO:"/>
       </Properties>
     </Component>

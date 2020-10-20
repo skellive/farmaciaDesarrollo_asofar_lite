@@ -109,6 +109,7 @@ public class subirExcelBD extends javax.swing.JFrame {
 
         lblBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/buscar.png"))); // NOI18N
         lblBuscar.setText("BUSCAR");
+        lblBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblBuscarMouseClicked(evt);

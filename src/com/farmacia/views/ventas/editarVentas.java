@@ -141,6 +141,7 @@ public class editarVentas extends javax.swing.JFrame {
         });
 
         lblCerrar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCerrar4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCerrar4lblCerrarMouseClicked(evt);
@@ -207,6 +208,7 @@ public class editarVentas extends javax.swing.JFrame {
 
         btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/eliminar.png"))); // NOI18N
         btnEliminarProducto.setText("ELIMINAR PRODUCTO");
+        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEliminarProductoMouseClicked(evt);
@@ -215,6 +217,7 @@ public class editarVentas extends javax.swing.JFrame {
 
         btnEliminarVenta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icono/eliminar1.png"))); // NOI18N
         btnEliminarVenta.setText("ELIMINAR VENTA");
+        btnEliminarVenta.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminarVenta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEliminarVentaMouseClicked(evt);
@@ -225,7 +228,6 @@ public class editarVentas extends javax.swing.JFrame {
         txtObProducto.setRows(5);
         jScrollPane2.setViewportView(txtObProducto);
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel2.setText("OBSERVACION DE PRODUCTO:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

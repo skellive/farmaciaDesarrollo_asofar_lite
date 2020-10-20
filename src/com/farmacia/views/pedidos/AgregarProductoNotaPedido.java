@@ -10,6 +10,7 @@ import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.validaciones.Validacion;
+import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.KeyEvent;
@@ -31,6 +32,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
     public AgregarProductoNotaPedido(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -43,6 +45,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
     public AgregarProductoNotaPedido(java.awt.Frame parent, boolean modal, joinProductoParaNotaPedido obj1) {
         super(parent, modal);
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
@@ -67,7 +70,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         codigo = new javax.swing.JTextField();
         producto = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
-        btnSalir = new javax.swing.JButton();
         Medida = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
@@ -83,12 +85,15 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         txtBono = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel3.setOpaque(false);
         jPanel3.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel3MouseDragged(evt);
@@ -102,6 +107,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
         marca.setEditable(false);
         marca.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        marca.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         txtcantidadpro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtcantidadpro.addActionListener(new java.awt.event.ActionListener() {
@@ -116,10 +122,14 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         });
 
         jLabel6.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 27, 134));
         jLabel6.setText("MARCA:");
 
+        btnAnadir.setBackground(new java.awt.Color(0, 27, 134));
         btnAnadir.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
+        btnAnadir.setForeground(new java.awt.Color(255, 255, 255));
         btnAnadir.setText("AÑADIR");
+        btnAnadir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAnadirActionPerformed(evt);
@@ -127,13 +137,16 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         });
 
         jLabel4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 27, 134));
         jLabel4.setText("CODIGO:");
 
         jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
         jLabel2.setText("PRODUCTO:");
 
         codigo.setEditable(false);
         codigo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        codigo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         codigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 codigoActionPerformed(evt);
@@ -142,20 +155,15 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
         producto.setEditable(false);
         producto.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        producto.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel14.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 27, 134));
         jLabel14.setText("CANTIDAD:");
-
-        btnSalir.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        btnSalir.setText("SALIR");
-        btnSalir.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSalirActionPerformed(evt);
-            }
-        });
 
         Medida.setEditable(false);
         Medida.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Medida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         Medida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MedidaActionPerformed(evt);
@@ -168,13 +176,16 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         });
 
         jLabel9.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 27, 134));
         jLabel9.setText("MEDIDA:");
 
         jLabel10.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 27, 134));
         jLabel10.setText("ENVASE:");
 
         txtEnvase3.setEditable(false);
         txtEnvase3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtEnvase3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtEnvase3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEnvase3ActionPerformed(evt);
@@ -182,10 +193,12 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         });
 
         jLabel15.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 27, 134));
         jLabel15.setText("TIPO:");
 
         txtTipo.setEditable(false);
         txtTipo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTipo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTipoActionPerformed(evt);
@@ -198,10 +211,12 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         });
 
         jLabel16.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 27, 134));
         jLabel16.setText("PRECIO:");
 
         txtPrecio.setEditable(false);
         txtPrecio.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtPrecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecioActionPerformed(evt);
@@ -214,12 +229,15 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         });
 
         jLabel17.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 27, 134));
         jLabel17.setText("IVA:");
 
         txtIva.setEditable(false);
         txtIva.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtIva.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel5.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 27, 134));
         jLabel5.setText("DESCUENTO:");
 
         txtporcentajeDescuento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -233,9 +251,11 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         });
 
         jLabel1.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 27, 134));
         jLabel1.setText("%");
 
         jLabel18.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 27, 134));
         jLabel18.setText("BONO:");
 
         txtBono.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -250,12 +270,25 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 27, 134));
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("ELEGIR PRECIO");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
+        jPanel1.setOpaque(false);
+
         jLabel7.setBackground(new java.awt.Color(0, 153, 153));
         jLabel7.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(254, 254, 254));
+        jLabel7.setForeground(new java.awt.Color(0, 27, 134));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("AÑADIR CANTIDAD ");
-        jLabel7.setOpaque(true);
         jLabel7.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jLabel7MouseDragged(evt);
@@ -267,23 +300,41 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-        jButton1.setText("ELEGIR PRECIO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
             }
         });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrar)
+                .addGap(19, 19, 19))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(lblCerrar)
+                .addGap(12, 12, 12))
+        );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(35, 35, 35)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel18)
                             .addComponent(jLabel16)
@@ -324,17 +375,16 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1))))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
                         .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(46, 46, 46)
-                        .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(116, 116, 116)))
                 .addContainerGap(21, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -379,10 +429,8 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
                     .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -469,14 +517,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     private void codigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codigoActionPerformed
 
     }//GEN-LAST:event_codigoActionPerformed
-
-    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
-
-        if (r == JOptionPane.YES_OPTION) {
-            setVisible(false);
-        }
-    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void MedidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MedidaActionPerformed
 
@@ -578,6 +618,14 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
+
+        if (r == JOptionPane.YES_OPTION) {
+            setVisible(false);
+        }
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -622,7 +670,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Medida;
     private javax.swing.JButton btnAnadir;
-    private javax.swing.JButton btnSalir;
     private javax.swing.JTextField codigo;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
@@ -638,7 +685,9 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblCerrar;
     private javax.swing.JTextField marca;
     private javax.swing.JTextField producto;
     private javax.swing.JTextField txtBono;

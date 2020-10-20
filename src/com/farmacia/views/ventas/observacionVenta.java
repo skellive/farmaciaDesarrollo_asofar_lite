@@ -112,9 +112,9 @@ public class observacionVenta extends javax.swing.JFrame {
         txtObservacion.setRows(5);
         jScrollPane1.setViewportView(txtObservacion);
 
-        jLabel1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/eliminar.png"))); // NOI18N
         jLabel1.setText("ELIMINAR VENTA");
+        jLabel1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);

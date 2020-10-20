@@ -49,6 +49,7 @@ public class VerificarAcceso extends javax.swing.JDialog {
         jLabel2.setText("password:");
 
         BtnVerificar.setText("verificar");
+        BtnVerificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnVerificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnVerificarActionPerformed(evt);
@@ -56,6 +57,7 @@ public class VerificarAcceso extends javax.swing.JDialog {
         });
 
         BtnSalir.setText("salir");
+        BtnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         BtnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnSalirActionPerformed(evt);

@@ -15,6 +15,7 @@ import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.views.compras.CabeceraCompra;
 import com.farmacia.views.compras.ListaDePedidos;
 import com.farmacia.views.producto.MantenimientoProducto;
+import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -55,7 +56,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
     public NotePedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         PanelSec.setEnabled(false);
@@ -63,8 +64,8 @@ public class NotePedidos extends javax.swing.JDialog {
         tabla_para_productos.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnBuscar.setEnabled(false);
-        btnGuardar.setEnabled(false);
-        btnNuevo.setEnabled(false);
+        lblGuardar.setEnabled(false);
+        lblNuevo.setEnabled(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         TotalDescuento2();
@@ -91,7 +92,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
     public NotePedidos(java.awt.Frame parent, boolean modal, Listar_usuario obj) {
         super(parent, modal);
-
+        getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         PanelSec.setEnabled(false);
@@ -99,8 +100,8 @@ public class NotePedidos extends javax.swing.JDialog {
         tabla_para_productos.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnBuscar.setEnabled(false);
-        btnGuardar.setEnabled(false);
-        btnNuevo.setEnabled(false);
+        lblGuardar.setEnabled(false);
+        lblNuevo.setEnabled(false);
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         TotalDescuento2();
@@ -209,7 +210,6 @@ public class NotePedidos extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel5 = new javax.swing.JPanel();
-        btnGuardar = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
@@ -219,8 +219,6 @@ public class NotePedidos extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        btnNuevo = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -244,11 +242,11 @@ public class NotePedidos extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        cbxFormaP = new javax.swing.JComboBox<String>();
+        cbxFormaP = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         txtHora = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        cbxPlazo = new javax.swing.JComboBox<String>();
+        cbxPlazo = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         tblProduc = new javax.swing.JScrollPane();
         tabla_para_productos = new javax.swing.JTable();
@@ -256,11 +254,15 @@ public class NotePedidos extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaListaFaltantes = new javax.swing.JTable();
         PanelSec = new javax.swing.JPanel();
-        tipofiltro = new javax.swing.JComboBox<String>();
+        tipofiltro = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
         TxtFiltro = new javax.swing.JTextField();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        lblCerrar = new javax.swing.JLabel();
+        lblNuevo = new javax.swing.JLabel();
+        lblGuardar = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -275,7 +277,8 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         });
 
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel5.setOpaque(false);
         jPanel5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 jPanel5MouseDragged(evt);
@@ -287,21 +290,14 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         });
 
-        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnGuardar.setForeground(new java.awt.Color(87, 152, 80));
-        btnGuardar.setText("GUARDAR");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
-            }
-        });
-
         jLabel14.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(0, 27, 134));
         jLabel14.setText("TOTAL:");
 
         txtTotal.setEditable(false);
         txtTotal.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtTotal.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtTotal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtTotal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtTotalActionPerformed(evt);
@@ -309,11 +305,13 @@ public class NotePedidos extends javax.swing.JDialog {
         });
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 27, 134));
         jLabel17.setText("IVA:");
 
         txtIva.setEditable(false);
         txtIva.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtIva.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtIva.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtIva.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtIvaActionPerformed(evt);
@@ -321,75 +319,66 @@ public class NotePedidos extends javax.swing.JDialog {
         });
 
         jLabel18.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel18.setForeground(new java.awt.Color(0, 27, 134));
         jLabel18.setText("DESCUENTO:");
 
         txtDescuento.setEditable(false);
         txtDescuento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtDescuento.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtDescuento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 27, 134));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("$");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 27, 134));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("$");
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel19.setForeground(new java.awt.Color(0, 27, 134));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("$");
 
-        btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnNuevo.setText("NUEVO");
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(254, 254, 254));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("NOTA DE PEDIDOS");
-        jLabel7.setOpaque(true);
-        jLabel7.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                jLabel7MouseDragged(evt);
-            }
-        });
-        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jLabel7MousePressed(evt);
-            }
-        });
-
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel1.setOpaque(false);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 27, 134));
         jLabel3.setText("DIRECCION:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 27, 134));
         jLabel5.setText("CORREO:");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
         jLabel2.setText("NOMBRE:");
 
         txtDireccion1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtDireccion1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         txtCorreo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtCorreo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         txtRuc1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtRuc1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 27, 134));
         jLabel6.setText("RUC :");
 
         txtNombre1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtNombre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(0, 27, 134));
         jLabel11.setText("REPRESENTANTE:");
 
         txtRepresentante.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtRepresentante.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtRepresentante.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtRepresentanteKeyReleased(evt);
@@ -397,31 +386,42 @@ public class NotePedidos extends javax.swing.JDialog {
         });
 
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(0, 27, 134));
         jLabel12.setText("TIPO:");
 
         txtTipo1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTipo1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 27, 134));
         jLabel13.setText("CODIGO:");
 
         txtCodigoProveedor.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtCodigoProveedor.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        txtCodigoProveedor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 27, 134));
         jLabel4.setText("TELEFONO:");
 
         txtTelefono1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtTelefono1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
+        btnProveedor.setBackground(new java.awt.Color(0, 27, 134));
         btnProveedor.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnProveedor.setForeground(new java.awt.Color(255, 255, 255));
         btnProveedor.setText("PROVEEDOR");
+        btnProveedor.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnProveedor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnProveedorActionPerformed(evt);
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 27, 134));
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("MANTENIMIENTO");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -512,31 +512,38 @@ public class NotePedidos extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel2.setOpaque(false);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 27, 134));
         jLabel9.setText("FECHA:");
 
         txtFecha.setEditable(false);
         txtFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtFecha.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 27, 134));
         jLabel10.setText("PLAZO:");
 
         cbxFormaP.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contado", "Credito" }));
+        cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Credito" }));
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 27, 134));
         jLabel15.setText("HORA:");
 
         txtHora.setEditable(false);
         txtHora.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtHora.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(0, 27, 134));
         jLabel16.setText("FORMA DE PAGO:");
 
         cbxPlazo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
+        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -560,7 +567,7 @@ public class NotePedidos extends javax.swing.JDialog {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -579,7 +586,8 @@ public class NotePedidos extends javax.swing.JDialog {
                 .addGap(19, 19, 19))
         );
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel3.setOpaque(false);
 
         tabla_para_productos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -618,7 +626,8 @@ public class NotePedidos extends javax.swing.JDialog {
             .addComponent(tblProduc, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        jPanel4.setOpaque(false);
 
         tbaListaFaltantes.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.gray, null));
         tbaListaFaltantes.setModel(new javax.swing.table.DefaultTableModel(
@@ -668,13 +677,17 @@ public class NotePedidos extends javax.swing.JDialog {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
         );
 
-        PanelSec.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        PanelSec.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
+        PanelSec.setOpaque(false);
 
         tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "PRESENTACION", "MARCA" }));
+        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TODO", "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "PRESENTACION", "MARCA" }));
 
+        btnBuscar.setBackground(new java.awt.Color(0, 27, 134));
         btnBuscar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
         btnBuscar.setText("BUSCAR");
+        btnBuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnBuscar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBuscarMouseClicked(evt);
@@ -687,6 +700,7 @@ public class NotePedidos extends javax.swing.JDialog {
         });
 
         TxtFiltro.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TxtFiltro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 TxtFiltroActionPerformed(evt);
@@ -701,8 +715,11 @@ public class NotePedidos extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setBackground(new java.awt.Color(0, 27, 134));
         jButton3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("PRODUCTOS");
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -736,12 +753,65 @@ public class NotePedidos extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jButton4.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(198, 28, 28));
-        jButton4.setText("SALIR");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+        jPanel6.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
+        jPanel6.setOpaque(false);
+
+        jLabel7.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(0, 27, 134));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("NOTA DE PEDIDOS");
+        jLabel7.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jLabel7MouseDragged(evt);
+            }
+        });
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jLabel7MousePressed(evt);
+            }
+        });
+
+        lblCerrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblCerrar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCerrarMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(302, 302, 302)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblCerrar)
+                .addGap(26, 26, 26))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(lblCerrar)
+                .addContainerGap())
+        );
+
+        lblNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/agregar.png"))); // NOI18N
+        lblNuevo.setText("NUEVO");
+        lblNuevo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblNuevoMouseClicked(evt);
+            }
+        });
+
+        lblGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/guardar.png"))); // NOI18N
+        lblGuardar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblGuardarMouseClicked(evt);
             }
         });
 
@@ -749,7 +819,6 @@ public class NotePedidos extends javax.swing.JDialog {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -765,13 +834,11 @@ public class NotePedidos extends javax.swing.JDialog {
                             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                        .addGap(125, 125, 125)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(62, 62, 62)
-                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(32, 32, 32)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(139, 139, 139)
+                        .addComponent(lblNuevo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblGuardar)
+                        .addGap(146, 146, 146)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                                 .addComponent(jLabel14)
@@ -792,39 +859,45 @@ public class NotePedidos extends javax.swing.JDialog {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(27, 27, 27))))
+            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(PanelSec, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(lblGuardar))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(lblNuevo)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -838,7 +911,7 @@ public class NotePedidos extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -856,7 +929,7 @@ public class NotePedidos extends javax.swing.JDialog {
                 tabla_para_productos.setEnabled(true);
                 tbaListaFaltantes.setEnabled(true);
                 btnBuscar.setEnabled(true);
-                btnGuardar.setEnabled(true);
+                lblGuardar.setEnabled(true);
                 //
                 txtCodigoProveedor.setText(proveedorC.getId_proveedor().toString());
                 txtRuc1.setText(proveedorC.getCedula_ruc());
@@ -886,64 +959,6 @@ public class NotePedidos extends javax.swing.JDialog {
 
     }//GEN-LAST:event_tabla_para_productosMouseClicked
 
-
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (!"0,00".equals(txtTotal.getText())) {
-
-            //ArrayList<String> queryL = new ArrayList<String>();
-            ArrayList<String> queryL1 = new ArrayList<String>();
-            String id_cab = "";
-            String cad = "";
-            String cad1 = "";
-            CabeceraNotaPedido cn = new CabeceraNotaPedido();
-            cn.setId_proveedor(Long.parseLong(txtCodigoProveedor.getText()));
-            cn.setId_usuario(Long.valueOf("2"));
-            cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
-            cn.setPlazo(cbxPlazo.getSelectedItem().toString());
-            cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
-            cn.setIva(VGiva);
-            cn.setDescuento(VGdescuento);//
-            cn.setTotal(VGtotal);//
-
-            try {
-              
-            id_cab = crud.insertarCabeceraNotaPedido(cn);
-            //String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
-            //id_cab = crud.buscarIDCabeceraNotaPedido(query);
-            if (id_cab.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "id_cabecera esta vacio");
-            } else {
-                for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-                    /////////////////////////////
-                    cad1 = "INSERT INTO detalle_nota_pedidos"
-                            + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
-                            + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + listaPNP1.get(i).getPrecioBono() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + "," + listaPNP1.get(i).getBono() + ")";
-                    queryL1.add(cad1);
-                    System.out.println(" " + cad1);
-                    //////////////////////////////////
-                }
-                crud.InsertarDetallesNotaPedidos(queryL1);
-                System.out.println(" " + queryL1);
-                queryL1.clear();
-                JOptionPane.showMessageDialog(null, " Guardado con Exito ");
-                btnGuardar.setEnabled(false);
-                btnNuevo.setEnabled(true);
-                
-                setVisible(false);
-                
-            CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true, objUsuario);
-            CB.setVisible(true);
-            }  
-
-            } catch (Exception e) {
-             JOptionPane.showMessageDialog(null, "Error en Insertar --> "+e);
-            }
-
-        } else {
-
-            JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
-        }
-    }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void tabla_para_productosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_para_productosMousePressed
 
@@ -1258,14 +1273,6 @@ public class NotePedidos extends javax.swing.JDialog {
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jPanel5MouseDragged
 
-    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
-        Reiniciar();
-        TxtFiltro.setEnabled(false);
-        btnBuscar.setEnabled(false);
-        btnGuardar.setEnabled(false);
-        tabla_para_productos.setEnabled(false);
-    }//GEN-LAST:event_btnNuevoActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         MantenimientoNotaPedidos Man = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
         Man.setVisible(true);
@@ -1291,12 +1298,6 @@ public class NotePedidos extends javax.swing.JDialog {
         //listapro = crud.listarTodoJoinProductos(1);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        //        Consulta_Proveedor cp = new Consulta_Proveedor(new javax.swing.JFrame(), true);
-        setVisible(false);
-        //        cp.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void TxtFiltroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Buscar();
@@ -1314,6 +1315,76 @@ public class NotePedidos extends javax.swing.JDialog {
     private void btnBuscarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBuscarMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarMouseClicked
+
+    private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        setVisible(false);
+    }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void lblNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoMouseClicked
+        Reiniciar();
+        TxtFiltro.setEnabled(false);
+        btnBuscar.setEnabled(false);
+        lblGuardar.setEnabled(false);
+        tabla_para_productos.setEnabled(false);
+    }//GEN-LAST:event_lblNuevoMouseClicked
+
+    private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
+        if (!"0,00".equals(txtTotal.getText())) {
+
+            //ArrayList<String> queryL = new ArrayList<String>();
+            ArrayList<String> queryL1 = new ArrayList<String>();
+            String id_cab = "";
+            String cad = "";
+            String cad1 = "";
+            CabeceraNotaPedido cn = new CabeceraNotaPedido();
+            cn.setId_proveedor(Long.parseLong(txtCodigoProveedor.getText()));
+            cn.setId_usuario(Long.valueOf("2"));
+            cn.setFecha_creacion(txtFecha.getText() + " " + txtHora.getText());
+            cn.setPlazo(cbxPlazo.getSelectedItem().toString());
+            cn.setForma_pago(cbxFormaP.getSelectedItem().toString());
+            cn.setIva(VGiva);
+            cn.setDescuento(VGdescuento);//
+            cn.setTotal(VGtotal);//
+
+            try {
+              
+            id_cab = crud.insertarCabeceraNotaPedido(cn);
+            //String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
+            //id_cab = crud.buscarIDCabeceraNotaPedido(query);
+            if (id_cab.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "id_cabecera esta vacio");
+            } else {
+                for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+                    /////////////////////////////
+                    cad1 = "INSERT INTO detalle_nota_pedidos"
+                            + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
+                            + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + listaPNP1.get(i).getPrecioBono() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + "," + listaPNP1.get(i).getBono() + ")";
+                    queryL1.add(cad1);
+                    System.out.println(" " + cad1);
+                    //////////////////////////////////
+                }
+                crud.InsertarDetallesNotaPedidos(queryL1);
+                System.out.println(" " + queryL1);
+                queryL1.clear();
+                JOptionPane.showMessageDialog(null, " Guardado con Exito ");
+                lblGuardar.setEnabled(false);
+                lblNuevo.setEnabled(true);
+                
+                setVisible(false);
+                
+            CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true, objUsuario);
+            CB.setVisible(true);
+            }  
+
+            } catch (Exception e) {
+             JOptionPane.showMessageDialog(null, "Error en Insertar --> "+e);
+            }
+
+        } else {
+
+            JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
+        }
+    }//GEN-LAST:event_lblGuardarMouseClicked
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
 
         joinProductoDetallesFaltantes objeto1 = null;
@@ -1380,14 +1451,11 @@ public class NotePedidos extends javax.swing.JDialog {
     private javax.swing.JPanel PanelSec;
     private javax.swing.JTextField TxtFiltro;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnGuardar;
-    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnProveedor;
     private javax.swing.JComboBox<String> cbxFormaP;
     private javax.swing.JComboBox<String> cbxPlazo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     public static javax.swing.JLabel jLabel11;
@@ -1412,7 +1480,11 @@ public class NotePedidos extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblCerrar;
+    private javax.swing.JLabel lblGuardar;
+    private javax.swing.JLabel lblNuevo;
     private javax.swing.JTable tabla_para_productos;
     private javax.swing.JTable tbaListaFaltantes;
     private javax.swing.JScrollPane tblProduc;

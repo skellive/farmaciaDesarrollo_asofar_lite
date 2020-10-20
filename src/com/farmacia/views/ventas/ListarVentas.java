@@ -130,6 +130,7 @@ public class ListarVentas extends javax.swing.JFrame {
         });
 
         lblCerrar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/cerrar.png"))); // NOI18N
+        lblCerrar4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         lblCerrar4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCerrarMouseClicked(evt);
@@ -171,13 +172,14 @@ public class ListarVentas extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jtblistVentas);
 
+        jLabel1.setForeground(new java.awt.Color(0, 27, 134));
         jLabel1.setText("VENTA SELECCIONADA: ");
 
         txtVenta.setEnabled(false);
 
-        btnEditar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/farmacia/icon/editar.png"))); // NOI18N
         btnEditar.setText("EDITAR");
+        btnEditar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEditar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnEditarMouseClicked(evt);
@@ -200,8 +202,7 @@ public class ListarVentas extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41)
-                                .addComponent(btnEditar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                                .addComponent(btnEditar)))))
                 .addGap(0, 0, 0))
         );
         layout.setVerticalGroup(
