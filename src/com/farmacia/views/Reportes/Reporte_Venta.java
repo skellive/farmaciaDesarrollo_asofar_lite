@@ -292,9 +292,8 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -700,11 +699,8 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
                 sheet.setZoom(120);
 
-                /*dia = (c1.get(Calendar.DATE));
-                 mes = (c1.get(Calendar.MONTH));
-                 ano = (c1.get(Calendar.YEAR));
-                 System.out.println(dia + "-" + mes + "-" + ano);*/
-                FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporteVenta\\reporte" + dia + "-" + mes + "-" + ano + ".xlsx");
+                String dir = System.getProperty("user.home");
+                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteVenta\\reporte" + dia + "-" + mes + "-" + ano + ".xlsx");
                 book.write(fileout);
                 fileout.close();
 

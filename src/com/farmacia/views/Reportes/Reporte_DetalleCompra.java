@@ -894,7 +894,9 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 ano = (c1.get(Calendar.YEAR));
                 System.out.println(dia + "-" + mes + "-" + ano);
 
-                FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporteDetalleCompra\\reporte"+id_cab+"("+dia+"-"+mes+"-"+ano+").xlsx");
+                String dir = System.getProperty("user.home");
+                //dir + "\\Documents\\
+                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteDetalleCompra\\reporte"+id_cab+"("+dia+"-"+mes+"-"+ano+").xlsx");
                 book.write(fileout);
                 fileout.close();
 

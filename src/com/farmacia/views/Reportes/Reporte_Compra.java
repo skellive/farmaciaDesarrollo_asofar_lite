@@ -387,32 +387,32 @@ public class Reporte_Compra extends javax.swing.JDialog {
         String F2 = F.getFecha(Chooser2);
         dc.setFecha1(F1);
         dc.setFecha2(F2);
-        
+
         try {
             if (F1 == null) {
-            JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
-        }
-        if (F1 != null && F2 == null) {
+                JOptionPane.showMessageDialog(this, "INGRESE UNA FECHA");
+            }
+            if (F1 != null && F2 == null) {
 
-            dc.setFecha1(F1);
-            dc.setFecha2((F1) + " 23:59:59");
-            lista = crud.RangoFechaCompra(1, dc);
-            Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
-            TotalPro();
-        }
-        if (F1 != null && F2 != null) {
+                dc.setFecha1(F1);
+                dc.setFecha2((F1) + " 23:59:59");
+                lista = crud.RangoFechaCompra(1, dc);
+                Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
+                TotalPro();
+            }
+            if (F1 != null && F2 != null) {
 
-            dc.setFecha1(F.getFecha(Chooser1));
-            dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
-            lista = crud.RangoFechaCompra(1, dc);
-            Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
+                dc.setFecha1(F.getFecha(Chooser1));
+                dc.setFecha2(F.getFecha(Chooser2) + " 23:59:59");
+                lista = crud.RangoFechaCompra(1, dc);
+                Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
+                TotalPro();
+            }
             TotalPro();
-        }
-        TotalPro();
         } catch (Exception e) {
         }
 
-        
+
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
     private void buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyReleased
@@ -422,7 +422,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             Tablas.filtro(buscar, tbaCabeceraCompra);
             TotalPro();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo "+e+", se recomienda cerrar esta ventana y reabrirla.");
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
         }
         TotalPro();
     }//GEN-LAST:event_buscar1KeyReleased
@@ -526,7 +526,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraCompra, lista);
             TotalPro();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo "+e+", se recomienda cerrar esta ventana y reabrirla.");
+            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
         }
         TotalPro();
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -534,12 +534,14 @@ public class Reporte_Compra extends javax.swing.JDialog {
     public void reporte() {
 
         int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
+        String dir = System.getProperty("user.home");
+        //dir + "\\Documents\\
 
         try {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\asofarLite.png");
+                InputStream is = new FileInputStream(dir + "\\Documents\\reporteExcel\\img\\asofarLite.png");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -648,7 +650,8 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
                 sheet.setZoom(120);
 
-                FileOutputStream fileout = new FileOutputStream("reporteExcel\\reporteCompra\\reporte" + dia + "-" + mes + "-" + ano + ".xlsx");
+                //System.out.println(dir);
+                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteCompra\\reporte" + dia + "-" + mes + "-" + ano + ".xlsx");
                 book.write(fileout);
                 fileout.close();
 

@@ -402,6 +402,8 @@ public class Kardex_Productos extends javax.swing.JDialog {
         }
         try {
             //String dir = System.getProperty("user.dir") + "/Reportes/" + "Stock_Productos.jasper";
+            
+            //System.out.println(dir);
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Stock_Productos.jasper"));
             //JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
