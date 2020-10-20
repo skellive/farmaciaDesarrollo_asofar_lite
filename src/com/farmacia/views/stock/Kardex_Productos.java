@@ -26,7 +26,6 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
-
 public class Kardex_Productos extends javax.swing.JDialog {
 
     int x, y;
@@ -35,7 +34,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     //ListarKardex
     ArrayList<ListarKardex> listaKardex = null;
-   static ArrayList<ListarKardex> listaPrueba = new ArrayList<ListarKardex>();
+    static ArrayList<ListarKardex> listaPrueba = new ArrayList<ListarKardex>();
     //static ArrayList<ListarKardex> listaPrueba2 = new ArrayList<ListarKardex>();
     ArrayList<ListarKardex> listaStock = null;
     //ArrayList<Productos_Stock> listaStock = null;
@@ -62,20 +61,20 @@ public class Kardex_Productos extends javax.swing.JDialog {
     public void sumarTotalStock() {
         Double total = 0.00;
         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
-            String ao = tabla_stock.getValueAt(i,8).toString();
+            String ao = tabla_stock.getValueAt(i, 8).toString();
             String cadenaDeDecimales = ao;
             String resultado = cadenaDeDecimales.replace(',', '.');
             total = total + Double.valueOf(resultado);
         }
         txtTotal.setText(Formato_Numeros.formatoNumero(total.toString()));
     }
-    
-    public ListarKardex devuelveObjeto(String idproducto,String preCompra,String preVenta, ArrayList<ListarKardex> lista) {
+
+    public ListarKardex devuelveObjeto(String idproducto, String preCompra, String preVenta, ArrayList<ListarKardex> lista) {
         ListarKardex objeto1 = null;
         for (int i = 0; i < lista.size(); i++) {
-            if (idproducto.equals(lista.get(i).getId_producto().toString()) && 
-                preCompra.equals(lista.get(i).getPrecio_compra().toString()) &&
-                preVenta.equals(lista.get(i).getPrecio_venta().toString()) ) {
+            if (idproducto.equals(lista.get(i).getId_producto().toString())
+                    && preCompra.equals(lista.get(i).getPrecio_compra().toString())
+                    && preVenta.equals(lista.get(i).getPrecio_venta().toString())) {
                 objeto1 = lista.get(i);
                 //JOptionPane.showMessageDialog(this,"Encontrado");
                 System.out.println("Encontrado");
@@ -84,15 +83,8 @@ public class Kardex_Productos extends javax.swing.JDialog {
         }
         return objeto1;
     }
-    
+
     //JOptionPane.showMessageDialog(this, "2 click");
-
-
-
-
-
-
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -321,68 +313,68 @@ public class Kardex_Productos extends javax.swing.JDialog {
 
         //OPERACION PARA LISTAR TABLA DE ABAJO
         int i = 0;
-        String idpro,preCom,preVen,mostar,msje;
-        int cantidad,unidad_acep,stock_caja,unidad_insertar=0;
+        String idpro, preCom, preVen, mostar, msje;
+        int cantidad, unidad_acep, stock_caja, unidad_insertar = 0;
         try {
             if (evt.getClickCount() == 2) {
                 i = tabla_stock.getSelectedRow();
                 //JOptionPane.showMessageDialog(this, "2 click");
-                idpro= tabla_stock.getValueAt(i,0).toString();
-                preCom= tabla_stock.getValueAt(i,4).toString();
-                preVen= tabla_stock.getValueAt(i,5).toString();
-                stock_caja= Integer.parseInt(tabla_stock.getValueAt(i,6).toString());
-                System.out.println(idpro+":"+preCom+"-"+preVen);
+                idpro = tabla_stock.getValueAt(i, 0).toString();
+                preCom = tabla_stock.getValueAt(i, 4).toString();
+                preVen = tabla_stock.getValueAt(i, 5).toString();
+                stock_caja = Integer.parseInt(tabla_stock.getValueAt(i, 6).toString());
+                System.out.println(idpro + ":" + preCom + "-" + preVen);
                 //JOptionPane.showMessageDialog(this, idpro+":"+preCom+"-"+preVen);
-                objetoInv=devuelveObjeto(idpro,preCom,preVen,listaStock);
-                if(objetoInv==null){JOptionPane.showMessageDialog(this, "Valor no encontrado");
-                }else{
-                if(tabla_stock.getValueAt(i,3).toString().equals("CAJA")){
-                 //JOptionPane.showMessageDialog(null, "stock en caja: "+stock_caja);// en stock
-                 int r = JOptionPane.showConfirmDialog(null, "¿Desea convertir a unidades?", "", JOptionPane.YES_NO_OPTION);
-                 if (r == JOptionPane.YES_OPTION) {
-                    if(stock_caja>0 ){
-                     //JOptionPane.showMessageDialog(this, "si");
-                    String cant = JOptionPane.showInputDialog("¿Cuántas cajas deseas convertir a unidades?");
-                    cantidad= Integer.parseInt(cant);
-                     if( cantidad>0){
-                      if(cantidad<=stock_caja){
-                      //JOptionPane.showMessageDialog(null, "cantidad que pediste: "+cantidad);
-                      unidad_acep=objetoInv.getUnidad_aceptada().intValue();
-                      //JOptionPane.showMessageDialog(null, "unidad aceptada: "+objetoInv.getUnidad_aceptada());
-                      unidad_insertar=cantidad*unidad_acep;
+                objetoInv = devuelveObjeto(idpro, preCom, preVen, listaStock);
+                if (objetoInv == null) {
+                    JOptionPane.showMessageDialog(this, "Valor no encontrado");
+                } else {
+                    if (tabla_stock.getValueAt(i, 3).toString().equals("CAJA")) {
+                        //JOptionPane.showMessageDialog(null, "stock en caja: "+stock_caja);// en stock
+                        int r = JOptionPane.showConfirmDialog(null, "¿Desea convertir a unidades?", "", JOptionPane.YES_NO_OPTION);
+                        if (r == JOptionPane.YES_OPTION) {
+                            if (stock_caja > 0) {
+                                //JOptionPane.showMessageDialog(this, "si");
+                                String cant = JOptionPane.showInputDialog("¿Cuántas cajas deseas convertir a unidades?");
+                                cantidad = Integer.parseInt(cant);
+                                if (cantidad > 0) {
+                                    if (cantidad <= stock_caja) {
+                                        //JOptionPane.showMessageDialog(null, "cantidad que pediste: "+cantidad);
+                                        unidad_acep = objetoInv.getUnidad_aceptada().intValue();
+                                        //JOptionPane.showMessageDialog(null, "unidad aceptada: "+objetoInv.getUnidad_aceptada());
+                                        unidad_insertar = cantidad * unidad_acep;
                       //JOptionPane.showMessageDialog(null, "insertar en kardex unidad: "+unidad_insertar);
-                      //JOptionPane.showMessageDialog(null, cantidad+ " cajas se convertiran en "+unidad_insertar+" unidades");
-                      objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad q pediste
-                      objetoInv.setCantidad_unidad(Long.valueOf(unidad_insertar));//unidades q se insertaran
-                      mostar="idproducto:"+objetoInv.getId_producto().toString()+"\n"+
-                             "idprecio:"+objetoInv.getId_precio().toString()+"\n"+
-                             "cantidad en caja:"+objetoInv.getCantidad().toString()+"\n"+
-                             "unidades: "+objetoInv.getCantidad_unidad().toString();
-                      //JOptionPane.showMessageDialog(null,mostar);
-                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de convertir "+cantidad+" cajas en "+unidad_insertar+" unidades ?", "", JOptionPane.YES_NO_OPTION);
-                      if (m == JOptionPane.YES_OPTION) {
-                      msje=crud.insertarConversionUnidades(objetoInv);
-                      //JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
-                      JOptionPane.showMessageDialog(null,msje);
-                      listaStock = crud.ListarKardexStock();
-                      Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-                      this.sumarTotalStock();
-                      }
-                      }else{
-                        JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
-                      }   
-                     }else{
-                        JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
-                     }   
-                    }else{
-                        JOptionPane.showMessageDialog(null, "No hay Cajas");
-                    } 
-                    
-                 }   
-                } 
+                                        //JOptionPane.showMessageDialog(null, cantidad+ " cajas se convertiran en "+unidad_insertar+" unidades");
+                                        objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad q pediste
+                                        objetoInv.setCantidad_unidad(Long.valueOf(unidad_insertar));//unidades q se insertaran
+                                        mostar = "idproducto:" + objetoInv.getId_producto().toString() + "\n"
+                                                + "idprecio:" + objetoInv.getId_precio().toString() + "\n"
+                                                + "cantidad en caja:" + objetoInv.getCantidad().toString() + "\n"
+                                                + "unidades: " + objetoInv.getCantidad_unidad().toString();
+                                        //JOptionPane.showMessageDialog(null,mostar);
+                                        int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de convertir " + cantidad + " cajas en " + unidad_insertar + " unidades ?", "", JOptionPane.YES_NO_OPTION);
+                                        if (m == JOptionPane.YES_OPTION) {
+                                            msje = crud.insertarConversionUnidades(objetoInv);
+                                            //JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
+                                            JOptionPane.showMessageDialog(null, msje);
+                                            listaStock = crud.ListarKardexStock();
+                                            Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                                            this.sumarTotalStock();
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
+                                    }
+                                } else {
+                                    JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "No hay Cajas");
+                            }
+
+                        }
+                    }
                 }
-                
-                
+
             }
         } catch (Exception e) {
             // Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
@@ -395,14 +387,23 @@ public class Kardex_Productos extends javax.swing.JDialog {
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
-         ArrayList tabla = new ArrayList();
+        ArrayList tabla = new ArrayList();
         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(tabla_stock.getValueAt(i, 0).toString(), tabla_stock.getValueAt(i, 1).toString(), tabla_stock.getValueAt(i, 2).toString(), tabla_stock.getValueAt(i, 3).toString(), tabla_stock.getValueAt(i, 4).toString(), tabla_stock.getValueAt(i, 5).toString(), txtTotal.getText());
+            ClaseReporte tabla1 = new ClaseReporte(
+                    tabla_stock.getValueAt(i, 0).toString(),
+                    tabla_stock.getValueAt(i, 1).toString(),
+                    tabla_stock.getValueAt(i, 2).toString(),
+                    tabla_stock.getValueAt(i, 4).toString(),
+                    tabla_stock.getValueAt(i, 5).toString(),
+                    tabla_stock.getValueAt(i, 6).toString(),
+                    txtTotal.getText(),
+                    tabla_stock.getValueAt(i, 3).toString());
             tabla.add(tabla1);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "Stock_Productos.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            //String dir = System.getProperty("user.dir") + "/Reportes/" + "Stock_Productos.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Stock_Productos.jasper"));
+            //JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
