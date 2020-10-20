@@ -205,6 +205,8 @@ public class subirExcelBD extends javax.swing.JFrame {
     private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
         conexion_Excel cne = new conexion_Excel();
         String ruta = txtRuta.getText();
+        
+        
         try {
             cne.subirArchivosProductos(ruta);
         } catch (IOException ex) {
