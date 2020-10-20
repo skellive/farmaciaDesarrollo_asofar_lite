@@ -19,31 +19,35 @@ public class Detalle_ventas {
     private Long id_producto;
     private String nombre_producto;
     private Long cantidad;
+    private Long cantidad_unidad;
     private BigDecimal precio;
     private BigDecimal precio_compra;
     private BigDecimal subtotal;
     private BigDecimal iva;
     private BigDecimal descuento;
     private BigDecimal total;
+    private int empaque;
     
     
 
     public Detalle_ventas() {
     }
 
-    public Detalle_ventas(Long id_detalle_venta, Long id_cabecera_venta, Long id_control, Long id_producto, String nombre_producto, Long cantidad, BigDecimal precio, BigDecimal precio_compra, BigDecimal subtotal, BigDecimal iva, BigDecimal descuento, BigDecimal total) {
+    public Detalle_ventas(Long id_detalle_venta, Long id_cabecera_venta, Long id_control, Long id_producto, String nombre_producto, Long cantidad,Long cantidad_unidad, BigDecimal precio, BigDecimal precio_compra, BigDecimal subtotal, BigDecimal iva, BigDecimal descuento, BigDecimal total,int empaque) {
         this.id_detalle_venta = id_detalle_venta;
         this.id_cabecera_venta = id_cabecera_venta;
         this.id_control = id_control;
         this.id_producto = id_producto;
         this.nombre_producto = nombre_producto;
         this.cantidad = cantidad;
+        this.cantidad_unidad = cantidad_unidad;
         this.precio = precio;
         this.precio_compra = precio_compra;
         this.subtotal = subtotal;
         this.iva = iva;
         this.descuento = descuento;
         this.total = total;
+        this.empaque = empaque;
     }
 
     public Long getId_detalle_venta() {
@@ -93,6 +97,24 @@ public class Detalle_ventas {
     public void setCantidad(Long cantidad) {
         this.cantidad = cantidad;
     }
+
+    public Long getCantidad_unidad() {
+        return cantidad_unidad;
+    }
+
+    public void setCantidad_unidad(Long cantidad_unidad) {
+        this.cantidad_unidad = cantidad_unidad;
+    }
+
+    public int getEmpaque() {
+        return empaque;
+    }
+
+    public void setEmpaque(int empaque) {
+        this.empaque = empaque;
+    }
+    
+    
 
     public BigDecimal getPrecio() {
         return precio;

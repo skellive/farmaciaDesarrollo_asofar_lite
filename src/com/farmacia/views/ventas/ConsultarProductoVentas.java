@@ -12,6 +12,7 @@ import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -32,8 +33,8 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
 
-        listaProducto = crud.ListarTodoJoinProductosVentas("1");
-        Tablas.cargarJoinProductosVentas(TablaProductoVentas, listaProducto);
+        listaProducto = crud.ListarTodoJoinProductosParaVender();
+        Tablas.ListarProductosVENTA(listaProducto,TablaProductoVentas);
 
     }
 
@@ -88,11 +89,13 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 622, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 948, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
         );
 
         TxtFiltro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
@@ -168,15 +171,19 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
+                        .addGap(372, 372, 372)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
                         .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
+<<<<<<< HEAD
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
+                .addContainerGap(12, Short.MAX_VALUE))
+>>>>>>> 87e3c6857c88b00e7fbcdfd21f8f570d4972f5dc
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,8 +196,13 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+<<<<<<< HEAD
                 .addComponent(lblId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(30, 30, 30))
+=======
+                .addComponent(lblId, javax.swing.GroupLayout.DEFAULT_SIZE, 8, Short.MAX_VALUE)
+                .addContainerGap())
+>>>>>>> 87e3c6857c88b00e7fbcdfd21f8f570d4972f5dc
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,20 +224,48 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
     }//GEN-LAST:event_TxtFiltroActionPerformed
 
     private void TablaProductoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductoVentasMousePressed
-
+     String idPro,preCom,preVent,venUni;
         int i = 0;
 
-        if (evt.getClickCount() == 2) {
+        if (evt.getClickCount() == 2) {           
             i = TablaProductoVentas.getSelectedRow();
-            objeto = devuelveObjeto(TablaProductoVentas.getValueAt(i, 0).toString(), listaProducto);
-
+            idPro=TablaProductoVentas.getValueAt(i, 0).toString();
+            preVent=TablaProductoVentas.getValueAt(i, 8).toString();
+            venUni=TablaProductoVentas.getValueAt(i, 9).toString();
+            objeto = devuelveObjeto2(idPro,preVent,venUni,listaProducto);
             if (objeto != null) {
-
-                this.setVisible(false);
-
+                //valida si es caja
+                 if(TablaProductoVentas.getValueAt(i,4).toString().equals("CAJA")){
+                 String[] colores={"Caja","Unidad"};  
+                 String opcion;
+                 opcion=(String)JOptionPane.showInputDialog(null,"¿Como quieres vender? ",
+                 "Elegir",JOptionPane.QUESTION_MESSAGE,null,colores, colores[0]);
+                 //int r = JOptionPane.showConfirmDialog(null, "¿Desea convertir a unidades?", "", JOptionPane.YES_NO_OPTION);
+                 //r == JOptionPane.YES_OPTION
+                 if(opcion!=null){
+                 if(opcion.equals("Unidad")){
+                   objeto.setEmpaque(2);
+                   objeto.setStock(objeto.getStock_unidad());
+                   objeto.setPrecio_venta(objeto.getVenta_unidad());
+                   this.setVisible(false); 
+                  }else{
+                   objeto.setEmpaque(1);
+                   this.setVisible(false); 
+                   }  
+                 }else{
+                   
+                 }
+                  
+                 }else{
+                     //si no es caja
+            objeto.setEmpaque(1);
+            this.setVisible(false); 
+                 }
+                 
+                //this.setVisible(false); 
             }
         }
-        System.out.println(" select " + objeto.getProducto_nombre());
+        //System.out.println(" select " + objeto.getProducto_nombre());
     }//GEN-LAST:event_TablaProductoVentasMousePressed
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
@@ -248,6 +288,23 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
     public JoinListarProductosVentas getProducto() {
         return objeto;
+    }
+    
+    
+    
+    public JoinListarProductosVentas devuelveObjeto2(String idproducto,String preVent,String venUni, ArrayList<JoinListarProductosVentas> lista) {
+        JoinListarProductosVentas objeto1 = null;
+        for (int i = 0; i < lista.size(); i++) {
+            if (idproducto.equals(lista.get(i).getId_producto().toString()) && 
+                preVent.equals(lista.get(i).getPrecio_venta().toString()) &&
+                venUni.equals(lista.get(i).getVenta_unidad().toString()) ) {
+                objeto1 = lista.get(i);
+                //JOptionPane.showMessageDialog(this,"Encontrado");
+                //System.out.println("Encontrado");
+                break;
+            }
+        }
+        return objeto1;
     }
 
     public JoinListarProductosVentas devuelveObjeto(String datos, ArrayList<JoinListarProductosVentas> listarobj) {
