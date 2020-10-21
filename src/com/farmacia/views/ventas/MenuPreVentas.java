@@ -853,8 +853,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, msg);
             } else {
                 //JOptionPane.showMessageDialog(this,""+objProd.getEmpaque());  //<---
-                System.out.println(" se repite  " + verificarObjeto(objProd.getId_producto().toString(),objProd.getId_precio().toString()));
-                if (verificarObjeto(objProd.getId_producto().toString(),objProd.getId_precio().toString()).equals("si")) {
+                System.out.println(" se repite  " + verificarObjeto(objProd.getId_producto().toString(),objProd.getId_precio().toString(),objProd.getEmpaque()+""));
+                if (verificarObjeto(objProd.getId_producto().toString(),objProd.getId_precio().toString(),objProd.getEmpaque()+"").equals("si")) {
 
                     JOptionPane.showMessageDialog(rootPane, "SE REPITE EL ITEM");
                 } else {
@@ -906,7 +906,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAddItenActionPerformed
 
-    public String verificarObjeto(String datos,String idPre) {
+    public String verificarObjeto(String datos,String idPre,String empaque) {
         String idproducto,idprecio;
         String objeto1 = "no";
 
@@ -916,7 +916,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
             System.out.println("idproducto: "+datos+"-"+idproducto);
             System.out.println("idprecio: "+idPre+"-"+idprecio);
 
-            if (datos.equals(ListarDetalle.get(i).getId_producto().toString()) &  idPre.equals(ListarDetalle.get(i).getId_control().toString())) {
+            if (datos.equals(ListarDetalle.get(i).getId_producto().toString()) & 
+                    idPre.equals(ListarDetalle.get(i).getId_control().toString()) &
+                    empaque.equals(ListarDetalle.get(i).getEmpaque()+"")) {
                 objeto1 = "si";
                 break;
             } else {
