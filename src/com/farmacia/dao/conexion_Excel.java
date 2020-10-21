@@ -5,6 +5,7 @@
  */
 package com.farmacia.dao;
 
+import com.farmacia.view.excel.subirExcelBD;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -45,7 +46,7 @@ public class conexion_Excel {
             int numFilas = sheet.getLastRowNum();
             for (int a = 1; a <= numFilas; a++) {
                 Row fila = sheet.getRow(a);
-                ps = con.prepareCall("{CALL ingreso_pro_excel(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");//17
+                ps = con.prepareCall("{CALL ingreso_pro_excel(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");//18
                 ps.setString(1, String.valueOf(fila.getCell(0).getNumericCellValue()));
                 ps.setString(2, fila.getCell(1).getStringCellValue());
                 ps.setString(3, fila.getCell(2).getStringCellValue());
@@ -72,10 +73,18 @@ public class conexion_Excel {
             JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
 
         } catch (FileNotFoundException ex) {
-            con.rollback();
+            
             Logger.getLogger(conexion_Excel.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, "Error al procesar:" + ex);
-        }finally{
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(conexion_Excel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Problema en base. Error al procesar:" + ex);
+        }catch (IOException ex) {
+            Logger.getLogger(subirExcelBD.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Problema en datos. Error al procesar:" + ex);
+        }
+        finally{
             con.close();
         }
 
