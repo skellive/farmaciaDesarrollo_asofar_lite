@@ -39,7 +39,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     String ImagenLogo = System.getProperty("user.dir") + "/src/com/farmacia/imagenes/" + "logoasofar.jpg";
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-    ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
+     ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
     ArrayList<StockVentas> listaStockVentas = null;
     Listar_usuario objUsuario = null;
    // Label jlId_pro = new ConsultarProductoVentas().lblId.getText();
@@ -853,8 +853,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, msg);
             } else {
                 //JOptionPane.showMessageDialog(this,""+objProd.getEmpaque());  //<---
-                System.out.println(" se repite  " + verificarObjeto(objProd.getId_producto().toString()));
-                if (verificarObjeto(objProd.getId_producto().toString()).equals("si")) {
+                System.out.println(" se repite  " + verificarObjeto(objProd.getId_producto().toString(),objProd.getId_precio().toString()));
+                if (verificarObjeto(objProd.getId_producto().toString(),objProd.getId_precio().toString()).equals("si")) {
 
                     JOptionPane.showMessageDialog(rootPane, "SE REPITE EL ITEM");
                 } else {
@@ -906,14 +906,19 @@ public class MenuPreVentas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAddItenActionPerformed
 
-    public String verificarObjeto(String datos) {
-
+    public String verificarObjeto(String datos,String idPre) {
+        String idproducto,idprecio;
         String objeto1 = "no";
 
         for (int i = 0; i < ListarDetalle.size(); i++) {
+            idproducto=ListarDetalle.get(i).getId_producto().toString();
+            idprecio=ListarDetalle.get(i).getId_control().toString();
+            System.out.println("idproducto: "+datos+"-"+idproducto);
+            System.out.println("idprecio: "+idPre+"-"+idprecio);
 
-            if (datos.equals(ListarDetalle.get(i).getId_producto().toString())) {
+            if (datos.equals(ListarDetalle.get(i).getId_producto().toString()) &  idPre.equals(ListarDetalle.get(i).getId_control().toString())) {
                 objeto1 = "si";
+                break;
             } else {
                 objeto1 = "no";
             }
