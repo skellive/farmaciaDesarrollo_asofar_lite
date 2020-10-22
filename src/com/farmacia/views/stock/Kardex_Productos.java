@@ -497,7 +497,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                  if (cantidad > 0){
                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de INGRESAR " + cantidad + " cajas ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
-                        JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
                          objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
                          objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
                            msje = crud.accionesInventario(objetoInv,4);
@@ -520,7 +520,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                      
                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Ingresar " + cantidad + " unidades ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
-                        JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
                         objetoInv.setCantidad(Long.valueOf(0));//cantidad
                          objetoInv.setCantidad_unidad(Long.valueOf(cantidad));//unidades
                            msje = crud.accionesInventario(objetoInv,4);
@@ -545,7 +545,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                      
                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Ingresar " + cantidad + " productos ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
-                        JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
                           objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
                          objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
                            msje = crud.accionesInventario(objetoInv,4);
