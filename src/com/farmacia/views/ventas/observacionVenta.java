@@ -26,8 +26,7 @@ public class observacionVenta extends javax.swing.JFrame {
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     public observacionVenta(String numVenta) {
         initComponents();
-        this.setLocationRelativeTo(this);
-        this.setEnabled(false);
+        this.setLocationRelativeTo(this);        
         txtVentaNumero.setText(numVenta);
     }
 

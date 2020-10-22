@@ -340,7 +340,7 @@ public class editarVentas extends javax.swing.JFrame {
     private void btnEliminarVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEliminarVentaMouseClicked
         
         int Filas = jtbNumeroVenta.getSelectedRow();
-            String codigo = jtbNumeroVenta.getValueAt(Filas, 0).toString();
+            String codigo = txtVentaNumero.getText();
         int r = JOptionPane.showConfirmDialog(null, "¿Esta seguro de eliminar venta?" + codigo, "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
