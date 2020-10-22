@@ -356,12 +356,14 @@ public class Kardex_Productos extends javax.swing.JDialog {
                      if (cantidad <= stock_caja) {
                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " cajas ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
-                        JOptionPane.showMessageDialog(null,"Se realizó con exito");
-//                        msje = crud.insertarConversionUnidades(objetoInv);
-//                        JOptionPane.showMessageDialog(null, msje);
-//                        listaStock = crud.ListarKardexStock();
-//                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-//                        this.sumarTotalStock();
+                         objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
+                         objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
+                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                          msje = crud.accionesInventario(objetoInv,1);
+                        JOptionPane.showMessageDialog(null, msje);
+                        listaStock = crud.ListarKardexStock();
+                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                        this.sumarTotalStock();
                      }
                      } else {
                        JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
@@ -381,12 +383,15 @@ public class Kardex_Productos extends javax.swing.JDialog {
                      if (cantidad <= stock_unidades) {
                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " unidades ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
-                        JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                         objetoInv.setCantidad(Long.valueOf(0));//cantidad
+                         objetoInv.setCantidad_unidad(Long.valueOf(cantidad));//unidades
+                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                        msje = crud.accionesInventario(objetoInv,1);
 //                        msje = crud.insertarConversionUnidades(objetoInv);
-//                        JOptionPane.showMessageDialog(null, msje);
-//                        listaStock = crud.ListarKardexStock();
-//                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-//                        this.sumarTotalStock();
+                        JOptionPane.showMessageDialog(null, msje);
+                        listaStock = crud.ListarKardexStock();
+                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                        this.sumarTotalStock();
                      }
                      } else {
                        JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
@@ -407,12 +412,15 @@ public class Kardex_Productos extends javax.swing.JDialog {
                      if (cantidad <= stock_caja) {
                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " productos ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
-                        JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                         objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
+                         objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
+                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                        msje = crud.accionesInventario(objetoInv,1);
 //                        msje = crud.insertarConversionUnidades(objetoInv);
-//                        JOptionPane.showMessageDialog(null, msje);
-//                        listaStock = crud.ListarKardexStock();
-//                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-//                        this.sumarTotalStock();
+                        JOptionPane.showMessageDialog(null, msje);
+                        listaStock = crud.ListarKardexStock();
+                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                        this.sumarTotalStock();
                      }
                      } else {
                        JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
@@ -451,12 +459,12 @@ public class Kardex_Productos extends javax.swing.JDialog {
                                         //JOptionPane.showMessageDialog(null,mostar);
                                         int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de convertir " + cantidad + " cajas en " + unidad_insertar + " unidades ?", "", JOptionPane.YES_NO_OPTION);
                                         if (m == JOptionPane.YES_OPTION) {
-                                              JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
-//                                            msje = crud.insertarConversionUnidades(objetoInv);
-//                                            JOptionPane.showMessageDialog(null, msje);
-//                                            listaStock = crud.ListarKardexStock();
-//                                            Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-//                                            this.sumarTotalStock();
+                                              //JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
+                                              msje = crud.accionesInventario(objetoInv,2);
+                                            JOptionPane.showMessageDialog(null, msje);
+                                            listaStock = crud.ListarKardexStock();
+                                            Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                                            this.sumarTotalStock();
                                         }
                                     } else {
                                         JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
@@ -490,11 +498,14 @@ public class Kardex_Productos extends javax.swing.JDialog {
                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de INGRESAR " + cantidad + " cajas ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
                         JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                         objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
+                         objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
+                           msje = crud.accionesInventario(objetoInv,4);
 //                        msje = crud.insertarConversionUnidades(objetoInv);
-//                        JOptionPane.showMessageDialog(null, msje);
-//                        listaStock = crud.ListarKardexStock();
-//                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-//                        this.sumarTotalStock();
+                        JOptionPane.showMessageDialog(null, msje);
+                        listaStock = crud.ListarKardexStock();
+                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                        this.sumarTotalStock();
                      }
                  }else{
                      JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
@@ -510,11 +521,14 @@ public class Kardex_Productos extends javax.swing.JDialog {
                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Ingresar " + cantidad + " unidades ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
                         JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                        objetoInv.setCantidad(Long.valueOf(0));//cantidad
+                         objetoInv.setCantidad_unidad(Long.valueOf(cantidad));//unidades
+                           msje = crud.accionesInventario(objetoInv,4);
 //                        msje = crud.insertarConversionUnidades(objetoInv);
-//                        JOptionPane.showMessageDialog(null, msje);
-//                        listaStock = crud.ListarKardexStock();
-//                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-//                        this.sumarTotalStock();
+                        JOptionPane.showMessageDialog(null, msje);
+                       listaStock = crud.ListarKardexStock();
+                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                        this.sumarTotalStock();
                      }
 
                  }else{
@@ -532,11 +546,14 @@ public class Kardex_Productos extends javax.swing.JDialog {
                      int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Ingresar " + cantidad + " productos ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
                         JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                          objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
+                         objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
+                           msje = crud.accionesInventario(objetoInv,4);
 //                        msje = crud.insertarConversionUnidades(objetoInv);
-//                        JOptionPane.showMessageDialog(null, msje);
-//                        listaStock = crud.ListarKardexStock();
-//                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-//                        this.sumarTotalStock();
+                        JOptionPane.showMessageDialog(null, msje);
+                       listaStock = crud.ListarKardexStock();
+                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                        this.sumarTotalStock();
                      }
                      
                  }else{
