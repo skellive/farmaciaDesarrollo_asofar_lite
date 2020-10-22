@@ -475,6 +475,76 @@ public class Kardex_Productos extends javax.swing.JDialog {
                   //TERMINA CONVERSIÓN
                  }else{
                      //INGRESAR PARA HACER EL INVENTARIO
+                       
+                 if (tabla_stock.getValueAt(i, 3).toString().equals("CAJA")) {    
+                 String[] opciones1={"Caja","Unidades"};  
+                 String opcion1;
+                 opcion1=(String)JOptionPane.showInputDialog(null,"¿Que Desea Agregar? ",
+                 "Bienvenido",JOptionPane.QUESTION_MESSAGE,null,opciones1, opciones1[0]);
+                 if(opcion1!=null){
+                 if(opcion1.equals("Caja")){
+                 
+                 String cant = JOptionPane.showInputDialog("¿Cuántas cajas deseas Ingresar?");
+                 cantidad = Integer.parseInt(cant);
+                 if (cantidad > 0){
+                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de INGRESAR " + cantidad + " cajas ?", "", JOptionPane.YES_NO_OPTION);
+                     if (m == JOptionPane.YES_OPTION) {
+                        JOptionPane.showMessageDialog(null,"Se realizó con exito");
+//                        msje = crud.insertarConversionUnidades(objetoInv);
+//                        JOptionPane.showMessageDialog(null, msje);
+//                        listaStock = crud.ListarKardexStock();
+//                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+//                        this.sumarTotalStock();
+                     }
+                 }else{
+                     JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                 }
+                 
+                 }else{
+                 //-- UNIDAD
+                 
+                 String cant = JOptionPane.showInputDialog("¿Cuántas unidades deseas Ingresar?");
+                 cantidad = Integer.parseInt(cant);
+                 if (cantidad > 0){
+                     
+                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Ingresar " + cantidad + " unidades ?", "", JOptionPane.YES_NO_OPTION);
+                     if (m == JOptionPane.YES_OPTION) {
+                        JOptionPane.showMessageDialog(null,"Se realizó con exito");
+//                        msje = crud.insertarConversionUnidades(objetoInv);
+//                        JOptionPane.showMessageDialog(null, msje);
+//                        listaStock = crud.ListarKardexStock();
+//                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+//                        this.sumarTotalStock();
+                     }
+
+                 }else{
+                     JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                 }
+                 }//TERMINA PARA HACER EL INVENTARIO EN CAJA 
+                 }else{}//no seleccionó nada
+                 }else{//si no es caja
+                 //--Para productos
+                   
+                 String cant = JOptionPane.showInputDialog("¿Cuántos productos deseas Ingresar?");
+                 cantidad = Integer.parseInt(cant);
+                 if (cantidad > 0){
+                     
+                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Ingresar " + cantidad + " productos ?", "", JOptionPane.YES_NO_OPTION);
+                     if (m == JOptionPane.YES_OPTION) {
+                        JOptionPane.showMessageDialog(null,"Se realizó con exito");
+//                        msje = crud.insertarConversionUnidades(objetoInv);
+//                        JOptionPane.showMessageDialog(null, msje);
+//                        listaStock = crud.ListarKardexStock();
+//                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+//                        this.sumarTotalStock();
+                     }
+                     
+                 }else{
+                     JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                 }
+                 
+                 }
+                 //TERMINA INGRESAR
                  
                  }  
                  }else{}//no seleccionó nada
