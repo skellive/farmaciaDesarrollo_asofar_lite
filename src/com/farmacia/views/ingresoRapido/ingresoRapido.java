@@ -1103,25 +1103,25 @@ public class ingresoRapido extends javax.swing.JFrame {
 
         int pos = tipofiltro1.getSelectedIndex();
         if (pos == 0) {
-            listaPNP = crud.FiltrosProductosNotaPedido(query, "TODO");
+            listaPNP = crud.FiltrosIngresoRapido(query, "TODO");
         }
         if (pos == 1) {
-            listaPNP = crud.FiltrosProductosNotaPedido(query, "CODIGO");
+            listaPNP = crud.FiltrosIngresoRapido(query, "CODIGO");
         }
         if (pos == 2) {
-            listaPNP = crud.FiltrosProductosNotaPedido(query, "NOMBRE");
+            listaPNP = crud.FiltrosIngresoRapido(query, "NOMBRE");
         }
         if (pos == 3) {
-            listaPNP = crud.FiltrosProductosNotaPedido(query, "TIPO");
+            listaPNP = crud.FiltrosIngresoRapido(query, "TIPO");
         }
         if (pos == 4) {
-            listaPNP = crud.FiltrosProductosNotaPedido(query, "MEDIDA");
+            listaPNP = crud.FiltrosIngresoRapido(query, "MEDIDA");
         }
         if (pos == 5) {
-            listaPNP = crud.FiltrosProductosNotaPedido(query, "PRESENTACIONES");
+            listaPNP = crud.FiltrosIngresoRapido(query, "PRESENTACIONES");
         }
         if (pos == 6) {
-            listaPNP = crud.FiltrosProductosNotaPedido(query, "MARCA");
+            listaPNP = crud.FiltrosIngresoRapido(query, "MARCA");
         }
         //TxtFiltro.setText("");
 

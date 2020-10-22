@@ -904,8 +904,7 @@ public class CRUD {
         }
         return valor;
     }
-    
-    
+
     //--
     public String BuscarPresentacion(Long id) {
         //ArrayList<Productos> lista = new ArrayList<Productos>();
@@ -936,7 +935,6 @@ public class CRUD {
         }
         return valor;
     }
-    
 
     public String eliminarProducto(Long id) {
         //ArrayList<Productos> lista = new ArrayList<Productos>();
@@ -5168,6 +5166,43 @@ public class CRUD {
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
                     "{call FiltrosProductosNota(?,?)}");
+            prcProcedimientoAlmacenado.setString(1, op1);
+            prcProcedimientoAlmacenado.setString(2, op2);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                joinProductoParaNotaPedido obj = EntidadesMappers.getJoinProductosNotaPedidoFromResultSet(rs);
+                lista.add(obj);
+                //joinProductoParaNotaPedido obj = EntidadesMappers.getJoinDetallesFaltantesFromResultSet(rs);
+                //lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+
+    }
+
+    public ArrayList<joinProductoParaNotaPedido> FiltrosIngresoRapido(String op1, String op2) {
+        ArrayList<joinProductoParaNotaPedido> lista = new ArrayList<joinProductoParaNotaPedido>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call spFiltroIngresoRapido(?,?)}");
             prcProcedimientoAlmacenado.setString(1, op1);
             prcProcedimientoAlmacenado.setString(2, op2);
             prcProcedimientoAlmacenado.execute();
