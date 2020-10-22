@@ -782,7 +782,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
 //        Stock_Productos sp = new Stock_Productos(this, rootPaneCheckingEnabled);
 //        sp.setVisible(rootPaneCheckingEnabled);
-        Kardex_Productos sp = new Kardex_Productos(this, rootPaneCheckingEnabled);
+        Kardex_Productos sp = new Kardex_Productos(this, rootPaneCheckingEnabled,objUsuario);
             sp.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 

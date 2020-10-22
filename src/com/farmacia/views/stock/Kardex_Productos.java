@@ -4,6 +4,7 @@ import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.Productos_Stock;
 import com.farmacia.join_entidades.ListarKardex;
 import com.farmacia.views.covertidor.covertidor;
@@ -42,6 +43,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
     String mensaje = null;
     ListarKardex objet = null;
     ListarKardex objetoInv = null;
+    Listar_usuario objUsu;
 
     public Kardex_Productos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -51,6 +53,23 @@ public class Kardex_Productos extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         //listaKardex = crud.listarKardex();
         //probar();
+        listaStock = crud.ListarKardexStock();
+        //listarStock();
+        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        //Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        this.sumarTotalStock();
+    }
+    
+    public Kardex_Productos(java.awt.Frame parent, boolean modal,Listar_usuario objUsu) {
+        super(parent, modal);
+        getContentPane().setBackground(Color.white);
+        setUndecorated(true);
+        initComponents();
+        this.setLocationRelativeTo(null);
+        //listaKardex = crud.listarKardex();
+        //probar();
+        this.objUsu = objUsu;
+        //JOptionPane.showMessageDialog(null,objUsu.getCargo());
         listaStock = crud.ListarKardexStock();
         //listarStock();
         Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
@@ -317,6 +336,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
         //OPERACION PARA LISTAR TABLA DE ABAJO
         int i = 0;
         String idpro, preCom, preVen, mostar, msje;
+        String usuario = objUsu.getCargo();
         int cantidad, unidad_acep, stock_caja,stock_unidades, unidad_insertar = 0;
         try {
             if (evt.getClickCount() == 2) {
@@ -341,6 +361,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                  "Bienvenido",JOptionPane.QUESTION_MESSAGE,null,opciones, opciones[0]);
                  if(opcion!=null){
                  if(opcion.equals("Dar de Baja")){
+                 if(usuario.equals("ADMINISTRADOR")){
                    
                  if (tabla_stock.getValueAt(i, 3).toString().equals("CAJA")) {    
                  String[] opciones1={"Caja","Unidades"};  
@@ -432,6 +453,9 @@ public class Kardex_Productos extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "No hay productos");
                   }
                  }
+                 }else{
+                    JOptionPane.showMessageDialog(null, "No tienes los permisos necesarios");
+                  }
                  //TERMINA CADUCADOS
                  }else if(opcion.equals("Conversión")){
                   if (tabla_stock.getValueAt(i, 3).toString().equals("CAJA")) {
@@ -482,6 +506,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                      }
                   //TERMINA CONVERSIÓN
                  }else{
+                 if(usuario.equals("ADMINISTRADOR")){
                      //INGRESAR PARA HACER EL INVENTARIO
                        
                  if (tabla_stock.getValueAt(i, 3).toString().equals("CAJA")) {    
@@ -563,6 +588,9 @@ public class Kardex_Productos extends javax.swing.JDialog {
                  }
                  //TERMINA INGRESAR
                  
+                 }else{
+                     JOptionPane.showMessageDialog(null, "No tiene los permisos necesarios");
+                 }
                  }  
                  }else{}//no seleccionó nada
                               
