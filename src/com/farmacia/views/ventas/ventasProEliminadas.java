@@ -51,22 +51,22 @@ public class ventasProEliminadas extends javax.swing.JFrame {
             ResultSetMetaData rsMD = rs.getMetaData();
             int cantidadColumnas = rsMD.getColumnCount();
 
-            modelo.addColumn("Id");
-            modelo.addColumn("Detalle");
-            modelo.addColumn("Id producto");
-            modelo.addColumn("Producto");
-            modelo.addColumn("Descripcion");
-            modelo.addColumn("Control");
-            modelo.addColumn("Cantidad");
-            modelo.addColumn("Precio");
-            modelo.addColumn("Subtotal con IVA");
-            modelo.addColumn("Subtotal sin IVA");
-            modelo.addColumn("IVA total");
-            modelo.addColumn("Descuento");
-            modelo.addColumn("Total");
-            modelo.addColumn("Observacion");    
+            modelo.addColumn("Id"); //1
+            modelo.addColumn("Detalle");  //2
+            modelo.addColumn("Id producto"); //3
+            modelo.addColumn("Producto"); //4
+            modelo.addColumn("Descripcion");  //5
+            modelo.addColumn("Control"); //6
+            modelo.addColumn("Cantidad"); //7
+            modelo.addColumn("Precio"); //8
+            modelo.addColumn("Subtotal con IVA"); //9
+            modelo.addColumn("Subtotal sin IVA"); //10
+            modelo.addColumn("IVA total");  //11
+            modelo.addColumn("Descuento"); //12 
+            modelo.addColumn("Total");  //13
+            modelo.addColumn("Observacion"); //14    
             int[] anchos = {10, 10, 10, 20, 50, 10, 10, 20, 20, 20, 20, 20, 20, 50};
-
+                          //1   2   3   4   5   6   7   8   9   10  11  12  13  14
             for (int x = 0; x < cantidadColumnas; x++) {
 
                 jtbNumeroVenta.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
