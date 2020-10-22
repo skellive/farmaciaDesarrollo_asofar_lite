@@ -879,6 +879,7 @@ public class EntidadesMappers {
             obj.setPrecio_compra(rs.getBigDecimal("precio_compra"));
             obj.setPrecio_venta(rs.getBigDecimal("precio_venta"));//venta_unidad
             obj.setVenta_unidad(rs.getBigDecimal("venta_unidad"));//getVenta_unidad
+            obj.setDescuento(rs.getLong("descuento_venta"));
             
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);

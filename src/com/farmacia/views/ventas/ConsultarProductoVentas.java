@@ -146,9 +146,9 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(239, 239, 239)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(356, 356, 356)
                 .addComponent(lblCerrar)
                 .addGap(17, 17, 17))
         );
@@ -223,6 +223,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             idPro=TablaProductoVentas.getValueAt(i, 0).toString();
             preVent=TablaProductoVentas.getValueAt(i, 8).toString();
             venUni=TablaProductoVentas.getValueAt(i, 9).toString();
+            objeto=null;
             objeto = devuelveObjeto2(idPro,preVent,venUni,listaProducto);
             if (objeto != null) {
                 //valida si es caja
@@ -254,6 +255,8 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                  }
                  
                 //this.setVisible(false); 
+            }else{
+               objeto=null; 
             }
         }
         //System.out.println(" select " + objeto.getProducto_nombre());

@@ -1120,15 +1120,23 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento.setEditable(false);
         TxtProdIva.setEditable(false);
         TxtProdtotal.setEditable(false);
-
+        objProd=null;
         ConsultarProductoVentas cp = new ConsultarProductoVentas(new javax.swing.JFrame(), true);
         cp.setVisible(true);
         objProd = cp.getProducto();
-        if (objProd != null) {
-
-            TxtProdNombre.setText(objProd.getProducto_nombre());            
+        if (objProd!=null) {
+        TxtProdNombre.setText(objProd.getProducto_nombre());
+        if(objProd.getPrecio_venta()==null ){
+            TxtProdPrecio.setText("");
+        }else{
             TxtProdPrecio.setText(objProd.getPrecio_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
-            //TxtDescuentoPorcentaje.setText(objProd.getDescuento().toString());
+        }
+        if(objProd.getDescuento()==null ){
+            TxtDescuentoPorcentaje.setText("");
+        }else{
+            TxtDescuentoPorcentaje.setText(objProd.getDescuento().toString());
+        }
+            
         }
 
 
