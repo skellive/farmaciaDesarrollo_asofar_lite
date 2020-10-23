@@ -265,9 +265,9 @@ public class Kardex_Productos extends javax.swing.JDialog {
                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(426, 426, 426)
+                .addGap(396, 396, 396)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(28, 28, 28)
                 .addComponent(txtbusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -285,7 +285,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblImprimir)
-                        .addContainerGap(7, Short.MAX_VALUE))
+                        .addContainerGap(12, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -309,9 +309,9 @@ public class Kardex_Productos extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtbusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusquedaKeyReleased
-        Buscar = txtbusqueda.getText();
-        Tablas.filtro(Buscar, tabla_stock);
-        sumarTotalStock();
+//        Buscar = txtbusqueda.getText();
+//        Tablas.filtro(Buscar, tabla_stock);
+//        sumarTotalStock();
     }//GEN-LAST:event_txtbusquedaKeyReleased
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
@@ -380,7 +380,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                           msje = crud.accionesInventario(objetoInv,1);
                         JOptionPane.showMessageDialog(null, msje);
                         listaStock = crud.ListarKardexStock();
-                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
                         this.sumarTotalStock();
                      }
                      } else {
@@ -437,7 +437,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
 //                        msje = crud.insertarConversionUnidades(objetoInv);
                         JOptionPane.showMessageDialog(null, msje);
                         listaStock = crud.ListarKardexStock();
-                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
                         this.sumarTotalStock();
                      }
                      } else {
@@ -484,7 +484,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                                               msje = crud.accionesInventario(objetoInv,2);
                                             JOptionPane.showMessageDialog(null, msje);
                                             listaStock = crud.ListarKardexStock();
-                                            Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
                                             this.sumarTotalStock();
                                         }
                                     } else {
@@ -526,7 +526,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
 //                        msje = crud.insertarConversionUnidades(objetoInv);
                         JOptionPane.showMessageDialog(null, msje);
                         listaStock = crud.ListarKardexStock();
-                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
                         this.sumarTotalStock();
                      }
                  }else{
@@ -549,7 +549,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
 //                        msje = crud.insertarConversionUnidades(objetoInv);
                         JOptionPane.showMessageDialog(null, msje);
                        listaStock = crud.ListarKardexStock();
-                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
                         this.sumarTotalStock();
                      }
 
@@ -574,7 +574,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
 //                        msje = crud.insertarConversionUnidades(objetoInv);
                         JOptionPane.showMessageDialog(null, msje);
                        listaStock = crud.ListarKardexStock();
-                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
                         this.sumarTotalStock();
                      }
                      
