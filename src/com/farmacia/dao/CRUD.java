@@ -1841,7 +1841,7 @@ public class CRUD {
             int id_precio,
             float precio,
             int cantidad,
-            float unidad,
+            int unidad,
             int sucursal) {
         Conexion c = new Conexion();
         Connection con = c.conectar();
@@ -1861,7 +1861,7 @@ public class CRUD {
             prIngRap.setInt(8, id_precio);
             prIngRap.setDouble(9, precio);
             prIngRap.setInt(10, cantidad);
-            prIngRap.setDouble(11, unidad);
+            prIngRap.setInt(11, unidad);
             prIngRap.setInt(12, sucursal);
             prIngRap.execute();
             System.out.println("Ingreso rapido correcto");
