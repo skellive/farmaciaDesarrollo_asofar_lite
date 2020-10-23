@@ -573,7 +573,8 @@ public class Tablas {
     public static void filtro(String valor, JTable Tabla) {
         TableRowSorter<DefaultTableModel> tr = new TableRowSorter<>(model);
         Tabla.setRowSorter(tr);
-        tr.setRowFilter(RowFilter.regexFilter("(?i)"+valor, 1));
+        //tr.setRowFilter(RowFilter.regexFilter("(?i)"+valor, 1));
+        tr.setRowFilter(RowFilter.regexFilter(valor.trim()));
     }
 
     public static void listarTipoProducto(ArrayList<TipoProducto> lista, JTable Tabla) {
