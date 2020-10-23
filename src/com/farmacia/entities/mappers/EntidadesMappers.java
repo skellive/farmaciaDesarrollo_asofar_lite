@@ -1015,6 +1015,7 @@ public class EntidadesMappers {
             //obj.setId_kardex(rs.getLong("IDKARDEX"));
             obj.setId_producto(rs.getLong("ID_PRODUCTO"));
             obj.setNombre_Producto(rs.getString("PRODUCTO"));
+            obj.setCodigo_barra(rs.getString("CODIGO_BARRAS"));
             obj.setDescripcion(rs.getString("DESCRIPCION"));
             obj.setTipo(rs.getString("TIPO"));
             obj.setPresentacion(rs.getString("PRESENTACION"));

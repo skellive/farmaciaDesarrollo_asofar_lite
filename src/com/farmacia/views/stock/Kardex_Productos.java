@@ -80,7 +80,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
     public void sumarTotalStock() {
         Double total = 0.00;
         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
-            String ao = tabla_stock.getValueAt(i, 8).toString();
+            String ao = tabla_stock.getValueAt(i, 9).toString();
             String cadenaDeDecimales = ao;
             String resultado = cadenaDeDecimales.replace(',', '.');
             total = total + Double.valueOf(resultado);
@@ -224,9 +224,9 @@ public class Kardex_Productos extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(364, Short.MAX_VALUE)
+                .addContainerGap(383, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(262, 262, 262)
+                .addGap(297, 297, 297)
                 .addComponent(lblCerrar)
                 .addGap(27, 27, 27))
         );
@@ -265,9 +265,9 @@ public class Kardex_Productos extends javax.swing.JDialog {
                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(355, 355, 355)
+                .addGap(426, 426, 426)
                 .addComponent(jLabel2)
-                .addGap(27, 27, 27)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtbusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -340,10 +340,10 @@ public class Kardex_Productos extends javax.swing.JDialog {
                 i = tabla_stock.getSelectedRow();
                 //JOptionPane.showMessageDialog(this, "2 click");
                 idpro = tabla_stock.getValueAt(i, 0).toString();
-                preCom = tabla_stock.getValueAt(i, 4).toString();
-                preVen = tabla_stock.getValueAt(i, 5).toString();
-                stock_caja = Integer.parseInt(tabla_stock.getValueAt(i, 6).toString());
-                stock_unidades = Integer.parseInt(tabla_stock.getValueAt(i, 7).toString());
+                preCom = tabla_stock.getValueAt(i, 5).toString();
+                preVen = tabla_stock.getValueAt(i, 6).toString();
+                stock_caja = Integer.parseInt(tabla_stock.getValueAt(i, 7).toString());
+                stock_unidades = Integer.parseInt(tabla_stock.getValueAt(i, 8).toString());
                 System.out.println(idpro + ":" + preCom + "-" + preVen);
                 //JOptionPane.showMessageDialog(this, idpro+":"+preCom+"-"+preVen);
                 objetoInv = devuelveObjeto(idpro, preCom, preVen, listaStock);
@@ -360,7 +360,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                  if(opcion.equals("Dar de Baja")){
                  if(usuario.equals("ADMINISTRADOR")){
                    
-                 if (tabla_stock.getValueAt(i, 3).toString().equals("CAJA")) {    
+                 if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA")) {    
                  String[] opciones1={"Caja","Unidades"};  
                  String opcion1;
                  opcion1=(String)JOptionPane.showInputDialog(null,"¿Que Desea dar de Baja? ",
@@ -455,7 +455,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                   }
                  //TERMINA CADUCADOS
                  }else if(opcion.equals("Conversión")){
-                  if (tabla_stock.getValueAt(i, 3).toString().equals("CAJA")) {
+                  if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA")) {
                         //JOptionPane.showMessageDialog(null, "stock en caja: "+stock_caja);// en stock
                         int r = JOptionPane.showConfirmDialog(null, "¿Desea convertir a unidades?", "", JOptionPane.YES_NO_OPTION);
                         if (r == JOptionPane.YES_OPTION) {
@@ -506,7 +506,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                  if(usuario.equals("ADMINISTRADOR")){
                      //INGRESAR PARA HACER EL INVENTARIO
                        
-                 if (tabla_stock.getValueAt(i, 3).toString().equals("CAJA")) {    
+                 if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA")) {    
                  String[] opciones1={"Caja","Unidades"};  
                  String opcion1;
                  opcion1=(String)JOptionPane.showInputDialog(null,"¿Que Desea Agregar? ",

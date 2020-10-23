@@ -6,6 +6,7 @@ public class ListarKardex {
     //13 variables
     Long id_kardex;
     Long id_producto;
+    String codigo_barra;
     String nombre_Producto;
     String descripcion;
     String tipo;
@@ -24,9 +25,10 @@ public class ListarKardex {
     public ListarKardex() {
     }
 
-    public ListarKardex(Long id_kardex, Long id_producto, String nombre_Producto, String descripcion, String tipo, String presentacion,Long unidad_aceptada ,Long cantidad, Long cantidad_unidad, String iva,Long id_precio, Double precio_compra, Double precio_venta, Double total, Long compra, Long venta) {
+    public ListarKardex(Long id_kardex, Long id_producto,String codigo_barra ,String nombre_Producto, String descripcion, String tipo, String presentacion,Long unidad_aceptada ,Long cantidad, Long cantidad_unidad, String iva,Long id_precio, Double precio_compra, Double precio_venta, Double total, Long compra, Long venta) {
         this.id_kardex = id_kardex;
-        this.id_producto = id_producto;
+        this.id_producto = id_producto;//codigo_barra
+        this.codigo_barra = codigo_barra;
         this.nombre_Producto = nombre_Producto;
         this.descripcion = descripcion;
         this.tipo = tipo;
@@ -58,6 +60,15 @@ public class ListarKardex {
     public void setId_producto(Long id_producto) {
         this.id_producto = id_producto;
     }
+
+    public String getCodigo_barra() {
+        return codigo_barra;
+    }
+
+    public void setCodigo_barra(String codigo_barra) {
+        this.codigo_barra = codigo_barra;
+    }
+    
 
     public String getNombre_Producto() {
         return nombre_Producto;

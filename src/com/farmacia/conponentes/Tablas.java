@@ -1894,30 +1894,31 @@ public class Tablas {
     }
 
     public static void ListarKardexStockProductos(ArrayList<ListarKardex> lista, JTable Tabla) {
-        int[] a = {80, 180, 140, 110, 80, 80, 80, 80, 100};
+        int[] a = {70,100, 180, 140, 110, 70, 70, 70, 70, 90};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"#", "PRODUCTO", "DESCRIPCION", "PRESENTACION", "PRE.COMPRA", "PRE.VENTA", "CANTIDAD", "UNIDADES", "TOTAL"};
+        String[] Co = {"#","COD.BARRA", "PRODUCTO", "DESCRIPCION", "PRESENTACION", "PRE.COMPRA", "PRE.VENTA", "CANTIDAD", "UNIDADES", "TOTAL"};
         //   Date[] Ca = {Date.valueOf("Fecha")};
-        String[] Filas = new String[9];
+        String[] Filas = new String[10];
         //  Date[] Fila = new Date [1];
         model = new DefaultTableModel(null, Co);
         //  laboratorio = new DefaultTableModel(null, Ca);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
             Filas[0] = lista.get(i).getId_producto().toString();
-            Filas[1] = lista.get(i).getNombre_Producto();
-            Filas[2] = lista.get(i).getDescripcion();
-            Filas[3] = lista.get(i).getPresentacion();
-            Filas[4] = lista.get(i).getPrecio_compra().toString();
-            Filas[5] = lista.get(i).getPrecio_venta().toString();
-            Filas[6] = lista.get(i).getCantidad().toString();
-            Filas[7] = lista.get(i).getCantidad_unidad().toString();
+            Filas[1] = lista.get(i).getCodigo_barra();
+            Filas[2] = lista.get(i).getNombre_Producto();
+            Filas[3] = lista.get(i).getDescripcion();
+            Filas[4] = lista.get(i).getPresentacion();
+            Filas[5] = lista.get(i).getPrecio_compra().toString();
+            Filas[6] = lista.get(i).getPrecio_venta().toString();
+            Filas[7] = lista.get(i).getCantidad().toString();
+            Filas[8] = lista.get(i).getCantidad_unidad().toString();
             Double ao = lista.get(i).getCantidad() * (lista.get(i).getPrecio_compra());
-            Filas[8] = Formato_Numeros.formatoNumero(ao.toString());
+            Filas[9] = Formato_Numeros.formatoNumero(ao.toString());
 
             model.addRow(Filas);
             //     laboratorio.addRow(Fila);
@@ -1940,6 +1941,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(8).setPreferredWidth(a[8]);
             Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[8]);
+            Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
 
         }
 
