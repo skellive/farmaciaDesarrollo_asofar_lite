@@ -153,7 +153,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmLocal = new javax.swing.JMenu();
         jmLocal2 = new javax.swing.JMenuItem();
         jmEmpleados = new javax.swing.JMenuItem();
-        jMenuItem16 = new javax.swing.JMenuItem();
         jmVenta = new javax.swing.JMenu();
         mnuRegistrarVenta = new javax.swing.JMenuItem();
         mnuCliente = new javax.swing.JMenuItem();
@@ -425,10 +424,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         jmLocal.add(jmEmpleados);
-
-        jMenuItem16.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        jMenuItem16.setText("PERMISOS");
-        jmLocal.add(jMenuItem16);
 
         jMenuBar1.add(jmLocal);
 
@@ -935,7 +930,6 @@ RIN.setVisible(true);
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem16;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
