@@ -1455,34 +1455,35 @@ public class Tablas {
         //--NUEVO
     
         public static void ListarProductosVENTA(ArrayList<JoinListarProductosVentas> lista, JTable Tabla) {
-        int[] a = {100,150,160,100,100,80,80,50,80,80};
+        int[] a = {70,110,150,120,100,100,60,60,50,60,60};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "TIPO", "PRESENTACION", "CANTIDAD", "UNIDADES", "IVA", "PRE.VENTA","VEN.UNIDAD"};//"PRE.VENTA"
+        String[] Co = {"#","C.BARRAS" ,"PRODUCTO", "DESCRIPCION", "TIPO", "PRESENTACION", "CANTIDAD", "UNIDADES", "IVA", "PRE.VENTA","VEN.UNIDAD"};//"PRE.VENTA"
         //   Date[] Ca = {Date.valueOf("Fecha")};
-        String[] Filas = new String[10];
+        String[] Filas = new String[11];
         //  Date[] Fila = new Date [1];
         model = new DefaultTableModel(null, Co);
         //  laboratorio = new DefaultTableModel(null, Ca);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
             Filas[0] = ""+lista.get(i).getId_producto().toString();
-            Filas[1] = ""+lista.get(i).getProducto_nombre();
-            Filas[2] = ""+lista.get(i).getProducto_descripcion();
-            Filas[3] = ""+lista.get(i).getTipo_nombre();
-            Filas[4] = ""+lista.get(i).getEnvase_nombre();
-            Filas[5] = ""+lista.get(i).getStock().toString();
-            Filas[6] = ""+lista.get(i).getStock_unidad().toString();
-            Filas[7] = ""+lista.get(i).getIva();
+            Filas[1] = ""+lista.get(i).getCodigo_barras();
+            Filas[2] = ""+lista.get(i).getProducto_nombre();
+            Filas[3] = ""+lista.get(i).getProducto_descripcion();
+            Filas[4] = ""+lista.get(i).getTipo_nombre();
+            Filas[5] = ""+lista.get(i).getEnvase_nombre();
+            Filas[6] = ""+lista.get(i).getStock().toString();
+            Filas[7] = ""+lista.get(i).getStock_unidad().toString();
+            Filas[8] = ""+lista.get(i).getIva();
 //            if(lista.get(i).getVenta_unidad().toString().isEmpty()){
 //            lista.get(i).setVenta_unidad(BigDecimal.valueOf(0.00));  
 //            }
             //Filas[8] = ""+lista.get(i).getVenta_unidad().toString();
-            Filas[8] = ""+lista.get(i).getPrecio_venta().toString();
-            Filas[9] = ""+lista.get(i).getVenta_unidad().toString();
+            Filas[9] = ""+lista.get(i).getPrecio_venta().toString();
+            Filas[10] = ""+lista.get(i).getVenta_unidad().toString();
             
             model.addRow(Filas);
             //     laboratorio.addRow(Fila);
@@ -1507,6 +1508,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
             Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
+            Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
             
 
         }

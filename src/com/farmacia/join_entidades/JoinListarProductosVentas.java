@@ -18,6 +18,7 @@ public class JoinListarProductosVentas {
     private Long unidad_aceptada;
     private BigDecimal venta_unidad;
     private Long id_producto;
+    private String codigo_barras;
     private String producto_nombre;
     private String producto_descripcion;
     private Long id_tipo;
@@ -47,12 +48,13 @@ public class JoinListarProductosVentas {
         
     }
 
-    public JoinListarProductosVentas(Long id_control,Long stock_unidad,Long unidad_aceptada,BigDecimal venta_unidad, Long id_producto, String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, Long descuento, String iva, BigDecimal precio_compra, BigDecimal descuento_compra, String estado,int empaque) {
+    public JoinListarProductosVentas(Long id_control,Long stock_unidad,Long unidad_aceptada,BigDecimal venta_unidad, Long id_producto,String codigo_barras ,String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, Long descuento, String iva, BigDecimal precio_compra, BigDecimal descuento_compra, String estado,int empaque) {
         this.id_control = id_control;
         this.stock_unidad = stock_unidad;
         this.unidad_aceptada = unidad_aceptada;
         this.venta_unidad = venta_unidad;
         this.id_producto = id_producto;
+        this.codigo_barras = codigo_barras;
         this.producto_nombre = producto_nombre;
         this.producto_descripcion = producto_descripcion;
         this.id_tipo = id_tipo;
@@ -117,8 +119,6 @@ public class JoinListarProductosVentas {
         this.empaque = empaque;
     }
     
-    
-
     public Long getId_producto() {
         return id_producto;
     }
@@ -126,6 +126,15 @@ public class JoinListarProductosVentas {
     public void setId_producto(Long id_producto) {
         this.id_producto = id_producto;
     }
+
+    public String getCodigo_barras() {
+        return codigo_barras;
+    }
+
+    public void setCodigo_barras(String codigo_barras) {
+        this.codigo_barras = codigo_barras;
+    }
+    
 
     public String getProducto_nombre() {
         return producto_nombre;

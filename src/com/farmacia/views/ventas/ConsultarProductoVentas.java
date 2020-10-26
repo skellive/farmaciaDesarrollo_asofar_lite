@@ -90,12 +90,14 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 948, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1063, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         TxtFiltro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
@@ -148,7 +150,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(356, 356, 356)
+                .addGap(412, 412, 412)
                 .addComponent(lblCerrar)
                 .addGap(17, 17, 17))
         );
@@ -171,14 +173,14 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(372, 372, 372)
+                        .addGap(418, 418, 418)
                         .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
+                        .addGap(33, 33, 33)
                         .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
@@ -189,11 +191,11 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(30, 30, 30))
+                .addGap(16, 16, 16))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,13 +223,13 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         if (evt.getClickCount() == 2) {           
             i = TablaProductoVentas.getSelectedRow();
             idPro=TablaProductoVentas.getValueAt(i, 0).toString();
-            preVent=TablaProductoVentas.getValueAt(i, 8).toString();
-            venUni=TablaProductoVentas.getValueAt(i, 9).toString();
+            preVent=TablaProductoVentas.getValueAt(i, 9).toString();
+            venUni=TablaProductoVentas.getValueAt(i, 10).toString();
             objeto=null;
             objeto = devuelveObjeto2(idPro,preVent,venUni,listaProducto);
             if (objeto != null) {
                 //valida si es caja
-                 if(TablaProductoVentas.getValueAt(i,4).toString().equals("CAJA")){
+                 if(TablaProductoVentas.getValueAt(i,5).toString().equals("CAJA")){
                  String[] colores={"Caja","Unidad"};  
                  String opcion;
                  opcion=(String)JOptionPane.showInputDialog(null,"¿Como quieres vender? ",
