@@ -114,8 +114,6 @@ public class Kardex_Productos extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        txtbusqueda = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         tblProduc = new javax.swing.JScrollPane();
         tabla_stock = new javax.swing.JTable();
@@ -125,23 +123,15 @@ public class Kardex_Productos extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         lblCerrar = new javax.swing.JLabel();
         lblImprimir = new javax.swing.JLabel();
+        txt_filtro_inventario = new javax.swing.JTextField();
+        btn_buscar = new javax.swing.JButton();
+        tipofiltro = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         jPanel2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(50, 99, 50), 2, true));
         jPanel2.setOpaque(false);
-
-        txtbusqueda.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        txtbusqueda.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtbusquedaKeyReleased(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
-        jLabel2.setText("FILTRO:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50), 2));
         jPanel1.setOpaque(false);
@@ -224,9 +214,9 @@ public class Kardex_Productos extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(383, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(297, 297, 297)
+                .addGap(318, 318, 318)
                 .addComponent(lblCerrar)
                 .addGap(27, 27, 27))
         );
@@ -247,6 +237,16 @@ public class Kardex_Productos extends javax.swing.JDialog {
             }
         });
 
+        btn_buscar.setText("BUSCAR");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
+
+        tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.BARRAS", "NOMBRE", "PRESENTACIÓN" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -265,27 +265,30 @@ public class Kardex_Productos extends javax.swing.JDialog {
                 .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(396, 396, 396)
-                .addComponent(jLabel2)
-                .addGap(28, 28, 28)
-                .addComponent(txtbusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(373, 373, 373)
+                .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_filtro_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_buscar)
+                .addContainerGap(310, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtbusqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_buscar)
+                    .addComponent(txt_filtro_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblImprimir)
-                        .addContainerGap(12, Short.MAX_VALUE))
+                        .addContainerGap(11, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -307,12 +310,6 @@ public class Kardex_Productos extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void txtbusquedaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbusquedaKeyReleased
-//        Buscar = txtbusqueda.getText();
-//        Tablas.filtro(Buscar, tabla_stock);
-//        sumarTotalStock();
-    }//GEN-LAST:event_txtbusquedaKeyReleased
 
     private void jLabel1MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MousePressed
         x = evt.getX();
@@ -637,6 +634,28 @@ public class Kardex_Productos extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_lblImprimirMouseClicked
 
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        //BUSCAR
+        String f = txt_filtro_inventario.getText().toUpperCase();
+        int pos = tipofiltro.getSelectedIndex();
+        //listaStock = crud.ListarKardexStock();
+        if ("".equals(f) || f.isEmpty() ) {
+            listaStock = crud.ListarKardexStock();
+        }else{
+        if (pos == 0) {
+            listaStock =crud.ListarfiltroInventario(1,"%"+f+"%");
+        }
+        if (pos == 1) {
+            listaStock =crud.ListarfiltroInventario(2,"%"+f+"%");
+        }
+        if (pos == 2) {
+            listaStock =crud.ListarfiltroInventario(3,"%"+f+"%");
+        }
+        
+        }
+        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+    }//GEN-LAST:event_btn_buscarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -681,8 +700,8 @@ public class Kardex_Productos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -691,7 +710,8 @@ public class Kardex_Productos extends javax.swing.JDialog {
     private javax.swing.JLabel lblImprimir;
     private javax.swing.JTable tabla_stock;
     private javax.swing.JScrollPane tblProduc;
+    private javax.swing.JComboBox<String> tipofiltro;
     private javax.swing.JTextField txtTotal;
-    private javax.swing.JTextField txtbusqueda;
+    private javax.swing.JTextField txt_filtro_inventario;
     // End of variables declaration//GEN-END:variables
 }

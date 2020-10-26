@@ -4114,6 +4114,49 @@ public class CRUD {
 
     }
 
+    
+    //--FILTRO INVENTARIO
+        //ParaListarkardex
+    public ArrayList<ListarKardex> ListarfiltroInventario(int num,String palabra) {
+        ArrayList<ListarKardex> lista = new ArrayList<ListarKardex>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call filtroInventario(?,?)}");
+            prcProcedimientoAlmacenado.setInt(1,num);
+            prcProcedimientoAlmacenado.setString(2,palabra);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                ListarKardex obj = EntidadesMappers.getKardexStockFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+
+    }
+    
+    
+    
+    
+    
+    
     //ParaListarkardex
     public ArrayList<ListarKardex> ListarKardexStock() {
         ArrayList<ListarKardex> lista = new ArrayList<ListarKardex>();
