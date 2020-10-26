@@ -605,14 +605,14 @@ public class Kardex_Productos extends javax.swing.JDialog {
         ArrayList tabla = new ArrayList();
         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
             ClaseReporte tabla1 = new ClaseReporte(
-                    tabla_stock.getValueAt(i, 0).toString(),
                     tabla_stock.getValueAt(i, 1).toString(),
                     tabla_stock.getValueAt(i, 2).toString(),
-                    tabla_stock.getValueAt(i, 4).toString(),
+                    tabla_stock.getValueAt(i, 3).toString(),
                     tabla_stock.getValueAt(i, 5).toString(),
                     tabla_stock.getValueAt(i, 6).toString(),
+                    tabla_stock.getValueAt(i, 7).toString(),
                     txtTotal.getText(),
-                    tabla_stock.getValueAt(i, 3).toString());
+                    tabla_stock.getValueAt(i, 4).toString());
             tabla.add(tabla1);
         }
         try {
