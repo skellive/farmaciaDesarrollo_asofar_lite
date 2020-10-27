@@ -93,9 +93,9 @@ public class observacionVenta extends javax.swing.JFrame {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(txtVentaNum1)
-                .addGap(113, 113, 113)
+                .addGap(57, 57, 57)
                 .addComponent(txtVentaNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(154, Short.MAX_VALUE))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
