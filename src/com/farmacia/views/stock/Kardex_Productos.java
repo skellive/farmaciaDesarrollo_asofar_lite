@@ -357,19 +357,19 @@ public class Kardex_Productos extends javax.swing.JDialog {
                  if(opcion.equals("Dar de Baja")){
                  if(usuario.equals("ADMINISTRADOR")){
                    
-                 if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA")) {    
-                 String[] opciones1={"Caja","Unidades"};  
+                 if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA") || tabla_stock.getValueAt(i, 4).toString().equals("FUNDA")) {    
+                 String[] opciones1={"Caja,Funda","Unidades"};  
                  String opcion1;
                  opcion1=(String)JOptionPane.showInputDialog(null,"¿Que Desea dar de Baja? ",
                  "Bienvenido",JOptionPane.QUESTION_MESSAGE,null,opciones1, opciones1[0]);
                  if(opcion1!=null){
-                 if(opcion1.equals("Caja")){
+                 if(opcion1.equals("Caja,Funda")){
                  if (stock_caja > 0){   
-                 String cant = JOptionPane.showInputDialog("¿Cuántas cajas deseas dar de Baja?");
+                 String cant = JOptionPane.showInputDialog("¿Cuántas deseas dar de Baja?");
                  cantidad = Integer.parseInt(cant);
                  if (cantidad > 0){
                      if (cantidad <= stock_caja) {
-                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " cajas ?", "", JOptionPane.YES_NO_OPTION);
+                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
                          objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
                          objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
@@ -387,7 +387,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                      JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
                  }
                  }else {
-                    JOptionPane.showMessageDialog(null, "No hay Cajas");
+                    JOptionPane.showMessageDialog(null, "No hay Producto");
                   }
                  }else{
                  //-- UNIDAD
@@ -452,13 +452,13 @@ public class Kardex_Productos extends javax.swing.JDialog {
                   }
                  //TERMINA CADUCADOS
                  }else if(opcion.equals("Conversión")){
-                  if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA")) {
+                  if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA") || tabla_stock.getValueAt(i, 4).toString().equals("FUNDA")) {
                         //JOptionPane.showMessageDialog(null, "stock en caja: "+stock_caja);// en stock
                         int r = JOptionPane.showConfirmDialog(null, "¿Desea convertir a unidades?", "", JOptionPane.YES_NO_OPTION);
                         if (r == JOptionPane.YES_OPTION) {
                             if (stock_caja > 0) {
                                 //JOptionPane.showMessageDialog(this, "si");
-                                String cant = JOptionPane.showInputDialog("¿Cuántas cajas deseas convertir a unidades?");
+                                String cant = JOptionPane.showInputDialog("¿Cuántas deseas convertir a unidades?");
                                 cantidad = Integer.parseInt(cant);
                                 if (cantidad > 0) {
                                     if (cantidad <= stock_caja) {
@@ -475,7 +475,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
                                                 + "cantidad en caja:" + objetoInv.getCantidad().toString() + "\n"
                                                 + "unidades: " + objetoInv.getCantidad_unidad().toString();
                                         //JOptionPane.showMessageDialog(null,mostar);
-                                        int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de convertir " + cantidad + " cajas en " + unidad_insertar + " unidades ?", "", JOptionPane.YES_NO_OPTION);
+                                        int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de convertir " + cantidad + " en " + unidad_insertar + " unidades ?", "", JOptionPane.YES_NO_OPTION);
                                         if (m == JOptionPane.YES_OPTION) {
                                               //JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
                                               msje = crud.accionesInventario(objetoInv,2);
@@ -491,30 +491,30 @@ public class Kardex_Productos extends javax.swing.JDialog {
                                     JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
                                 }
                             } else {
-                                JOptionPane.showMessageDialog(null, "No hay Cajas");
+                                JOptionPane.showMessageDialog(null, "No hay producto");
                             }
 
                         }
                     }else{
-                     JOptionPane.showMessageDialog(null,"No viene en Caja");
+                     JOptionPane.showMessageDialog(null,"No viene en Caja o Funda");
                      }
                   //TERMINA CONVERSIÓN
                  }else{
                  if(usuario.equals("ADMINISTRADOR")){
                      //INGRESAR PARA HACER EL INVENTARIO
                        
-                 if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA")) {    
-                 String[] opciones1={"Caja","Unidades"};  
+                 if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA") || tabla_stock.getValueAt(i, 4).toString().equals("FUNDA")) {    
+                 String[] opciones1={"Caja,Funda","Unidades"};  
                  String opcion1;
                  opcion1=(String)JOptionPane.showInputDialog(null,"¿Que Desea Agregar? ",
                  "Bienvenido",JOptionPane.QUESTION_MESSAGE,null,opciones1, opciones1[0]);
                  if(opcion1!=null){
-                 if(opcion1.equals("Caja")){
+                 if(opcion1.equals("Caja,Funda")){
                  
-                 String cant = JOptionPane.showInputDialog("¿Cuántas cajas deseas Ingresar?");
+                 String cant = JOptionPane.showInputDialog("¿Cuántas deseas Ingresar?");
                  cantidad = Integer.parseInt(cant);
                  if (cantidad > 0){
-                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de INGRESAR " + cantidad + " cajas ?", "", JOptionPane.YES_NO_OPTION);
+                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de INGRESAR " + cantidad + " ?", "", JOptionPane.YES_NO_OPTION);
                      if (m == JOptionPane.YES_OPTION) {
                         //JOptionPane.showMessageDialog(null,"Se realizó con exito");
                          objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad

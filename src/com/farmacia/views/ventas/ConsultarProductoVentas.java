@@ -229,8 +229,8 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             objeto = devuelveObjeto2(idPro,preVent,venUni,listaProducto);
             if (objeto != null) {
                 //valida si es caja
-                 if(TablaProductoVentas.getValueAt(i,5).toString().equals("CAJA")){
-                 String[] colores={"Caja","Unidad"};  
+                 if(TablaProductoVentas.getValueAt(i,5).toString().equals("CAJA") || TablaProductoVentas.getValueAt(i,5).toString().equals("FUNDA")){
+                 String[] colores={"Caja,Funda","Unidad"};  
                  String opcion;
                  opcion=(String)JOptionPane.showInputDialog(null,"¿Como quieres vender? ",
                  "Elegir",JOptionPane.QUESTION_MESSAGE,null,colores, colores[0]);
