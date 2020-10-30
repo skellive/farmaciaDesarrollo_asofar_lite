@@ -69,8 +69,8 @@
                   <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
                   <Component id="txtFechaActual1" min="-2" pref="100" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="btnModificar" min="-2" pref="135" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                  <Component id="btnModificar" min="-2" pref="104" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
@@ -170,28 +170,36 @@
                                           <Component id="jLabel15" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
-                                              <Component id="txtDescripcion1" min="-2" pref="310" max="-2" attributes="0"/>
-                                          </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
                                               <Component id="producto" min="-2" pref="308" max="-2" attributes="0"/>
                                           </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="txtDescripcion1" min="-2" pref="310" max="-2" attributes="0"/>
+                                                  <Component id="cbxTipos1" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                                                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                                                      <Component id="cbxEnvase1" alignment="0" pref="238" max="32767" attributes="0"/>
+                                                      <Component id="cbxMedida1" alignment="0" max="32767" attributes="0"/>
+                                                      <Component id="cbcucategoria" alignment="0" max="32767" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Component id="jLabel19" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel16" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel18" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel9" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel22" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel22" max="32767" attributes="0"/>
                                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel9" alignment="0" pref="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
+                                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="txtcantMinima" min="-2" pref="76" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
@@ -206,28 +214,24 @@
                                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                               <Component id="cbxReceta" min="-2" pref="120" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
+                                          <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="cbcucategoria" alignment="1" min="-2" pref="194" max="-2" attributes="0"/>
-                                                  <Component id="cbxMedida1" alignment="1" min="-2" pref="194" max="-2" attributes="0"/>
-                                                  <Component id="cbxTipos1" min="-2" pref="186" max="-2" attributes="0"/>
-                                                  <Component id="cbxMarca1" alignment="1" min="-2" pref="194" max="-2" attributes="0"/>
-                                                  <Component id="cbxEnvase1" alignment="0" min="-2" pref="194" max="-2" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="btnagregacategoria" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
                                                   <Component id="btnAgregarMedida1" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
                                                   <Component id="btnAgregarTipo1" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
-                                                  <Component id="btnAgreEnvase1" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
-                                                  <Component id="btnAgreMarca1" alignment="0" min="-2" pref="90" max="-2" attributes="0"/>
+                                                  <Component id="btnAgreEnvase1" alignment="1" min="-2" pref="90" max="-2" attributes="0"/>
                                               </Group>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="cbxMarca1" min="-2" pref="236" max="-2" attributes="0"/>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Component id="btnAgreMarca1" min="-2" pref="90" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="25" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -273,11 +277,11 @@
                           </Group>
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" alignment="1" groupAlignment="3" attributes="0">
-                              <Component id="cbcucategoria" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
-                              <Component id="btnagregacategoria" alignment="3" min="-2" pref="24" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="btnagregacategoria" alignment="1" min="-2" pref="24" max="-2" attributes="0"/>
+                              <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Component id="jLabel1" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbcucategoria" alignment="0" min="-2" pref="24" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
