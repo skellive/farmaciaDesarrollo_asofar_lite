@@ -91,7 +91,7 @@ public class modificar_precio_producto extends javax.swing.JDialog {
         // Habilitar(false);
         id_producto = id;
         this.presentacion=crud.BuscarPresentacion(id_producto);
-        if(presentacion.equals("CAJA")){
+        if(presentacion.equals("CAJA") || presentacion.equals("FUNDA")){
             txt_venta_unidad.setEnabled(true);
         }else{
             txt_venta_unidad.setEnabled(false);

@@ -89,7 +89,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         // Habilitar(false);
         id_producto = id;
         presentacion=crud.BuscarPresentacion(id_producto);//codigo.setEnabled(valor);
-        if(presentacion.equals("CAJA")){
+        if(presentacion.equals("CAJA") || presentacion.equals("FUNDA")){
             txt_venta_unidad.setEnabled(true);
         }else{
             txt_venta_unidad.setEnabled(false);
