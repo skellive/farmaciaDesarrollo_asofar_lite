@@ -27,6 +27,7 @@ public class ListaComprasDesactivadas extends javax.swing.JDialog {
     CRUD crud = new CRUD();
     ArrayList<JoinListarNotaPedidosCabecera> lista = null;
     JoinListarNotaPedidosCabecera objeto=null;
+    String buscar = "";
     
 
     public ListaComprasDesactivadas(java.awt.Frame parent, boolean modal) {
@@ -44,7 +45,6 @@ public class ListaComprasDesactivadas extends javax.swing.JDialog {
 
         jPanel2 = new javax.swing.JPanel();
         txtfiltro = new javax.swing.JTextField();
-        filtrar = new javax.swing.JButton();
         btnSalir2 = new javax.swing.JButton();
         Reporte = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
@@ -68,14 +68,6 @@ public class ListaComprasDesactivadas extends javax.swing.JDialog {
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtfiltroKeyTyped(evt);
-            }
-        });
-
-        filtrar.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        filtrar.setText("BUSCAR");
-        filtrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                filtrarActionPerformed(evt);
             }
         });
 
@@ -179,21 +171,17 @@ public class ListaComprasDesactivadas extends javax.swing.JDialog {
                         .addGap(111, 111, 111)
                         .addComponent(Reporte, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(278, 278, 278))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(284, 284, 284)
-                .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(320, 320, 320))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(filtrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtfiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(11, 11, 11)
@@ -228,16 +216,13 @@ public class ListaComprasDesactivadas extends javax.swing.JDialog {
            
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
-    private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
-
-    }//GEN-LAST:event_filtrarActionPerformed
-
     private void txtfiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyTyped
 
     }//GEN-LAST:event_txtfiltroKeyTyped
 
     private void txtfiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyReleased
-        
+        buscar = txtfiltro.getText();
+        Tablas.filtro(buscar, tblCompraDesactivadas);        
     }//GEN-LAST:event_txtfiltroKeyReleased
 
     private void txtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfiltroActionPerformed
@@ -375,7 +360,6 @@ public class ListaComprasDesactivadas extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Reporte;
     private javax.swing.JButton btnSalir2;
-    private javax.swing.JButton filtrar;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
