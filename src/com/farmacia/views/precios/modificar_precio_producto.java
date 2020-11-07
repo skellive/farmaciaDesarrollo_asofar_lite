@@ -48,6 +48,7 @@ public class modificar_precio_producto extends javax.swing.JDialog {
     private Double precioCompra;
     private Double precioVenta;
     private Long id_precio;
+    int unidades;
     String FechaActual,presentacion;
     public String[] verificar = new String[10];
     CRUD crud = new CRUD();
@@ -91,8 +92,12 @@ public class modificar_precio_producto extends javax.swing.JDialog {
         // Habilitar(false);
         id_producto = id;
         this.presentacion=crud.BuscarPresentacion(id_producto);
+        unidades= crud.buscarUnidadesProducto(id_producto);
+        //JOptionPane.showMessageDialog(this, ""+unidades);
         if(presentacion.equals("CAJA") || presentacion.equals("FUNDA")){
+        if(unidades>1){
             txt_venta_unidad.setEnabled(true);
+        }else{ txt_venta_unidad.setEnabled(false); }  
         }else{
             txt_venta_unidad.setEnabled(false);
         }

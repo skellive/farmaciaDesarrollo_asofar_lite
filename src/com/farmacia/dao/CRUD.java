@@ -221,6 +221,25 @@ public class CRUD {
         return id;
 
     }
+    
+    //BUSCAR CANT UNIDADES PRODUCTO
+    public int buscarUnidadesProducto(Long id_producto) {
+        String query ="select p.unidades\n" +
+        "from productos p\n" +
+        "WHERE id_productos ="+id_producto+" AND p.estado = 'A'";
+        int id = 0;
+        try {
+            conect = con.conectar();
+            java.sql.Statement st = conect.createStatement();
+            rs = st.executeQuery(query);
+            rs.next();
+            id = rs.getInt("unidades");
+            conect.close();
+        } catch (SQLException ex) {
+            Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
 
     //cambie a uno por uno
     public void insertarDetallesCompra(ArrayList<String> queryL) {

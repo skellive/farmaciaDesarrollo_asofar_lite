@@ -55,6 +55,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     public ArrayList<Precios> lista_t = null;
     Consultas llamar = new Consultas();
     Precios objeto=null;
+    int unidades;
     Date date = new Date();
     DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     public Long getId_precio() {
@@ -89,8 +90,11 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         // Habilitar(false);
         id_producto = id;
         presentacion=crud.BuscarPresentacion(id_producto);//codigo.setEnabled(valor);
+        unidades= crud.buscarUnidadesProducto(id_producto);
         if(presentacion.equals("CAJA") || presentacion.equals("FUNDA")){
+        if(unidades>1){
             txt_venta_unidad.setEnabled(true);
+        }else{ txt_venta_unidad.setEnabled(false);}
         }else{
             txt_venta_unidad.setEnabled(false);
         }
