@@ -95,6 +95,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmLocal.setVisible(false);
                 jmIva.setVisible(false);
             }
+            if ("ENCARGADO".equals(tipo)){
+                lblEmpleados.setVisible(false);
+                mnEliminadas.setVisible(false);
+                jmLocal.setVisible(false);
+                jmIva.setVisible(false);
+                lblProveedores.setVisible(false);
+                jMenuItem15.setVisible(false);
+            }
         }
         this.setTitle(variables.getTitle() + TITLE + "  " + obj2.getCargo() + ": " + obj2.getNombres() + "  " + obj2.getApellidos());
         this.setLocationRelativeTo(null);
