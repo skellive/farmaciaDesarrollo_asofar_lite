@@ -18,9 +18,15 @@ public class Conexion {
         String clavel = "itsgg";
         try {
             Class.forName("com.mysql.jdbc.Driver");
+<<<<<<< Updated upstream
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/asofar_moduloprueba", "root", "");
 
             //conn = DriverManager.getConnection("jdbc:mysql://mysql-asofar.alwaysdata.net:3306/asofar_moduloprueba", "asofar", "asofarLITEbase");
+=======
+     /*local*/       conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/asofar_moduloprueba", "root", "root");
+
+       /*remota*/    //conn = DriverManager.getConnection("jdbc:mysql://mysql-asofar.alwaysdata.net:3306/asofar_moduloprueba", "asofar", "asofarLITEbase");
+>>>>>>> Stashed changes
 
             
             System.out.println("Conectado");
