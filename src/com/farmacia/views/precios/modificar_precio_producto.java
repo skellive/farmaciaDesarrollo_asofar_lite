@@ -48,7 +48,6 @@ public class modificar_precio_producto extends javax.swing.JDialog {
     private Double precioCompra;
     private Double precioVenta;
     private Long id_precio;
-    int unidades;
     String FechaActual,presentacion;
     public String[] verificar = new String[10];
     CRUD crud = new CRUD();
@@ -81,23 +80,21 @@ public class modificar_precio_producto extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
-        
+         txtprociento.setVisible(false);
     }   
     public modificar_precio_producto(java.awt.Frame parent, boolean modal, Long id, Precios pr1) {
+        
         super(parent, modal);
         getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
+        txtprociento.setVisible(false);
         // Habilitar(false);
         id_producto = id;
         this.presentacion=crud.BuscarPresentacion(id_producto);
-        unidades= crud.buscarUnidadesProducto(id_producto);
-        //JOptionPane.showMessageDialog(this, ""+unidades);
-        if(presentacion.equals("CAJA") || presentacion.equals("FUNDA")){
-        if(unidades>1){
+        if(presentacion.equals("CAJA")){
             txt_venta_unidad.setEnabled(true);
-        }else{ txt_venta_unidad.setEnabled(false); }  
         }else{
             txt_venta_unidad.setEnabled(false);
         }
@@ -117,7 +114,7 @@ public class modificar_precio_producto extends javax.swing.JDialog {
     nuevo1.setText(precios.getPrecio_compra().toString());
     nuevo2.setText(precios.getPrecio_venta().toString());
     txtDescVent.setText(precios.getDescuentoVenta().toString());
-    txtprociento.setText(precios.getPorcentaje().toString());
+  //  txtprociento.setText(precios.getPorcentaje().toString());25112020 ccevallos
     txt_venta_unidad.setText(""+precios.getVenta_unidad());
     }
     
@@ -135,7 +132,6 @@ public class modificar_precio_producto extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nuevo2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         txtprociento = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         preciobase = new javax.swing.JTextField();
@@ -197,11 +193,6 @@ public class modificar_precio_producto extends javax.swing.JDialog {
                 nuevo2KeyTyped(evt);
             }
         });
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 27, 134));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Gan.:");
 
         txtprociento.setText("0");
         txtprociento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
@@ -358,9 +349,7 @@ public class modificar_precio_producto extends javax.swing.JDialog {
                                     .addComponent(nuevo2)
                                     .addComponent(preciobase)
                                     .addComponent(txt_venta_unidad))
-                                .addGap(19, 19, 19)
-                                .addComponent(jLabel4)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGap(65, 65, 65)
                                 .addComponent(txtprociento, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(160, 160, 160)
@@ -377,9 +366,7 @@ public class modificar_precio_producto extends javax.swing.JDialog {
                     .addComponent(preciobase, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtprociento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtprociento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(nuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -428,7 +415,8 @@ public class modificar_precio_producto extends javax.swing.JDialog {
 
     }    public boolean Validar() {
         boolean pos = false;
-        lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_producto);
+        //lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`,`venta_unidad`, estado,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_producto);
+       lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_producto);
         // System.out.println(id_producto + " " + lista_t.get(0).getId_producto());
         for (int i = 0; i < lista_t.size(); i++) {
             // System.out.println(223 + " hol"+id_producto +" " +lista_t.get(i).getPrecio_compra());
@@ -671,10 +659,12 @@ if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
         //</editor-fold>
 
         //</editor-fold>
-
+     
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            
             public void run() {
+                
                 modificar_precio_producto dialog = new modificar_precio_producto(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
@@ -683,6 +673,7 @@ if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
                     }
                 });
                 dialog.setVisible(true);
+          
             }
         });
     }
@@ -692,7 +683,6 @@ if (!Character.isDigit(evt.getKeyChar()) && evt.getKeyChar() != '.') {
     public static javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

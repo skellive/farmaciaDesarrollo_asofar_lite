@@ -268,7 +268,9 @@ public class ConsultarClienteVentas extends javax.swing.JDialog {
         for (int i = 0; i < listarobj.size(); i++) {
             System.out.println("id " + datos);
             if (datos.equals(listarobj.get(i).getId_Clientes().toString())) {
+                
                 objeto1 = listarobj.get(i);
+                
                 break;
             }
         }

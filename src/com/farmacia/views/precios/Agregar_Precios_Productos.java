@@ -55,7 +55,6 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     public ArrayList<Precios> lista_t = null;
     Consultas llamar = new Consultas();
     Precios objeto=null;
-    int unidades;
     Date date = new Date();
     DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     public Long getId_precio() {
@@ -79,6 +78,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
+        txtprociento.setVisible(false);
         
     }   
     public Agregar_Precios_Productos(java.awt.Frame parent, boolean modal, Long id) {
@@ -87,14 +87,12 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
+        txtprociento.setVisible(false);
         // Habilitar(false);
         id_producto = id;
         presentacion=crud.BuscarPresentacion(id_producto);//codigo.setEnabled(valor);
-        unidades= crud.buscarUnidadesProducto(id_producto);
-        if(presentacion.equals("CAJA") || presentacion.equals("FUNDA")){
-        if(unidades>1){
+        if(presentacion.equals("CAJA")){
             txt_venta_unidad.setEnabled(true);
-        }else{ txt_venta_unidad.setEnabled(false);}
         }else{
             txt_venta_unidad.setEnabled(false);
         }
@@ -127,7 +125,6 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         nuevo2 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
         txtprociento = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         preciobase = new javax.swing.JTextField();
@@ -190,13 +187,15 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 27, 134));
-        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Gan.:");
-
+        txtprociento.setEditable(false);
         txtprociento.setText("0");
         txtprociento.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
+        txtprociento.setEnabled(false);
+        txtprociento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtprocientoActionPerformed(evt);
+            }
+        });
         txtprociento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtprocientoKeyReleased(evt);
@@ -340,7 +339,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(txtDescVent, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -359,9 +358,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
                             .addComponent(nuevo2)
                             .addComponent(preciobase)
                             .addComponent(txt_venta_unidad))))
-                .addGap(19, 19, 19)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(65, 65, 65)
                 .addComponent(txtprociento, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(35, Short.MAX_VALUE))
         );
@@ -375,9 +372,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
                     .addComponent(preciobase, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(7, 7, 7)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtprociento, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtprociento, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(nuevo1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -603,7 +598,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
             pr.setVenta_unidad(Double.valueOf(txt_venta_unidad.getText()));
             pr.setFecha_registro(FechaActual);
             pr.setId_usuario(Long.valueOf("2"));
-            pr.setPorcentaje(Long.valueOf(txtprociento.getText()));
+          pr.setPorcentaje(Long.valueOf(txtprociento.getText()));// 25112020-CCevallos  no se utilizara este campo por ahora
             pr.setDescuentoVenta(Long.valueOf(txtDescVent.getText()));//NuloLong
             valor = crud.actualizarPrecioCompra(pr);
             if (valor != null) {
@@ -628,6 +623,10 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     private void txt_venta_unidadKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_venta_unidadKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_venta_unidadKeyTyped
+
+    private void txtprocientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtprocientoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtprocientoActionPerformed
      
     public static double redondearDecimales(double valorInicial, int numeroDecimales) {
         double parteEntera, resultado;
@@ -690,7 +689,6 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     public static javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;

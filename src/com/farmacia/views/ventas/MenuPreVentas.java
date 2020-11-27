@@ -39,10 +39,12 @@ public class MenuPreVentas extends javax.swing.JDialog {
     String ImagenLogo = System.getProperty("user.dir") + "/src/com/farmacia/imagenes/" + "logoasofar.jpg";
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-     ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
+    ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
+    ArrayList<Persona> listaCliente = null;
     ArrayList<StockVentas> listaStockVentas = null;
+    
     Listar_usuario objUsuario = null;
-   // Label jlId_pro = new ConsultarProductoVentas().lblId.getText();
+    // Label jlId_pro = new ConsultarProductoVentas().lblId.getText();
     CRUD crud = new CRUD();
     JoinListarProductosVentas objProd = new JoinListarProductosVentas();
     Persona objCliente = new Persona();
@@ -53,6 +55,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        listaCliente = crud.ListarTodoClienteVentas("1");
         getContentPane().setBackground(Color.white);
         initComponents();
 //        TxtCedula.setText("9999999999");
@@ -120,6 +123,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         jLabel5 = new javax.swing.JLabel();
         TxtTelefono = new javax.swing.JTextField();
         TxtCorreo = new javax.swing.JTextField();
+        jCheckBox1 = new javax.swing.JCheckBox();
         CbxFormaPago = new javax.swing.JComboBox<>();
         CbxTipoVenta = new javax.swing.JComboBox<>();
         BtnGenerarVenta = new javax.swing.JButton();
@@ -216,6 +220,15 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
         TxtCorreo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
 
+        jCheckBox1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(0, 27, 134));
+        jCheckBox1.setText("CONSUMIDOR FINAL");
+        jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -228,25 +241,25 @@ public class MenuPreVentas extends javax.swing.JDialog {
                     .addComponent(jLabel4))
                 .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(TxtDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(TxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(TxtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(TxtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtnBuscarcedula)))
-                        .addGap(8, 8, 8)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(TxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(TxtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(BtnBuscarcedula))
+                    .addComponent(TxtDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(8, 8, 8)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TxtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jCheckBox1)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                            .addComponent(jLabel5)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(TxtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,7 +274,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(TxtDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TxtDirec, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCheckBox1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -744,6 +758,21 @@ public class MenuPreVentas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 
+    public Persona devuelveObjeto(ArrayList<Persona> listarobj) {
+        String datos = String.valueOf(10);
+        Persona objeto1 = null;
+        for (int i = 0; i < listarobj.size(); i++) {
+            System.out.println("id " + datos);
+            if (datos.equals(listarobj.get(i).getId_Clientes().toString())) {
+                
+                objeto1 = listarobj.get(i);
+                
+                break;
+            }
+        }
+        return objeto1;
+    }
+    
     private void BtnBuscarcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarcedulaActionPerformed
 
         ConsultarClienteVentas cc = new ConsultarClienteVentas(new javax.swing.JFrame(), true);
@@ -757,8 +786,12 @@ public class MenuPreVentas extends javax.swing.JDialog {
             TxtTelefono.setText(objCliente.getStr_telefono());
             TxtCorreo.setText(objCliente.getStr_correo());
 
+        }else{
+            if(objCliente == null){
+                
+                
+            }
         }
-
     }//GEN-LAST:event_BtnBuscarcedulaActionPerformed
 
     private void BtnGenerarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGenerarVentaActionPerformed
@@ -792,8 +825,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
             cv.setId_cabecera_venta(Long.parseLong(id_cab));
 
             objeto = cv;
-            
-           
 
             for (int i = 0; i < ListarDetalle.size(); i++) {
 
@@ -803,12 +834,12 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 dv.setId_cabecera_venta(cv.getId_cabecera_venta());
                 dv.setId_control(ListarDetalle.get(i).getId_control());
                 dv.setPrecio(ListarDetalle.get(i).getPrecio());
-                if(ListarDetalle.get(i).getEmpaque()==1){
-                dv.setCantidad(ListarDetalle.get(i).getCantidad());
-                dv.setCantidad_unidad(Long.valueOf(0));  
-                }else{
-                dv.setCantidad(Long.valueOf(0));
-                dv.setCantidad_unidad(ListarDetalle.get(i).getCantidad());    
+                if (ListarDetalle.get(i).getEmpaque() == 1) {
+                    dv.setCantidad(ListarDetalle.get(i).getCantidad());
+                    dv.setCantidad_unidad(Long.valueOf(0));
+                } else {
+                    dv.setCantidad(Long.valueOf(0));
+                    dv.setCantidad_unidad(ListarDetalle.get(i).getCantidad());
                 }
                 dv.setIva(ListarDetalle.get(i).getIva());
                 dv.setDescuento(ListarDetalle.get(i).getDescuento());
@@ -818,7 +849,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
             }
             listaStockVentas = crud.listarStockVentas(Long.parseLong(id_cab));
-            
+
             for (int i = 0; i < listaStockVentas.size(); i++) {
                 System.out.println("id control " + listaStockVentas.get(i).getId_control());
                 System.out.println("cantidad " + listaStockVentas.get(i).getCantidad());
@@ -826,7 +857,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 crud.ActulizarStockVentas(listaStockVentas.get(i));
                 //crud.insertarKardex_ventas();
             }
-            
+
             this.setVisible(false);
             ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
             ov.setVisible(true);
@@ -853,8 +884,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, msg);
             } else {
                 //JOptionPane.showMessageDialog(this,""+objProd.getEmpaque());  //<---
-                System.out.println(" se repite  " + verificarObjeto(objProd.getId_producto().toString(),objProd.getId_precio().toString(),objProd.getEmpaque()+""));
-                if (verificarObjeto(objProd.getId_producto().toString(),objProd.getId_precio().toString(),objProd.getEmpaque()+"").equals("si")) {
+                System.out.println(" se repite  " + verificarObjeto(objProd.getId_producto().toString(), objProd.getId_precio().toString(), objProd.getEmpaque() + ""));
+                if (verificarObjeto(objProd.getId_producto().toString(), objProd.getId_precio().toString(), objProd.getEmpaque() + "").equals("si")) {
 
                     JOptionPane.showMessageDialog(rootPane, "SE REPITE EL ITEM");
                 } else {
@@ -906,19 +937,19 @@ public class MenuPreVentas extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAddItenActionPerformed
 
-    public String verificarObjeto(String datos,String idPre,String empaque) {
-        String idproducto,idprecio;
+    public String verificarObjeto(String datos, String idPre, String empaque) {
+        String idproducto, idprecio;
         String objeto1 = "no";
 
         for (int i = 0; i < ListarDetalle.size(); i++) {
-            idproducto=ListarDetalle.get(i).getId_producto().toString();
-            idprecio=ListarDetalle.get(i).getId_control().toString();
-            System.out.println("idproducto: "+datos+"-"+idproducto);
-            System.out.println("idprecio: "+idPre+"-"+idprecio);
+            idproducto = ListarDetalle.get(i).getId_producto().toString();
+            idprecio = ListarDetalle.get(i).getId_control().toString();
+            System.out.println("idproducto: " + datos + "-" + idproducto);
+            System.out.println("idprecio: " + idPre + "-" + idprecio);
 
-            if (datos.equals(ListarDetalle.get(i).getId_producto().toString()) & 
-                    idPre.equals(ListarDetalle.get(i).getId_control().toString()) &
-                    empaque.equals(ListarDetalle.get(i).getEmpaque()+"")) {
+            if (datos.equals(ListarDetalle.get(i).getId_producto().toString())
+                    & idPre.equals(ListarDetalle.get(i).getId_control().toString())
+                    & empaque.equals(ListarDetalle.get(i).getEmpaque() + "")) {
                 objeto1 = "si";
                 break;
             } else {
@@ -1047,9 +1078,9 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 System.out.println("TotalSub SinIva " + TotalSubSinIva);
                 TotalSubSinIvaCompra = TotalSubSinIvaCompra.add(SubtotalCompra);
                 System.out.println("TotalSubCompra SinIva " + TotalSubSinIvaCompra);
-                Iva=BigDecimal.valueOf(0.00);
+                Iva = BigDecimal.valueOf(0.00);
 
-            }else{
+            } else {
 
                 TotalIva = TotalIva.add(Subtotal.multiply(Iva));
                 System.out.println("total iva " + TotalIva);
@@ -1120,23 +1151,23 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento.setEditable(false);
         TxtProdIva.setEditable(false);
         TxtProdtotal.setEditable(false);
-        objProd=null;
+        objProd = null;
         ConsultarProductoVentas cp = new ConsultarProductoVentas(new javax.swing.JFrame(), true);
         cp.setVisible(true);
         objProd = cp.getProducto();
-        if (objProd!=null) {
-        TxtProdNombre.setText(objProd.getProducto_nombre());
-        if(objProd.getPrecio_venta()==null ){
-            TxtProdPrecio.setText("");
-        }else{
-            TxtProdPrecio.setText(objProd.getPrecio_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
-        }
-        if(objProd.getDescuento()==null ){
-            TxtDescuentoPorcentaje.setText("");
-        }else{
-            TxtDescuentoPorcentaje.setText(objProd.getDescuento().toString());
-        }
-            
+        if (objProd != null) {
+            TxtProdNombre.setText(objProd.getProducto_nombre());
+            if (objProd.getPrecio_venta() == null) {
+                TxtProdPrecio.setText("");
+            } else {
+                TxtProdPrecio.setText(objProd.getPrecio_venta().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
+            }
+            if (objProd.getDescuento() == null) {
+                TxtDescuentoPorcentaje.setText("");
+            } else {
+                TxtDescuentoPorcentaje.setText(objProd.getDescuento().toString());
+            }
+
         }
 
 
@@ -1177,7 +1208,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private void TxtDescuentoPorcentajeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtDescuentoPorcentajeKeyTyped
 
         char car = evt.getKeyChar();
-        if (car < '0' || car > '9' ) {
+        if (car < '0' || car > '9') {
             evt.consume();
         }
 
@@ -1251,13 +1282,13 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (!TxtProdSubtotal.getText().equals("")) {
-        
-        int r = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos?", "", JOptionPane.YES_NO_OPTION);
-                if (r == JOptionPane.YES_OPTION) {
-                     TxtDescuentoPorcentaje.setEditable(true);
-                }
+
+            int r = JOptionPane.showConfirmDialog(null, "¿Desea modificar los datos?", "", JOptionPane.YES_NO_OPTION);
+            if (r == JOptionPane.YES_OPTION) {
+                TxtDescuentoPorcentaje.setEditable(true);
+            }
         }
-     /*   if (!TxtProdSubtotal.getText().equals("")) {
+        /*   if (!TxtProdSubtotal.getText().equals("")) {
 
             VerificarAcceso va = new VerificarAcceso(new javax.swing.JFrame(), true);
 
@@ -1275,6 +1306,59 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
         this.setVisible(false);
     }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+
+        if (jCheckBox1.isEnabled()) {
+
+            TxtCedula.setText("9999999999");
+            TxtNombre.setText("CONSUMIDOR FINAL XXXXXXXXX");
+            TxtCorreo.setText("xxxxx@gmail.com");
+            TxtDirec.setText("xxxxxxxxxxx");
+            TxtTelefono.setText("0000000000 CONVENCIONAL");
+            TxtProdNombre.setEnabled(true);
+            TxtProdPrecio.setEnabled(true);
+            TxtProdCantidad.setEnabled(true);
+            TxtProdSubtotal.setEnabled(true);
+            TxtDescuentoPorcentaje.setEnabled(true);
+            TxtProdDescuento.setEnabled(true);
+            TxtProdIva.setEnabled(true);
+            TxtProdtotal.setEnabled(true);
+            TxtProdNombre.setEditable(false);
+            TxtProdPrecio.setEditable(false);
+            TxtProdCantidad.setEditable(true);
+            TxtProdSubtotal.setEditable(false);
+            TxtDescuentoPorcentaje.setEditable(false);
+            TxtProdDescuento.setEditable(false);
+            TxtProdIva.setEditable(false);
+            TxtProdtotal.setEditable(false);
+        }
+        if (!jCheckBox1.isSelected()) {
+            TxtCedula.setText("");
+            TxtNombre.setText("");
+            TxtCorreo.setText("");
+            TxtDirec.setText("");
+            TxtTelefono.setText("");
+            TxtProdNombre.setEnabled(false);
+            TxtProdPrecio.setEnabled(false);
+            TxtProdCantidad.setEnabled(false);
+            TxtProdSubtotal.setEnabled(false);
+            TxtDescuentoPorcentaje.setEnabled(false);
+            TxtProdDescuento.setEnabled(false);
+            TxtProdIva.setEnabled(false);
+            TxtProdtotal.setEnabled(false);
+            TxtProdNombre.setEditable(true);
+            TxtProdPrecio.setEditable(true);
+            TxtProdCantidad.setEditable(false);
+            TxtProdSubtotal.setEditable(true);
+            TxtDescuentoPorcentaje.setEditable(true);
+            TxtProdDescuento.setEditable(true);
+            TxtProdIva.setEditable(true);
+            TxtProdtotal.setEditable(true);
+        }
+
+
+    }//GEN-LAST:event_jCheckBox1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1353,6 +1437,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
     private javax.swing.JTextField TxtTelefono;
     private javax.swing.JTextField TxtTotal;
     private javax.swing.JButton jButton2;
+    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
