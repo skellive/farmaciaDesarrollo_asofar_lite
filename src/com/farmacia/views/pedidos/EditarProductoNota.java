@@ -1064,7 +1064,7 @@ public class EditarProductoNota extends javax.swing.JDialog {
         objf.setMedida(obj.getMedida());
         objf.setProducto(obj.getProducto());
         objf.setMarca(obj.getMarca());
-        objf.setEnvase(obj.getPresentacion());
+        objf.setPresentacion(obj.getPresentacion());
         objf.setTipo(obj.getTipo());
         objf.setIva(obj.getIva());
         objf.setDescuento(obj.getDescuento());
