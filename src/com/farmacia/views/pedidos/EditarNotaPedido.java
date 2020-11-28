@@ -923,6 +923,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     if (msg == null) {
                         AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objetoActual);
                         np.setVisible(true);
+                        
+                        if(np.getObjf()!=null){
                     //msg = ComponentesFaltantes.validarListaFaltantes(tbaNotaPedido, objeto.getId_producto().toString());
 //  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
                         Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
@@ -941,9 +943,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             actualizarTabla2();
                             actualizarCabecera();
                             lblCerrar.setEnabled(false);
-                        }
-                        {
+                        }else{
                             //JOptionPane.showMessageDialog(this, "getCantidad() ->" +np.getObjf().getCantidad());
+                        }
                         }
 
                     } else {

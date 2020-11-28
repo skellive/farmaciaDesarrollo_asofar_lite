@@ -1417,7 +1417,7 @@ public class Tablas {
             Filas[4] = lista.get(i).getProducto();
             Filas[5] = lista.get(i).getCantidad() + "";
             Filas[6] = lista.get(i).getMedida();
-            Filas[7] = "" + lista.get(i).getCantidad_unidad();
+            Filas[7] = "" + lista.get(i).getCantidad();
             Filas[8] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             Filas[9] = Formato_Numeros.formatoNumero(lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             Filas[10] = Formato_Numeros.formatoNumero(lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString());

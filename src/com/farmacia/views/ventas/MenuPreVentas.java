@@ -21,6 +21,7 @@ import java.awt.Label;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,12 +43,14 @@ public class MenuPreVentas extends javax.swing.JDialog {
     ArrayList<Detalle_ventas> ListarDetalle = new ArrayList<Detalle_ventas>();
     ArrayList<Persona> listaCliente = null;
     ArrayList<StockVentas> listaStockVentas = null;
-    
+
     Listar_usuario objUsuario = null;
     // Label jlId_pro = new ConsultarProductoVentas().lblId.getText();
     CRUD crud = new CRUD();
     JoinListarProductosVentas objProd = new JoinListarProductosVentas();
     Persona objCliente = new Persona();
+    Persona objClienteC = new Persona();
+    Persona objClienteC1 = new Persona();
     Calcular_totales ct = new Calcular_totales();
     int x, y;
     Cabecera_ventas objeto = new Cabecera_ventas();
@@ -64,6 +67,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 //        TxtDirec.setText("*************************************");
 //        TxtTelefono.setText("*************************************");
         this.setLocationRelativeTo(null);
+        
         TxtProdNombre.setEnabled(false);
         TxtProdPrecio.setEnabled(false);
         TxtProdCantidad.setEnabled(false);
@@ -85,6 +89,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 //        TxtDirec.setText("*************************************");
 //        TxtTelefono.setText("*************************************");
         this.setLocationRelativeTo(null);
+        listaCliente = crud.ListarTodoClienteVentas("1");
         objUsuario = objlogin;
         TxtProdNombre.setEnabled(false);
         TxtProdPrecio.setEnabled(false);
@@ -757,22 +762,26 @@ public class MenuPreVentas extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-
-    public Persona devuelveObjeto(ArrayList<Persona> listarobj) {
-        String datos = String.valueOf(10);
+    public Persona devuelveObjeto(String datos, ArrayList<Persona> listarobj) {
         Persona objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
             System.out.println("id " + datos);
             if (datos.equals(listarobj.get(i).getId_Clientes().toString())) {
-                
+
                 objeto1 = listarobj.get(i);
-                
+
                 break;
             }
         }
         return objeto1;
     }
-    
+
+    public Persona getCliente1() {
+        objClienteC = devuelveObjeto(String.valueOf(10), listaCliente);
+        return objClienteC;
+    }
+
+
     private void BtnBuscarcedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarcedulaActionPerformed
 
         ConsultarClienteVentas cc = new ConsultarClienteVentas(new javax.swing.JFrame(), true);
@@ -786,11 +795,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
             TxtTelefono.setText(objCliente.getStr_telefono());
             TxtCorreo.setText(objCliente.getStr_correo());
 
-        }else{
-            if(objCliente == null){
-                
-                
-            }
         }
     }//GEN-LAST:event_BtnBuscarcedulaActionPerformed
 
@@ -798,70 +802,145 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
         if (!TxtTotal.getText().equals("") && !TxtCedula.getText().equals("")) {
 
-            Cabecera_ventas cv = new Cabecera_ventas();
-            String id_cab;
-            int can;
-            String query = "SELECT COUNT(*)+1 AS 'cantidad' FROM cabecera_venta";
-            can = crud.obtenerNumeroOrdenes(query);
+            if (!jCheckBox1.isSelected()) {
 
-            cv.setMun_venta(String.format("%06d", can));
-            cv.setId_cliente(objCliente.getId_Clientes());
-            cv.setId_usuario(Long.parseLong("36"));
-            cv.setId_usuario(objUsuario.getId_sesion());
+                Cabecera_ventas cv = new Cabecera_ventas();
+
+                String id_cab;
+                int can;
+                String query = "SELECT COUNT(*)+1 AS 'cantidad' FROM cabecera_venta";
+                can = crud.obtenerNumeroOrdenes(query);
+
+                cv.setMun_venta(String.format("%06d", can));
+
+                cv.setId_cliente(objCliente.getId_Clientes());
+
+                cv.setId_usuario(Long.parseLong("36"));
+                cv.setId_usuario(objUsuario.getId_sesion());
 //            System.out.println("usuario :" + objUsuario.getApellidos());
-            cv.setId_sucursal(Long.parseLong("2"));
-            cv.setForma_de_pago(CbxFormaPago.getSelectedItem().toString());
-            cv.setTipo_de_venta(CbxTipoVenta.getSelectedItem().toString());
-            cv.setSubtotal_con_iva(ct.getSubtotalConIva());
-            cv.setSubtotal_sin_iva(ct.getSubtotalSinIva());
-            cv.setSubtotal_venta(ct.getSubtotal());
-            cv.setDescuento_venta(ct.getDescuento());
-            cv.setIva_venta(ct.getIva());
-            cv.setTotal_venta(ct.getTotal());
-            cv.setUtilidad(ct.getUtilidad());
-            cv.setEstado("A");
+                cv.setId_sucursal(Long.parseLong("2"));
+                cv.setForma_de_pago(CbxFormaPago.getSelectedItem().toString());
+                cv.setTipo_de_venta(CbxTipoVenta.getSelectedItem().toString());
+                cv.setSubtotal_con_iva(ct.getSubtotalConIva());
+                cv.setSubtotal_sin_iva(ct.getSubtotalSinIva());
+                cv.setSubtotal_venta(ct.getSubtotal());
+                cv.setDescuento_venta(ct.getDescuento());
+                cv.setIva_venta(ct.getIva());
+                cv.setTotal_venta(ct.getTotal());
+                cv.setUtilidad(ct.getUtilidad());
+                cv.setEstado("A");
 
-            id_cab = crud.InsertarCabeceraVentas(cv);
-            cv.setId_cabecera_venta(Long.parseLong(id_cab));
+                id_cab = crud.InsertarCabeceraVentas(cv);
+                cv.setId_cabecera_venta(Long.parseLong(id_cab));
 
-            objeto = cv;
+                objeto = cv;
 
-            for (int i = 0; i < ListarDetalle.size(); i++) {
+                for (int i = 0; i < ListarDetalle.size(); i++) {
 
-                Detalle_ventas dv = new Detalle_ventas();
-                String id_det;
+                    Detalle_ventas dv = new Detalle_ventas();
+                    String id_det;
 
-                dv.setId_cabecera_venta(cv.getId_cabecera_venta());
-                dv.setId_control(ListarDetalle.get(i).getId_control());
-                dv.setPrecio(ListarDetalle.get(i).getPrecio());
-                if (ListarDetalle.get(i).getEmpaque() == 1) {
-                    dv.setCantidad(ListarDetalle.get(i).getCantidad());
-                    dv.setCantidad_unidad(Long.valueOf(0));
-                } else {
-                    dv.setCantidad(Long.valueOf(0));
-                    dv.setCantidad_unidad(ListarDetalle.get(i).getCantidad());
+                    dv.setId_cabecera_venta(cv.getId_cabecera_venta());
+                    dv.setId_control(ListarDetalle.get(i).getId_control());
+                    dv.setPrecio(ListarDetalle.get(i).getPrecio());
+                    if (ListarDetalle.get(i).getEmpaque() == 1) {
+                        dv.setCantidad(ListarDetalle.get(i).getCantidad());
+                        dv.setCantidad_unidad(Long.valueOf(0));
+                    } else {
+                        dv.setCantidad(Long.valueOf(0));
+                        dv.setCantidad_unidad(ListarDetalle.get(i).getCantidad());
+                    }
+                    dv.setIva(ListarDetalle.get(i).getIva());
+                    dv.setDescuento(ListarDetalle.get(i).getDescuento());
+
+                    id_det = crud.InsertarDetalleVentas(dv);
+                    dv.setId_cabecera_venta(Long.parseLong(id_det));
+
                 }
-                dv.setIva(ListarDetalle.get(i).getIva());
-                dv.setDescuento(ListarDetalle.get(i).getDescuento());
+                listaStockVentas = crud.listarStockVentas(Long.parseLong(id_cab));
 
-                id_det = crud.InsertarDetalleVentas(dv);
-                dv.setId_cabecera_venta(Long.parseLong(id_det));
+                for (int i = 0; i < listaStockVentas.size(); i++) {
+                    System.out.println("id control " + listaStockVentas.get(i).getId_control());
+                    System.out.println("cantidad " + listaStockVentas.get(i).getCantidad());
 
+                    crud.ActulizarStockVentas(listaStockVentas.get(i));
+                    //crud.insertarKardex_ventas();
+                }
+
+                this.setVisible(false);
+                ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
+                ov.setVisible(true);
             }
-            listaStockVentas = crud.listarStockVentas(Long.parseLong(id_cab));
+            else if (jCheckBox1.isEnabled()) {
+                
+                objClienteC1 = getCliente1();
+                Cabecera_ventas cv = new Cabecera_ventas();
+                
+                String id_cab;
+                int can;
+                String query = "SELECT COUNT(*)+1 AS 'cantidad' FROM cabecera_venta";
+                can = crud.obtenerNumeroOrdenes(query);
 
-            for (int i = 0; i < listaStockVentas.size(); i++) {
-                System.out.println("id control " + listaStockVentas.get(i).getId_control());
-                System.out.println("cantidad " + listaStockVentas.get(i).getCantidad());
+                cv.setMun_venta(String.format("%06d", can));
 
-                crud.ActulizarStockVentas(listaStockVentas.get(i));
-                //crud.insertarKardex_ventas();
+                cv.setId_cliente(objClienteC1.getId_Clientes());
+
+                cv.setId_usuario(Long.parseLong("36"));
+                cv.setId_usuario(objUsuario.getId_sesion());
+//            System.out.println("usuario :" + objUsuario.getApellidos());
+                cv.setId_sucursal(Long.parseLong("2"));
+                cv.setForma_de_pago(CbxFormaPago.getSelectedItem().toString());
+                cv.setTipo_de_venta(CbxTipoVenta.getSelectedItem().toString());
+                cv.setSubtotal_con_iva(ct.getSubtotalConIva());
+                cv.setSubtotal_sin_iva(ct.getSubtotalSinIva());
+                cv.setSubtotal_venta(ct.getSubtotal());
+                cv.setDescuento_venta(ct.getDescuento());
+                cv.setIva_venta(ct.getIva());
+                cv.setTotal_venta(ct.getTotal());
+                cv.setUtilidad(ct.getUtilidad());
+                cv.setEstado("A");
+
+                id_cab = crud.InsertarCabeceraVentas(cv);
+                cv.setId_cabecera_venta(Long.parseLong(id_cab));
+
+                objeto = cv;
+
+                for (int i = 0; i < ListarDetalle.size(); i++) {
+
+                    Detalle_ventas dv = new Detalle_ventas();
+                    String id_det;
+
+                    dv.setId_cabecera_venta(cv.getId_cabecera_venta());
+                    dv.setId_control(ListarDetalle.get(i).getId_control());
+                    dv.setPrecio(ListarDetalle.get(i).getPrecio());
+                    if (ListarDetalle.get(i).getEmpaque() == 1) {
+                        dv.setCantidad(ListarDetalle.get(i).getCantidad());
+                        dv.setCantidad_unidad(Long.valueOf(0));
+                    } else {
+                        dv.setCantidad(Long.valueOf(0));
+                        dv.setCantidad_unidad(ListarDetalle.get(i).getCantidad());
+                    }
+                    dv.setIva(ListarDetalle.get(i).getIva());
+                    dv.setDescuento(ListarDetalle.get(i).getDescuento());
+
+                    id_det = crud.InsertarDetalleVentas(dv);
+                    dv.setId_cabecera_venta(Long.parseLong(id_det));
+
+                }
+                listaStockVentas = crud.listarStockVentas(Long.parseLong(id_cab));
+
+                for (int i = 0; i < listaStockVentas.size(); i++) {
+                    System.out.println("id control " + listaStockVentas.get(i).getId_control());
+                    System.out.println("cantidad " + listaStockVentas.get(i).getCantidad());
+
+                    crud.ActulizarStockVentas(listaStockVentas.get(i));
+                    //crud.insertarKardex_ventas();
+                }
+
+                this.setVisible(false);
+                ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
+                ov.setVisible(true);
             }
-
-            this.setVisible(false);
-            ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
-            ov.setVisible(true);
-
         }
 
 
