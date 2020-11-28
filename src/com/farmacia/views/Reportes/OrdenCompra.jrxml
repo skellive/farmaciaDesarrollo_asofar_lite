@@ -274,7 +274,7 @@
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
-				<text><![CDATA[ENVASE]]></text>
+				<text><![CDATA[PRESENTACION]]></text>
 			</staticText>
 			<staticText>
 				<reportElement mode="Opaque" x="413" y="4" width="65" height="20" forecolor="#FFFFFF" backcolor="#66B463" uuid="4d56d13e-58f7-4718-bdfd-e802789dd6bc"/>

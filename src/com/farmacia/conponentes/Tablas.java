@@ -1399,7 +1399,7 @@ public class Tablas {
 
     public static void cargarJoinRegistroDetalleCompras(JTable Tabla, ArrayList<JoinListarDetalleNotaPedido> lista) {
 
-        int[] a = {10, 10, 30, 32, 70, 15, 30, 10, 10, 20, 10, 5};
+        int[] a = {10, 10, 30, 32, 100, 70, 30, 10, 10, 20, 10, 5};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1415,7 +1415,7 @@ public class Tablas {
             Filas[2] = lista.get(i).getMarca();
             Filas[3] = lista.get(i).getTipo();
             Filas[4] = lista.get(i).getProducto();
-            Filas[5] = lista.get(i).getCantidad() + " " +lista.get(i).getPresentacion();
+            Filas[5] = lista.get(i).getCantidad() + "";
             Filas[6] = lista.get(i).getMedida();
             Filas[7] = "" + lista.get(i).getCantidad_unidad();
             Filas[8] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
@@ -1612,7 +1612,7 @@ public class Tablas {
     //////////  cargar lista detalle ventas  
     public static void cargarListaVentasDetalle(JTable Tabla, ArrayList<Detalle_ventas> lista) {
 
-        int[] a = {30, 60, 60, 170, 150, 50, 50, 50, 50, 50, 50};
+        int[] a = {30, 60, 60, 170, 100, 50, 50, 50, 50, 50, 50};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
@@ -1627,7 +1627,7 @@ public class Tablas {
             Filas[1] = "" + lista.get(i).getMarca();
             Filas[2] = "" + lista.get(i).getTipo();
             Filas[3] = lista.get(i).getNombre_producto();
-            Filas[4] = lista.get(i).getCantidad() + " " + lista.get(i).getPresentacion();
+            Filas[4] = "" + lista.get(i).getCantidad();
             Filas[5] = "" + lista.get(i).getCantidad_unidad();
             Filas[6] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
             Filas[7] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
