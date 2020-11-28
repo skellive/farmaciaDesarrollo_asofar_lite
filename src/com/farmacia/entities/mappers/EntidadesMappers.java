@@ -562,7 +562,7 @@ public class EntidadesMappers {
             obj.setTipo(rs.getString("TIPO"));
             obj.setProducto(rs.getString("PRODUCTO"));
             //obj.setEnvase(rs.getString("ENVASE"));
-            obj.setEnvase(rs.getString("PRESENTACION"));
+            obj.setPresentacion(rs.getString("PRESENTACION"));
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
             obj.setBono(rs.getInt("BONO"));
@@ -589,10 +589,10 @@ public class EntidadesMappers {
             obj.setMarca(rs.getString("MARCA"));
             obj.setTipo(rs.getString("TIPO"));
             obj.setProducto(rs.getString("PRODUCTO"));
-            //obj.setEnvase(rs.getString("ENVASE"));
-            obj.setEnvase(rs.getString("PRESENTACION"));
+            obj.setPresentacion(rs.getString("PRESENTACION"));
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
+            obj.setCantidad_unidad(rs.getLong("UNIDADES"));
             obj.setBono(rs.getInt("BONO"));
             obj.setPrecio(rs.getBigDecimal("PRECIO"));
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
@@ -614,7 +614,7 @@ public class EntidadesMappers {
             obj.setMarca(rs.getString("MARCA"));
             obj.setTipo(rs.getString("TIPO"));
             obj.setProducto(rs.getString("PRODUCTO"));
-            obj.setEnvase(rs.getString("ENVASE"));
+            obj.setPresentacion(rs.getString("ENVASE"));
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
             obj.setPrecio(rs.getBigDecimal("PRECIO"));
@@ -1142,7 +1142,6 @@ public class EntidadesMappers {
             obj.setEstado_producto(rs.getString("ESTADO_PRODUCTO"));
             obj.setIva(rs.getString("IVA"));
             obj.setFecha_registroProducto(rs.getString("FECHA_REGISTROPRECIO"));
-
         } catch (SQLException ex) {
             Logger.getLogger(EntidadesMappers.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1184,9 +1183,13 @@ public class EntidadesMappers {
             obj.setId_cabecera_venta(rs.getLong("ID_CABECERA"));
             obj.setId_control(rs.getLong("ID_CONTROL"));
             obj.setId_producto(rs.getLong("CODIGO"));
+            obj.setMarca(rs.getString("MARCA"));
+            obj.setTipo(rs.getString("TIPO"));
             obj.setNombre_producto(rs.getString("DETALLE"));
+            obj.setPresentacion(rs.getString("PRESENTACION"));
             obj.setPrecio(rs.getBigDecimal("PRECIO"));
             obj.setCantidad(rs.getLong("CANTIDAD"));
+            obj.setCantidad_unidad(rs.getLong("UNIDADES"));
             obj.setSubtotal(rs.getBigDecimal("SUBTOTAL"));
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
             obj.setIva(rs.getBigDecimal("IVA"));

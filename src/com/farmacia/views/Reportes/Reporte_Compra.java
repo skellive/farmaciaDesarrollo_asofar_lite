@@ -193,6 +193,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
         Chooser2.setDateFormatString("yyyy/MM/dd");
         Chooser2.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
+        Chooser2.setMaxSelectableDate(new java.util.Date(253370786471000L));
 
         buscar1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
         buscar1.setPreferredSize(new java.awt.Dimension(6, 28));

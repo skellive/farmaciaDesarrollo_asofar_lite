@@ -27,6 +27,7 @@ public class JoinListarDetalleNotaPedido {
     private String medida;
     private Long id_cabecera_nota_pedido;
     private Integer cantidad;
+    private Long cantidad_unidad;
     private Integer bono;
     private BigDecimal precio;
     private BigDecimal descuento;
@@ -36,7 +37,7 @@ public class JoinListarDetalleNotaPedido {
     public JoinListarDetalleNotaPedido() {
     }
 
-    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_Presentacion, String Presentacion, Long id_medida, String medida, Long id_cabecera_nota_pedido, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total) {
+    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_Presentacion, String Presentacion, Long id_medida, String medida, Long id_cabecera_nota_pedido, Integer cantidad, Long cantidad_unidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total) {
         this.id_detalle_nota_pedido = id_detalle_nota_pedido;
         this.id_precio = id_precio;
         this.id_producto = id_producto;
@@ -51,6 +52,7 @@ public class JoinListarDetalleNotaPedido {
         this.medida = medida;
         this.id_cabecera_nota_pedido = id_cabecera_nota_pedido;
         this.cantidad = cantidad;
+        this.cantidad_unidad = cantidad_unidad;
         this.bono = bono;
         this.precio = precio;
         this.descuento = descuento;
@@ -122,7 +124,7 @@ public class JoinListarDetalleNotaPedido {
         this.tipo = tipo;
     }
 
-        public Long getId_Presentacion() {
+    public Long getId_Presentacion() {
         return id_Presentacion;
     }
 
@@ -134,7 +136,7 @@ public class JoinListarDetalleNotaPedido {
         return Presentacion;
     }
 
-    public void setEnvase(String Presentacion) {
+    public void setPresentacion(String Presentacion) {
         this.Presentacion = Presentacion;
     }
 
@@ -168,6 +170,14 @@ public class JoinListarDetalleNotaPedido {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Long getCantidad_unidad() {
+        return cantidad_unidad;
+    }
+
+    public void setCantidad_unidad(Long cantidad_unidad) {
+        this.cantidad_unidad = cantidad_unidad;
     }
 
     public Integer getBono() {

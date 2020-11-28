@@ -6,6 +6,7 @@
 package com.farmacia.views.ingresoRapido;
 
 import com.farmacia.conponentes.Formato_Numeros;
+import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Cabecera_compra;
@@ -23,6 +24,7 @@ import com.farmacia.views.pedidos.AgregarProductoNotaPedido;
 import com.farmacia.views.pedidos.Consulta_proveedor_Nota;
 import static com.farmacia.views.pedidos.EditarNotaPedido.txtNumero;
 import com.farmacia.views.pedidos.NotePedidos;
+import com.toedter.calendar.JDateChooser;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
@@ -31,10 +33,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -66,29 +71,22 @@ public class ingresoRapido extends javax.swing.JFrame {
     ArrayList<JoinListarDetalleNotaPedido> lista3 = null;
     Listar_usuario objUsuario = null;
     String codigocabecera = "";
-    /*java.util.Date sistHora = new java.util.Date();
-     String pmAm = "HH:mm:ss";
-     SimpleDateFormat format = new SimpleDateFormat(pmAm);
-     Calendar hoy = Calendar.getInstance();*/
     Calendar c1 = Calendar.getInstance();
-    int dia = (c1.get(Calendar.DATE));
-    int mes = (c1.get(Calendar.MONTH));
-    int ano = (c1.get(Calendar.YEAR));
+    int hora = c1.get(Calendar.HOUR_OF_DAY);
+    int minutos = c1.get(Calendar.MINUTE);
+    int segundos = c1.get(Calendar.SECOND);
 
     ContentPanel fondo = new ContentPanel();
 
     public ingresoRapido() {
         setContentPane(fondo);
         initComponents();
-        /*txtFecha.setText(String.format(format.format(sistHora), hoy));*/
-        txtFecha.setText(dia + "-" + (mes+1) + "-" + ano);
-        //filtroProducto.setEnabled(false);
+        txtFecha.setCalendar(c1);
         tabla_para_productos.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnGuardar.setEnabled(false);
         tipofiltro1.setEnabled(false);
         TxtFiltro.setEnabled(false);
-        txtFecha.setEnabled(false);
         btnBuscar.setEnabled(false);
         this.setLocationRelativeTo(null);
         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
@@ -209,7 +207,7 @@ public class ingresoRapido extends javax.swing.JFrame {
         jLabel16 = new javax.swing.JLabel();
         cbxPlazo = new javax.swing.JComboBox<String>();
         jLabel9 = new javax.swing.JLabel();
-        txtFecha = new javax.swing.JTextField();
+        txtFecha = new com.toedter.calendar.JDateChooser();
         btnGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaListaFaltantes = new javax.swing.JTable();
@@ -482,13 +480,7 @@ public class ingresoRapido extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel9.setText("FECHA:");
 
-        txtFecha.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txtFecha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtFechaActionPerformed(evt);
-            }
-        });
+        txtFecha.setDateFormatString("yyyy/MM/dd");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -497,21 +489,18 @@ public class ingresoRapido extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(37, 37, 37)
-                        .addComponent(cbxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)))
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel9))
+                .addGap(37, 37, 37)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(cbxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbxFormaP, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -525,10 +514,10 @@ public class ingresoRapido extends javax.swing.JFrame {
                         .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cbxPlazo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(68, 68, 68))
+                .addGap(64, 64, 64))
         );
 
         btnGuardar.setText("Guardar");
@@ -664,7 +653,7 @@ public class ingresoRapido extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -707,8 +696,7 @@ public class ingresoRapido extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(btnBuscar)))
-                .addContainerGap(9, Short.MAX_VALUE))
+                        .addComponent(btnBuscar))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -800,6 +788,7 @@ public class ingresoRapido extends javax.swing.JFrame {
         tabla_para_productos.setEnabled(false);
         tbaListaFaltantes.setEnabled(false);
         btnGuardar.setEnabled(false);
+        txtFecha.setCalendar(c1);
         ArrayList<joinProductoParaNotaPedido> listaPNP = crud.listarProductoParaNotaPedido(1);
         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
         listaPNP1.clear();
@@ -866,7 +855,6 @@ public class ingresoRapido extends javax.swing.JFrame {
 
             proveedorC = Prov.getProveedor();
             if (proveedorC != null) {
-
                 txtCodigoProveedor.setText(proveedorC.getId_proveedor().toString());
                 txtRuc1.setText(proveedorC.getCedula_ruc());
                 txtNombre1.setText(proveedorC.getEntidad());
@@ -897,35 +885,51 @@ public class ingresoRapido extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNombre1ActionPerformed
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        if (!"0,00".equals(txtTotal.getText())) {
+        if (!"0,00".equals(txtTotal.getText()) && txtFecha.getDate() != null) {
             try {
-                for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-                    crud.ingresoRapido(
-                            Integer.parseInt(txtCodigoProveedor.getText()),
-                            Integer.parseInt(tbaListaFaltantes.getValueAt(i, 0).toString()),
-                            cbxPlazo.getSelectedItem().toString(),
-                            cbxFormaP.getSelectedItem().toString(),
-                            Float.parseFloat(txtIva.getText().replaceAll(",", ".")),
-                            Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
-                            Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
-                            Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
-                            Float.parseFloat(tbaListaFaltantes.getValueAt(i, 11).toString().replaceAll(",", ".")),
-                            Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
-                            Integer.parseInt(0 + ""),
-                            2);
-                    //Float.parseFloat(tbaListaFaltantes.getValueAt(i, 8).toString().replaceAll(",", ".")),
+                int dia = txtFecha.getCalendar().get(Calendar.DAY_OF_MONTH);
+                int mes = txtFecha.getCalendar().get(Calendar.MONTH) + 1;
+                String años = Integer.toString(txtFecha.getCalendar().get(Calendar.YEAR));
+                System.out.println(años.length());
 
+                if (dia >= 1 && dia <= 31 && mes >= 1 && mes <= 12 && años.length() == 4) {
+                    String dias = Integer.toString(dia);
+                    String meses = Integer.toString(mes);
+                    String fecha = años + "/" + meses + "/" + dias;
+                    String horas = hora + ":" + minutos + ":" + segundos;
+                    String fechaCompleta = fecha + " " + horas;
+                    System.out.println(fechaCompleta);
+
+                    for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
+                        crud.ingresoRapido(
+                                Integer.parseInt(txtCodigoProveedor.getText()),
+                                Integer.parseInt(tbaListaFaltantes.getValueAt(i, 0).toString()),
+                                cbxPlazo.getSelectedItem().toString(),
+                                cbxFormaP.getSelectedItem().toString(),
+                                Float.parseFloat(txtIva.getText().replaceAll(",", ".")),
+                                Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
+                                Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
+                                Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
+                                Float.parseFloat(tbaListaFaltantes.getValueAt(i, 11).toString().replaceAll(",", ".")),
+                                Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
+                                Integer.parseInt(0 + ""),
+                                2,
+                                fechaCompleta);
+
+                    }
+                    JOptionPane.showMessageDialog(null, " Guardado con Exito ");
+                    Reiniciar();
+                    //} 
+                } else {
+                    JOptionPane.showMessageDialog(null, " Ingrese una fecha correcta ");
                 }
-                JOptionPane.showMessageDialog(null, " Guardado con Exito ");
-                Reiniciar();
-                //}  
             } catch (Exception e) {
-                //JOptionPane.showMessageDialog(null, "Error en Insertar --> " + e);
-                Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
+                JOptionPane.showMessageDialog(null, "Error en Insertar --> " + e);
+                //Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
             }
 
         } else {
-            JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
+            JOptionPane.showMessageDialog(rootPane, "INGRESE LOS DATOS CORRECTAMENTE");
         }
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -1087,10 +1091,6 @@ public class ingresoRapido extends javax.swing.JFrame {
         Buscar();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void txtFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFechaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtFechaActionPerformed
-
     public void Buscar() {
         String query = "";
 
@@ -1202,7 +1202,7 @@ public class ingresoRapido extends javax.swing.JFrame {
     public static javax.swing.JTextField txtCorreo1;
     public static javax.swing.JTextField txtDescuento;
     public static javax.swing.JTextField txtDireccion1;
-    private javax.swing.JTextField txtFecha;
+    private com.toedter.calendar.JDateChooser txtFecha;
     public static javax.swing.JTextField txtIva;
     public static javax.swing.JTextField txtNombre1;
     public static javax.swing.JTextField txtRepresentante;

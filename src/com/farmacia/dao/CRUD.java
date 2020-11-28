@@ -1851,8 +1851,7 @@ public class CRUD {
     public static void ingresoRapido(
             int id_prov,
             int id_producto,
-            String plazo,
-            //int id_pago, 
+            String plazo, 
             String forma_pago,
             float iva,
             float descuento,
@@ -1861,18 +1860,18 @@ public class CRUD {
             float precio,
             int cantidad,
             int unidad,
-            int sucursal) {
+            int sucursal,
+            String fecha) {
         Conexion c = new Conexion();
         Connection con = c.conectar();
 
         try {
             CallableStatement prIngRap;
 
-            prIngRap = con.prepareCall("{call sp_ingreso_rapido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }");
+            prIngRap = con.prepareCall("{call sp_ingreso_rapido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }");
             prIngRap.setInt(1, id_prov);
             prIngRap.setInt(2, id_producto);
             prIngRap.setString(3, plazo);
-            //prIngRap.setInt(4, id_pago);
             prIngRap.setString(4, forma_pago);
             prIngRap.setDouble(5, iva);
             prIngRap.setDouble(6, descuento);
@@ -1882,6 +1881,7 @@ public class CRUD {
             prIngRap.setInt(10, cantidad);
             prIngRap.setInt(11, unidad);
             prIngRap.setInt(12, sucursal);
+            prIngRap.setString(13, fecha);
             prIngRap.execute();
             System.out.println("Ingreso rapido correcto");
         } catch (SQLException ex) {

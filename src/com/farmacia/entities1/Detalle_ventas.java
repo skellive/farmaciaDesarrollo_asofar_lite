@@ -16,8 +16,14 @@ public class Detalle_ventas {
     private Long id_detalle_venta;
     private Long id_cabecera_venta;
     private Long id_control;
+    private Long id_marca;
+    private String marca;
+    private Long id_tipo;
+    private String tipo;
     private Long id_producto;
     private String nombre_producto;
+    private Long id_presentacion;
+    private String presentacion;    
     private Long cantidad;
     private Long cantidad_unidad;
     private BigDecimal precio;
@@ -27,18 +33,22 @@ public class Detalle_ventas {
     private BigDecimal descuento;
     private BigDecimal total;
     private int empaque;
-    
-    
 
     public Detalle_ventas() {
-    }
+    }   
 
-    public Detalle_ventas(Long id_detalle_venta, Long id_cabecera_venta, Long id_control, Long id_producto, String nombre_producto, Long cantidad,Long cantidad_unidad, BigDecimal precio, BigDecimal precio_compra, BigDecimal subtotal, BigDecimal iva, BigDecimal descuento, BigDecimal total,int empaque) {
+    public Detalle_ventas(Long id_detalle_venta, Long id_cabecera_venta, Long id_control, Long id_marca, String marca, Long id_tipo, String tipo, Long id_producto, String nombre_producto, Long id_presentacion, String presentacion, Long cantidad, Long cantidad_unidad, BigDecimal precio, BigDecimal precio_compra, BigDecimal subtotal, BigDecimal iva, BigDecimal descuento, BigDecimal total, int empaque) {
         this.id_detalle_venta = id_detalle_venta;
         this.id_cabecera_venta = id_cabecera_venta;
         this.id_control = id_control;
+        this.id_marca = id_marca;
+        this.marca = marca;
+        this.id_tipo = id_tipo;
+        this.tipo = tipo;
         this.id_producto = id_producto;
         this.nombre_producto = nombre_producto;
+        this.id_presentacion = id_presentacion;
+        this.presentacion = presentacion;
         this.cantidad = cantidad;
         this.cantidad_unidad = cantidad_unidad;
         this.precio = precio;
@@ -74,6 +84,38 @@ public class Detalle_ventas {
         this.id_control = id_control;
     }
 
+    public Long getId_marca() {
+        return id_marca;
+    }
+
+    public void setId_marca(Long id_marca) {
+        this.id_marca = id_marca;
+    }
+
+    public String getMarca() {
+        return marca;
+    }
+
+    public void setMarca(String marca) {
+        this.marca = marca;
+    }
+
+    public Long getId_tipo() {
+        return id_tipo;
+    }
+
+    public void setId_tipo(Long id_tipo) {
+        this.id_tipo = id_tipo;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
     public Long getId_producto() {
         return id_producto;
     }
@@ -88,6 +130,22 @@ public class Detalle_ventas {
 
     public void setNombre_producto(String nombre_producto) {
         this.nombre_producto = nombre_producto;
+    }
+
+    public Long getId_presentacion() {
+        return id_presentacion;
+    }
+
+    public void setId_presentacion(Long id_presentacion) {
+        this.id_presentacion = id_presentacion;
+    }
+
+    public String getPresentacion() {
+        return presentacion;
+    }
+
+    public void setPresentacion(String presentacion) {
+        this.presentacion = presentacion;
     }
 
     public Long getCantidad() {
@@ -105,16 +163,6 @@ public class Detalle_ventas {
     public void setCantidad_unidad(Long cantidad_unidad) {
         this.cantidad_unidad = cantidad_unidad;
     }
-
-    public int getEmpaque() {
-        return empaque;
-    }
-
-    public void setEmpaque(int empaque) {
-        this.empaque = empaque;
-    }
-    
-    
 
     public BigDecimal getPrecio() {
         return precio;
@@ -164,11 +212,13 @@ public class Detalle_ventas {
         this.total = total;
     }
 
-    
+    public int getEmpaque() {
+        return empaque;
+    }
 
-    
-
-    
+    public void setEmpaque(int empaque) {
+        this.empaque = empaque;
+    }
 
     
 }

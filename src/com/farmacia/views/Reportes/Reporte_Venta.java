@@ -387,8 +387,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
             i = tbaCabeceraVenta.getSelectedRow();
             lista = crud.ListarCabeceraVentas(1);
             objeto = devuelveObjeto(tbaCabeceraVenta.getValueAt(i, 0).toString(), lista);
-
-            //System.out.println("ventas " + objeto.getNombre_completo_cliente());
             if (objeto != null) {
                 Reporte_DetalleVenta Rdv = new Reporte_DetalleVenta(new javax.swing.JFrame(), true, objeto);
                 Rdv.setVisible(true);

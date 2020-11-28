@@ -37,7 +37,7 @@
 	<title>
 		<band height="46" splitType="Stretch">
 			<staticText>
-				<reportElement x="94" y="3" width="440" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
+				<reportElement x="289" y="3" width="245" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
 				<textElement textAlignment="Right">
 					<font size="24" isBold="true" isItalic="true"/>
 				</textElement>
@@ -50,6 +50,10 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor1}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="161" y="0" width="128" height="36" uuid="d08b68d8-4103-458d-8b88-74718ce33d16"/>
+				<imageExpression><![CDATA["C:\\Users\\IMPERCOMPU\\Documents\\NetBeansProjects\\farmaciaDesarrollo_asofar_lite\\src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
