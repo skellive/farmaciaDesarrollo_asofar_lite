@@ -660,6 +660,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
+            objf=null;
             setVisible(false);
 
         } else {
