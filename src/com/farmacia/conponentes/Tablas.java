@@ -1405,7 +1405,7 @@ public class Tablas {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"N#", "CODIGO", "MARCA", "TIPO", "PRODUCTO", "PRESENTACION", "MEDIDA", "UNIDADES", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
+        String[] Co = {"N#", "CODIGO", "MARCA", "TIPO", "PRODUCTO", "PRESENTACION", "CANTIDAD", "UNIDADES", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
         String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -1415,9 +1415,9 @@ public class Tablas {
             Filas[2] = lista.get(i).getMarca();
             Filas[3] = lista.get(i).getTipo();
             Filas[4] = lista.get(i).getProducto();
-            Filas[5] = lista.get(i).getCantidad() + "";
-            Filas[6] = lista.get(i).getMedida();
-            Filas[7] = "" + lista.get(i).getCantidad();
+            Filas[5] = lista.get(i).getPresentacion()+ "";
+            Filas[6] = ""+lista.get(i).getCantidad();
+            Filas[7] = "" + lista.get(i).getCantidad_unidad();
             Filas[8] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             Filas[9] = Formato_Numeros.formatoNumero(lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             Filas[10] = Formato_Numeros.formatoNumero(lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
@@ -1612,14 +1612,14 @@ public class Tablas {
     //////////  cargar lista detalle ventas  
     public static void cargarListaVentasDetalle(JTable Tabla, ArrayList<Detalle_ventas> lista) {
 
-        int[] a = {30, 60, 60, 170, 100, 50, 50, 50, 50, 50, 50};
+        int[] a = {30, 60, 60, 170, 100, 50,50, 50, 50, 50, 50, 50};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "PRESENTACION", "UNIDAD", "PRECIO", "SUBTOTAL", "DESCUENTO", "IVA", "TOTAL"};
-        String[] Filas = new String[11];
+        String[] Co = {"CODIGO", "MARCA", "TIPO", "PRODUCTO", "PRESENTACION", "CANTIDAD","UNIDAD", "PRECIO", "SUBTOTAL", "DESCUENTO", "IVA", "TOTAL"};
+        String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
@@ -1627,13 +1627,14 @@ public class Tablas {
             Filas[1] = "" + lista.get(i).getMarca();
             Filas[2] = "" + lista.get(i).getTipo();
             Filas[3] = lista.get(i).getNombre_producto();
-            Filas[4] = "" + lista.get(i).getCantidad();
-            Filas[5] = "" + lista.get(i).getCantidad_unidad();
-            Filas[6] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
-            Filas[7] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
-            Filas[8] = lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
-            Filas[9] = lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
-            Filas[10] = lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[4] = "" + lista.get(i).getPresentacion();
+            Filas[5] = "" + lista.get(i).getCantidad();
+            Filas[6] = "" + lista.get(i).getCantidad_unidad();
+            Filas[7] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[8] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[9] = lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[10] = lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[11] = lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
             model.addRow(Filas);
 
             Tabla.setModel(model);
@@ -1659,6 +1660,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
             Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(11).setPreferredWidth(a[11]);
+            Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
         }
     }
 //    public void visualizar(JTable tabla,Long id) {
