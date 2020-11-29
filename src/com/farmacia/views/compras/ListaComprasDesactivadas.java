@@ -243,22 +243,14 @@ public class ListaComprasDesactivadas extends javax.swing.JDialog {
         int i = 0;
         if (evt.getClickCount() == 2) {
             
-             i = tblCompraDesactivadas.getSelectedRow();
-             lista = crud.listarCabeceraCompras(2);
+            i = tblCompraDesactivadas.getSelectedRow();
+            lista = crud.listarCabeceraCompras(2);
             objeto = devuelveObjeto(tblCompraDesactivadas.getValueAt(i, 0).toString(), lista);
             if (objeto != null) {
-                JOptionPane.showMessageDialog(null, "ID COMPRA : "+objeto.getId_cabecera_compra());
-                JOptionPane.showMessageDialog(null, ""+objeto.getObservacion(), "Motivo porque se Desactivo", JOptionPane.INFORMATION_MESSAGE);
-                int r = JOptionPane.showConfirmDialog(null, "¿Desea Activar esta Compra?", "", JOptionPane.YES_NO_OPTION);
-                if (r == JOptionPane.YES_OPTION) {
-                    crud.ActivarCabeceraCompra(objeto.getId_cabecera_compra());
-                    ListaCompras Rc = new ListaCompras(new javax.swing.JFrame(),true);
-                    setVisible(false);
-                    Rc.setVisible(true);
-                } else {
-
-                }
-                
+                Detalle_De_Compra_Desactivadas Man = new Detalle_De_Compra_Desactivadas(new javax.swing.JFrame(), true, objeto);
+                Man.setVisible(true);
+                lista = crud.listarCabeceraCompras(2);
+                Tablas.CargarListaCabeceraDeCompra(tblCompraDesactivadas, lista);                
             }
             
         }

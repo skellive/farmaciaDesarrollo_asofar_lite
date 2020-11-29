@@ -43,9 +43,9 @@ public class EditarPrecioNotaPedido extends javax.swing.JDialog {
 
     public EditarPrecioNotaPedido(java.awt.Frame parent, boolean modal, String idproducto, String nombre) {
         super(parent, modal);
-        initComponents();
         getContentPane().setBackground(Color.white);
         setUndecorated(true);
+        initComponents();
         setLocationRelativeTo(null);
         id_pro = idproducto;
         llenarFormulario(idproducto, nombre);
