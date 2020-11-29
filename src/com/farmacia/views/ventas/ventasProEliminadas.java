@@ -51,20 +51,20 @@ public class ventasProEliminadas extends javax.swing.JFrame {
             ResultSetMetaData rsMD = rs.getMetaData();
             int cantidadColumnas = rsMD.getColumnCount();
 
-            modelo.addColumn("Id"); //1
-            modelo.addColumn("Detalle");  //2
-            modelo.addColumn("Id producto"); //3
-            modelo.addColumn("Producto"); //4
-            modelo.addColumn("Descripcion");  //5
-            modelo.addColumn("Control"); //6
-            modelo.addColumn("Cantidad"); //7
-            modelo.addColumn("Precio"); //8
-            modelo.addColumn("Subtotal con IVA"); //9
-            modelo.addColumn("Subtotal sin IVA"); //10
-            modelo.addColumn("IVA total");  //11
-            modelo.addColumn("Descuento"); //12 
-            modelo.addColumn("Total");  //13
-            modelo.addColumn("Observacion"); //14    
+            modelo.addColumn("ID"); //1
+            modelo.addColumn("DETALLE");  //2
+            modelo.addColumn("ID PROD"); //3
+            modelo.addColumn("PRODUCTO"); //4
+            modelo.addColumn("DESCRIPCION");  //5
+            modelo.addColumn("PRESENTACION"); //6
+            modelo.addColumn("CANTIDAD"); //7
+            modelo.addColumn("PRECIO"); //8
+            modelo.addColumn("SUBTOTAL IVA"); //9
+            modelo.addColumn("SUBTOTAL SIN IVA"); //10
+            modelo.addColumn("IVA TOTAL");  //11
+            modelo.addColumn("DESCUENTO"); //12 
+            modelo.addColumn("TOTAL");  //13
+            modelo.addColumn("OBSERVACION"); //14    
             int[] anchos = {10, 10, 10, 20, 50, 10, 10, 20, 20, 20, 20, 20, 20, 50};
                           //1   2   3   4   5   6   7   8   9   10  11  12  13  14
             for (int x = 0; x < cantidadColumnas; x++) {

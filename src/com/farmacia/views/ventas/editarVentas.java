@@ -54,20 +54,20 @@ public class editarVentas extends javax.swing.JFrame {
             ResultSetMetaData rsMD = rs.getMetaData();
             int cantidadColumnas = rsMD.getColumnCount();
 
-            modelo.addColumn("Id");
-            modelo.addColumn("Detalle");
-            modelo.addColumn("Id producto");
-            modelo.addColumn("Producto");
-            modelo.addColumn("Descripcion");
-            modelo.addColumn("Control");
-            modelo.addColumn("Cantidad");
-            modelo.addColumn("Unidad");
-            modelo.addColumn("Precio");
-            modelo.addColumn("Subtotal con IVA");
-            modelo.addColumn("Subtotal sin IVA");
-            modelo.addColumn("IVA total");
-            modelo.addColumn("Descuento");
-            modelo.addColumn("Total");
+            modelo.addColumn("ID");
+            modelo.addColumn("DETALLE");
+            modelo.addColumn("ID PROD");
+            modelo.addColumn("PRODUCTO");
+            modelo.addColumn("DESCRIPCION");
+            modelo.addColumn("PRESENTACION");
+            modelo.addColumn("CANTIDAD");
+            modelo.addColumn("UNIDAD");
+            modelo.addColumn("PRECIO");
+            modelo.addColumn("SUBTOTAL IVA");
+            modelo.addColumn("SUBTOTAL SIN IVA");
+            modelo.addColumn("IVA TOTAL");
+            modelo.addColumn("DESCUENTO");
+            modelo.addColumn("TOTAL");
 
             int[] anchos = {10, 10, 20, 10, 50, 20, 20, 20, 20, 20, 30, 30, 30, 20, 30};
 
