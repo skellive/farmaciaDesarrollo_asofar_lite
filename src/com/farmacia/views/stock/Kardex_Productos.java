@@ -59,8 +59,8 @@ public class Kardex_Productos extends javax.swing.JDialog {
         //Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
         this.sumarTotalStock();
     }
-    
-    public Kardex_Productos(java.awt.Frame parent, boolean modal,Listar_usuario objUsu) {
+
+    public Kardex_Productos(java.awt.Frame parent, boolean modal, Listar_usuario objUsu) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
         setUndecorated(true);
@@ -331,263 +331,259 @@ public class Kardex_Productos extends javax.swing.JDialog {
         int i = 0;
         String idpro, preCom, preVen, mostar, msje;
         String usuario = objUsu.getCargo();
-        int cantidad, unidad_acep, stock_caja,stock_unidades, unidad_insertar = 0;
+        int cantidad, unidad_acep, stock_caja, stock_unidades, unidad_insertar = 0;
         try {
             if (evt.getClickCount() == 2) {
                 i = tabla_stock.getSelectedRow();
-                //JOptionPane.showMessageDialog(this, "2 click");
                 idpro = tabla_stock.getValueAt(i, 0).toString();
                 preCom = tabla_stock.getValueAt(i, 5).toString();
                 preVen = tabla_stock.getValueAt(i, 6).toString();
                 stock_caja = Integer.parseInt(tabla_stock.getValueAt(i, 7).toString());
                 stock_unidades = Integer.parseInt(tabla_stock.getValueAt(i, 8).toString());
                 System.out.println(idpro + ":" + preCom + "-" + preVen);
-                //JOptionPane.showMessageDialog(this, idpro+":"+preCom+"-"+preVen);
                 objetoInv = devuelveObjeto(idpro, preCom, preVen, listaStock);
                 if (objetoInv == null) {
                     JOptionPane.showMessageDialog(this, "Valor no encontrado");
-                }else {//<-- encontro el producto
-                    
-                 //Preguntar que desea realizar   
-                 String[] opciones={"Dar de Baja","Conversión","Ingreso Para Inventario"};  
-                 String opcion;
-                 opcion=(String)JOptionPane.showInputDialog(null,"¿Qué desea realizar? ",
-                 "Bienvenido",JOptionPane.QUESTION_MESSAGE,null,opciones, opciones[0]);
-                 if(opcion!=null){
-                 if(opcion.equals("Dar de Baja")){
-                 if(usuario.equals("ADMINISTRADOR")){
-                   
-                 if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA") || tabla_stock.getValueAt(i, 4).toString().equals("FUNDA")) {    
-                 String[] opciones1={"Caja,Funda","Unidades"};  
-                 String opcion1;
-                 opcion1=(String)JOptionPane.showInputDialog(null,"¿Que Desea dar de Baja? ",
-                 "Bienvenido",JOptionPane.QUESTION_MESSAGE,null,opciones1, opciones1[0]);
-                 if(opcion1!=null){
-                 if(opcion1.equals("Caja,Funda")){
-                 if (stock_caja > 0){   
-                 String cant = JOptionPane.showInputDialog("¿Cuántas deseas dar de Baja?");
-                 cantidad = Integer.parseInt(cant);
-                 if (cantidad > 0){
-                     if (cantidad <= stock_caja) {
-                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " ?", "", JOptionPane.YES_NO_OPTION);
-                     if (m == JOptionPane.YES_OPTION) {
-                         objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
-                         objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
-                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
-                          msje = crud.accionesInventario(objetoInv,1);
-                        JOptionPane.showMessageDialog(null, msje);
-                        listaStock = crud.ListarKardexStock();
-        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-                        this.sumarTotalStock();
-                     }
-                     } else {
-                       JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
-                       }
-                 }else{
-                     JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
-                 }
-                 }else {
-                    JOptionPane.showMessageDialog(null, "No hay Producto");
-                  }
-                 }else{
-                 //-- UNIDAD
-                 if (stock_unidades > 0){   
-                 String cant = JOptionPane.showInputDialog("¿Cuántas unidades deseas dar de Baja?");
-                 cantidad = Integer.parseInt(cant);
-                 if (cantidad > 0){
-                     if (cantidad <= stock_unidades) {
-                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " unidades ?", "", JOptionPane.YES_NO_OPTION);
-                     if (m == JOptionPane.YES_OPTION) {
-                         objetoInv.setCantidad(Long.valueOf(0));//cantidad
-                         objetoInv.setCantidad_unidad(Long.valueOf(cantidad));//unidades
-                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
-                        msje = crud.accionesInventario(objetoInv,1);
+                } else {
+                    String[] opciones = {"Dar de Baja", "Conversión", "Ingreso Para Inventario"};
+                    String opcion;
+                    opcion = (String) JOptionPane.showInputDialog(null, "¿Qué desea realizar? ",
+                            "Bienvenido", JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+                    if (opcion != null) {
+                        if (opcion.equals("Dar de Baja")) {
+                            if (usuario.equals("ADMINISTRADOR")) {
+                                if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA") || tabla_stock.getValueAt(i, 4).toString().equals("FUNDA")) {
+                                    String[] opciones1 = {"Caja,Funda", "Unidades"};
+                                    String opcion1;
+                                    opcion1 = (String) JOptionPane.showInputDialog(null, "¿Que Desea dar de Baja? ",
+                                            "Bienvenido", JOptionPane.QUESTION_MESSAGE, null, opciones1, opciones1[0]);
+                                    if (opcion1 != null) {
+                                        if (opcion1.equals("Caja,Funda")) {
+                                            if (stock_caja > 0) {
+                                                String cant = JOptionPane.showInputDialog("¿Cuántas deseas dar de Baja?");
+                                                cantidad = Integer.parseInt(cant);
+                                                if (cantidad > 0) {
+                                                    if (cantidad <= stock_caja) {
+                                                        int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " ?", "", JOptionPane.YES_NO_OPTION);
+                                                        if (m == JOptionPane.YES_OPTION) {
+                                                            objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
+                                                            objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
+                                                            //JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                                                            msje = crud.accionesInventario(objetoInv, 1);
+                                                            JOptionPane.showMessageDialog(null, msje);
+                                                            listaStock = crud.ListarKardexStock();
+                                                            Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                                                            this.sumarTotalStock();
+                                                        }
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
+                                                    }
+                                                } else {
+                                                    JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                                                }
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "No hay Producto");
+                                            }
+                                        } else {
+                                            if (stock_unidades > 0) {
+                                                String cant = JOptionPane.showInputDialog("¿Cuántas unidades deseas dar de Baja?");
+                                                cantidad = Integer.parseInt(cant);
+                                                if (cantidad > 0) {
+                                                    if (cantidad <= stock_unidades) {
+                                                        int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " unidades ?", "", JOptionPane.YES_NO_OPTION);
+                                                        if (m == JOptionPane.YES_OPTION) {
+                                                            objetoInv.setCantidad(Long.valueOf(0));//cantidad
+                                                            objetoInv.setCantidad_unidad(Long.valueOf(cantidad));//unidades
+                                                            msje = crud.accionesInventario(objetoInv, 1);
+                                                            JOptionPane.showMessageDialog(null, msje);
+                                                            listaStock = crud.ListarKardexStock();
+                                                            Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                                                            this.sumarTotalStock();
+                                                        }
+                                                    } else {
+                                                        JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
+                                                    }
+                                                } else {
+                                                    JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                                                }
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "No hay Unidades");
+                                            }
+                                        }//TERMINA CADUCADOS EN CAJA 
+                                    } else {
+                                    }//no seleccionó nada
+                                } else {//si no es caja
+                                    //--Para productos
+                                    if (stock_caja > 0) {
+                                        String cant = JOptionPane.showInputDialog("¿Cuántos productos deseas dar de Baja?");
+                                        cantidad = Integer.parseInt(cant);
+                                        if (cantidad > 0) {
+                                            if (cantidad <= stock_caja) {
+                                                int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " productos ?", "", JOptionPane.YES_NO_OPTION);
+                                                if (m == JOptionPane.YES_OPTION) {
+                                                    objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
+                                                    objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
+                                                    //JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                                                    msje = crud.accionesInventario(objetoInv, 1);
 //                        msje = crud.insertarConversionUnidades(objetoInv);
-                        JOptionPane.showMessageDialog(null, msje);
-                        listaStock = crud.ListarKardexStock();
-                        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-                        this.sumarTotalStock();
-                     }
-                     } else {
-                       JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
-                       }
-                 }else{
-                     JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
-                 }
-                 }else {
-                    JOptionPane.showMessageDialog(null, "No hay Unidades");
-                  }}//TERMINA CADUCADOS EN CAJA 
-                 }else{}//no seleccionó nada
-                 }else{//si no es caja
-                 //--Para productos
-                 if (stock_caja > 0){   
-                 String cant = JOptionPane.showInputDialog("¿Cuántos productos deseas dar de Baja?");
-                 cantidad = Integer.parseInt(cant);
-                 if (cantidad > 0){
-                     if (cantidad <= stock_caja) {
-                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro dar de BAJA " + cantidad + " productos ?", "", JOptionPane.YES_NO_OPTION);
-                     if (m == JOptionPane.YES_OPTION) {
-                         objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
-                         objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
-                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
-                        msje = crud.accionesInventario(objetoInv,1);
-//                        msje = crud.insertarConversionUnidades(objetoInv);
-                        JOptionPane.showMessageDialog(null, msje);
-                        listaStock = crud.ListarKardexStock();
-        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-                        this.sumarTotalStock();
-                     }
-                     } else {
-                       JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
-                       }
-                 }else{
-                     JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
-                 }
-                 }else{
-                    JOptionPane.showMessageDialog(null, "No hay productos");
-                  }
-                 }
-                 }else{
-                    JOptionPane.showMessageDialog(null, "No tienes los permisos necesarios");
-                  }
-                 //TERMINA CADUCADOS
-                 }else if(opcion.equals("Conversión")){
-                  if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA") || tabla_stock.getValueAt(i, 4).toString().equals("FUNDA")) {
-                        //JOptionPane.showMessageDialog(null, "stock en caja: "+stock_caja);// en stock
-                        int r = JOptionPane.showConfirmDialog(null, "¿Desea convertir a unidades?", "", JOptionPane.YES_NO_OPTION);
-                        if (r == JOptionPane.YES_OPTION) {
-                            if (stock_caja > 0) {
-                                //JOptionPane.showMessageDialog(this, "si");
-                                String cant = JOptionPane.showInputDialog("¿Cuántas deseas convertir a unidades?");
-                                cantidad = Integer.parseInt(cant);
-                                if (cantidad > 0) {
-                                    if (cantidad <= stock_caja) {
-                                        //JOptionPane.showMessageDialog(null, "cantidad que pediste: "+cantidad);
-                                        unidad_acep = objetoInv.getUnidad_aceptada().intValue();
-                                        //JOptionPane.showMessageDialog(null, "unidad aceptada: "+objetoInv.getUnidad_aceptada());
-                                        unidad_insertar = cantidad * unidad_acep;
-                      //JOptionPane.showMessageDialog(null, "insertar en kardex unidad: "+unidad_insertar);
-                                        //JOptionPane.showMessageDialog(null, cantidad+ " cajas se convertiran en "+unidad_insertar+" unidades");
-                                        objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad q pediste
-                                        objetoInv.setCantidad_unidad(Long.valueOf(unidad_insertar));//unidades q se insertaran
-                                        mostar = "idproducto:" + objetoInv.getId_producto().toString() + "\n"
-                                                + "idprecio:" + objetoInv.getId_precio().toString() + "\n"
-                                                + "cantidad en caja:" + objetoInv.getCantidad().toString() + "\n"
-                                                + "unidades: " + objetoInv.getCantidad_unidad().toString();
-                                        //JOptionPane.showMessageDialog(null,mostar);
-                                        int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de convertir " + cantidad + " en " + unidad_insertar + " unidades ?", "", JOptionPane.YES_NO_OPTION);
-                                        if (m == JOptionPane.YES_OPTION) {
-                                              //JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
-                                              msje = crud.accionesInventario(objetoInv,2);
-                                            JOptionPane.showMessageDialog(null, msje);
-                                            listaStock = crud.ListarKardexStock();
-        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-                                            this.sumarTotalStock();
+                                                    JOptionPane.showMessageDialog(null, msje);
+                                                    listaStock = crud.ListarKardexStock();
+                                                    Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                                                    this.sumarTotalStock();
+                                                }
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
+                                            }
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
                                         }
                                     } else {
-                                        JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
+                                        JOptionPane.showMessageDialog(null, "No hay productos");
                                     }
-                                } else {
-                                    JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
                                 }
                             } else {
-                                JOptionPane.showMessageDialog(null, "No hay producto");
+                                JOptionPane.showMessageDialog(null, "No tienes los permisos necesarios");
                             }
+                            //TERMINA CADUCADOS
+                        } else if (opcion.equals("Conversión")) {
+                            if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA") || tabla_stock.getValueAt(i, 4).toString().equals("FUNDA")) {
+                                //JOptionPane.showMessageDialog(null, "stock en caja: "+stock_caja);// en stock
+                                int r = JOptionPane.showConfirmDialog(null, "¿Desea convertir a unidades?", "", JOptionPane.YES_NO_OPTION);
+                                if (r == JOptionPane.YES_OPTION) {
+                                    if (stock_caja > 0) {
+                                        //JOptionPane.showMessageDialog(this, "si");
+                                        String cant = JOptionPane.showInputDialog("¿Cuántas deseas convertir a unidades?");
+                                        cantidad = Integer.parseInt(cant);
+                                        if (cantidad > 0) {
+                                            if (cantidad <= stock_caja) {
+                                                //JOptionPane.showMessageDialog(null, "cantidad que pediste: "+cantidad);
+                                                unidad_acep = objetoInv.getUnidad_aceptada().intValue();
+                                                //JOptionPane.showMessageDialog(null, "unidad aceptada: "+objetoInv.getUnidad_aceptada());
+                                                unidad_insertar = cantidad * unidad_acep;
+                                                //JOptionPane.showMessageDialog(null, "insertar en kardex unidad: "+unidad_insertar);
+                                                //JOptionPane.showMessageDialog(null, cantidad+ " cajas se convertiran en "+unidad_insertar+" unidades");
+                                                objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad q pediste
+                                                objetoInv.setCantidad_unidad(Long.valueOf(unidad_insertar));//unidades q se insertaran
+                                                mostar = "idproducto:" + objetoInv.getId_producto().toString() + "\n"
+                                                        + "idprecio:" + objetoInv.getId_precio().toString() + "\n"
+                                                        + "cantidad en caja:" + objetoInv.getCantidad().toString() + "\n"
+                                                        + "unidades: " + objetoInv.getCantidad_unidad().toString();
+                                                //JOptionPane.showMessageDialog(null,mostar);
+                                                int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de convertir " + cantidad + " en " + unidad_insertar + " unidades ?", "", JOptionPane.YES_NO_OPTION);
+                                                if (m == JOptionPane.YES_OPTION) {
+                                                    //JOptionPane.showMessageDialog(null,"CONVERSION LISTA");
+                                                    msje = crud.accionesInventario(objetoInv, 2);
+                                                    JOptionPane.showMessageDialog(null, msje);
+                                                    listaStock = crud.ListarKardexStock();
+                                                    Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                                                    this.sumarTotalStock();
+                                                }
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "La cantidad que pide no puede ser mayor de la que tiene!");
+                                            }
+                                        } else {
+                                            JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                                        }
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "No hay producto");
+                                    }
 
+                                }
+                            } else {
+                                JOptionPane.showMessageDialog(null, "No viene en Caja o Funda");
+                            }
+                            //TERMINA CONVERSIÓN
+                        } else {
+                            if (usuario.equals("ADMINISTRADOR")) {
+                                //INGRESAR PARA HACER EL INVENTARIO
+
+                                if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA") || tabla_stock.getValueAt(i, 4).toString().equals("FUNDA")) {
+                                    String[] opciones1 = {"Caja,Funda", "Unidades"};
+                                    String opcion1;
+                                    opcion1 = (String) JOptionPane.showInputDialog(null, "¿Que Desea Agregar? ",
+                                            "Bienvenido", JOptionPane.QUESTION_MESSAGE, null, opciones1, opciones1[0]);
+                                    if (opcion1 != null) {
+                                        if (opcion1.equals("Caja,Funda")) {
+
+                                            String cant = JOptionPane.showInputDialog("¿Cuántas deseas Ingresar?");
+                                            cantidad = Integer.parseInt(cant);
+                                            if (cantidad > 0) {
+                                                int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de INGRESAR " + cantidad + " ?", "", JOptionPane.YES_NO_OPTION);
+                                                if (m == JOptionPane.YES_OPTION) {
+                                                    //JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                                                    objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
+                                                    objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
+                                                    msje = crud.accionesInventario(objetoInv, 4);
+//                        msje = crud.insertarConversionUnidades(objetoInv);
+                                                    JOptionPane.showMessageDialog(null, msje);
+                                                    listaStock = crud.ListarKardexStock();
+                                                    Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                                                    this.sumarTotalStock();
+                                                }
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                                            }
+
+                                        } else {
+                                            //-- UNIDAD
+
+                                            String cant = JOptionPane.showInputDialog("¿Cuántas unidades deseas Ingresar?");
+                                            cantidad = Integer.parseInt(cant);
+                                            if (cantidad > 0) {
+
+                                                int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Ingresar " + cantidad + " unidades ?", "", JOptionPane.YES_NO_OPTION);
+                                                if (m == JOptionPane.YES_OPTION) {
+                                                    //JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                                                    objetoInv.setCantidad(Long.valueOf(0));//cantidad
+                                                    objetoInv.setCantidad_unidad(Long.valueOf(cantidad));//unidades
+                                                    msje = crud.accionesInventario(objetoInv, 4);
+//                        msje = crud.insertarConversionUnidades(objetoInv);
+                                                    JOptionPane.showMessageDialog(null, msje);
+                                                    listaStock = crud.ListarKardexStock();
+                                                    Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                                                    this.sumarTotalStock();
+                                                }
+
+                                            } else {
+                                                JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                                            }
+                                        }//TERMINA PARA HACER EL INVENTARIO EN CAJA 
+                                    } else {
+                                    }//no seleccionó nada
+                                } else {//si no es caja
+                                    //--Para productos
+
+                                    String cant = JOptionPane.showInputDialog("¿Cuántos productos deseas Ingresar?");
+                                    cantidad = Integer.parseInt(cant);
+                                    if (cantidad > 0) {
+
+                                        int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Ingresar " + cantidad + " productos ?", "", JOptionPane.YES_NO_OPTION);
+                                        if (m == JOptionPane.YES_OPTION) {
+                                            //JOptionPane.showMessageDialog(null,"Se realizó con exito");
+                                            objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
+                                            objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
+                                            msje = crud.accionesInventario(objetoInv, 4);
+//                        msje = crud.insertarConversionUnidades(objetoInv);
+                                            JOptionPane.showMessageDialog(null, msje);
+                                            listaStock = crud.ListarKardexStock();
+                                            Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+                                            this.sumarTotalStock();
+                                        }
+
+                                    } else {
+                                        JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
+                                    }
+
+                                }
+                                //TERMINA INGRESAR
+
+                            } else {
+                                JOptionPane.showMessageDialog(null, "No tiene los permisos necesarios");
+                            }
                         }
-                    }else{
-                     JOptionPane.showMessageDialog(null,"No viene en Caja o Funda");
-                     }
-                  //TERMINA CONVERSIÓN
-                 }else{
-                 if(usuario.equals("ADMINISTRADOR")){
-                     //INGRESAR PARA HACER EL INVENTARIO
-                       
-                 if (tabla_stock.getValueAt(i, 4).toString().equals("CAJA") || tabla_stock.getValueAt(i, 4).toString().equals("FUNDA")) {    
-                 String[] opciones1={"Caja,Funda","Unidades"};  
-                 String opcion1;
-                 opcion1=(String)JOptionPane.showInputDialog(null,"¿Que Desea Agregar? ",
-                 "Bienvenido",JOptionPane.QUESTION_MESSAGE,null,opciones1, opciones1[0]);
-                 if(opcion1!=null){
-                 if(opcion1.equals("Caja,Funda")){
-                 
-                 String cant = JOptionPane.showInputDialog("¿Cuántas deseas Ingresar?");
-                 cantidad = Integer.parseInt(cant);
-                 if (cantidad > 0){
-                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de INGRESAR " + cantidad + " ?", "", JOptionPane.YES_NO_OPTION);
-                     if (m == JOptionPane.YES_OPTION) {
-                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
-                         objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
-                         objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
-                           msje = crud.accionesInventario(objetoInv,4);
-//                        msje = crud.insertarConversionUnidades(objetoInv);
-                        JOptionPane.showMessageDialog(null, msje);
-                        listaStock = crud.ListarKardexStock();
-        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-                        this.sumarTotalStock();
-                     }
-                 }else{
-                     JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
-                 }
-                 
-                 }else{
-                 //-- UNIDAD
-                 
-                 String cant = JOptionPane.showInputDialog("¿Cuántas unidades deseas Ingresar?");
-                 cantidad = Integer.parseInt(cant);
-                 if (cantidad > 0){
-                     
-                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Ingresar " + cantidad + " unidades ?", "", JOptionPane.YES_NO_OPTION);
-                     if (m == JOptionPane.YES_OPTION) {
-                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
-                        objetoInv.setCantidad(Long.valueOf(0));//cantidad
-                         objetoInv.setCantidad_unidad(Long.valueOf(cantidad));//unidades
-                           msje = crud.accionesInventario(objetoInv,4);
-//                        msje = crud.insertarConversionUnidades(objetoInv);
-                        JOptionPane.showMessageDialog(null, msje);
-                       listaStock = crud.ListarKardexStock();
-        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-                        this.sumarTotalStock();
-                     }
+                    } else {
+                    }//no seleccionó nada
 
-                 }else{
-                     JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
-                 }
-                 }//TERMINA PARA HACER EL INVENTARIO EN CAJA 
-                 }else{}//no seleccionó nada
-                 }else{//si no es caja
-                 //--Para productos
-                   
-                 String cant = JOptionPane.showInputDialog("¿Cuántos productos deseas Ingresar?");
-                 cantidad = Integer.parseInt(cant);
-                 if (cantidad > 0){
-                     
-                     int m = JOptionPane.showConfirmDialog(null, "¿Esta seguro de Ingresar " + cantidad + " productos ?", "", JOptionPane.YES_NO_OPTION);
-                     if (m == JOptionPane.YES_OPTION) {
-                        //JOptionPane.showMessageDialog(null,"Se realizó con exito");
-                          objetoInv.setCantidad(Long.valueOf(cantidad));//cantidad
-                         objetoInv.setCantidad_unidad(Long.valueOf(0));//unidades
-                           msje = crud.accionesInventario(objetoInv,4);
-//                        msje = crud.insertarConversionUnidades(objetoInv);
-                        JOptionPane.showMessageDialog(null, msje);
-                       listaStock = crud.ListarKardexStock();
-        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-                        this.sumarTotalStock();
-                     }
-                     
-                 }else{
-                     JOptionPane.showMessageDialog(null, "Se aceptan numeros mayores a cero!");
-                 }
-                 
-                 }
-                 //TERMINA INGRESAR
-                 
-                 }else{
-                     JOptionPane.showMessageDialog(null, "No tiene los permisos necesarios");
-                 }
-                 }  
-                 }else{}//no seleccionó nada
-                              
                 }
 
             }
@@ -617,7 +613,7 @@ public class Kardex_Productos extends javax.swing.JDialog {
         }
         try {
             //String dir = System.getProperty("user.dir") + "/Reportes/" + "Stock_Productos.jasper";
-            
+
             //System.out.println(dir);
             JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Stock_Productos.jasper"));
             //JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
@@ -639,19 +635,19 @@ public class Kardex_Productos extends javax.swing.JDialog {
         String f = txt_filtro_inventario.getText().toUpperCase();
         int pos = tipofiltro.getSelectedIndex();
         //listaStock = crud.ListarKardexStock();
-        if ("".equals(f) || f.isEmpty() ) {
+        if ("".equals(f) || f.isEmpty()) {
             listaStock = crud.ListarKardexStock();
-        }else{
-        if (pos == 0) {
-            listaStock =crud.ListarfiltroInventario(1,"%"+f+"%");
-        }
-        if (pos == 1) {
-            listaStock =crud.ListarfiltroInventario(2,"%"+f+"%");
-        }
-        if (pos == 2) {
-            listaStock =crud.ListarfiltroInventario(3,"%"+f+"%");
-        }
-        
+        } else {
+            if (pos == 0) {
+                listaStock = crud.ListarfiltroInventario(1, "%" + f + "%");
+            }
+            if (pos == 1) {
+                listaStock = crud.ListarfiltroInventario(2, "%" + f + "%");
+            }
+            if (pos == 2) {
+                listaStock = crud.ListarfiltroInventario(3, "%" + f + "%");
+            }
+
         }
         Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
     }//GEN-LAST:event_btn_buscarActionPerformed
