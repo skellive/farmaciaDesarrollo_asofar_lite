@@ -51,12 +51,13 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaProductoVentas = new javax.swing.JTable();
-        TxtFiltro = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblCerrar = new javax.swing.JLabel();
+        tipofiltro = new javax.swing.JComboBox<>();
+        btn_buscar = new javax.swing.JButton();
+        txt_filtro_inventario = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -100,22 +101,6 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        TxtFiltro.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        TxtFiltro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                TxtFiltroActionPerformed(evt);
-            }
-        });
-        TxtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                TxtFiltroKeyReleased(evt);
-            }
-        });
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 27, 134));
-        jLabel2.setText("BUSCAR");
-
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
         jPanel2.setOpaque(false);
 
@@ -150,7 +135,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(412, 412, 412)
+                .addGap(430, 430, 430)
                 .addComponent(lblCerrar)
                 .addGap(17, 17, 17))
         );
@@ -163,6 +148,16 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
+        tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C.BARRAS", "NOMBRE", "PRESENTACIÓN" }));
+
+        btn_buscar.setText("BUSCAR");
+        btn_buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -173,10 +168,12 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(418, 418, 418)
-                        .addComponent(jLabel2)
-                        .addGap(33, 33, 33)
-                        .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(323, 323, 323)
+                        .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txt_filtro_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btn_buscar))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -187,10 +184,11 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
+                .addGap(9, 9, 9)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(TxtFiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_buscar)
+                    .addComponent(txt_filtro_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -211,10 +209,6 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TxtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtFiltroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TxtFiltroActionPerformed
 
     private void TablaProductoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductoVentasMousePressed
      String idPro,preCom,preVent,venUni;
@@ -274,13 +268,31 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel1MouseDragged
 
-    private void TxtFiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyReleased
-        Tablas.filtro(TxtFiltro.getText(), TablaProductoVentas);
-    }//GEN-LAST:event_TxtFiltroKeyReleased
-
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
         this.dispose();
     }//GEN-LAST:event_lblCerrarMouseClicked
+
+    private void btn_buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarActionPerformed
+        //BUSCAR
+        String f = txt_filtro_inventario.getText().toUpperCase();
+        int pos = tipofiltro.getSelectedIndex();
+        //listaStock = crud.ListarKardexStock();
+        if ("".equals(f) || f.isEmpty()) {
+            listaProducto = crud.ListarTodoJoinProductosParaVender();
+        } else {
+            if (pos == 0) {
+                listaProducto = crud.ListarFiltroProductosParaVender(1, "%" + f + "%");
+            }
+            if (pos == 1) {
+                listaProducto = crud.ListarFiltroProductosParaVender(2, "%" + f + "%");
+            }
+            if (pos == 2) {
+                listaProducto = crud.ListarFiltroProductosParaVender(3, "%" + f + "%");
+            }
+
+        }
+        Tablas.ListarProductosVENTA(listaProducto,TablaProductoVentas);
+    }//GEN-LAST:event_btn_buscarActionPerformed
 
     public JoinListarProductosVentas getProducto() {
         return objeto;
@@ -365,14 +377,15 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaProductoVentas;
-    private javax.swing.JTextField TxtFiltro;
+    private javax.swing.JButton btn_buscar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JLabel lblId;
+    private javax.swing.JComboBox<String> tipofiltro;
+    private javax.swing.JTextField txt_filtro_inventario;
     // End of variables declaration//GEN-END:variables
 }
