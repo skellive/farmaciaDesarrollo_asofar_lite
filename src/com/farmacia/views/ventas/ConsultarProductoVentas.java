@@ -211,7 +211,8 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TablaProductoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductoVentasMousePressed
-     String idPro,preCom,preVent,venUni;
+     String idPro,preCom,preVent,venUni,Presentacion;
+     int Unidades = 0;
         int i = 0;
 
         if (evt.getClickCount() == 2) {           
@@ -219,15 +220,17 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             idPro=TablaProductoVentas.getValueAt(i, 0).toString();
             preVent=TablaProductoVentas.getValueAt(i, 9).toString();
             venUni=TablaProductoVentas.getValueAt(i, 10).toString();
+            Presentacion=TablaProductoVentas.getValueAt(i,5).toString();
+            Unidades=Integer.parseInt(crud.BuscarUnidadesProducto(Long.parseLong(idPro))) ;
             objeto=null;
             objeto = devuelveObjeto2(idPro,preVent,venUni,listaProducto);
             if (objeto != null) {
-                //valida si es caja
-                 if(TablaProductoVentas.getValueAt(i,5).toString().equals("CAJA") || TablaProductoVentas.getValueAt(i,5).toString().equals("FUNDA")){
-                 String[] colores={"Caja,Funda","Unidad"};  
+                //valida si tiene mas unidades
+                 if(Unidades>1){
+                 String[] opciones={Presentacion,"Unidad"};  
                  String opcion;
                  opcion=(String)JOptionPane.showInputDialog(null,"¿Como quieres vender? ",
-                 "Elegir",JOptionPane.QUESTION_MESSAGE,null,colores, colores[0]);
+                 "Elegir",JOptionPane.QUESTION_MESSAGE,null,opciones, opciones[0]);
                  //int r = JOptionPane.showConfirmDialog(null, "¿Desea convertir a unidades?", "", JOptionPane.YES_NO_OPTION);
                  //r == JOptionPane.YES_OPTION
                  if(opcion!=null){

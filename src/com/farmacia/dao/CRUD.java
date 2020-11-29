@@ -923,6 +923,39 @@ public class CRUD {
         }
         return valor;
     }
+    
+    
+    //-- Buscar Unidades
+    public String BuscarUnidadesProducto(Long id) {
+        //ArrayList<Productos> lista = new ArrayList<Productos>();
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call BuscarUnidadesProducto(?,?) }");
+            prodProAlm.setLong(1, id);
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.execute();
+            valor = prodProAlm.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
 
     //--
     public String BuscarPresentacion(Long id) {
