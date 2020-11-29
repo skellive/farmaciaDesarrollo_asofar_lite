@@ -656,14 +656,14 @@ public class EditarProductoNota extends javax.swing.JDialog {
         BigDecimal Subtotal = Cantidad.multiply(Precio);
         BigDecimal Cien = new BigDecimal("100");
         String iva = txtIVA.getText();
+        if (txtIVA.getText().equals("NO")) {
+            iva="0.00";
+            txtValorIva.setText("0.00");
+        }
         BigDecimal IVA5 = new BigDecimal(iva);
         BigDecimal ValorIva = Cantidad.multiply(Precio).multiply(IVA5);
 
-        if (txtIVA.getText().equals("NO")) {
-
-            txtValorIva.setText("0.00");
-
-        }
+        
         if (txtIVA.getText() != "NO") {
 
             txtValorIva.setText(Formato_Numeros.formatoNumero(ValorIva.toString()));
