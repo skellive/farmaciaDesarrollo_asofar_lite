@@ -21,13 +21,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  *
  * @author User
  */
-public class subirExcelBD extends javax.swing.JFrame {
+public class subirExcelpRODUCTOS extends javax.swing.JFrame {
     ContentPanel fondo = new ContentPanel();
     private FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de Excel", "xlsx", "ods", "xls");
     /**
      * Creates new form subirExcelBD
      */
-    public subirExcelBD() {
+    public subirExcelpRODUCTOS() {
         getContentPane().setBackground(Color.white);        
         initComponents();
         this.setLocationRelativeTo(null);        
@@ -84,7 +84,7 @@ public class subirExcelBD extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 27, 134));
-        jLabel5.setText("SUBIR EXCEL");
+        jLabel5.setText("EXCEL PRODUCTOS");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -93,7 +93,7 @@ public class subirExcelBD extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel5)
-                .addGap(99, 99, 99)
+                .addGap(58, 58, 58)
                 .addComponent(jLabel4)
                 .addGap(17, 17, 17))
         );
@@ -209,13 +209,13 @@ public class subirExcelBD extends javax.swing.JFrame {
         
         
         try {
-            cne.subirArchivosProductos(ruta);
+            cne.subirArchivosProductos_solo(ruta);
         } catch (IOException ex) {
-            Logger.getLogger(subirExcelBD.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(subirExcelpRODUCTOS.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
-            Logger.getLogger(subirExcelBD.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(subirExcelpRODUCTOS.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(subirExcelBD.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(subirExcelpRODUCTOS.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lblGuardarMouseClicked
 
@@ -236,20 +236,21 @@ public class subirExcelBD extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(subirExcelBD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(subirExcelpRODUCTOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(subirExcelBD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(subirExcelpRODUCTOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(subirExcelBD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(subirExcelpRODUCTOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(subirExcelBD.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(subirExcelpRODUCTOS.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new subirExcelBD().setVisible(true);
+                new subirExcelpRODUCTOS().setVisible(true);
             }
         });
     }
