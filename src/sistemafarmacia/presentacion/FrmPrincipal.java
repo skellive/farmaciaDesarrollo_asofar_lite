@@ -17,6 +17,7 @@ import sistemafarmacia.Fondo;
 import sistemafarmacia.VariablesFunciones;
 import com.farmacia.entities1.Usuario;
 import com.farmacia.view.excel.subirExcelBD;
+import com.farmacia.view.excel.subirExcelpRODUCTOS;
 import com.farmacia.view.principal.Categoria;
 
 import com.farmacia.views.Reportes.Reporte_Compra;
@@ -183,6 +184,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jmVentaReporte = new javax.swing.JMenuItem();
         mnuExcel = new javax.swing.JMenu();
         mnuAcerca1 = new javax.swing.JMenuItem();
+        mnuAcerca2 = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
         mnuAcerca = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -591,7 +593,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuExcel.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
 
         mnuAcerca1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
-        mnuAcerca1.setText("SUBIR EXCEL");
+        mnuAcerca1.setText("SUBIR EXCEL PRODUCTOS / COMPRAS");
         mnuAcerca1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 mnuAcerca1MouseClicked(evt);
@@ -603,6 +605,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
         mnuExcel.add(mnuAcerca1);
+
+        mnuAcerca2.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuAcerca2.setText("SUBIR EXCEL PRODUCTOS");
+        mnuAcerca2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuAcerca2MouseClicked(evt);
+            }
+        });
+        mnuAcerca2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAcerca2ActionPerformed(evt);
+            }
+        });
+        mnuExcel.add(mnuAcerca2);
 
         jMenuBar1.add(mnuExcel);
 
@@ -887,6 +903,18 @@ RIN.setVisible(true);
         ve.setVisible(true);
     }//GEN-LAST:event_mnEliminadasActionPerformed
 
+    private void mnuAcerca2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAcerca2MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuAcerca2MouseClicked
+
+    private void mnuAcerca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAcerca2ActionPerformed
+       
+        subirExcelpRODUCTOS sebp = new subirExcelpRODUCTOS();
+        sebp.setVisible(true);
+        
+        
+    }//GEN-LAST:event_mnuAcerca2ActionPerformed
+
     public Listar_usuario getUsuario() {
         return objUsuario;
     }
@@ -970,6 +998,7 @@ RIN.setVisible(true);
     private javax.swing.JMenuItem mnEliminadas;
     private javax.swing.JMenuItem mnuAcerca;
     private javax.swing.JMenuItem mnuAcerca1;
+    private javax.swing.JMenuItem mnuAcerca2;
     private javax.swing.JMenu mnuAyuda;
     private javax.swing.JMenuItem mnuCliente;
     private javax.swing.JMenuItem mnuCliente1;
