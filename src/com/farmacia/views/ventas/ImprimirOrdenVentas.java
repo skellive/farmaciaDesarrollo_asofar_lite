@@ -225,22 +225,12 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
             reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
             JasperViewer view;
-//            view.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
             view = new JasperViewer(jprint, false);
             JDialog dialog = new JDialog(this);//the owner
             dialog.setContentPane(view.getContentPane());
             dialog.setSize(view.getSize());
             dialog.setTitle("Orden de Venta ");
-//            dialog.setIconImage(Toolkit.getDefaultToolkit().getImage(
-//                    getClass().getResource("URL IMG")));
             dialog.setVisible(true);
-            
-            
-//            view.setTitle("My Reports");
-//            setModal(false);
-//            view.setVisible(true);
-//            setModal(true);
 
         } catch (JRException ex) {
             Logger.getLogger(ImprimirOrdenVentas.class.getName()).log(Level.SEVERE, null, ex);
