@@ -2672,6 +2672,43 @@ public class CRUD {
     
     
     
+    
+    public String accionesInventarioVenta(Long prod,Long prec,Long cant,Long unid,int op) {
+
+        String valor = "";
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prodProAlm = conect.prepareCall(
+                    "{ call accionesInventario(?,?,?,?,?,?) }");
+            prodProAlm.setLong(1, prod);
+            prodProAlm.setLong(2, prec);
+            prodProAlm.setLong(3, cant);
+            prodProAlm.setLong(4, unid);
+            prodProAlm.setLong(5, Long.valueOf(op));
+            prodProAlm.registerOutParameter("valor", Types.VARCHAR);
+            prodProAlm.executeUpdate();
+            valor = prodProAlm.getString("valor");
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return valor;
+    }
+    
+    
+    
     //-- Acciones inventario
     public String accionesInventario(ListarKardex obj,int op) {
 
