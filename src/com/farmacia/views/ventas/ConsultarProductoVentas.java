@@ -213,8 +213,8 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
     private void TablaProductoVentasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaProductoVentasMousePressed
      String idPro,preCom,preVent,venUni,Presentacion;
      int Unidades = 0;
-        int i = 0;
-
+     int i = 0;
+     
         if (evt.getClickCount() == 2) {           
             i = TablaProductoVentas.getSelectedRow();
             idPro=TablaProductoVentas.getValueAt(i, 0).toString();
@@ -225,36 +225,40 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             objeto=null;
             objeto = devuelveObjeto2(idPro,preVent,venUni,listaProducto);
             if (objeto != null) {
-                //valida si tiene mas unidades
+                //PREGUNTAR: SI DESEA CONVERTIR O VENDER
+                String[] op1={"CONVERSIÓN","VENDER"};  
+                String op2;
+                op2=(String)JOptionPane.showInputDialog(null,"¿QUE DESEAS REALIZAR? ",
+                "Elegir",JOptionPane.QUESTION_MESSAGE,null,op1, op1[0]);
+                if(op2.equals("VENDER")){
+                 //valida si tiene mas unidades
                  if(Unidades>1){
-                 String[] opciones={Presentacion,"Unidad"};  
+                 //PREGUNTA VENDER`POR EMPAQUE O UNIDAD    
+                 String[] opciones={Presentacion,"UNIDAD"};  
                  String opcion;
-                 opcion=(String)JOptionPane.showInputDialog(null,"¿Como quieres vender? ",
+                 opcion=(String)JOptionPane.showInputDialog(null,"¿COMO DESEAS VENDER? ",
                  "Elegir",JOptionPane.QUESTION_MESSAGE,null,opciones, opciones[0]);
-                 //int r = JOptionPane.showConfirmDialog(null, "¿Desea convertir a unidades?", "", JOptionPane.YES_NO_OPTION);
-                 //r == JOptionPane.YES_OPTION
-                 if(opcion!=null){
-                 if(opcion.equals("Unidad")){
+                  if(opcion!=null){
+                   if(opcion.equals("UNIDAD")){
                    objeto.setEmpaque(2);
                    objeto.setStock(objeto.getStock_unidad());
                    objeto.setPrecio_venta(objeto.getVenta_unidad());
                    this.setVisible(false); 
-                  }else{
+                   }else{
                    objeto.setEmpaque(1);
                    this.setVisible(false); 
                    }  
+                  }else{/*CANCELÓ*/}
                  }else{
-                   
+                 //si no es EMPAQUE
+                  objeto.setEmpaque(1);
+                  this.setVisible(false); 
                  }
-                  
-                 }else{
-                     //si no es caja
-            objeto.setEmpaque(1);
-            this.setVisible(false); 
-                 }
-                 
-                //this.setVisible(false); 
+                }else{
+                  //CONVERSIÓN  
+                }
             }else{
+               //NO IDENTIFICO NINGUN OBJETO(PRODUCTO)
                objeto=null; 
             }
         }
