@@ -8,6 +8,7 @@ package com.farmacia.views.ventas;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
+import com.farmacia.join_entidades.ListarKardex;
 import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -214,6 +215,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
      String idPro,preCom,preVent,venUni,Presentacion;
      int Unidades = 0;
      int i = 0;
+      ListarKardex objetoInv = null ;
      
         if (evt.getClickCount() == 2) {           
             i = TablaProductoVentas.getSelectedRow();
@@ -225,12 +227,6 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             objeto=null;
             objeto = devuelveObjeto2(idPro,preVent,venUni,listaProducto);
             if (objeto != null) {
-                //PREGUNTAR: SI DESEA CONVERTIR O VENDER
-                String[] op1={"CONVERSIÓN","VENDER"};  
-                String op2;
-                op2=(String)JOptionPane.showInputDialog(null,"¿QUE DESEAS REALIZAR? ",
-                "Elegir",JOptionPane.QUESTION_MESSAGE,null,op1, op1[0]);
-                if(op2.equals("VENDER")){
                  //valida si tiene mas unidades
                  if(Unidades>1){
                  //PREGUNTA VENDER`POR EMPAQUE O UNIDAD    
@@ -240,10 +236,31 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                  "Elegir",JOptionPane.QUESTION_MESSAGE,null,opciones, opciones[0]);
                   if(opcion!=null){
                    if(opcion.equals("UNIDAD")){
-                   objeto.setEmpaque(2);
-                   objeto.setStock(objeto.getStock_unidad());
-                   objeto.setPrecio_venta(objeto.getVenta_unidad());
-                   this.setVisible(false); 
+                      if(objeto.getStock_unidad()>0){
+                      objeto.setEmpaque(2);
+                      objeto.setStock(objeto.getStock_unidad());
+                      objeto.setPrecio_venta(objeto.getVenta_unidad());
+                      this.setVisible(false);   
+                      }else{
+                      //PREGUNTAR SI DESEA CONVERTIR A UNIDADES
+                      if(objeto.getStock()>0){
+                      int m = JOptionPane.showConfirmDialog(null, "No tienes Unidades! \n ¿Deseas convertir 1 " + Presentacion + " en " + Unidades + " unidades ?", "Eligir", JOptionPane.YES_NO_OPTION);
+                      if (m == JOptionPane.YES_OPTION){
+                      String mostar = "idproducto:" + objeto.getId_producto() + "\n"
+                                                        + "idprecio:" + objeto.getId_precio() + "\n"
+                                                        + "cantidad en caja:" + Long.parseLong(""+1) + "\n"
+                                                        + "unidades: " + Long.parseLong(""+Unidades);
+                                                //JOptionPane.showMessageDialog(null,mostar);
+                      //JOptionPane.showMessageDialog(this,"Conversion realizada");
+                      String msje = crud.accionesInventarioVenta(objeto.getId_producto(),objeto.getId_precio(),Long.parseLong(""+1),Long.parseLong(""+Unidades),2);
+                      JOptionPane.showMessageDialog(null, msje);
+                      listaProducto = crud.ListarTodoJoinProductosParaVender();
+                      Tablas.ListarProductosVENTA(listaProducto,TablaProductoVentas);
+                      }
+                      }else{
+                          JOptionPane.showMessageDialog(this,"NO TIENES "+Presentacion+" PARA CONVERTIR A UNIDADES");
+                      }
+                      } 
                    }else{
                    objeto.setEmpaque(1);
                    this.setVisible(false); 
@@ -254,9 +271,6 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
                   objeto.setEmpaque(1);
                   this.setVisible(false); 
                  }
-                }else{
-                  //CONVERSIÓN  
-                }
             }else{
                //NO IDENTIFICO NINGUN OBJETO(PRODUCTO)
                objeto=null; 
@@ -303,6 +317,21 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
 
     public JoinListarProductosVentas getProducto() {
         return objeto;
+    }
+    
+    public ListarKardex devuelveObjeto(String idproducto, String preCompra, String preVenta, ArrayList<ListarKardex> lista) {
+        ListarKardex objeto1 = null;
+        for (int i = 0; i < lista.size(); i++) {
+            if (idproducto.equals(lista.get(i).getId_producto().toString())
+                    && preCompra.equals(lista.get(i).getPrecio_compra().toString())
+                    && preVenta.equals(lista.get(i).getPrecio_venta().toString())) {
+                objeto1 = lista.get(i);
+                //JOptionPane.showMessageDialog(this,"Encontrado");
+                System.out.println("Encontrado");
+                break;
+            }
+        }
+        return objeto1;
     }
     
     
