@@ -766,9 +766,6 @@
         <Component class="com.toedter.calendar.JDateChooser" name="txtFecha">
           <Properties>
             <Property name="dateFormatString" type="java.lang.String" value="yyyy/MM/dd"/>
-            <Property name="icon" type="javax.swing.ImageIcon" editor="org.netbeans.modules.form.ComponentChooserEditor">
-              <ComponentRef name="default"/>
-            </Property>
           </Properties>
         </Component>
       </SubComponents>

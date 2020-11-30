@@ -919,6 +919,14 @@ public class ingresoRapido extends javax.swing.JFrame {
                     }
                     JOptionPane.showMessageDialog(null, " Guardado con Exito ");
                     Reiniciar();
+                    int r = JOptionPane.showConfirmDialog(null, "¿Desea Salir?", "", JOptionPane.YES_NO_OPTION);
+
+                    if (r == JOptionPane.YES_OPTION) {
+                        setVisible(false);
+
+                    } else {
+
+                    }
                     //} 
                 } else {
                     JOptionPane.showMessageDialog(null, " Ingrese una fecha correcta ");
