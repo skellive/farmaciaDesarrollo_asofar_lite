@@ -1472,7 +1472,7 @@ public class Tablas {
             Filas[2] = "" + lista.get(i).getProducto_nombre();
             Filas[3] = "" + lista.get(i).getProducto_descripcion();
             Filas[4] = "" + lista.get(i).getTipo_nombre();
-            Filas[5] = "" + lista.get(i).getEnvase_nombre();
+            Filas[5] = "" + lista.get(i).getPresentacion();
             Filas[6] = "" + lista.get(i).getStock().toString();
             Filas[7] = "" + lista.get(i).getStock_unidad().toString();
             Filas[8] = "" + lista.get(i).getIva();
@@ -1522,7 +1522,7 @@ public class Tablas {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "TIPO", "MEDIDA", "ENVASE", "MARCA", "STOCK", "IVA", "PRECIO VENTA", "DESCUENTO"};
+        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "TIPO", "MEDIDA", "PRESENTACION", "MARCA", "STOCK", "IVA", "PRECIO VENTA", "DESCUENTO"};
         String[] Filas = new String[11];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -1532,7 +1532,7 @@ public class Tablas {
             Filas[2] = lista.get(i).getProducto_descripcion();
             Filas[3] = lista.get(i).getTipo_nombre();
             Filas[4] = lista.get(i).getMedida_nombre();
-            Filas[5] = lista.get(i).getEnvase_nombre();
+            Filas[5] = lista.get(i).getPresentacion();
             Filas[6] = lista.get(i).getMarca_nombre();
             Filas[7] = lista.get(i).getStock().toString();
             Filas[8] = lista.get(i).getIva();

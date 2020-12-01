@@ -25,8 +25,8 @@ public class JoinListarProductosVentas {
     private String tipo_nombre;
     private Long id_medida;
     private String medida_nombre;
-    private Long id_envase;
-    private String envase_nombre;
+    private Long id_presentacion;
+    private String presentacion;
     private Long id_marca;
     private String marca_nombre;
     private Long id_stock;
@@ -48,7 +48,7 @@ public class JoinListarProductosVentas {
         
     }
 
-    public JoinListarProductosVentas(Long id_control,Long stock_unidad,Long unidad_aceptada,BigDecimal venta_unidad, Long id_producto,String codigo_barras ,String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_envase, String envase_nombre, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, Long descuento, String iva, BigDecimal precio_compra, BigDecimal descuento_compra, String estado,int empaque) {
+    public JoinListarProductosVentas(Long id_control,Long stock_unidad,Long unidad_aceptada,BigDecimal venta_unidad, Long id_producto,String codigo_barras ,String producto_nombre, String producto_descripcion, Long id_tipo, String tipo_nombre, Long id_medida, String medida_nombre, Long id_presentacion, String presentacion, Long id_marca, String marca_nombre, Long id_stock, Long stock, Long id_precio, BigDecimal precio_venta, Long id_descuento, BigDecimal descuento_venta, Long descuento, String iva, BigDecimal precio_compra, BigDecimal descuento_compra, String estado,int empaque) {
         this.id_control = id_control;
         this.stock_unidad = stock_unidad;
         this.unidad_aceptada = unidad_aceptada;
@@ -61,8 +61,8 @@ public class JoinListarProductosVentas {
         this.tipo_nombre = tipo_nombre;
         this.id_medida = id_medida;
         this.medida_nombre = medida_nombre;
-        this.id_envase = id_envase;
-        this.envase_nombre = envase_nombre;
+        this.id_presentacion = id_presentacion;
+        this.presentacion = presentacion;
         this.id_marca = id_marca;
         this.marca_nombre = marca_nombre;
         this.id_stock = id_stock;
@@ -111,14 +111,6 @@ public class JoinListarProductosVentas {
         this.venta_unidad = venta_unidad;
     }
 
-    public int getEmpaque() {
-        return empaque;
-    }
-
-    public void setEmpaque(int empaque) {
-        this.empaque = empaque;
-    }
-    
     public Long getId_producto() {
         return id_producto;
     }
@@ -134,7 +126,6 @@ public class JoinListarProductosVentas {
     public void setCodigo_barras(String codigo_barras) {
         this.codigo_barras = codigo_barras;
     }
-    
 
     public String getProducto_nombre() {
         return producto_nombre;
@@ -184,20 +175,20 @@ public class JoinListarProductosVentas {
         this.medida_nombre = medida_nombre;
     }
 
-    public Long getId_envase() {
-        return id_envase;
+    public Long getId_presentacion() {
+        return id_presentacion;
     }
 
-    public void setId_envase(Long id_envase) {
-        this.id_envase = id_envase;
+    public void setId_presentacion(Long id_presentacion) {
+        this.id_presentacion = id_presentacion;
     }
 
-    public String getEnvase_nombre() {
-        return envase_nombre;
+    public String getPresentacion() {
+        return presentacion;
     }
 
-    public void setEnvase_nombre(String envase_nombre) {
-        this.envase_nombre = envase_nombre;
+    public void setPresentacion(String presentacion) {
+        this.presentacion = presentacion;
     }
 
     public Long getId_marca() {
@@ -303,6 +294,16 @@ public class JoinListarProductosVentas {
     public void setEstado(String estado) {
         this.estado = estado;
     }
+
+    public int getEmpaque() {
+        return empaque;
+    }
+
+    public void setEmpaque(int empaque) {
+        this.empaque = empaque;
+    }
+
+    
 
     
 }

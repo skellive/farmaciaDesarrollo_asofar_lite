@@ -219,10 +219,11 @@ public class ImprimirOrdenVentas extends javax.swing.JDialog {
             Connection conn = con.conectar();
 
             JasperReport reporte;
-            String path = "src\\com\\farmacia\\views\\ventas\\report1.jasper";
+//            String path = "src\\com\\farmacia\\views\\ventas\\report1.jasper";
             Map parametro = new HashMap();
             parametro.put("_id_cabecera", Integer.parseInt(String.valueOf(obj.getId_cabecera_venta())));
-            reporte = (JasperReport) JRLoader.loadObjectFromFile(path);
+//          reporte = (JasperReport) JRLoader.loadObjectFromFile(path
+            reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("report1.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, parametro, conn);
             JasperViewer view;
             view = new JasperViewer(jprint, false);

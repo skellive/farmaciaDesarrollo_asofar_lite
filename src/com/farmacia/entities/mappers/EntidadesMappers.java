@@ -841,7 +841,7 @@ public class EntidadesMappers {
             //obj.setId_medida(rs.getLong("ID_MEDIDAS"));
             obj.setMedida_nombre(rs.getString("Medida"));
             //obj.setId_envase(rs.getLong("ID_ENVASE"));
-            obj.setEnvase_nombre(rs.getString("Presentaciones"));
+            obj.setPresentacion(rs.getString("Presentaciones"));
             //obj.setId_marca(rs.getLong("ID_MARCAS"));
             obj.setMarca_nombre(rs.getString("Marca"));
             //obj.setId_stock(rs.getLong("ID_PRODUCTO"));
@@ -870,8 +870,9 @@ public class EntidadesMappers {
             obj.setCodigo_barras(rs.getString("codigo_barras"));//codigo_barras
             obj.setProducto_nombre(rs.getString("producto"));
             obj.setProducto_descripcion(rs.getString("descripcion"));
+            obj.setMarca_nombre(rs.getString("marca"));
             obj.setTipo_nombre(rs.getString("tipo"));
-            obj.setEnvase_nombre(rs.getString("presentacion"));//unidad_aceptada
+            obj.setPresentacion(rs.getString("presentacion"));//unidad_aceptada
             obj.setUnidad_aceptada(rs.getLong("unidad_aceptada"));
             obj.setStock(rs.getLong("cantidad"));
             obj.setStock_unidad(rs.getLong("cantidad_unidad"));
@@ -907,7 +908,7 @@ public class EntidadesMappers {
             //obj.setId_medida(rs.getLong("ID_MEDIDAS"));
             obj.setMedida_nombre(rs.getString("Medida"));
             //obj.setId_envase(rs.getLong("ID_ENVASE"));
-            obj.setEnvase_nombre(rs.getString("Presentaciones"));
+            obj.setPresentacion(rs.getString("Presentaciones"));
             //obj.setId_marca(rs.getLong("ID_MARCAS"));
             obj.setMarca_nombre(rs.getString("Marca"));
             //obj.setId_stock(rs.getLong("ID_PRODUCTO"));

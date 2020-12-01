@@ -220,6 +220,7 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         if (evt.getClickCount() == 2) {           
             i = TablaProductoVentas.getSelectedRow();
             idPro=TablaProductoVentas.getValueAt(i, 0).toString();
+            
             preVent=TablaProductoVentas.getValueAt(i, 9).toString();
             venUni=TablaProductoVentas.getValueAt(i, 10).toString();
             Presentacion=TablaProductoVentas.getValueAt(i,5).toString();

@@ -821,6 +821,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 cv.setId_sucursal(Long.parseLong("2"));
                 cv.setForma_de_pago(CbxFormaPago.getSelectedItem().toString());
                 cv.setTipo_de_venta(CbxTipoVenta.getSelectedItem().toString());
+                
                 cv.setSubtotal_con_iva(ct.getSubtotalConIva());
                 cv.setSubtotal_sin_iva(ct.getSubtotalSinIva());
                 cv.setSubtotal_venta(ct.getSubtotal());
@@ -844,6 +845,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
                     dv.setId_control(ListarDetalle.get(i).getId_control());
                     dv.setPrecio(ListarDetalle.get(i).getPrecio());
                     if (ListarDetalle.get(i).getEmpaque() == 1) {
+                        dv.setMarca(ListarDetalle.get(i).getMarca());
+                        
                         dv.setCantidad(ListarDetalle.get(i).getCantidad());
                         dv.setCantidad_unidad(Long.valueOf(0));
                     } else {
@@ -970,10 +973,14 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 } else {
                     Detalle_ventas RegDetalleVentas = new Detalle_ventas();
 
+                        
                     RegDetalleVentas.setId_control(objProd.getId_precio());//nuevo
                     RegDetalleVentas.setId_producto(objProd.getId_producto());
                     RegDetalleVentas.setNombre_producto(objProd.getProducto_nombre());
-                    RegDetalleVentas.setCantidad(Long.parseLong(TxtProdCantidad.getText()));
+                    RegDetalleVentas.setMarca(objProd.getMarca_nombre());
+                    RegDetalleVentas.setPresentacion(objProd.getPresentacion());
+                    RegDetalleVentas.setTipo(objProd.getTipo_nombre());
+                    RegDetalleVentas.setCantidad(Long.parseLong(TxtProdCantidad.getText()));                    
                     RegDetalleVentas.setPrecio(objProd.getPrecio_venta());
                     RegDetalleVentas.setPrecio_compra(objProd.getPrecio_compra());
                     RegDetalleVentas.setSubtotal(objeto1.getSubtotal());
