@@ -182,6 +182,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         jSeparator3 = new javax.swing.JPopupMenu.Separator();
         jmReporteCompra = new javax.swing.JMenuItem();
         jmVentaReporte = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         mnuExcel = new javax.swing.JMenu();
         mnuAcerca1 = new javax.swing.JMenuItem();
         mnuAcerca2 = new javax.swing.JMenuItem();
@@ -587,6 +588,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu8.add(jmVentaReporte);
 
+        jMenuItem1.setText("INVENTARIO");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem1);
+
         jMenuBar1.add(jMenu8);
 
         mnuExcel.setText("EXCEL");
@@ -915,6 +924,10 @@ RIN.setVisible(true);
         
     }//GEN-LAST:event_mnuAcerca2ActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     public Listar_usuario getUsuario() {
         return objUsuario;
     }
@@ -963,6 +976,7 @@ RIN.setVisible(true);
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem13;
     private javax.swing.JMenuItem jMenuItem14;
     private javax.swing.JMenuItem jMenuItem15;
