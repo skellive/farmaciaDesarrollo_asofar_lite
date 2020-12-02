@@ -56,6 +56,7 @@ public class modificar_precio_producto extends javax.swing.JDialog {
     Consultas llamar = new Consultas();
     Precios objeto=null;
     Date date = new Date();
+    int Unidades = 0;
     DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     Precios precios = null;
     String query=("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_producto);
@@ -92,13 +93,14 @@ public class modificar_precio_producto extends javax.swing.JDialog {
         txtprociento.setVisible(false);
         // Habilitar(false);
         id_producto = id;
-        this.presentacion=crud.BuscarPresentacion(id_producto);
-        if(presentacion.equals("CAJA")){
+        //this.presentacion=crud.BuscarPresentacion(id_producto);
+        Unidades=Integer.parseInt(crud.BuscarUnidadesProducto(id_producto)) ;
+        if(Unidades>1){
             txt_venta_unidad.setEnabled(true);
         }else{
             txt_venta_unidad.setEnabled(false);
         }
-        System.out.println(presentacion);
+        //System.out.println(presentacion);
         //JOptionPane.showMessageDialog(this, presentacion);
         precios = pr1;
         lista_t = llamar.listarPrecioCompra(query);
@@ -303,6 +305,7 @@ public class modificar_precio_producto extends javax.swing.JDialog {
         });
 
         txt_venta_unidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txt_venta_unidad.setText("0");
         txt_venta_unidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txt_venta_unidad.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {

@@ -56,6 +56,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
     Consultas llamar = new Consultas();
     Precios objeto=null;
     Date date = new Date();
+    int Unidades = 0;
     DateFormat hourdateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
     public Long getId_precio() {
         return id_precio;
@@ -90,13 +91,14 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         txtprociento.setVisible(false);
         // Habilitar(false);
         id_producto = id;
-        presentacion=crud.BuscarPresentacion(id_producto);//codigo.setEnabled(valor);
-        if(presentacion.equals("CAJA")){
+        //presentacion=crud.BuscarPresentacion(id_producto);//codigo.setEnabled(valor);
+        Unidades=Integer.parseInt(crud.BuscarUnidadesProducto(id_producto)) ;
+        if(Unidades>1){
             txt_venta_unidad.setEnabled(true);
         }else{
             txt_venta_unidad.setEnabled(false);
         }
-        System.out.println(presentacion);
+        //System.out.println(presentacion);
        
         lista_t = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta` FROM `precios` WHERE `id_producto`= " + id_producto);
         for (int i = 0; i < lista_t.size(); i++) {
@@ -230,6 +232,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         jLabel5.setText("DESC. VENTA:");
 
         txtDescVent.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtDescVent.setText("0");
         txtDescVent.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtDescVent.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
