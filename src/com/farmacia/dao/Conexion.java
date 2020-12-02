@@ -1,6 +1,4 @@
-
 package com.farmacia.dao;
-
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -18,14 +16,12 @@ public class Conexion {
         String clavel = "itsgg";
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            
-
- /*local*/      conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/asofar_moduloprueba", "root", "root");
-
-       /*remota*/  // conn = DriverManager.getConnection("jdbc:mysql://mysql-asofar.alwaysdata.net:3306/asofar_moduloprueba", "asofar", "asofarLITEbase");
 
 
-            
+            /*local*/      //conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/asofar_moduloprueba", "root", "root");
+
+            /*remota*/ conn = DriverManager.getConnection("jdbc:mysql://mysql-asofar.alwaysdata.net:3306/asofar_moduloprueba", "asofar", "asofarLITEbase");
+
             System.out.println("Conectado");
 
         } catch (ClassNotFoundException ex) {

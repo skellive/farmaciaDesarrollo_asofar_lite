@@ -1,7 +1,3 @@
-
-
-
-
 package sistemafarmacia.presentacion;
 
 import com.farmacia.entities1.Listar_usuario;
@@ -19,6 +15,7 @@ import com.farmacia.entities1.Usuario;
 import com.farmacia.view.excel.subirExcelBD;
 import com.farmacia.view.excel.subirExcelpRODUCTOS;
 import com.farmacia.view.principal.Categoria;
+import com.farmacia.views.Reportes.KardexReporte;
 
 import com.farmacia.views.Reportes.Reporte_Compra;
 import com.farmacia.views.Reportes.Reporte_Productos_Compras;
@@ -67,7 +64,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //        //initComponents();
 //    }
     public FrmPrincipal(Listar_usuario obj2, String tipo) {
-        setContentPane(fondo);        
+        setContentPane(fondo);
         initComponents();
         if ("ADMINISTRADOR".equals(tipo)) {
         } else {
@@ -90,13 +87,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 jmVentaReporte.setVisible(false);
                 lblEmpleados.setVisible(false);
                 lblProveedores.setVisible(false);
-                 mnEliminadas.setVisible(false);
+                mnEliminadas.setVisible(false);
             }
             if ("SUPERVISOR".equals(tipo)) {
                 jmLocal.setVisible(false);
                 jmIva.setVisible(false);
             }
-            if ("ENCARGADO".equals(tipo)){
+            if ("ENCARGADO".equals(tipo)) {
                 lblEmpleados.setVisible(false);
                 mnEliminadas.setVisible(false);
                 jmLocal.setVisible(false);
@@ -588,6 +585,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         jMenu8.add(jmVentaReporte);
 
+        jMenuItem1.setFont(new java.awt.Font("Dialog", 1, 13)); // NOI18N
         jMenuItem1.setText("INVENTARIO");
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -685,8 +683,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void mnuLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuLaboratorioActionPerformed
         //Consulta_Lab cl = new Consulta_Lab(new javax.swing.JFrame(), true);
         //cl.setVisible(true);
-        
-        
+
         ConsultaMarcas cm = new ConsultaMarcas(new javax.swing.JFrame(), true);
         cm.setVisible(true);
 //        Consulta_Lab cl = new Consulta_Lab(new javax.swing.JFrame(), true);
@@ -694,7 +691,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_mnuLaboratorioActionPerformed
 
     private void mnuRegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVentaActionPerformed
-        MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true,objUsuario);
+        MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true, objUsuario);
         mp.setVisible(true);
 //        MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true);
 //        mp.setVisible(true);
@@ -702,7 +699,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void mnuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuClienteActionPerformed
         MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true);
-            mp.setVisible(true);
+        mp.setVisible(true);
 //        Consulta_Clientes cl = new Consulta_Clientes(new javax.swing.JFrame(), true);
 //        cl.setVisible(true);
     }//GEN-LAST:event_mnuClienteActionPerformed
@@ -710,9 +707,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void mnuAcercaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAcercaActionPerformed
 //        DlgAcerca acerca = new DlgAcerca(this, rootPaneCheckingEnabled);
 //        acerca.setVisible(rootPaneCheckingEnabled);
-            Acerca a = new Acerca();
-            a.setVisible(true);
-            a.setLocationRelativeTo(null);
+        Acerca a = new Acerca();
+        a.setVisible(true);
+        a.setLocationRelativeTo(null);
     }//GEN-LAST:event_mnuAcercaActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -720,7 +717,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //        Envases e = new Envases(new javax.swing.JFrame(), true);
 //        e.setVisible(true);
         Envases e = new Envases(new javax.swing.JFrame(), true);
-            e.setVisible(true);
+        e.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
@@ -729,22 +726,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //        t.setVisible(true);
         Categoria ca = new Categoria(new javax.swing.JFrame(), true);
         ca.setVisible(true);
-       
-       
+
+
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
 //        ConsultaMarcas cmx = new ConsultaMarcas(new javax.swing.JFrame(), true);
 //        cmx.setVisible(true);
-         Tipo_Producto t = new Tipo_Producto(new javax.swing.JFrame(), true);
-            t.setVisible(true);
+        Tipo_Producto t = new Tipo_Producto(new javax.swing.JFrame(), true);
+        t.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
 //        ConsultaMedidas cm = new ConsultaMedidas(new javax.swing.JFrame(), true);
 //        cm.setVisible(true);
-         ConsultaMedidas cm = new ConsultaMedidas(new javax.swing.JFrame(), true);
-            cm.setVisible(true);
+        ConsultaMedidas cm = new ConsultaMedidas(new javax.swing.JFrame(), true);
+        cm.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
@@ -754,8 +751,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-         MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true, objUsuario);
-            p1.setVisible(true);
+        MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true, objUsuario);
+        p1.setVisible(true);
 //        MantenimientoProducto p1 = new MantenimientoProducto(new javax.swing.JFrame(), true, objUsuario);
 //        p1.setVisible(true);
     }//GEN-LAST:event_jMenuItem7ActionPerformed
@@ -763,55 +760,55 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void mnuRegistrarVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuRegistrarVenta1ActionPerformed
 //        NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
 //        np.setVisible(true);
-           NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
-            np.setVisible(true);
+        NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
+        np.setVisible(true);
          //NotePedidos np = new NotePedidos(new javax.swing.JFrame(), true, objUsuario);
-            //np.setVisible(true);
+        //np.setVisible(true);
     }//GEN-LAST:event_mnuRegistrarVenta1ActionPerformed
 
     private void mnuCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCliente1ActionPerformed
 //        Consulta_Proveedor pro = new Consulta_Proveedor(new javax.swing.JFrame(), true);
 //        pro.setVisible(true);
         Consulta_Proveedor pro = new Consulta_Proveedor(new javax.swing.JFrame(), true);
-            pro.setVisible(true);
+        pro.setVisible(true);
     }//GEN-LAST:event_mnuCliente1ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
 //        CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true, objUsuario);
 //        CB.setVisible(true);
-      CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true, objUsuario);
-            CB.setVisible(true);
+        CabeceraCompra CB = new CabeceraCompra(new javax.swing.JFrame(), true, objUsuario);
+        CB.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
 //        MantenimientoNotaPedidos mp = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true, objUsuario);
 //        mp.setVisible(true);
         MantenimientoNotaPedidos mp = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true, objUsuario);
-            mp.setVisible(true);
+        mp.setVisible(true);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
 
     private void jmIvaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmIvaActionPerformed
 //        Mostrar_iva MI = new Mostrar_iva(new javax.swing.JFrame(), true);
 //        MI.setVisible(true);
-      //Mostrar_iva MI = new Mostrar_iva(new javax.swing.JFrame(), true);
-          //  MI.setVisible(true);
+        //Mostrar_iva MI = new Mostrar_iva(new javax.swing.JFrame(), true);
+        //  MI.setVisible(true);
     }//GEN-LAST:event_jmIvaActionPerformed
 
     private void jmLocal2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLocal2ActionPerformed
-         Local lc = new Local(new javax.swing.JFrame(), true);
-            lc.setVisible(true);
+        Local lc = new Local(new javax.swing.JFrame(), true);
+        lc.setVisible(true);
     }//GEN-LAST:event_jmLocal2ActionPerformed
 
     private void jmEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmEmpleadosActionPerformed
-       Mostrar_usuario mu = new Mostrar_usuario(new javax.swing.JFrame(), true);
-            mu.setVisible(true);
+        Mostrar_usuario mu = new Mostrar_usuario(new javax.swing.JFrame(), true);
+        mu.setVisible(true);
     }//GEN-LAST:event_jmEmpleadosActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
 //        Stock_Productos sp = new Stock_Productos(this, rootPaneCheckingEnabled);
 //        sp.setVisible(rootPaneCheckingEnabled);
-        Kardex_Productos sp = new Kardex_Productos(this, rootPaneCheckingEnabled,objUsuario);
-            sp.setVisible(rootPaneCheckingEnabled);
+        Kardex_Productos sp = new Kardex_Productos(this, rootPaneCheckingEnabled, objUsuario);
+        sp.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
@@ -819,8 +816,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
 //        ce.setVisible(rootPaneCheckingEnabled);
 //        ComprasEfectuadas ce = new ComprasEfectuadas(this, rootPaneCheckingEnabled);
 //            ce.setVisible(rootPaneCheckingEnabled);
-ListaCompras Rc = new ListaCompras(this, rootPaneCheckingEnabled,objUsuario);
-Rc.setVisible(rootPaneCheckingEnabled);
+        ListaCompras Rc = new ListaCompras(this, rootPaneCheckingEnabled, objUsuario);
+        Rc.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem14ActionPerformed
 
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
@@ -828,27 +825,27 @@ Rc.setVisible(rootPaneCheckingEnabled);
 //        cd.setVisible(rootPaneCheckingEnabled);
 //        ComprasDevueltas cd = new ComprasDevueltas(this, rootPaneCheckingEnabled);
 //            cd.setVisible(rootPaneCheckingEnabled);
-VentanaComprasDesactivadas RIN = new VentanaComprasDesactivadas(new javax.swing.JFrame(), true);
-RIN.setVisible(true);
+        VentanaComprasDesactivadas RIN = new VentanaComprasDesactivadas(new javax.swing.JFrame(), true);
+        RIN.setVisible(true);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
 
     private void jmReporteCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmReporteCompraActionPerformed
 //        Reporte_Compra Rc = new Reporte_Compra(this, rootPaneCheckingEnabled);
 //        Rc.setVisible(rootPaneCheckingEnabled);
-         Reporte_Compra Rc = new Reporte_Compra(this, rootPaneCheckingEnabled);
-            Rc.setVisible(rootPaneCheckingEnabled);
+        Reporte_Compra Rc = new Reporte_Compra(this, rootPaneCheckingEnabled);
+        Rc.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jmReporteCompraActionPerformed
 
     private void jmVentaReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmVentaReporteActionPerformed
 //        Reporte_Venta Rv = new Reporte_Venta(this, rootPaneCheckingEnabled);
 //        Rv.setVisible(rootPaneCheckingEnabled);
         Reporte_Venta Rv = new Reporte_Venta(this, rootPaneCheckingEnabled);
-            Rv.setVisible(rootPaneCheckingEnabled);
+        Rv.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jmVentaReporteActionPerformed
 
     private void jMnuListVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnuListVentasActionPerformed
-       ListarVentas livt = new ListarVentas(objUsuario); 
-       livt.setVisible(true);
+        ListarVentas livt = new ListarVentas(objUsuario);
+        livt.setVisible(true);
     }//GEN-LAST:event_jMnuListVentasActionPerformed
 
     private void jmLocalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmLocalActionPerformed
@@ -878,23 +875,23 @@ RIN.setVisible(true);
     }//GEN-LAST:event_lblProductosMouseClicked
 
     private void lblGenerarVentaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGenerarVentaMouseClicked
-      MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true,objUsuario);
+        MenuPreVentas mp = new MenuPreVentas(new javax.swing.JFrame(), true, objUsuario);
         mp.setVisible(true);
     }//GEN-LAST:event_lblGenerarVentaMouseClicked
 
     private void lblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEmpleadosMouseClicked
         Mostrar_usuario mu = new Mostrar_usuario(new javax.swing.JFrame(), true);
-            mu.setVisible(true);
+        mu.setVisible(true);
     }//GEN-LAST:event_lblEmpleadosMouseClicked
 
     private void lblClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClientesMouseClicked
         Consulta_Clientes cliente = new Consulta_Clientes(new javax.swing.JFrame(), true);
-            cliente.setVisible(true);
+        cliente.setVisible(true);
     }//GEN-LAST:event_lblClientesMouseClicked
 
     private void lblProveedoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblProveedoresMouseClicked
         Consulta_Proveedor p = new Consulta_Proveedor(new javax.swing.JFrame(), true);
-            p.setVisible(true);
+        p.setVisible(true);
     }//GEN-LAST:event_lblProveedoresMouseClicked
 
     private void lblIngresoRapidoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblIngresoRapidoMouseClicked
@@ -903,12 +900,12 @@ RIN.setVisible(true);
     }//GEN-LAST:event_lblIngresoRapidoMouseClicked
 
     private void mnuMantCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuMantCompraActionPerformed
-        ListaCompras Rc = new ListaCompras(this, rootPaneCheckingEnabled,objUsuario);
+        ListaCompras Rc = new ListaCompras(this, rootPaneCheckingEnabled, objUsuario);
         Rc.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_mnuMantCompraActionPerformed
 
     private void mnEliminadasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnEliminadasActionPerformed
-        ventasEliminadas ve= new ventasEliminadas();
+        ventasEliminadas ve = new ventasEliminadas();
         ve.setVisible(true);
     }//GEN-LAST:event_mnEliminadasActionPerformed
 
@@ -917,15 +914,16 @@ RIN.setVisible(true);
     }//GEN-LAST:event_mnuAcerca2MouseClicked
 
     private void mnuAcerca2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAcerca2ActionPerformed
-       
+
         subirExcelpRODUCTOS sebp = new subirExcelpRODUCTOS();
         sebp.setVisible(true);
-        
-        
+
+
     }//GEN-LAST:event_mnuAcerca2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        
+        KardexReporte kp = new KardexReporte(this, rootPaneCheckingEnabled, objUsuario);
+        kp.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     public Listar_usuario getUsuario() {

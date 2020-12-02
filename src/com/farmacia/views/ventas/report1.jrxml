@@ -109,7 +109,7 @@ WHERE `cabecera_venta`.`id` = $P{_id_cabecera}]]>
 			</textField>
 			<image>
 				<reportElement x="17" y="0" width="112" height="37" uuid="596f9055-30ef-439a-86c3-f2af3b6f830f"/>
-				<imageExpression><![CDATA["C:\\Users\\IMPERCOMPU\\Documents\\NetBeansProjects\\farmaciaDesarrollo_asofar_lite\\src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

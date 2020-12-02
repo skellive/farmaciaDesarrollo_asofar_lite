@@ -45,7 +45,7 @@
 			</staticText>
 			<image>
 				<reportElement x="181" y="0" width="122" height="46" uuid="801db522-d867-43a9-83cf-efb41817a068"/>
-				<imageExpression><![CDATA["C:\\Users\\IMPERCOMPU\\Documents\\NetBeansProjects\\farmaciaDesarrollo_asofar_lite\\src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

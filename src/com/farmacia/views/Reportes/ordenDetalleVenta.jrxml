@@ -52,7 +52,7 @@
 			</textField>
 			<image>
 				<reportElement x="34" y="3" width="128" height="33" uuid="d08b68d8-4103-458d-8b88-74718ce33d16"/>
-				<imageExpression><![CDATA["C:\\Users\\IMPERCOMPU\\Documents\\NetBeansProjects\\farmaciaDesarrollo_asofar_lite\\src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>
