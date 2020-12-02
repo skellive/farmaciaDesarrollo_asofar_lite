@@ -176,9 +176,9 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         txtFechaCreacion = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        cbxFormaP = new javax.swing.JComboBox<>();
+        cbxFormaP = new javax.swing.JComboBox<String>();
         jLabel16 = new javax.swing.JLabel();
-        cbxPlazo = new javax.swing.JComboBox<>();
+        cbxPlazo = new javax.swing.JComboBox<String>();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbaListaFaltantes = new javax.swing.JTable();
@@ -320,13 +320,14 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel15)
-                    .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(6, 6, 6)
-                        .addComponent(lblCerrar)))
+                        .addComponent(lblCerrar))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel7)
+                        .addComponent(jLabel15)
+                        .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
 
@@ -508,14 +509,14 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
         jLabel10.setText("PLAZO:");
 
         cbxFormaP.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Contado", "Credito" }));
+        cbxFormaP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Contado", "Credito" }));
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 27, 134));
         jLabel16.setText("FORMA DE PAGO:");
 
         cbxPlazo.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
+        cbxPlazo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Inmediato", "3 Meses", "6 Meses", "9 Meses", "12 Meses", "24 Meses" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -755,7 +756,6 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
 
     }//GEN-LAST:event_txtRepresentanteKeyReleased
 
-
     public void actualizarTabla2() {
         String id = txtNumero.getText().toString();
         lista3.clear();
@@ -928,40 +928,41 @@ public class VistaCompraDevueltas extends javax.swing.JDialog {
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
-                ArrayList tablac = new ArrayList();
+        ArrayList tablac = new ArrayList();
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             ClaseReporte tabla1 = new ClaseReporte(txtNumero.getText(),
-                txtCodigoProveedor.getText(),
-                txtNombre1.getText(),
-                txtRepresentante.getText(),
-                txtTelefono1.getText(),
-                txtRuc1.getText(),
-                txtCorreo1.getText(),
-                txtDireccion1.getText(),
-                txtTipo1.getText(),
-                txtFechaCreacion.getText(),
-                cbxPlazo.getSelectedItem().toString(),
-                cbxFormaP.getSelectedItem().toString(),
-                tbaListaFaltantes.getValueAt(i, 0).toString(),
-                tbaListaFaltantes.getValueAt(i, 1).toString(),
-                tbaListaFaltantes.getValueAt(i, 2).toString(),
-                tbaListaFaltantes.getValueAt(i, 3).toString(),
-                tbaListaFaltantes.getValueAt(i, 4).toString(),
-                tbaListaFaltantes.getValueAt(i, 5).toString(),
-                tbaListaFaltantes.getValueAt(i, 6).toString(),
-                tbaListaFaltantes.getValueAt(i, 7).toString(),
-                tbaListaFaltantes.getValueAt(i, 8).toString(),
-                tbaListaFaltantes.getValueAt(i, 9).toString(),
-                tbaListaFaltantes.getValueAt(i, 10).toString(),
-                tbaListaFaltantes.getValueAt(i, 11).toString(),
-                txtDescuento.getText(),
-                txtIva.getText(),
-                txtTotal.getText());
+                    txtCodigoProveedor.getText(),
+                    txtNombre1.getText(),
+                    txtRepresentante.getText(),
+                    txtTelefono1.getText(),
+                    txtRuc1.getText(),
+                    txtCorreo1.getText(),
+                    txtDireccion1.getText(),
+                    txtTipo1.getText(),
+                    txtFechaCreacion.getText(),
+                    cbxPlazo.getSelectedItem().toString(),
+                    cbxFormaP.getSelectedItem().toString(),
+                    tbaListaFaltantes.getValueAt(i, 0).toString(),
+                    tbaListaFaltantes.getValueAt(i, 1).toString(),
+                    tbaListaFaltantes.getValueAt(i, 2).toString(),
+                    tbaListaFaltantes.getValueAt(i, 3).toString(),
+                    tbaListaFaltantes.getValueAt(i, 4).toString(),
+                    tbaListaFaltantes.getValueAt(i, 5).toString(),
+                    tbaListaFaltantes.getValueAt(i, 6).toString(),
+                    tbaListaFaltantes.getValueAt(i, 7).toString(),
+                    tbaListaFaltantes.getValueAt(i, 8).toString(),
+                    tbaListaFaltantes.getValueAt(i, 9).toString(),
+                    tbaListaFaltantes.getValueAt(i, 10).toString(),
+                    tbaListaFaltantes.getValueAt(i, 11).toString(),
+                    txtDescuento.getText(),
+                    txtIva.getText(),
+                    txtTotal.getText());
             tablac.add(tabla1);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"VistaCompraDevueltas.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("VistaCompraDevueltas.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

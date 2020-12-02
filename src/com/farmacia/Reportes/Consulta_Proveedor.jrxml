@@ -13,12 +13,16 @@
 	<title>
 		<band height="45" splitType="Stretch">
 			<staticText>
-				<reportElement x="126" y="9" width="309" height="29" uuid="bbea14e2-c6fa-4f69-8bc1-e0ef54746164"/>
+				<reportElement x="197" y="6" width="170" height="29" uuid="bbea14e2-c6fa-4f69-8bc1-e0ef54746164"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="20" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[PROVEEDORES]]></text>
 			</staticText>
+			<image>
+				<reportElement x="77" y="6" width="120" height="29" uuid="7929e198-b5d1-4fb2-987b-810723790474"/>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

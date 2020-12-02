@@ -21,12 +21,16 @@
 	<title>
 		<band height="39" splitType="Stretch">
 			<textField>
-				<reportElement x="10" y="7" width="534" height="25" uuid="19aefecd-d1e1-429b-952c-b8eb332dcb6a"/>
+				<reportElement x="182" y="9" width="152" height="25" uuid="19aefecd-d1e1-429b-952c-b8eb332dcb6a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true" isItalic="false" isUnderline="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor3}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="66" y="9" width="116" height="25" uuid="479e245f-56d3-45ee-9eb8-dc864a4bd719"/>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

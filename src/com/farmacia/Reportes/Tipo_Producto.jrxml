@@ -11,12 +11,16 @@
 	<title>
 		<band height="39" splitType="Stretch">
 			<staticText>
-				<reportElement x="12" y="4" width="531" height="29" uuid="bbea14e2-c6fa-4f69-8bc1-e0ef54746164"/>
+				<reportElement x="125" y="5" width="289" height="29" uuid="bbea14e2-c6fa-4f69-8bc1-e0ef54746164"/>
 				<textElement textAlignment="Center">
 					<font size="22" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[TIPOS DE PRODUCTOS]]></text>
 			</staticText>
+			<image>
+				<reportElement x="40" y="5" width="85" height="29" uuid="32013662-cb4c-400b-b464-d47c9655d9bf"/>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

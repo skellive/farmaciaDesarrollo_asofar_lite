@@ -317,7 +317,9 @@ public class Categoria extends javax.swing.JDialog {
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         java.util.List lista = new ArrayList();
         for (int i = 0; i < categoria_tb.getRowCount(); i++) {
-            ClaseReporte Envases = new ClaseReporte (categoria_tb.getValueAt(i, 0).toString(),categoria_tb.getValueAt(i, 1).toString());
+            ClaseReporte Envases = new ClaseReporte (
+                    categoria_tb.getValueAt(i, 0).toString(),
+                    categoria_tb.getValueAt(i, 1).toString());
             lista.add(Envases);
         }
         try {

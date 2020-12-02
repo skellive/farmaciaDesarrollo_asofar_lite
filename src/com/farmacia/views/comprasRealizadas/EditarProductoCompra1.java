@@ -44,8 +44,8 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();
     BigDecimal VGiva = null, VGtotal = null, VGdescuento = null;
     CRUD crud = new CRUD();
-    String idComp="", op="";
-    
+    String idComp = "", op = "";
+
     /**
      * Creates new form EditarProductoNota
      */
@@ -65,8 +65,8 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
         obj2 = obj1;
         btnEditar.setEnabled(false);
         ValorDescuento();
-        idComp=buscarID();
-        System.out.println("id com"+obj2.getId_cabecera_nota_pedido());
+        idComp = buscarID();
+        System.out.println("id com" + obj2.getId_cabecera_nota_pedido());
     }
 
     /**
@@ -573,9 +573,9 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
         if (txtporcentajeDescuento.getText().equals("")) {
 //            PorcentajeDescuento = "0.00";
             BigDecimal ValorDescuento = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
-            VGdescuento=ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP);
+            VGdescuento = ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP);
             txtDescuento.setText(ValorDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            
+
             //BigDecimal IVA = new BigDecimal(txtIva.getText());
             BigDecimal IVA = VGiva;
 
@@ -590,12 +590,12 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
             System.out.println("Porcentaje Des" + PorcentajeDescuento);
 
             BigDecimal ValorDescuento = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
-            VGdescuento=ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP);
+            VGdescuento = ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP);
 
             System.out.println("das" + ValorDescuento);
 //           ValorDescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
             txtDescuento.setText(ValorDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-           // BigDecimal IVA = new BigDecimal(txtIva.getText());
+            // BigDecimal IVA = new BigDecimal(txtIva.getText());
             BigDecimal IVA = VGiva;
 
             VGtotal = Subtotal.add(IVA).subtract(ValorDescuento);
@@ -608,18 +608,18 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
     }
 
     public void ValorDescuento() {
-        if("0.00".equals(txtDescuento.getText())){
-        txtporcentajeDescuento.setText("0");
-        }else{
-        BigDecimal Descuento = new BigDecimal("0.00");
-        BigDecimal Cantidad = BigDecimal.valueOf(Double.parseDouble(obj2.getCantidad().toString()));
-        BigDecimal Precio = BigDecimal.valueOf(Double.parseDouble(obj2.getPrecio().toString()));
-        BigDecimal PorcentajeDescuento = BigDecimal.valueOf(Double.parseDouble(obj2.getDescuento().toString()));
-        BigDecimal cien = new BigDecimal("100");
+        if ("0.00".equals(txtDescuento.getText())) {
+            txtporcentajeDescuento.setText("0");
+        } else {
+            BigDecimal Descuento = new BigDecimal("0.00");
+            BigDecimal Cantidad = BigDecimal.valueOf(Double.parseDouble(obj2.getCantidad().toString()));
+            BigDecimal Precio = BigDecimal.valueOf(Double.parseDouble(obj2.getPrecio().toString()));
+            BigDecimal PorcentajeDescuento = BigDecimal.valueOf(Double.parseDouble(obj2.getDescuento().toString()));
+            BigDecimal cien = new BigDecimal("100");
 
-       // Descuento = Cantidad.multiply(Precio).multiply(PorcentajeDescuento).divide(new BigDecimal("100"));
-        Descuento= (PorcentajeDescuento.multiply(cien)).divide(Cantidad.multiply(Precio));
-        txtporcentajeDescuento.setText(Descuento.toString());
+            // Descuento = Cantidad.multiply(Precio).multiply(PorcentajeDescuento).divide(new BigDecimal("100"));
+            Descuento = (PorcentajeDescuento.multiply(cien)).divide(Cantidad.multiply(Precio));
+            txtporcentajeDescuento.setText(Descuento.toString());
         }
     }
 
@@ -741,7 +741,7 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
         int r = JOptionPane.showConfirmDialog(null, "¿Desea Actualizar?", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
-           // String id = buscarID();
+            // String id = buscarID();
             Guardar();
             //JOptionPane.showMessageDialog(null, "Actualizado");
             setVisible(false);
@@ -750,24 +750,27 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
 
         }
     }//GEN-LAST:event_btnEditarActionPerformed
-    public String buscarID(){
-        String id="";
-        id=crud.buscarIDDetallesCompras(obj2);
-        System.out.println("id cabe"+id);
+    public String buscarID() {
+        String id = "";
+        id = crud.buscarIDDetallesCompras(obj2);
+        System.out.println("id cabe" + id);
         return id;
     }
-    public String getIdcomp(){
+
+    public String getIdcomp() {
         return idComp;
     }
-    public String getop(){
+
+    public String getop() {
         return op;
     }
+
     private void Guardar() {
         int Cantidad = Integer.parseInt(txtcantidad.getText());
         int Bono = Integer.parseInt(txtBono.getText());
         int CantidadTotal = Cantidad;
         //String idComp =crud.buscarIDCabeceraCompras(obj2);
-        
+
         DetalleNotaPedido obj = new DetalleNotaPedido();
         obj.setCantidad(CantidadTotal);
         obj.setBono(Integer.parseInt(txtBono.getText()));
@@ -779,14 +782,13 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
         obj.setId_precio(obj2.getId_precio());
         obj.setCantAnt(obj2.getCantidad());
         String valor = crud.ActualizarTodoCompras(obj);
-        if("Detalles Actualizado".equals(valor)){
-        JOptionPane.showMessageDialog(this, valor);
-        op="2";
-        }else{
-        op="1";
+        if ("Detalles Actualizado".equals(valor)) {
+            JOptionPane.showMessageDialog(this, valor);
+            op = "2";
+        } else {
+            op = "1";
         }
-        
-        
+
     }
     private void txtBonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBonoActionPerformed
         // TODO add your handling code here:
@@ -801,8 +803,9 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
         ClaseReporte producto2 = new ClaseReporte(codigo.getText(), Medida.getText(), producto.getText(), marca.getText(), txtEnvase3.getText(), txtTipo.getText(), txtcantidad.getText(), txtPrecio.getText(), txtporcentajeDescuento.getText(), txtDescuento.getText(), txtIva.getText(), txtTotal.getText());
         producto1.add(producto2);
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"modificarProducto.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("modificarProducto.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(producto1));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
@@ -859,7 +862,7 @@ public class EditarProductoCompra1 extends javax.swing.JDialog {
         marca.setText(obj.getMarca());
         txtEnvase3.setText(obj.getPresentacion());
         txtTipo.setText(obj.getTipo());
-        VGiva=BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(obj.getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString())));
+        VGiva = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(obj.getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString())));
         txtIva.setText(removeScientificNotation(obj.getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
         txtDescuento.setText(removeScientificNotation(obj.getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));
         txtPrecio.setText(removeScientificNotation(obj.getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString()));

@@ -18,12 +18,16 @@
 	<title>
 		<band height="56" splitType="Stretch">
 			<staticText>
-				<reportElement x="3" y="15" width="796" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
+				<reportElement x="230" y="12" width="319" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[COMPRAS EFECTUADAS]]></text>
 			</staticText>
+			<image>
+				<reportElement x="83" y="12" width="147" height="33" uuid="e2f7698f-56af-4ace-8bf7-d462ec44a416"/>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

@@ -393,8 +393,9 @@ public class Mostrar_usuario_pv extends javax.swing.JDialog {
                     jtUsuario.getValueAt(i,10).toString());                   
             tablac.add(tabla1);}
         try{
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"Mostrar_usuario.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Mostrar_usuario.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog (this);
             JRViewer viewer = new JRViewer(jprint);

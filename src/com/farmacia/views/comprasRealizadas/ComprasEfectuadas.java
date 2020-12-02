@@ -274,7 +274,7 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
                 break;
             }
         }
-        
+
         return objeto1;
 
     }
@@ -323,8 +323,9 @@ public class ComprasEfectuadas extends javax.swing.JDialog {
             lista.add(medida);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"ComprasEfectuadas.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("ComprasEfectuadas.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

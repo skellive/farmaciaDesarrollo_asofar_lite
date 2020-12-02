@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eef98107-54aa-473e-a5d9-7af6f92b3a9b">
-	<property name="ireport.zoom" value="1.464100000000045"/>
+	<property name="ireport.zoom" value="1.2100000000000377"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<field name="valor1" class="java.lang.String"/>
@@ -37,7 +37,7 @@
 	<title>
 		<band height="46" splitType="Stretch">
 			<staticText>
-				<reportElement x="84" y="3" width="487" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
+				<reportElement x="132" y="3" width="439" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
 				<textElement textAlignment="Right">
 					<font size="22" isBold="true" isItalic="true"/>
 				</textElement>
@@ -50,6 +50,17 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor1}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="29" y="3" width="103" height="33" uuid="8dc64cb1-2cca-464d-9ab9-fba53bf43f0d"/>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="589" y="10" width="90" height="15" uuid="efc8613b-57ef-4b8b-8af7-c4459ba214f7"/>
+				<textElement>
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -186,13 +197,6 @@
 					<font size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TIPO:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="561" y="12" width="90" height="15" uuid="efc8613b-57ef-4b8b-8af7-c4459ba214f7"/>
-				<textElement>
-					<font size="9" isBold="true"/>
-				</textElement>
-				<text><![CDATA[FECHA:]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="560" y="27" width="90" height="15" uuid="22159f77-b589-4f3f-8b4b-9c2ca69a97c3"/>

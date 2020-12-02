@@ -35,7 +35,8 @@ import net.sf.jasperreports.view.JRViewer;
  * @author ineval
  */
 public class ConsultaMarcas extends javax.swing.JDialog {
-    int x,y;
+
+    int x, y;
     CRUD crud = new CRUD();
     MarcaProducto medidap;
     DefaultTableModel model;
@@ -341,17 +342,18 @@ public class ConsultaMarcas extends javax.swing.JDialog {
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tablamedidas.getRowCount(); i++) {
-            ClaseReporte medida = new ClaseReporte (tablamedidas.getValueAt(i, 0).toString(),tablamedidas.getValueAt(i, 1).toString());
+            ClaseReporte medida = new ClaseReporte(tablamedidas.getValueAt(i, 0).toString(), tablamedidas.getValueAt(i, 1).toString());
             lista.add(medida);
         }
         try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"ConsultaMarcas.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("ConsultaMarcas.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();

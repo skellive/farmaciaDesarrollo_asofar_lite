@@ -5,7 +5,6 @@
  */
 package com.farmacia.views.ventas;
 
-
 import com.farmacia.dao.Conexion;
 import com.farmacia.entities1.Cabecera_ventas;
 import java.awt.Color;
@@ -30,13 +29,13 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author jorge
  */
 public class ImprimirOrdenVentas extends javax.swing.JDialog {
-    int x,y;
+
+    int x, y;
     Cabecera_ventas obj = new Cabecera_ventas();
 
     public ImprimirOrdenVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
 
     }
 

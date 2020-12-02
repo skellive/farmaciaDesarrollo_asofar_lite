@@ -876,10 +876,10 @@ public class modificarProducto extends javax.swing.JDialog {
     private void editarPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPrecioActionPerformed
         //Mantenimiento_Precios_Productos mp = new Mantenimiento_Precios_Productos(new javax.swing.JFrame(), true, Long.valueOf(codigo.getText()), producto.getText());
         //mp.setVisible(true);
-        
+
         Mantenimiento_Precio mp = new Mantenimiento_Precio(new javax.swing.JFrame(), true, Long.valueOf(codigo.getText()), producto.getText());
         mp.setVisible(true);
-        
+
     }//GEN-LAST:event_editarPrecioActionPerformed
 
     private void txtUnidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUnidadesActionPerformed
@@ -970,8 +970,9 @@ public class modificarProducto extends javax.swing.JDialog {
         ClaseReporte producto2 = new ClaseReporte(id_usuario.getText(), txtFechaActual1.getText(), codigo.getText(), cbxIva.getSelectedItem().toString(), producto.getText(), txtDescripcion1.getText(), txtPeso1.getText(), cbxMedida1.getSelectedItem().toString(), cbxTipos1.getSelectedItem().toString(), cbxEnvase1.getSelectedItem().toString(), cbxMarca1.getSelectedItem().toString(), txtcantMinima.getText());
         producto1.add(producto2);
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "modificarProducto.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" + "";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("modificarProducto.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(producto1));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

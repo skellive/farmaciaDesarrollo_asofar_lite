@@ -1,4 +1,3 @@
-
 package com.farmacia.views.usuario;
 
 import com.farmacia.conponentes.Filtros_modulo_seguridad;
@@ -23,13 +22,13 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
-
 /**
  *
  * @author carlos
  */
 public class Mostrar_usuario extends javax.swing.JDialog {
-    int x,y;
+
+    int x, y;
     CRUD crud = new CRUD();
     ArrayList<Listar_usuario> listar = null;
     ArrayList<Listar_usuario> listar2 = null;
@@ -37,6 +36,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
     Filtros_modulo_seguridad fil = new Filtros_modulo_seguridad();
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+
     public Mostrar_usuario(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
@@ -46,8 +46,6 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         Tablas.cargarJoinUsuario(jtUsuario, listar);
     }
 
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -268,14 +266,13 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         }
         return objeto1;
     }
-    
-    public void filtroUsuario(){
+
+    public void filtroUsuario() {
         String f = txtFiltro.getText().toUpperCase();
         int pos = cbFiltro.getSelectedIndex();
         Listar_usuario lu = new Listar_usuario();
-        
-        
-            if (f=="" && pos == 0) {
+
+        if (f == "" && pos == 0) {
             listar = crud.get_listar_usuario();
             Tablas.cargarJoinUsuario(jtUsuario, listar);
             //JOptionPane.showMessageDialog(this, "por favor seleccione un filtro");
@@ -332,7 +329,7 @@ public class Mostrar_usuario extends javax.swing.JDialog {
             }
         }
     }
-    
+
     private void jtUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtUsuarioMouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jtUsuarioMouseClicked
@@ -379,7 +376,8 @@ public class Mostrar_usuario extends javax.swing.JDialog {
         if (r == JOptionPane.YES_OPTION) {
 //            System.exit(0);
             setVisible(false);
-        } else {}
+        } else {
+        }
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblListarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblListarMouseClicked
@@ -397,25 +395,27 @@ public class Mostrar_usuario extends javax.swing.JDialog {
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList tablac = new ArrayList();
-        for(int i=0;i<jtUsuario.getRowCount();i++){
-            ClaseReporte tabla1 = new ClaseReporte(jtUsuario.getValueAt(i,0).toString(),
-                    jtUsuario.getValueAt(i,1).toString(),
-                    jtUsuario.getValueAt(i,2).toString(),
-                    jtUsuario.getValueAt(i,3).toString(),
-                    jtUsuario.getValueAt(i,4).toString(),
-                    String.valueOf(jtUsuario.getValueAt(i,5)),
-                    jtUsuario.getValueAt(i,6).toString(),
-                    String.valueOf(jtUsuario.getValueAt(i,7)),
-                    jtUsuario.getValueAt(i,8).toString());                   
-            tablac.add(tabla1);}
-        try{
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"Mostrar_usuario.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
-            JDialog frame = new JDialog (this);
+        for (int i = 0; i < jtUsuario.getRowCount(); i++) {
+            ClaseReporte tabla1 = new ClaseReporte(jtUsuario.getValueAt(i, 0).toString(),
+                    jtUsuario.getValueAt(i, 1).toString(),
+                    jtUsuario.getValueAt(i, 2).toString(),
+                    jtUsuario.getValueAt(i, 3).toString(),
+                    jtUsuario.getValueAt(i, 4).toString(),
+                    String.valueOf(jtUsuario.getValueAt(i, 5)),
+                    jtUsuario.getValueAt(i, 6).toString(),
+                    String.valueOf(jtUsuario.getValueAt(i, 7)),
+                    jtUsuario.getValueAt(i, 8).toString());
+            tablac.add(tabla1);
+        }
+        try {
+//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Mostrar_usuario.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();

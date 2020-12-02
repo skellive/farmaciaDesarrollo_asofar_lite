@@ -17,16 +17,20 @@
 	<title>
 		<band height="40" splitType="Stretch">
 			<staticText>
-				<reportElement x="3" y="5" width="549" height="32" uuid="45c11046-017a-4a2e-b00e-968e38218070"/>
+				<reportElement x="132" y="6" width="280" height="32" uuid="45c11046-017a-4a2e-b00e-968e38218070"/>
 				<textElement textAlignment="Center">
 					<font size="22" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PRODUCTOS EN STOCK]]></text>
 			</staticText>
+			<image>
+				<reportElement x="23" y="6" width="109" height="32" uuid="1e5361b9-6f8a-4c94-98bf-f8f38746205d"/>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="12" splitType="Stretch"/>
+		<band height="13" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
 		<band height="27" splitType="Stretch">

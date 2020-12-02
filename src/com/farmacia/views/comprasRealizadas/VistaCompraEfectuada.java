@@ -74,7 +74,7 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         setLayout(null);
-        
+
         llenarFormulario(obj1);
         buscador = obj1;
 //        Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
@@ -127,7 +127,7 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         cn.setIva(VGiva);
         cn.setDescuento(VGdescuento);
         cn.setTotal(VGtotal);
-                System.out.println("iva: "+VGiva+"\nDESC: "+VGdescuento+"\ntotal: "+VGtotal);
+        System.out.println("iva: " + VGiva + "\nDESC: " + VGdescuento + "\ntotal: " + VGtotal);
         cab = Integer.parseInt(crud.buscarIDCabeceraCompras(cn));
         return cab;
     }
@@ -783,7 +783,6 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
 
     }//GEN-LAST:event_txtRepresentanteKeyReleased
 
-
     public void actualizarTabla2() {
         String id = txtNumero.getText().toString();
         lista3.clear();
@@ -1006,37 +1005,38 @@ public class VistaCompraEfectuada extends javax.swing.JDialog {
         ArrayList tablac = new ArrayList();
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             ClaseReporte tabla1 = new ClaseReporte(txtNumero.getText(),
-                txtCodigoProveedor.getText(),
-                txtNombre1.getText(),
-                txtRepresentante.getText(),
-                txtTelefono1.getText(),
-                txtRuc1.getText(),
-                txtCorreo1.getText(),
-                txtDireccion1.getText(),
-                txtTipo1.getText(),
-                txtFechaCreacion.getText(),
-                cbxPlazo.getSelectedItem().toString(),
-                cbxFormaP.getSelectedItem().toString(),
-                tbaListaFaltantes.getValueAt(i, 0).toString(),
-                tbaListaFaltantes.getValueAt(i, 1).toString(),
-                tbaListaFaltantes.getValueAt(i, 2).toString(),
-                tbaListaFaltantes.getValueAt(i, 3).toString(),
-                tbaListaFaltantes.getValueAt(i, 4).toString(),
-                tbaListaFaltantes.getValueAt(i, 5).toString(),
-                tbaListaFaltantes.getValueAt(i, 6).toString(),
-                tbaListaFaltantes.getValueAt(i, 7).toString(),
-                tbaListaFaltantes.getValueAt(i, 8).toString(),
-                tbaListaFaltantes.getValueAt(i, 9).toString(),
-                tbaListaFaltantes.getValueAt(i, 10).toString(),
-                tbaListaFaltantes.getValueAt(i, 11).toString(),
-                txtDescuento.getText(),
-                txtIva.getText(),
-                txtTotal.getText());
+                    txtCodigoProveedor.getText(),
+                    txtNombre1.getText(),
+                    txtRepresentante.getText(),
+                    txtTelefono1.getText(),
+                    txtRuc1.getText(),
+                    txtCorreo1.getText(),
+                    txtDireccion1.getText(),
+                    txtTipo1.getText(),
+                    txtFechaCreacion.getText(),
+                    cbxPlazo.getSelectedItem().toString(),
+                    cbxFormaP.getSelectedItem().toString(),
+                    tbaListaFaltantes.getValueAt(i, 0).toString(),
+                    tbaListaFaltantes.getValueAt(i, 1).toString(),
+                    tbaListaFaltantes.getValueAt(i, 2).toString(),
+                    tbaListaFaltantes.getValueAt(i, 3).toString(),
+                    tbaListaFaltantes.getValueAt(i, 4).toString(),
+                    tbaListaFaltantes.getValueAt(i, 5).toString(),
+                    tbaListaFaltantes.getValueAt(i, 6).toString(),
+                    tbaListaFaltantes.getValueAt(i, 7).toString(),
+                    tbaListaFaltantes.getValueAt(i, 8).toString(),
+                    tbaListaFaltantes.getValueAt(i, 9).toString(),
+                    tbaListaFaltantes.getValueAt(i, 10).toString(),
+                    tbaListaFaltantes.getValueAt(i, 11).toString(),
+                    txtDescuento.getText(),
+                    txtIva.getText(),
+                    txtTotal.getText());
             tablac.add(tabla1);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"VistaCompraEfectuada.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("VistaCompraEfectuada.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

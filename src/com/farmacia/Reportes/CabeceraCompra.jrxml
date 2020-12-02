@@ -18,12 +18,16 @@
 	<title>
 		<band height="56" splitType="Stretch">
 			<staticText>
-				<reportElement x="128" y="15" width="554" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
+				<reportElement x="232" y="12" width="304" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[CABECERA DE COMPRA]]></text>
 			</staticText>
+			<image>
+				<reportElement x="96" y="12" width="136" height="33" uuid="4ed22306-19bd-48cb-b638-af04d0fe4663"/>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

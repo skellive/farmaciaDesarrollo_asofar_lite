@@ -330,8 +330,9 @@ public class ConsultaMedidas extends javax.swing.JDialog {
             lista.add(medida);
         }
         try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"ConsultaMedidas.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("ConsultaMedidas.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

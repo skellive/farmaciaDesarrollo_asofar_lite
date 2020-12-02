@@ -329,8 +329,9 @@ public class Stock_Productos extends javax.swing.JDialog {
             tabla.add(tabla1);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "Stock_Productos.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            //String dir = System.getProperty("user.dir") + "/Reportes/" + "Stock_Productos.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Stock_Productos.jasper"));
+            //JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

@@ -41,7 +41,8 @@ import net.sf.jasperreports.view.JRViewer;
  * @author alumno
  */
 public class actualizar_usuario extends javax.swing.JDialog {
-     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
     String imagen = "";
@@ -53,13 +54,12 @@ public class actualizar_usuario extends javax.swing.JDialog {
 //    ArrayList<Rol_U> lista2 = crud.listarRol();
 //    ArrayList<Estado_usuario> lista3 = crud.listarEstado();
     Listar_usuario obj1 = null;
-    String ro =null;
+    String ro = null;
     String est = null;
-    String gen =null;
+    String gen = null;
     private String rutaimagen = "";
     public String fil;
 
-    
     /**
      * Creates new form Registrar
      */
@@ -68,8 +68,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
         getContentPane().setBackground(Color.white);
         initComponents();
     }
-    
-    public actualizar_usuario(java.awt.Frame parent, boolean modal,Listar_usuario obj2) {
+
+    public actualizar_usuario(java.awt.Frame parent, boolean modal, Listar_usuario obj2) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
         setUndecorated(true);
@@ -84,26 +84,26 @@ public class actualizar_usuario extends javax.swing.JDialog {
         txtId.setEnabled(false);
         bloqueo(false);
     }
-    
-    public void combos(Listar_usuario obj){
+
+    public void combos(Listar_usuario obj) {
         lista1 = crud.listarGenero();
         lista2 = crud.listarRol();
         lista3 = crud.listarEstado();
-        
+
         cbGenero.setModel(Formulario.listarComboGenero(lista1));
         cbRol.setModel(Formulario.listarComboRol(lista2));
         cbEstado.setModel(Formulario.listarComboEstado(lista3));
-        
+
         ro = crud.getCombosAcUsuarios(Long.valueOf("1"), obj.getId_rol());
         cbRol.setSelectedItem(ro);
-        System.out.println("pejjd"+obj.getId_rol());
+        System.out.println("pejjd" + obj.getId_rol());
         est = crud.getCombosAcUsuarios(Long.valueOf("2"), obj.getId_estado());
         cbEstado.setSelectedItem(est);
         gen = crud.getCombosAcUsuarios(Long.valueOf("3"), obj.getId_genero());
         cbGenero.setSelectedItem(gen);
     }
-    
-    public void llenarForm(Listar_usuario obj1){
+
+    public void llenarForm(Listar_usuario obj1) {
         txtId.setText(obj1.getId_sesion().toString());
         txtCedula.setText(obj1.getCedula());
         txtApellido.setText(obj1.getApellidos());
@@ -115,8 +115,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
         txtConven.setText(obj1.getConvencional());
         getPicture2(obj1.getRuta_imagen());
     }
-    
-    public void bloqueo(boolean opc){
+
+    public void bloqueo(boolean opc) {
         txtApellido.setEnabled(opc);
         txtCedula.setEnabled(opc);
         txtCell.setEnabled(opc);
@@ -653,8 +653,8 @@ public class actualizar_usuario extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
+
+
     private void txtNombreFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtNombreFocusLost
         txtNombre.setText(txtNombre.getText().toUpperCase());
     }//GEN-LAST:event_txtNombreFocusLost
@@ -717,16 +717,16 @@ public class actualizar_usuario extends javax.swing.JDialog {
 
     private void txtCorreoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCorreoKeyTyped
         char c = evt.getKeyChar();
-        char mas = '+', por='*', div='/', dp=':', pc=';', c2=',', p1='{', p2='}';
-        char lla1='[',el='^', lla2=']',el2='¿', co='?', co2='¡',c3='!', d='"',e='#';
-        char col='$', a='!',b='=',e2='%',f='&',g='=',h='º',i='ª',j='(',k=')',l='<',m='>';
-        char n='ç',o='´',p='`',q='¨',r='Ñ',s='·',t='ñ';
-        if (Character.isWhitespace(c) || c == mas || c == por || c ==  div || c == dp 
-                || c == pc || c == c2 || c == p1 || c == p2 || c == lla1 || c == lla2 
-                || c == el || c == el2 || c == co || c == co2 || c == c3 || c == d || c == e 
-                || c ==  col || c == a || c == b || c == e2 || c == f || c == g || c == h 
-                || c == i || c == j || c == k || c == l || c == m || c == n || c == o || c == p 
-                || c ==  q || c == r || c == s || c == t) {
+        char mas = '+', por = '*', div = '/', dp = ':', pc = ';', c2 = ',', p1 = '{', p2 = '}';
+        char lla1 = '[', el = '^', lla2 = ']', el2 = '¿', co = '?', co2 = '¡', c3 = '!', d = '"', e = '#';
+        char col = '$', a = '!', b = '=', e2 = '%', f = '&', g = '=', h = 'º', i = 'ª', j = '(', k = ')', l = '<', m = '>';
+        char n = 'ç', o = '´', p = '`', q = '¨', r = 'Ñ', s = '·', t = 'ñ';
+        if (Character.isWhitespace(c) || c == mas || c == por || c == div || c == dp
+                || c == pc || c == c2 || c == p1 || c == p2 || c == lla1 || c == lla2
+                || c == el || c == el2 || c == co || c == co2 || c == c3 || c == d || c == e
+                || c == col || c == a || c == b || c == e2 || c == f || c == g || c == h
+                || c == i || c == j || c == k || c == l || c == m || c == n || c == o || c == p
+                || c == q || c == r || c == s || c == t) {
             getToolkit().beep();
             evt.consume();
         }
@@ -752,22 +752,23 @@ public class actualizar_usuario extends javax.swing.JDialog {
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList dato = new ArrayList();
-        ClaseReporte datos = new ClaseReporte(txtId.getText(),cbEstado.getSelectedItem().toString(),txtCedula.getText(),txtNombre.getText(),txtApellido.getText(),cbGenero.getSelectedItem().toString(),cbRol.getSelectedItem().toString(),txtObservacion.getText(),txtCell.getText(),txtConven.getText(),txtCorreo.getText(),txtDireccion.getText(),txtPass.getText(),txtConPass.getText(),imagen);
-        dato.add(datos);   
+        ClaseReporte datos = new ClaseReporte(txtId.getText(), cbEstado.getSelectedItem().toString(), txtCedula.getText(), txtNombre.getText(), txtApellido.getText(), cbGenero.getSelectedItem().toString(), cbRol.getSelectedItem().toString(), txtObservacion.getText(), txtCell.getText(), txtConven.getText(), txtCorreo.getText(), txtDireccion.getText(), txtPass.getText(), txtConPass.getText(), imagen);
+        dato.add(datos);
         try {
-                String dir = System.getProperty("user.dir")+"/Reportes/"+"actualizar_usuario.jasper";
-                JasperReport reporte = (JasperReport)JRLoader.loadObject(dir);
-                JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(dato));
-                JDialog frame = new JDialog(this);
-                JRViewer viewer = new JRViewer(jprint);
-                frame.add(viewer);
-                frame.setSize(new Dimension(ancho/2,alto/2));
-                frame.setLocationRelativeTo(null);
-                frame.setVisible(true);
-                viewer.setFitWidthZoomRatio();
-            } catch (JRException ex) {
-                Logger.getLogger(actualizar_usuario.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//                String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//                JasperReport reporte = (JasperReport)JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("actualizar_usuario.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(dato));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(actualizar_usuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_lblImprimirMouseClicked
 
     private void lblGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblGuardarMouseClicked
@@ -810,7 +811,7 @@ public class actualizar_usuario extends javax.swing.JDialog {
             lbImagen.setIcon(new ImageIcon(fil));
             ImageIcon icon = new ImageIcon(fil);
             Image img = icon.getImage();
-            Image newimg = img.getScaledInstance(lbImagen.getWidth(),lbImagen.getHeight(),Image.SCALE_DEFAULT/*259, 221, java.awt.Image.SCALE_SMOOTH*/);
+            Image newimg = img.getScaledInstance(lbImagen.getWidth(), lbImagen.getHeight(), Image.SCALE_DEFAULT/*259, 221, java.awt.Image.SCALE_SMOOTH*/);
             ImageIcon newIcono = new ImageIcon(newimg);
             lbImagen.setIcon(newIcono);
             imagen = dig.getSelectedFile().getPath();
@@ -818,106 +819,105 @@ public class actualizar_usuario extends javax.swing.JDialog {
             System.out.println(fil + " Foto " + lbImagen.getWidth() + " " + lbImagen.getHeight());
         }
     }
-    
+
     private void getPicture2(String path) {
-            lbImagen.setIcon(new ImageIcon(path));
-            ImageIcon icon = new ImageIcon(path);
-            Image img = icon.getImage();
-            Image newimg = img.getScaledInstance(lbImagen.getWidth(),lbImagen.getHeight(),Image.SCALE_DEFAULT);
-            ImageIcon newIcono = new ImageIcon(newimg);
-            lbImagen.setIcon(newIcono);       
-            System.out.println(fil + " Foto " + lbImagen.getWidth() + " " + lbImagen.getHeight());
-            System.out.println("ruta= "+rutaimagen +"\n"+
-                                "ruta2 "+fil);
-        }
+        lbImagen.setIcon(new ImageIcon(path));
+        ImageIcon icon = new ImageIcon(path);
+        Image img = icon.getImage();
+        Image newimg = img.getScaledInstance(lbImagen.getWidth(), lbImagen.getHeight(), Image.SCALE_DEFAULT);
+        ImageIcon newIcono = new ImageIcon(newimg);
+        lbImagen.setIcon(newIcono);
+        System.out.println(fil + " Foto " + lbImagen.getWidth() + " " + lbImagen.getHeight());
+        System.out.println("ruta= " + rutaimagen + "\n"
+                + "ruta2 " + fil);
+    }
 
     public void Guardar() {
-        if (txtCedula.getText() == null ) {
+        if (txtCedula.getText() == null) {
             JOptionPane.showMessageDialog(null, "Revise el campo cédula");
-        }else if (txtNombre.getText().length() < 3 || txtApellido.getText().length() < 3 ) {
+        } else if (txtNombre.getText().length() < 3 || txtApellido.getText().length() < 3) {
             JOptionPane.showMessageDialog(null, "Ingrese un nombre o paellido válido ");
-        }else if (txtCell.getText().length() < 9) {
+        } else if (txtCell.getText().length() < 9) {
             JOptionPane.showMessageDialog(null, "Ingrese un número de contacto válido ");
-        }else if (txtCell.getText().length() > 12) {
+        } else if (txtCell.getText().length() > 12) {
             JOptionPane.showMessageDialog(null, "Exede la cantidad de números para un celular");
-        }else if (txtCorreo.getText().length() < 5) {
+        } else if (txtCorreo.getText().length() < 5) {
             JOptionPane.showMessageDialog(null, "Ingrese un correo válido ");
-        }else if (txtDireccion.getText().length() < 4) {
+        } else if (txtDireccion.getText().length() < 4) {
             JOptionPane.showMessageDialog(null, "Ingrese una dirección válida ");
-        }else if (txtObservacion.getText().length() < 4) {
+        } else if (txtObservacion.getText().length() < 4) {
             JOptionPane.showMessageDialog(null, "Ingrese una observación válida ");
-        }else if (txtPass.getText().length() < 6) {
+        } else if (txtPass.getText().length() < 6) {
             JOptionPane.showMessageDialog(null, "La contraseña debe tener al menos 6 caracteres");
-        }else if (!txtPass.getText().equals(txtConPass.getText())) {
+        } else if (!txtPass.getText().equals(txtConPass.getText())) {
             JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden");
-        }else if (cbEstado.getSelectedIndex() == 0) {
+        } else if (cbEstado.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Seleccione un estado válido");
-        }else if (cbGenero.getSelectedIndex() == 0) {
+        } else if (cbGenero.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Seleccione un género válido");
-        }else if (cbRol.getSelectedIndex() == 0) {
+        } else if (cbRol.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Seleccione un rol válido");
-        }else {
+        } else {
             int r = JOptionPane.showConfirmDialog(null, "¿Está seguro de actualizar", "", JOptionPane.YES_NO_OPTION);
 
-        if (r == JOptionPane.YES_OPTION) {
-            
-            Usuario_S obj = new Usuario_S();
-            
-            obj.setApellido(obj1.getApellidos());
-            obj.setCargo(obj1.getCargo());
-            obj.setCedula(obj1.getCedula());
-            obj.setConvencional(obj1.getConvencional());
-            obj.setCorreo(obj1.getCorreo());
-            obj.setDireccion(obj1.getDireccion());
-            obj.setEstado(obj1.getEstado());
-            obj.setFecha_registro(Date.valueOf(obj1.getFecha_registro()));
-            obj.setGenero(obj1.getGenero());
-            obj.setId_sesion(obj1.getId_sesion());
-            obj.setNombre(obj1.getNombres());
-            obj.setTelefono(obj1.getTelefono());
-            obj.setIp_equipo(Operaciones.getIpDispositivo());
+            if (r == JOptionPane.YES_OPTION) {
+
+                Usuario_S obj = new Usuario_S();
+
+                obj.setApellido(obj1.getApellidos());
+                obj.setCargo(obj1.getCargo());
+                obj.setCedula(obj1.getCedula());
+                obj.setConvencional(obj1.getConvencional());
+                obj.setCorreo(obj1.getCorreo());
+                obj.setDireccion(obj1.getDireccion());
+                obj.setEstado(obj1.getEstado());
+                obj.setFecha_registro(Date.valueOf(obj1.getFecha_registro()));
+                obj.setGenero(obj1.getGenero());
+                obj.setId_sesion(obj1.getId_sesion());
+                obj.setNombre(obj1.getNombres());
+                obj.setTelefono(obj1.getTelefono());
+                obj.setIp_equipo(Operaciones.getIpDispositivo());
 //            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
-            obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
-            obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
-            obj.setObservacion(obj.getObservacion());
-            
-            try {
-                crud.Respaldo_usuario(obj);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e);
-            }
-            
+                obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
+                obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
+                obj.setObservacion(obj.getObservacion());
+
+                try {
+                    crud.Respaldo_usuario(obj);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e);
+                }
+
 //            System.out.println("apellido prueba:"+obj1.getApellidos());
-            
-            String pass = new String(txtPass.getPassword());
-            String nuevoPass = hash.sha1(pass);
-            obj.setCedula(txtCedula.getText());
-            obj.setNombre(txtNombre.getText());
-            obj.setApellido(txtApellido.getText());
-            obj.setTelefono(txtCell.getText());
-            obj.setRuta_imagen(imagen);
-            obj.setGenero(cbGenero.getSelectedItem().toString());
-            obj.setCargo(cbRol.getSelectedItem().toString());
-            obj.setConvencional(txtConven.getText());
-            obj.setCorreo(txtCorreo.getText());
-            obj.setDireccion(txtDireccion.getText());
-            obj.setObservacion(txtObservacion.getText());
-            obj.setIp_equipo(Operaciones.getIpDispositivo());
+                String pass = new String(txtPass.getPassword());
+                String nuevoPass = hash.sha1(pass);
+                obj.setCedula(txtCedula.getText());
+                obj.setNombre(txtNombre.getText());
+                obj.setApellido(txtApellido.getText());
+                obj.setTelefono(txtCell.getText());
+                obj.setRuta_imagen(imagen);
+                obj.setGenero(cbGenero.getSelectedItem().toString());
+                obj.setCargo(cbRol.getSelectedItem().toString());
+                obj.setConvencional(txtConven.getText());
+                obj.setCorreo(txtCorreo.getText());
+                obj.setDireccion(txtDireccion.getText());
+                obj.setObservacion(txtObservacion.getText());
+                obj.setIp_equipo(Operaciones.getIpDispositivo());
 //            obj.setIp_publico(Operaciones.getIpPublica().getIp_publica_full());
-            obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
-            obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
-            obj.setPassword(nuevoPass);
-            obj.setEstado(cbEstado.getSelectedItem().toString());
-            obj.setId_sesion(Long.valueOf(txtId.getText()));
-            try {
-            String a =  crud.Actualizar_usuario(obj);
-            JOptionPane.showMessageDialog(this, a);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, e);
+                obj.setDir_ip_completa(Operaciones.getIpLocalCompleta());
+                obj.setUsuario_equipo(Operaciones.getNombreDispositivo());
+                obj.setPassword(nuevoPass);
+                obj.setEstado(cbEstado.getSelectedItem().toString());
+                obj.setId_sesion(Long.valueOf(txtId.getText()));
+                try {
+                    String a = crud.Actualizar_usuario(obj);
+                    JOptionPane.showMessageDialog(this, a);
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(this, e);
+                }
+                setVisible(false);
             }
-            setVisible(false);
-        }
-            
+
         }
     }
 

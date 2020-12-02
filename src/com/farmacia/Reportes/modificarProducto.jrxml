@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="21330d5a-2fa2-459c-bb52-45a419aadcfa">
-	<property name="ireport.zoom" value="1.1"/>
+	<property name="ireport.zoom" value="1.331000000000001"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<field name="valor1" class="java.lang.String"/>
@@ -21,12 +21,16 @@
 	<title>
 		<band height="47" splitType="Stretch">
 			<textField>
-				<reportElement x="14" y="8" width="529" height="28" uuid="9aeb1a4a-2379-48da-a710-43289ee1353f"/>
+				<reportElement x="102" y="7" width="303" height="28" uuid="9aeb1a4a-2379-48da-a710-43289ee1353f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="18" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor5}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="14" y="7" width="88" height="28" uuid="c06465e4-d90c-4ed3-b991-48abacfcebf7"/>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

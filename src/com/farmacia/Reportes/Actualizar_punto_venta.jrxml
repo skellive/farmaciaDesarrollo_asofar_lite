@@ -14,12 +14,16 @@
 	<title>
 		<band height="47" splitType="Stretch">
 			<staticText>
-				<reportElement x="12" y="8" width="533" height="32" uuid="542e0d02-855d-428f-a4e0-335851f39fdb"/>
+				<reportElement x="152" y="8" width="216" height="32" uuid="542e0d02-855d-428f-a4e0-335851f39fdb"/>
 				<textElement textAlignment="Center">
 					<font size="22" isBold="true"/>
 				</textElement>
 				<text><![CDATA[PUNTO DE VENTA]]></text>
 			</staticText>
+			<image>
+				<reportElement x="48" y="8" width="104" height="32" uuid="64db55ce-62d4-498c-8518-440518f1c18f"/>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

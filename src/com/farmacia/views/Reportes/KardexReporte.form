@@ -58,11 +58,7 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="32767" attributes="0"/>
                   <Component id="lblImprimir" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="229" max="-2" attributes="0"/>
-                  <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="txtTotal" min="-2" pref="117" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="482" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="373" max="-2" attributes="0"/>
@@ -85,23 +81,11 @@
                       <Component id="txt_filtro_inventario" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tipofiltro" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="lblImprimir" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="12" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="1" attributes="0">
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                              <Component id="txtTotal" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="lblImprimir" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -145,15 +129,13 @@
                 <Component class="javax.swing.JTable" name="tabla_stock">
                   <Properties>
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                      <Table columnCount="8" rowCount="0">
+                      <Table columnCount="6" rowCount="0">
                         <Column editable="false" title="Title 1" type="java.lang.Object"/>
                         <Column editable="false" title="Title 2" type="java.lang.Object"/>
                         <Column editable="false" title="Title 3" type="java.lang.Object"/>
                         <Column editable="false" title="Title 4" type="java.lang.Object"/>
                         <Column editable="false" title="Title 5" type="java.lang.Object"/>
-                        <Column editable="false" title="Title 6" type="java.lang.Object"/>
-                        <Column editable="false" title="Title 7" type="java.lang.Object"/>
-                        <Column editable="false" title="Title 8 " type="java.lang.Object"/>
+                        <Column editable="true" title="Title 8 " type="java.lang.Object"/>
                       </Table>
                     </Property>
                     <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
@@ -165,25 +147,6 @@
             </Container>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="txtTotal">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="12" style="1"/>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="86" green="1b" red="0" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="TOTAL:"/>
-          </Properties>
-        </Component>
         <Container class="javax.swing.JPanel" name="jPanel3">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
@@ -283,10 +246,11 @@
               <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
+              <StringArray count="4">
                 <StringItem index="0" value="C.BARRAS"/>
                 <StringItem index="1" value="NOMBRE"/>
                 <StringItem index="2" value="PRESENTACI&#xd3;N"/>
+                <StringItem index="3" value="TIPO"/>
               </StringArray>
             </Property>
           </Properties>
