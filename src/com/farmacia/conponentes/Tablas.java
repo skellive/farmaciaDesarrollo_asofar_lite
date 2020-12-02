@@ -1628,8 +1628,13 @@ public class Tablas {
             Filas[2] = "" + lista.get(i).getTipo();
             Filas[3] = lista.get(i).getNombre_producto();
             Filas[4] = "" + lista.get(i).getPresentacion();
+            if(lista.get(i).getEmpaque()==1){
             Filas[5] = "" + lista.get(i).getCantidad();
-            Filas[6] = "" + lista.get(i).getCantidad_unidad();
+            Filas[6] = "0" ;    
+            }else{
+            Filas[5] = "0";
+            Filas[6] = "" + lista.get(i).getCantidad();  
+            }
             Filas[7] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
             Filas[8] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
             Filas[9] = lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
