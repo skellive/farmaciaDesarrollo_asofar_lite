@@ -439,7 +439,7 @@ public class Tablas {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "TIPO", "MEDIDA", "ENVASE", "MARCA"};
+        String[] Co = {"CODIGO", "PRODUCTO", "TIPO", "MEDIDA", "PRESENTACION", "MARCA"};
         String[] Filas = new String[6];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
