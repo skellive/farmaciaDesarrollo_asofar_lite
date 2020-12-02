@@ -144,6 +144,9 @@ public class Categoria extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 busqueda_tfKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                busqueda_tfKeyTyped(evt);
+            }
         });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
@@ -354,6 +357,14 @@ public class Categoria extends javax.swing.JDialog {
     private void busqueda_tfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busqueda_tfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_busqueda_tfActionPerformed
+
+    private void busqueda_tfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_busqueda_tfKeyTyped
+        boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+    }
+    }//GEN-LAST:event_busqueda_tfKeyTyped
 
     public CategoriaProducto devuelveObjeto(int id, ArrayList<CategoriaProducto> lista) {
         CategoriaProducto gh = new CategoriaProducto();

@@ -719,6 +719,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtFiltroKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TxtFiltroKeyTyped(evt);
+            }
         });
 
         lblGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconos/guardar.png"))); // NOI18N
@@ -1256,6 +1259,14 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Logger.getLogger(EditarNotaPedido.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lblImprimirMouseClicked
+
+    private void TxtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyTyped
+        boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+    }
+    }//GEN-LAST:event_TxtFiltroKeyTyped
 
     public static void main(String args[]) {
 

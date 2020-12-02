@@ -647,6 +647,8 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         EditarPrecioNotaPedido Pnp = new EditarPrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(), producto.getText());
         Pnp.setVisible(true);
         Pnp.getPrecio();
+        if(Pnp.getPrecio()==null){
+        }else{
         txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
 
         txtBono.setEnabled(true);
@@ -654,6 +656,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         txtcantidadpro.setEnabled(true);
         objf.setPrecios(Pnp.getPrecio().getPrecio_compra());
         objf.setId_precios(Pnp.getPrecio().getId_precio());
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked

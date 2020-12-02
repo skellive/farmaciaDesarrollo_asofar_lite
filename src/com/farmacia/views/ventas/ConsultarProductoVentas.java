@@ -159,6 +159,12 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
             }
         });
 
+        txt_filtro_inventario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_filtro_inventarioKeyTyped(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -315,6 +321,14 @@ public class ConsultarProductoVentas extends javax.swing.JDialog {
         }
         Tablas.ListarProductosVENTA(listaProducto,TablaProductoVentas);
     }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void txt_filtro_inventarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filtro_inventarioKeyTyped
+        boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+    }
+    }//GEN-LAST:event_txt_filtro_inventarioKeyTyped
 
     public JoinListarProductosVentas getProducto() {
         return objeto;

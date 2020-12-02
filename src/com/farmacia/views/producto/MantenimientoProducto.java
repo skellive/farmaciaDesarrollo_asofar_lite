@@ -140,6 +140,9 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 filtroKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                filtroKeyTyped(evt);
+            }
         });
 
         tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -421,6 +424,14 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             Logger.getLogger(MantenimientoProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lblImprimirMouseClicked
+
+    private void filtroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filtroKeyTyped
+        boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+    }
+    }//GEN-LAST:event_filtroKeyTyped
 
     /**
      * @param args the command line arguments

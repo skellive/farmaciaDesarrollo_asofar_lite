@@ -237,6 +237,12 @@ public class Kardex_Productos extends javax.swing.JDialog {
             }
         });
 
+        txt_filtro_inventario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txt_filtro_inventarioKeyTyped(evt);
+            }
+        });
+
         btn_buscar.setText("BUSCAR");
         btn_buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -653,6 +659,14 @@ public class Kardex_Productos extends javax.swing.JDialog {
         }
         Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
     }//GEN-LAST:event_btn_buscarActionPerformed
+
+    private void txt_filtro_inventarioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_filtro_inventarioKeyTyped
+        boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+    }
+    }//GEN-LAST:event_txt_filtro_inventarioKeyTyped
 
     /**
      * @param args the command line arguments

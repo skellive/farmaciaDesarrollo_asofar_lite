@@ -84,6 +84,45 @@ public class CRUD {
     Conexion con = new Conexion();
 
     String query;
+    
+    
+    public boolean ValidarCaracteres(java.awt.event.KeyEvent evt){
+        char c = evt.getKeyChar(); //.@-\_.-Ç  '
+        char mas = '+', por = '*', div = '/', dp = ':', pc = ';', com = ',', p1 = '{', p2 = '}';
+        char lla1 = '[', el = '^', lla2 = ']', el2 = '¿', co = '?', co2 = '¡', c3 = '!', d = '"', e = '#';
+        char col = '$', a = '!', b = '=', e2 = '%', f = '&', g = '=', h = 'º', i = 'ª', j = '(', k = ')', l = '<', m = '>';
+        char  o = '´', p = '`', q = '¨', s = '·';
+        char punt = '.', arr = '@', lbj = '_', lme = '-';
+        if ( c == mas || c == por || c == div || c == dp
+                || c == pc || c == com || c == p1 || c == p2 || c == lla1 || c == lla2
+                || c == el || c == el2 || c == co || c == co2 || c == c3 || c == d || c == e
+                || c == col || c == a || c == b || c == e2 || c == f || c == g || c == h
+                || c == i || c == j || c == k || c == l || c == m  || c == o || c == p
+                || c == q ||  c == s 
+                || c == punt || c == arr || c == lbj || c == lme ) {
+            return false;
+        }else{
+        return true;}
+    }
+    
+    public boolean ParaTexto(java.awt.event.KeyEvent evt){
+        char c = evt.getKeyChar(); //.@-\_.-Ç  '
+        char mas = '+', por = '*', div = '/', pc = ';',  p1 = '{', p2 = '}';
+        char lla1 = '[', el = '^', lla2 = ']', el2 = '¿', co = '?', co2 = '¡', c3 = '!', d = '"', e = '#';
+        char col = '$', a = '!', b = '=', e2 = '%', f = '&', g = '=', h = 'º', i = 'ª', j = '(', k = ')', l = '<', m = '>';
+        char  o = '´', p = '`', q = '¨', s = '·';
+        char  arr = '@', lbj = '_', lme = '-';
+        if ( c == mas || c == por || c == div 
+                || c == pc ||  c == p1 || c == p2 || c == lla1 || c == lla2
+                || c == el || c == el2 || c == co || c == co2 || c == c3 || c == d || c == e
+                || c == col || c == a || c == b || c == e2 || c == f || c == g || c == h
+                || c == i || c == j || c == k || c == l || c == m  || c == o || c == p
+                || c == q ||  c == s 
+                || c == arr || c == lbj || c == lme ) {
+            return false;
+        }else{
+        return true;}
+    }
 
     public String Ingresar_Permiso(Listar_usuario lus) {
         String valor = null;

@@ -217,12 +217,16 @@ public class ListaComprasDesactivadas extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalir2ActionPerformed
 
     private void txtfiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyTyped
-
+        boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+        }
     }//GEN-LAST:event_txtfiltroKeyTyped
 
     private void txtfiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyReleased
         buscar = txtfiltro.getText();
-        Tablas.filtro(buscar, tblCompraDesactivadas);        
+        Tablas.filtro(buscar, tblCompraDesactivadas);               
     }//GEN-LAST:event_txtfiltroKeyReleased
 
     private void txtfiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtfiltroActionPerformed

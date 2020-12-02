@@ -713,6 +713,9 @@ public class NotePedidos extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 TxtFiltroKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TxtFiltroKeyTyped(evt);
+            }
         });
 
         jButton3.setBackground(new java.awt.Color(0, 27, 134));
@@ -1385,6 +1388,14 @@ public class NotePedidos extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "INGRESE DATOS");
         }
     }//GEN-LAST:event_lblGuardarMouseClicked
+
+    private void TxtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyTyped
+        boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+        }
+    }//GEN-LAST:event_TxtFiltroKeyTyped
     public joinProductoDetallesFaltantes devuelveObjeto(String datos, ArrayList<joinProductoDetallesFaltantes> listarobj) {
 
         joinProductoDetallesFaltantes objeto1 = null;

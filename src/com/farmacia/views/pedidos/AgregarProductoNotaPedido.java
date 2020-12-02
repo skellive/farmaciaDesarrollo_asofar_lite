@@ -634,6 +634,8 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         if(txtPrecio.equals("")){
             txtPrecio.setText("");
         }else{
+            if(Pnp.getPrecio()==null){
+            }else{
         txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
         txtBono.setEnabled(true);
         txtporcentajeDescuento.setEnabled(true);
@@ -645,8 +647,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         } else if(txtEnvase3.getText().equals("FUNDA")){
              txtunidadpro.setEnabled(true);
         }
-        
-        
+            }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

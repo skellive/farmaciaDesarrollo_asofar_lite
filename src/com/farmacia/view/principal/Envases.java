@@ -137,6 +137,9 @@ public class Envases extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 busqueda_tfKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                busqueda_tfKeyTyped(evt);
+            }
         });
 
         jPanel2.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
@@ -181,7 +184,6 @@ public class Envases extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(lblCerrar)
                 .addGap(12, 12, 12))
         );
@@ -342,6 +344,14 @@ public class Envases extends javax.swing.JDialog {
         Envases_Nuevo tn = new Envases_Nuevo(new javax.swing.JFrame(), true);
         tn.setVisible(true);
     }//GEN-LAST:event_lblNuevoMouseClicked
+
+    private void busqueda_tfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_busqueda_tfKeyTyped
+        boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+    }
+    }//GEN-LAST:event_busqueda_tfKeyTyped
 
     public EnvaseProducto devuelveObjeto(int id, ArrayList<EnvaseProducto> lista) {
         EnvaseProducto gh = new EnvaseProducto();

@@ -94,6 +94,9 @@ public class ConsultaMedidas extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 busqueda_tfKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                busqueda_tfKeyTyped(evt);
+            }
         });
 
         jLabel2.setFont(new java.awt.Font("Cantarell", 1, 15)); // NOI18N
@@ -347,6 +350,14 @@ public class ConsultaMedidas extends javax.swing.JDialog {
         setVisible(false);
         am.setVisible(true);
     }//GEN-LAST:event_lblNuevoMouseClicked
+
+    private void busqueda_tfKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_busqueda_tfKeyTyped
+        boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+    }
+    }//GEN-LAST:event_busqueda_tfKeyTyped
     public MedidaProducto devuelveObjeto(int cas, ArrayList<MedidaProducto> lista) {
         MedidaProducto objeto1 = null;
         for (int i = 0; i < lista.size(); i++) {

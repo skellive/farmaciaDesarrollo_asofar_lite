@@ -258,7 +258,11 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_tblRegistrodeNotasMouseClicked
 
     private void txtfiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyTyped
-
+    boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+    }
     }//GEN-LAST:event_txtfiltroKeyTyped
 
     private void txtfiltroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtfiltroKeyReleased

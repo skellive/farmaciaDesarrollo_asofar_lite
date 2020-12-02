@@ -315,6 +315,7 @@ public class PrecioNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_tbaPrecioProdMousePressed
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
+        PrecioN=null;
         setVisible(false);
     }//GEN-LAST:event_lblCerrarMouseClicked
 

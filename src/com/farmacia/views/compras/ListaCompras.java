@@ -142,6 +142,9 @@ public class ListaCompras extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 buscar1KeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                buscar1KeyTyped(evt);
+            }
         });
 
         Txt_Total.setEditable(false);
@@ -326,6 +329,14 @@ public class ListaCompras extends javax.swing.JDialog {
         setVisible(false);
         RIN.setVisible(true);
     }//GEN-LAST:event_btnInactivos2ActionPerformed
+
+    private void buscar1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyTyped
+        boolean v= crud.ValidarCaracteres(evt);
+        if(v==false){
+        getToolkit().beep();
+        evt.consume();
+    }
+    }//GEN-LAST:event_buscar1KeyTyped
 
 
     /**
