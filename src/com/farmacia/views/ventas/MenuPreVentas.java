@@ -976,6 +976,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                         
                     RegDetalleVentas.setId_control(objProd.getId_precio());//nuevo
                     RegDetalleVentas.setId_producto(objProd.getId_producto());
+                    RegDetalleVentas.setCodigo_barras(Long.parseLong(objProd.getCodigo_barras()));
                     RegDetalleVentas.setNombre_producto(objProd.getProducto_nombre());
                     RegDetalleVentas.setMarca(objProd.getMarca_nombre());
                     RegDetalleVentas.setPresentacion(objProd.getPresentacion());
