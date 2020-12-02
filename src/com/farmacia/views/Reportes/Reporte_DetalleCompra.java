@@ -10,40 +10,21 @@ import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Conexion;
 import com.farmacia.entities1.ClaseReporte;
-import com.farmacia.fecha.Fecha;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.JoinListarNotaPedidosCabecera;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import static com.farmacia.views.compras.OrdenCompra.removeScientificNotation;
-import static com.farmacia.views.compras.OrdenCompra.txtCodigoProveedor;
-import static com.farmacia.views.compras.OrdenCompra.txtCorreo;
-import static com.farmacia.views.compras.OrdenCompra.txtDescuento;
-import static com.farmacia.views.compras.OrdenCompra.txtDireccion;
-import static com.farmacia.views.compras.OrdenCompra.txtIva;
-import static com.farmacia.views.compras.OrdenCompra.txtNombre;
-import static com.farmacia.views.compras.OrdenCompra.txtRepresentante;
-import static com.farmacia.views.compras.OrdenCompra.txtRuc;
-import static com.farmacia.views.compras.OrdenCompra.txtTelefono;
-import static com.farmacia.views.compras.OrdenCompra.txtTipo;
-import static com.farmacia.views.compras.OrdenCompra.txtTotal;
-import com.mysql.jdbc.Connection;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.math.BigDecimal;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -55,7 +36,6 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -728,7 +708,6 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                     tbaListaComprasB.getValueAt(i, 8).toString(),
                     tbaListaComprasB.getValueAt(i, 9).toString(),
                     tbaListaComprasB.getValueAt(i, 10).toString(),
-                    tbaListaComprasB.getValueAt(i, 11).toString(),
                     txtDescuento.getText(),
                     txtIva.getText(),
                     txtTotal.getText(),

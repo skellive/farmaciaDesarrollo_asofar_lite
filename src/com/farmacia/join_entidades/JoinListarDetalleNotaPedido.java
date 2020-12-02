@@ -14,6 +14,7 @@ import java.sql.Date;
  */
 public class JoinListarDetalleNotaPedido {
     private Long id_detalle_nota_pedido;
+    private Long codigo_barra;
     private Long id_precio;
     private Long id_producto;
     private String producto;
@@ -37,8 +38,9 @@ public class JoinListarDetalleNotaPedido {
     public JoinListarDetalleNotaPedido() {
     }
 
-    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_Presentacion, String Presentacion, Long id_medida, String medida, Long id_cabecera_nota_pedido, Integer cantidad, Long cantidad_unidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total) {
+    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long codigo_barra, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_Presentacion, String Presentacion, Long id_medida, String medida, Long id_cabecera_nota_pedido, Integer cantidad, Long cantidad_unidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total) {
         this.id_detalle_nota_pedido = id_detalle_nota_pedido;
+        this.codigo_barra = codigo_barra;
         this.id_precio = id_precio;
         this.id_producto = id_producto;
         this.producto = producto;
@@ -66,6 +68,14 @@ public class JoinListarDetalleNotaPedido {
 
     public void setId_detalle_nota_pedido(Long id_detalle_nota_pedido) {
         this.id_detalle_nota_pedido = id_detalle_nota_pedido;
+    }
+
+    public Long getCodigo_barra() {
+        return codigo_barra;
+    }
+
+    public void setCodigo_barra(Long codigo_barra) {
+        this.codigo_barra = codigo_barra;
     }
 
     public Long getId_precio() {
@@ -220,4 +230,5 @@ public class JoinListarDetalleNotaPedido {
         this.total = total;
     }
 
+    
 }

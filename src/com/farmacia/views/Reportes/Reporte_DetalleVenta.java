@@ -14,17 +14,6 @@ import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Detalle_ventas;
 import com.farmacia.fecha.Fecha;
 import com.farmacia.join_entidades.JoinListarCabeceraVenta;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtCodigoProveedor;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtCorreo;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtDescuento;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtDireccion;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtIva;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtNombre;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtRepresentante;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtRuc;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtTelefono;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtTipo;
-import static com.farmacia.views.Reportes.Reporte_DetalleCompra.txtTotal;
 import java.awt.Dimension;
 
 import java.awt.MouseInfo;

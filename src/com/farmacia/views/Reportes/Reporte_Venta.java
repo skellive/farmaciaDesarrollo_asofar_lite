@@ -82,8 +82,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         lista = crud.ListarCabeceraVentas(1);
         Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);
-        /*        lista = crud.ListarCabeceraVentas(1);
-         Tablas.CargarJoinListaCabeceraVenta(tbaCabeceraVenta, lista);*/
         TotalPro();
         TotalUti();
 
@@ -108,7 +106,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
         BtnBuscar = new javax.swing.JButton();
         Chooser1 = new com.toedter.calendar.JDateChooser();
         Chooser2 = new com.toedter.calendar.JDateChooser();
-        buscar1 = new javax.swing.JTextField();
         Txt_Total = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -197,14 +194,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
         Chooser2.setDateFormatString("yyyy/MM/dd");
         Chooser2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
-        buscar1.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-        buscar1.setPreferredSize(new java.awt.Dimension(6, 28));
-        buscar1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                buscar1KeyReleased(evt);
-            }
-        });
-
         Txt_Total.setEditable(false);
         Txt_Total.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         Txt_Total.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
@@ -255,18 +244,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(248, 248, 248)
-                        .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -275,7 +252,18 @@ public class Reporte_Venta extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addGap(18, 18, 18)
                         .addComponent(Txt_Utilidad, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)))
+                        .addGap(26, 26, 26))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 265, Short.MAX_VALUE)
+                        .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(201, 201, 201)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(112, 112, 112)
@@ -292,7 +280,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(buscar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Chooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Chooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -429,22 +416,21 @@ public class Reporte_Venta extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
         }
-        
+
     }//GEN-LAST:event_BtnBuscarActionPerformed
 
-    private void buscar1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buscar1KeyReleased
-
-        try {
-            buscar = buscar1.getText();
-            Tablas.filtro(buscar, tbaCabeceraVenta);
-            TotalPro();
-            TotalUti();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
-        }
-        TotalPro();
-        TotalUti();
-    }//GEN-LAST:event_buscar1KeyReleased
+    /*
+     try {
+     buscar = buscar1.getText();
+     Tablas.filtro(buscar, tbaCabeceraVenta);
+     TotalPro();
+     TotalUti();
+     } catch (Exception e) {
+     JOptionPane.showMessageDialog(null, "Ha ocurrido un error del tipo " + e + ", se recomienda cerrar esta ventana y reabrirla.");
+     }
+     TotalPro();
+     TotalUti();
+     */
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -762,7 +748,6 @@ public class Reporte_Venta extends javax.swing.JDialog {
     private javax.swing.JTextField Txt_Total;
     private javax.swing.JTextField Txt_Utilidad;
     private javax.swing.JButton btnSalir2;
-    private javax.swing.JTextField buscar1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

@@ -15,6 +15,7 @@ public class Detalle_ventas {
 
     private Long id_detalle_venta;
     private Long id_cabecera_venta;
+    private Long codigo_barras;
     private Long id_control;
     private Long id_marca;
     private String marca;
@@ -37,9 +38,10 @@ public class Detalle_ventas {
     public Detalle_ventas() {
     }   
 
-    public Detalle_ventas(Long id_detalle_venta, Long id_cabecera_venta, Long id_control, Long id_marca, String marca, Long id_tipo, String tipo, Long id_producto, String nombre_producto, Long id_presentacion, String presentacion, Long cantidad, Long cantidad_unidad, BigDecimal precio, BigDecimal precio_compra, BigDecimal subtotal, BigDecimal iva, BigDecimal descuento, BigDecimal total, int empaque) {
+    public Detalle_ventas(Long id_detalle_venta, Long id_cabecera_venta, Long codigo_barras, Long id_control, Long id_marca, String marca, Long id_tipo, String tipo, Long id_producto, String nombre_producto, Long id_presentacion, String presentacion, Long cantidad, Long cantidad_unidad, BigDecimal precio, BigDecimal precio_compra, BigDecimal subtotal, BigDecimal iva, BigDecimal descuento, BigDecimal total, int empaque) {
         this.id_detalle_venta = id_detalle_venta;
         this.id_cabecera_venta = id_cabecera_venta;
+        this.codigo_barras = codigo_barras;
         this.id_control = id_control;
         this.id_marca = id_marca;
         this.marca = marca;
@@ -74,6 +76,14 @@ public class Detalle_ventas {
 
     public void setId_cabecera_venta(Long id_cabecera_venta) {
         this.id_cabecera_venta = id_cabecera_venta;
+    }
+
+    public Long getCodigo_barras() {
+        return codigo_barras;
+    }
+
+    public void setCodigo_barras(Long codigo_barras) {
+        this.codigo_barras = codigo_barras;
     }
 
     public Long getId_control() {
@@ -219,6 +229,5 @@ public class Detalle_ventas {
     public void setEmpaque(int empaque) {
         this.empaque = empaque;
     }
-
     
 }

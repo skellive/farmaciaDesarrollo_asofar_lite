@@ -584,6 +584,7 @@ public class EntidadesMappers {
         JoinListarDetalleNotaPedido obj = new JoinListarDetalleNotaPedido();
         try {
             obj.setId_detalle_nota_pedido(rs.getLong("ID_DETALLE_NOTA_PEDIDOS"));
+            obj.setCodigo_barra(rs.getLong("CODIGO_BARRAS"));
             obj.setId_producto(rs.getLong("ID_PRODUCTO"));
             obj.setId_precio(rs.getLong("ID_PRECIO"));
             obj.setMarca(rs.getString("MARCA"));
@@ -1181,7 +1182,8 @@ public class EntidadesMappers {
         Detalle_ventas obj = new Detalle_ventas();
         try {
             obj.setId_detalle_venta(rs.getLong("ID"));
-            obj.setId_cabecera_venta(rs.getLong("ID_CABECERA"));
+            obj.setId_cabecera_venta(rs.getLong("ID_CABECERA"));            
+            obj.setCodigo_barras(rs.getLong("CODIGO_BARRAS"));
             obj.setId_control(rs.getLong("ID_CONTROL"));
             obj.setId_producto(rs.getLong("CODIGO"));
             obj.setMarca(rs.getString("MARCA"));
