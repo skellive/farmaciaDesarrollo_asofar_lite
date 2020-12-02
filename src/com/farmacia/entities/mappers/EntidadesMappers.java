@@ -561,6 +561,7 @@ public class EntidadesMappers {
             obj.setMarca(rs.getString("MARCA"));
             obj.setTipo(rs.getString("TIPO"));
             obj.setProducto(rs.getString("PRODUCTO"));
+            obj.setCodigo_barra(rs.getLong("CODIGO_BARRAS"));
             //obj.setEnvase(rs.getString("ENVASE"));
             obj.setPresentacion(rs.getString("PRESENTACION"));
             obj.setMedida(rs.getString("MEDIDA"));

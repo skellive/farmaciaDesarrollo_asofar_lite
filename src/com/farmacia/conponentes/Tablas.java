@@ -1395,14 +1395,14 @@ public class Tablas {
 
     public static void cargarJoinRegistroDetalleCompras(JTable Tabla, ArrayList<JoinListarDetalleNotaPedido> lista) {
 
-        int[] a = {100, 10, 30, 100, 100, 10, 10, 10, 10, 10, 10};
+        int[] a = {100, 10, 30, 100, 100, 10, 10, 10, 10, 10};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO DE BARRAS", "MARCA", "TIPO", "PRODUCTO", "PRESENTACION", "CANTIDAD", "UNIDADES", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
-        String[] Filas = new String[11];
+        String[] Co = {"CODIGO DE BARRAS", "MARCA", "TIPO", "PRODUCTO", "PRESENTACION", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
+        String[] Filas = new String[10];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
@@ -1412,11 +1412,10 @@ public class Tablas {
             Filas[3] = lista.get(i).getProducto();
             Filas[4] = lista.get(i).getPresentacion() + "";
             Filas[5] = "" + lista.get(i).getCantidad();
-            Filas[6] = "" + lista.get(i).getCantidad_unidad();
-            Filas[7] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            Filas[8] = Formato_Numeros.formatoNumero(lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            Filas[9] = Formato_Numeros.formatoNumero(lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            Filas[10] = Formato_Numeros.formatoNumero(lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            Filas[6] = Formato_Numeros.formatoNumero(lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            Filas[7] = Formato_Numeros.formatoNumero(lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            Filas[8] = Formato_Numeros.formatoNumero(lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            Filas[9] = Formato_Numeros.formatoNumero(lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             model.addRow(Filas);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
@@ -1439,8 +1438,6 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
             Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
-            Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
         }
     }
 
