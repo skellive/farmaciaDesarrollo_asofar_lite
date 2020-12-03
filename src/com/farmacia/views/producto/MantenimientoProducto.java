@@ -35,8 +35,7 @@ import net.sf.jasperreports.view.JRViewer;
  * @author User
  */
 public class MantenimientoProducto extends javax.swing.JDialog {
-
-    int x, y;
+    int x,y;
     filtrosProductos fil = new filtrosProductos();
     CRUD crud = new CRUD();
     listarJoinProductosCompras objeto = null;
@@ -45,8 +44,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     ArrayList<listarJoinProductosCompras> lista = crud.listarTodoJoinProductos(1);
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-    Listar_usuario objUsuario = null;
-
+    Listar_usuario objUsuario=null;
     public MantenimientoProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
@@ -55,15 +53,14 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
     }
-
-    public MantenimientoProducto(java.awt.Frame parent, boolean modal, Listar_usuario obj) {
+    public MantenimientoProducto(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
-        objUsuario = obj;
+        objUsuario=obj;
     }
 
     /**
@@ -125,7 +122,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 799, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,13 +140,10 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 filtroKeyReleased(evt);
             }
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                filtroKeyTyped(evt);
-            }
         });
 
         tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "PRESENTACIÓN", "MARCA" }));
+        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
         tipofiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipofiltroActionPerformed(evt);
@@ -197,9 +191,9 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(301, 301, 301)
                 .addComponent(jLabel7)
-                .addGap(309, 309, 309)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblCerrar)
                 .addGap(10, 10, 10))
         );
@@ -238,13 +232,13 @@ public class MantenimientoProducto extends javax.swing.JDialog {
                 .addComponent(lblNuevo)
                 .addGap(239, 239, 239))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(209, 209, 209)
+                .addGap(200, 200, 200)
                 .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(filtro, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lblBuscar)
-                .addContainerGap(254, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -273,11 +267,11 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 324, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -292,7 +286,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
 
     private void tbacargarProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbacargarProductosMousePressed
         int i = 0;
-
+        
         try {
             if (evt.getClickCount() == 2) {
                 i = tbacargarProductos.getSelectedRow();
@@ -318,7 +312,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             Logger.getLogger(MantenimientoProducto.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_tbacargarProductosMousePressed
-
+    
     public listarJoinProductosCompras devuelveObjeto(String datos, ArrayList<listarJoinProductosCompras> listarobj) {
         listarJoinProductosCompras objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
@@ -329,7 +323,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         }
         return objeto1;
     }
-
+    
     private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_filtroActionPerformed
@@ -339,7 +333,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         //        String dat = Filtro.getText();
         //        Tablas.filtro(dat, Tabla);
     }//GEN-LAST:event_filtroKeyReleased
-
+    
     private void tipofiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipofiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tipofiltroActionPerformed
@@ -400,7 +394,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_lblBuscarMouseClicked
 
     private void lblNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoMouseClicked
-        Products Prod = new Products(new javax.swing.JFrame(), true, objUsuario);
+        Products Prod = new Products(new javax.swing.JFrame(), true,objUsuario);
         Prod.setVisible(true);
         lista.clear();
         lista = crud.listarTodoJoinProductos(1);
@@ -409,19 +403,17 @@ public class MantenimientoProducto extends javax.swing.JDialog {
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList tablac = new ArrayList();
-        for (int i = 0; i < tbacargarProductos.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(tbacargarProductos.getValueAt(i, 0).toString(), tbacargarProductos.getValueAt(i, 1).toString(), tbacargarProductos.getValueAt(i, 2).toString(), tbacargarProductos.getValueAt(i, 3).toString(), tbacargarProductos.getValueAt(i, 4).toString(), tbacargarProductos.getValueAt(i, 5).toString());
-            tablac.add(tabla1);
-        }
-        try {
-//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
-//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("MantenimientoProducto.jasper"));
-            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
-            JDialog frame = new JDialog(this);
+        for(int i=0;i<tbacargarProductos.getRowCount();i++){
+            ClaseReporte tabla1 = new ClaseReporte (tbacargarProductos.getValueAt(i,0).toString(),tbacargarProductos.getValueAt(i,1).toString(),tbacargarProductos.getValueAt(i,2).toString(),tbacargarProductos.getValueAt(i,3).toString(),tbacargarProductos.getValueAt(i,4).toString(),tbacargarProductos.getValueAt(i,5).toString());
+            tablac.add(tabla1);}
+        try{
+            String dir = System.getProperty("user.dir")+"/Reportes/"+"MantenimientoProducto.jasper";
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog (this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho / 2, alto / 2));
+            frame.setSize(new Dimension(ancho/2,alto/2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
@@ -429,14 +421,6 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             Logger.getLogger(MantenimientoProducto.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lblImprimirMouseClicked
-
-    private void filtroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filtroKeyTyped
-        boolean v= crud.ValidarCaracteres(evt);
-        if(v==false){
-        getToolkit().beep();
-        evt.consume();
-    }
-    }//GEN-LAST:event_filtroKeyTyped
 
     /**
      * @param args the command line arguments
