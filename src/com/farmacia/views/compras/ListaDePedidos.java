@@ -75,7 +75,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
 
         txtFecha.setText(FechaActual());
         Tablas.cargarJoinFaltantes_cantidad(tbaProductosA, lista);
-       // colorTabla();
+        // colorTabla();
         Timer tiempo = new Timer(100, new ListaDePedidos.horas());
         tiempo.start();
     }
@@ -84,11 +84,11 @@ public class ListaDePedidos extends javax.swing.JDialog {
         for (int i = 0; i <= tbaProductosA.getColumnCount(); i++) {
             int a = Integer.valueOf(tbaProductosA.getValueAt(i, 2).toString());
             int b = Integer.valueOf(tbaProductosA.getValueAt(i, 3).toString());
-            System.out.println(a+"  "+b);
+            System.out.println(a + "  " + b);
             if (b >= a) {
                 tbaProductosA.setForeground(Color.blue);
             }
-            if(b<=a){
+            if (b <= a) {
                 tbaProductosA.setForeground(Color.RED);
             }
         }
@@ -499,7 +499,7 @@ public class ListaDePedidos extends javax.swing.JDialog {
 
     }
     private void filtrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtrarActionPerformed
-         String f = filtro.getText().toUpperCase();
+        String f = filtro.getText().toUpperCase();
         String query = "";
         int pos = tipofiltro.getSelectedIndex();
         if ("".equals(f)) {
@@ -590,8 +590,9 @@ public class ListaDePedidos extends javax.swing.JDialog {
             tabla.add(tabla1);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "ListaDePedidos.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" + "";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("ListaDePedidos.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

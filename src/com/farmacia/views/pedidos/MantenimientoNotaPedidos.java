@@ -36,8 +36,8 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     ArrayList<JoinListarNotaPedidosCabecera> lista = crud.listarCabeceraNotaPedido(1);
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-    Listar_usuario objUsuario=null;
-    
+    Listar_usuario objUsuario = null;
+
     public MantenimientoNotaPedidos(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
@@ -46,14 +46,15 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         Tablas.CargarJoinListadoCabeceraNotaPedidos(tblRegistrodeNotas, lista);
     }
-     public MantenimientoNotaPedidos(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
+
+    public MantenimientoNotaPedidos(java.awt.Frame parent, boolean modal, Listar_usuario obj) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
         Tablas.CargarJoinListadoCabeceraNotaPedidos(tblRegistrodeNotas, lista);
-        objUsuario =obj;
+        objUsuario = obj;
     }
 
     @SuppressWarnings("unchecked")
@@ -292,8 +293,8 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
             objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
 
             if (objeto != null) {
-                
-                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto,2,objUsuario);
+
+                EditarNotaPedido Man = new EditarNotaPedido(new javax.swing.JFrame(), true, objeto, 2, objUsuario);
                 this.setVisible(false);
                 Man.setVisible(true);
 
@@ -302,13 +303,13 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
     }//GEN-LAST:event_tblRegistrodeNotasMousePressed
 
     private void jLabel7MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MousePressed
-    x = evt.getX();
-    y = evt.getY();
+        x = evt.getX();
+        y = evt.getY();
     }//GEN-LAST:event_jLabel7MousePressed
 
     private void jLabel7MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseDragged
-    Point point = MouseInfo.getPointerInfo().getLocation();
-    setLocation(point.x - x, point.y - y);
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
     }//GEN-LAST:event_jLabel7MouseDragged
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
@@ -322,8 +323,9 @@ public class MantenimientoNotaPedidos extends javax.swing.JDialog {
             lista.add(medida);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"MantenimientoNotaPedidos.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("MantenimientoNotaPedidos.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

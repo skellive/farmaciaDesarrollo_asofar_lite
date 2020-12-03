@@ -47,7 +47,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
     Tablas t = new Tablas();
     Precios precios = null;
     int x, y;
-    Long  id_precio,id_pro;
+    Long id_precio, id_pro;
     String fecha = "", hora = "", strEstado;
     Double dbe_compra = null, dbe_venta = null;
     ArrayList<Precios> listaPrecios = null;
@@ -73,9 +73,9 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         id_pro = id_pro1;
         System.out.println("id:pro " + id_pro);
         llenarDatos(producto1);
-        listaPrecios= llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje,`descuentoVenta` FROM `precios` WHERE `id_producto`= " + id_pro);
- 
-        t.visualizar(jtbPrecios,id_pro);
+        listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje,`descuentoVenta` FROM `precios` WHERE `id_producto`= " + id_pro);
+
+        t.visualizar(jtbPrecios, id_pro);
         //FECHA DEL SISTEMA
         java.util.Date sistFecha = new java.util.Date();
         SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
@@ -93,7 +93,6 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
 //            return "INACTIVO";
 //        }
 //    }
-
     class horas implements ActionListener {
 
         public void actionPerformed(ActionEvent e) {
@@ -109,7 +108,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         try {
             nomProducto.setText(producto1);
             System.out.println("nomb: " + producto1);
-              
+
         } catch (Exception e) {
             System.out.println("err " + e.getMessage());
         }
@@ -344,11 +343,11 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
 //        objeto = devuelveObjeto(jtbPrecios.getValueAt(i, 0).toString(), listaPrecios);
         Agregar_Precios_Productos ic = new Agregar_Precios_Productos(new javax.swing.JFrame(), true, id_pro);
         ic.setVisible(true);
-        
+
         id_precio = ic.getId_precio();
         listaPrecios.clear();
-        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje,`descuentoVenta` FROM `precios` WHERE `id_producto`= " + id_pro);
-        t.visualizar(jtbPrecios,id_pro);
+        listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje,`descuentoVenta` FROM `precios` WHERE `id_producto`= " + id_pro);
+        t.visualizar(jtbPrecios, id_pro);
 //        System.out.println(objeto.getId_precio()+"  "+objeto.getPrecio_compra());
     }//GEN-LAST:event_agregarCompraActionPerformed
     public Precios devuelveObjeto(String datos, ArrayList<Precios> listarobj) {
@@ -361,6 +360,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
         }
         return objeto1;
     }
+
     public String transformarboolean(boolean valor) {
         if (valor == true) {
             return "A";
@@ -378,7 +378,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
             // cad1 = "UPDATE  `detalle_compra`(`id_cabecera_compra`,`cantidad`,`id_producto`)VALUES(" + id_cab + "," + tbaListaComprasB.getValueAt(i, 5).toString() + "," + tbaListaComprasB.getValueAt(i, 0).toString() + ")";
             estado = (boolean) jtbPrecios.getValueAt(i, 7);
             String est = transformarboolean(estado);
-            cad1 = "UPDATE `precios` SET `estado`='"+est+"' WHERE `id_producto`= " + jtbPrecios.getValueAt(i, 1) + " AND `id_precio`=" + jtbPrecios.getValueAt(i, 0) + ";";
+            cad1 = "UPDATE `precios` SET `estado`='" + est + "' WHERE `id_producto`= " + jtbPrecios.getValueAt(i, 1) + " AND `id_precio`=" + jtbPrecios.getValueAt(i, 0) + ";";
             queryL1.add(cad1);
             System.out.println(cad1);
         }
@@ -401,38 +401,39 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
     private void editarPrecioCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarPrecioCompraActionPerformed
         int i = 0;
         i = jtbPrecios.getSelectedRow();
-        if(i!=-1){
-        objeto = devuelveObjeto(jtbPrecios.getValueAt(i, 0).toString(), listaPrecios);
-        Editar_Precio_Productos ic = new Editar_Precio_Productos(new javax.swing.JFrame(), true, id_pro,objeto);
-        ic.setVisible(true);
-        listaPrecios.clear();
-        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado, porcentaje,`descuentoVenta`FROM `precios` WHERE `id_producto`= " + id_pro);
-        t.visualizar(jtbPrecios,id_pro);
-        }else{
-        JOptionPane.showMessageDialog(this, "escoja una fila");
+        if (i != -1) {
+            objeto = devuelveObjeto(jtbPrecios.getValueAt(i, 0).toString(), listaPrecios);
+            Editar_Precio_Productos ic = new Editar_Precio_Productos(new javax.swing.JFrame(), true, id_pro, objeto);
+            ic.setVisible(true);
+            listaPrecios.clear();
+            listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado, porcentaje,`descuentoVenta`FROM `precios` WHERE `id_producto`= " + id_pro);
+            t.visualizar(jtbPrecios, id_pro);
+        } else {
+            JOptionPane.showMessageDialog(this, "escoja una fila");
         }
-        
-        
+
+
     }//GEN-LAST:event_editarPrecioCompraActionPerformed
 
     private void jtbPreciosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtbPreciosMousePressed
         int i = 0;
         try {
             if (evt.getClickCount() == 2) {
-        i = jtbPrecios.getSelectedRow();
-        objeto = devuelveObjeto(jtbPrecios.getValueAt(i, 0).toString(), listaPrecios);
-        //Agregar_Precios_Productos ic = new Agregar_Precios_Productos(new javax.swing.JFrame(), true, id_pro,objeto);
-        modificar_precio_producto ic = new modificar_precio_producto(new javax.swing.JFrame(), true, id_pro,objeto);
-        ic.setVisible(true);
-        listaPrecios.clear();
-        listaPrecios=llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje,`descuentoVenta` FROM `precios` WHERE `id_producto`= " + id_pro);
-         t.visualizar(jtbPrecios,id_pro);
+                i = jtbPrecios.getSelectedRow();
+                objeto = devuelveObjeto(jtbPrecios.getValueAt(i, 0).toString(), listaPrecios);
+                //Agregar_Precios_Productos ic = new Agregar_Precios_Productos(new javax.swing.JFrame(), true, id_pro,objeto);
+                modificar_precio_producto ic = new modificar_precio_producto(new javax.swing.JFrame(), true, id_pro, objeto);
+                ic.setVisible(true);
+                listaPrecios.clear();
+                listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`, estado,porcentaje,`descuentoVenta` FROM `precios` WHERE `id_producto`= " + id_pro);
+                t.visualizar(jtbPrecios, id_pro);
 //        id_precio = ic.getId_precio();
 //        listaPrecios.clear();
-        System.out.println(objeto.getId_precio()+"  "+objeto.getPrecio_compra());
+                System.out.println(objeto.getId_precio() + "  " + objeto.getPrecio_compra());
             }
-        }catch(Exception e){
-            Logger.getLogger(Mantenimiento_Precios_Productos.class.getName()).log(Level.SEVERE, null, e);}
+        } catch (Exception e) {
+            Logger.getLogger(Mantenimiento_Precios_Productos.class.getName()).log(Level.SEVERE, null, e);
+        }
     }//GEN-LAST:event_jtbPreciosMousePressed
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
@@ -441,17 +442,19 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList tablac = new ArrayList();
-        for(int i=0;i<jtbPrecios.getRowCount();i++){
-            ClaseReporte tabla1 = new ClaseReporte (nomProducto.getText(),jtbPrecios.getValueAt(i,0).toString(),jtbPrecios.getValueAt(i,1).toString(),jtbPrecios.getValueAt(i,2).toString(),jtbPrecios.getValueAt(i,3).toString(),jtbPrecios.getValueAt(i,4).toString());
-            tablac.add(tabla1);}
-        try{
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"Mantenimiento_Precios_Productos.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
-            JDialog frame = new JDialog (this);
+        for (int i = 0; i < jtbPrecios.getRowCount(); i++) {
+            ClaseReporte tabla1 = new ClaseReporte(nomProducto.getText(), jtbPrecios.getValueAt(i, 0).toString(), jtbPrecios.getValueAt(i, 1).toString(), jtbPrecios.getValueAt(i, 2).toString(), jtbPrecios.getValueAt(i, 3).toString(), jtbPrecios.getValueAt(i, 4).toString());
+            tablac.add(tabla1);
+        }
+        try {
+//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Mantenimiento_Precios_Productos.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
@@ -462,7 +465,7 @@ public class Mantenimiento_Precios_Productos extends javax.swing.JDialog {
 
     private void lblGuardarAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_lblGuardarAncestorAdded
         ListaIngresoProductos();
-           this.setVisible(false);
+        this.setVisible(false);
     }//GEN-LAST:event_lblGuardarAncestorAdded
     private int getPosicionCompra(Double precio) {
         int pos = 0;

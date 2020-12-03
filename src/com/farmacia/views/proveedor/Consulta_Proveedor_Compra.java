@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package com.farmacia.views.proveedor;
+
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
@@ -289,7 +290,6 @@ public class Consulta_Proveedor_Compra extends javax.swing.JDialog {
     private void tablaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaMousePressed
         int id = 0;
 
-
         if (evt.getClickCount() == 2) {
             id = tabla.getSelectedRow();
             lista = crud.listarProveedores(Long.valueOf("1"));
@@ -330,17 +330,18 @@ public class Consulta_Proveedor_Compra extends javax.swing.JDialog {
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tabla.getRowCount(); i++) {
-            ProveedorRep proveedor = new ProveedorRep(tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 2).toString(),tabla.getValueAt(i,3).toString());
+            ProveedorRep proveedor = new ProveedorRep(tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 2).toString(), tabla.getValueAt(i, 3).toString());
             lista.add(proveedor);
         }
         try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"Consulta_Proveedor.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Consulta_Proveedor.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();

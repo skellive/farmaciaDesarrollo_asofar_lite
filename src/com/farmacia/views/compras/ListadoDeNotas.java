@@ -1,4 +1,3 @@
-
 package com.farmacia.views.compras;
 
 import com.farmacia.join_entidades.ListarNotas;
@@ -21,13 +20,14 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
-
 public class ListadoDeNotas extends javax.swing.JDialog {
-    int x,y;
+
+    int x, y;
     CRUD crud = new CRUD();
     //ArrayList<ListarNotas> lista = crud.listarNotas(1);
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+
     public ListadoDeNotas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
@@ -37,7 +37,6 @@ public class ListadoDeNotas extends javax.swing.JDialog {
 //        Tablas.CargarJoinRegistrosdeNota(tblRegistrodeNotas, lista);
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -206,24 +205,25 @@ public class ListadoDeNotas extends javax.swing.JDialog {
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList tabla = new ArrayList();
-        for(int i = 0; i < tblRegistrodeNotas.getRowCount(); i++){
-            ClaseReporte tabla1 = new ClaseReporte(tblRegistrodeNotas.getValueAt(i,0).toString(),tblRegistrodeNotas.getValueAt(i,1).toString(),tblRegistrodeNotas.getValueAt(i,2).toString(),tblRegistrodeNotas.getValueAt(i,3).toString());
+        for (int i = 0; i < tblRegistrodeNotas.getRowCount(); i++) {
+            ClaseReporte tabla1 = new ClaseReporte(tblRegistrodeNotas.getValueAt(i, 0).toString(), tblRegistrodeNotas.getValueAt(i, 1).toString(), tblRegistrodeNotas.getValueAt(i, 2).toString(), tblRegistrodeNotas.getValueAt(i, 3).toString());
             tabla.add(tabla1);
         }
-            
-            try {
-                String dir = System.getProperty("user.dir")+"/Reportes/"+"ListadoDeNotas";
-                JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-                JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tabla));
-                JDialog frame = new JDialog(this);
-                JRViewer viewer = new JRViewer(jprint);
-                frame.add(viewer);
-                frame.getSize(new Dimension(ancho/2,alto/2));
-                frame.setLocationRelativeTo(null);
-                viewer.setFitWidthZoomRatio();
-            } catch (JRException ex) {
-                Logger.getLogger(ListadoDeNotas.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
+        try {
+//                String dir = System.getProperty("user.dir")+"/Reportes/"+"ListadoDeNotas";
+//                JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("ListadoDeNotas"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.getSize(new Dimension(ancho / 2, alto / 2));
+            frame.setLocationRelativeTo(null);
+            viewer.setFitWidthZoomRatio();
+        } catch (JRException ex) {
+            Logger.getLogger(ListadoDeNotas.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_lblImprimirMouseClicked
 
     /**

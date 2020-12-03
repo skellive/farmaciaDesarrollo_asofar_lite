@@ -35,7 +35,8 @@ public class CabeceraCompra extends javax.swing.JDialog {
     String buscar = "";
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-    Listar_usuario objUsuario=null;
+    Listar_usuario objUsuario = null;
+
     public CabeceraCompra(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
@@ -45,14 +46,15 @@ public class CabeceraCompra extends javax.swing.JDialog {
         Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
 
     }
-     public CabeceraCompra(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
+
+    public CabeceraCompra(java.awt.Frame parent, boolean modal, Listar_usuario obj) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
         initComponents();
         this.setLocationRelativeTo(null);
         lista = crud.listarCabeceraNotaPedidoEnCompras(3);
         Tablas.CargarJoinListaCabeceraPedido(tbaCabeceraPedido, lista);
-        objUsuario =obj;
+        objUsuario = obj;
     }
 
     /**
@@ -261,7 +263,7 @@ public class CabeceraCompra extends javax.swing.JDialog {
             objeto = devuelveObjeto(tbaCabeceraPedido.getValueAt(i, 0).toString(), lista);
 
             if (objeto != null) {
-                OrdenCompra Man = new OrdenCompra(new javax.swing.JFrame(), true, objeto,objUsuario);
+                OrdenCompra Man = new OrdenCompra(new javax.swing.JFrame(), true, objeto, objUsuario);
                 this.setVisible(false);
                 Man.setVisible(true);
 
@@ -319,8 +321,10 @@ public class CabeceraCompra extends javax.swing.JDialog {
             lista.add(cabecera);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "CabeceraCompra.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" + "";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("CabeceraCompra.jasper"));
+
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

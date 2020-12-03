@@ -926,29 +926,29 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     if (msg == null) {
                         AgregarProductoEditarNotaPedido np = new AgregarProductoEditarNotaPedido(new javax.swing.JFrame(), true, objetoActual);
                         np.setVisible(true);
-                        
-                        if(np.getObjf()!=null){
-                    //msg = ComponentesFaltantes.validarListaFaltantes(tbaNotaPedido, objeto.getId_producto().toString());
-//  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
-                        Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
-                        //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
-                        if (np.getObjf().getCantidad() > 0 || np.getObjf().getCantidad() != null) {
-                            //int suma = Integer.parseInt((String) tblaProducto.getValueAt(i, 6)) + np.getObjf().getCantidad();
-                            //getPosicion(objeto.getId_producto(), suma);
-                            listaP1.add(np.getObjf());
 
+                        if (np.getObjf() != null) {
+                            //msg = ComponentesFaltantes.validarListaFaltantes(tbaNotaPedido, objeto.getId_producto().toString());
+//  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
                             Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
+                            //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
+                            if (np.getObjf().getCantidad() > 0 || np.getObjf().getCantidad() != null) {
+                            //int suma = Integer.parseInt((String) tblaProducto.getValueAt(i, 6)) + np.getObjf().getCantidad();
+                                //getPosicion(objeto.getId_producto(), suma);
+                                listaP1.add(np.getObjf());
+
+                                Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
                             //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
-                            //Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
-                            crud.InsertarBDCompras(txtNumero.getText(), listaP1);
-                            actualizarTabla2();
-                            actualizarCabecera();
-                            lblCerrar.setEnabled(false);
-                        }else{
-                            //JOptionPane.showMessageDialog(this, "getCantidad() ->" +np.getObjf().getCantidad());
-                        }
+                                //Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
+                                crud.InsertarBDCompras(txtNumero.getText(), listaP1);
+                                actualizarTabla2();
+                                actualizarCabecera();
+                                lblCerrar.setEnabled(false);
+                            } else {
+                                //JOptionPane.showMessageDialog(this, "getCantidad() ->" +np.getObjf().getCantidad());
+                            }
                         }
 
                     } else {
@@ -961,7 +961,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             Logger.getLogger(NotePedidos.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_tblaProductoMousePressed
-    
+
     public void actualizarTabla2() {
         String id = txtNumero.getText().toString();
         lista3.clear();
@@ -1245,8 +1245,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
             tablac.add(tabla1);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "EditarNotaPedido.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" + "";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("EditarNotaPedido.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

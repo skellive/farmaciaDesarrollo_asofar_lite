@@ -38,7 +38,7 @@ public class Consulta_Cliente_Inactivo extends javax.swing.JDialog {
     Consultas llamar = new Consultas();
     Clientes cliente = new Clientes();
     public ArrayList<Clientes> lista = null;
-     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
+    int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 
     public Consulta_Cliente_Inactivo(java.awt.Frame parent, boolean modal) {
@@ -51,8 +51,7 @@ public class Consulta_Cliente_Inactivo extends javax.swing.JDialog {
         setLayout(null);
 //        coneccion = conectar.Conexion("Modulo_Cliente");
 //        lista = llamar.listarClientes("Modulo_Cliente", "select * from Clientes where Estado = 'I' ");
-        
-        
+
         lista = llamar.listarClientes("select * from clientes where Estado = 'I' ");
 //        
         Tablas.listarClientes(lista, tabla);
@@ -307,23 +306,25 @@ public class Consulta_Cliente_Inactivo extends javax.swing.JDialog {
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
         setVisible(false);
-        Consulta_Clientes cc =new Consulta_Clientes(new javax.swing.JFrame(), true);
+        Consulta_Clientes cc = new Consulta_Clientes(new javax.swing.JFrame(), true);
         cc.setVisible(true);
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList tablac = new ArrayList();
-        for(int i=0;i<tabla.getRowCount();i++){
-            Clientes tabla1 = new Clientes (tabla.getValueAt(i,0).toString(),tabla.getValueAt(i,1).toString(),tabla.getValueAt(i,2).toString(),tabla.getValueAt(i,3).toString(),tabla.getValueAt(i,4).toString());
-            tablac.add(tabla1);}
-        try{
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"TablaClienteInactivos.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
-            JDialog frame = new JDialog (this);
+        for (int i = 0; i < tabla.getRowCount(); i++) {
+            Clientes tabla1 = new Clientes(tabla.getValueAt(i, 0).toString(), tabla.getValueAt(i, 1).toString(), tabla.getValueAt(i, 2).toString(), tabla.getValueAt(i, 3).toString(), tabla.getValueAt(i, 4).toString());
+            tablac.add(tabla1);
+        }
+        try {
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +"TablaClienteInactivos.jasper";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("TablaClienteInactivos.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();

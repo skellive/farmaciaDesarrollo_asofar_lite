@@ -27,13 +27,14 @@ import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
 
 public class Mostrar_iva extends javax.swing.JDialog {
-    int x,y;
+
+    int x, y;
     Iva iva_bus;
     ArrayList<Iva> lista = new ArrayList();
     CRUD crud = new CRUD();
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-    
+
     public Mostrar_iva(java.awt.Frame parent, boolean modal) {
 
         super(parent, modal);
@@ -265,17 +266,18 @@ public class Mostrar_iva extends javax.swing.JDialog {
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tabla_iva.getRowCount(); i++) {
-            ClaseReporte medida = new ClaseReporte (tabla_iva.getValueAt(i, 0).toString(),tabla_iva.getValueAt(i, 1).toString(),tabla_iva.getValueAt(i, 2).toString());
+            ClaseReporte medida = new ClaseReporte(tabla_iva.getValueAt(i, 0).toString(), tabla_iva.getValueAt(i, 1).toString(), tabla_iva.getValueAt(i, 2).toString());
             lista.add(medida);
         }
         try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"Mostrar_iva.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
+//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Mostrar_iva.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
@@ -285,13 +287,13 @@ public class Mostrar_iva extends javax.swing.JDialog {
     }//GEN-LAST:event_lblImprimirMouseClicked
 
     private void lblInsertarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblInsertarMouseClicked
-        Double valor = (Double.valueOf(iva_valor.getText())/100);
+        Double valor = (Double.valueOf(iva_valor.getText()) / 100);
         int user = 1;
         String res = crud.insertarIva(valor, user);
         JOptionPane.showMessageDialog(null, res);
         setVisible(false);
-         
-        Mostrar_iva mi = new Mostrar_iva(new javax.swing.JFrame(),true);
+
+        Mostrar_iva mi = new Mostrar_iva(new javax.swing.JFrame(), true);
         mi.setVisible(true);
     }//GEN-LAST:event_lblInsertarMouseClicked
 
@@ -300,8 +302,8 @@ public class Mostrar_iva extends javax.swing.JDialog {
         iva_bus = getObject(lista, Double.valueOf(tabla_iva.getValueAt(fila, 0).toString()));
         String mn = crud.eliminar_iva(Integer.valueOf((iva_bus.getId_iva()).toString()));
         JOptionPane.showMessageDialog(null, mn);
-         setVisible(false);
-        Mostrar_iva mi = new Mostrar_iva(new javax.swing.JFrame(),true);
+        setVisible(false);
+        Mostrar_iva mi = new Mostrar_iva(new javax.swing.JFrame(), true);
         mi.setVisible(true);
     }//GEN-LAST:event_lblEliminarMouseClicked
 
@@ -310,7 +312,7 @@ public class Mostrar_iva extends javax.swing.JDialog {
         for (int i = 0; i < lista.size(); i++) {
             if (num == lista.get(i).getIva()) {
                 iva_opt = lista.get(i);
-                
+
             }
         }
         return iva_opt;

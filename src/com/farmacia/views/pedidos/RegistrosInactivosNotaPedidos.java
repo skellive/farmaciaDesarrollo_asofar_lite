@@ -277,7 +277,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             i = tblRegistrodeNotas.getSelectedRow();
             objeto = devuelveObjeto(tblRegistrodeNotas.getValueAt(i, 0).toString(), lista);
             if (objeto != null) {
-                JOptionPane.showMessageDialog(null, ""+objeto.getObservacion(), "Motivo porque se Desactivo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "" + objeto.getObservacion(), "Motivo porque se Desactivo", JOptionPane.INFORMATION_MESSAGE);
                 int r = JOptionPane.showConfirmDialog(null, "¿Desea Activar este Pedido?", "", JOptionPane.YES_NO_OPTION);
                 if (r == JOptionPane.YES_OPTION) {
 
@@ -285,8 +285,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                     CabeceraNotaPedido cn = new CabeceraNotaPedido();
                     cn.setId_cabecera_nota_pedidos(objeto.getId_cabecera_nota_pedidos());
                     id_cab = crud.ActivarEstadoNotaPedido(cn);
-                    
-                    
+
                     Tablas.CargarJoinListadoCabeceraNotaPedidos(tblRegistrodeNotas, lista);
                     RegistrosInactivosNotaPedidos RIN = new RegistrosInactivosNotaPedidos(new javax.swing.JFrame(), true);
                     this.setVisible(false);
@@ -295,7 +294,7 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
                 } else {
 
                 }
-                
+
             }
         }
     }//GEN-LAST:event_tblRegistrodeNotasMousePressed
@@ -312,8 +311,8 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
         setVisible(false);
-            MantenimientoNotaPedidos Mant = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
-            Mant.setVisible(true);
+        MantenimientoNotaPedidos Mant = new MantenimientoNotaPedidos(new javax.swing.JFrame(), true);
+        Mant.setVisible(true);
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
@@ -323,8 +322,9 @@ public class RegistrosInactivosNotaPedidos extends javax.swing.JDialog {
             lista.add(medida);
         }
         try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"RegistrosInactivosNotaPedidos.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("RegistrosInactivosNotaPedidos.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

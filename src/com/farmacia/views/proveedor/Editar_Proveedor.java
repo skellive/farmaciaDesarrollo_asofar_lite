@@ -5,17 +5,6 @@
  */
 package com.farmacia.views.proveedor;
 
-//import com.Farmacia.DAO.Conectar;
-//import com.Farmacia.CRUD.Llamar;
-//import com.Farmacia.Objetos.Fecha;
-//import com.Farmacia.Ventanas.Calendario1;
-//import com.Farmacia.Objetos.Correo;
-//import com.Farmacia.Objetos.Direccion;
-//import com.Farmacia.Objetos.Obcx;
-//import com.Farmacia.Objetos.Proveedor;
-//import com.Farmacia.Objetos.Telefono;
-
-//import com.Farmacia.Ventanas.Consulta_Proveedor;
 import com.farmacia.join_entidades.ListarJoinProveedor;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.Correo;
@@ -25,16 +14,11 @@ import com.farmacia.entities1.Obcx;
 import com.farmacia.entities1.ProveedorRep;
 import com.farmacia.entities1.Telefono;
 import com.farmacia.filtros.filtrosProductos;
-import static com.farmacia.views.proveedor.Ingresar_Proveedor.listac;
 import java.awt.Dimension;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.sql.CallableStatement;
-import java.sql.Connection;
 import java.sql.Date;
-import java.sql.SQLException;
-import java.sql.Types;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -676,8 +660,9 @@ public class Editar_Proveedor extends javax.swing.JDialog {
         ProveedorRep proveedor1 = new ProveedorRep(cedula.getText(),nombre.getText(),contacto.getText(),dire.getText(),fecha.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),rutaimagen);
         proveedor.add(proveedor1);
         try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"Editar_Proveedor.jasper";
-            JasperReport reporte =  (JasperReport) JRLoader.loadObject(dir);            
+//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//            JasperReport reporte =  (JasperReport) JRLoader.loadObject(dir);   
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Editar_Proveedor.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(proveedor));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

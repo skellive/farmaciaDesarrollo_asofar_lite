@@ -55,6 +55,7 @@ import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.ListarKardex;
+import com.farmacia.join_entidades.ListarKardexReporteBase;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ValidarIngresoProducto;
@@ -260,12 +261,12 @@ public class CRUD {
         return id;
 
     }
-    
+
     //BUSCAR CANT UNIDADES PRODUCTO
     public int buscarUnidadesProducto(Long id_producto) {
-        String query ="select p.unidades\n" +
-        "from productos p\n" +
-        "WHERE id_productos ="+id_producto+" AND p.estado = 'A'";
+        String query = "select p.unidades\n"
+                + "from productos p\n"
+                + "WHERE id_productos =" + id_producto + " AND p.estado = 'A'";
         int id = 0;
         try {
             conect = con.conectar();
@@ -962,8 +963,7 @@ public class CRUD {
         }
         return valor;
     }
-    
-    
+
     //-- Buscar Unidades
     public String BuscarUnidadesProducto(Long id) {
         //ArrayList<Productos> lista = new ArrayList<Productos>();
@@ -994,7 +994,6 @@ public class CRUD {
         }
         return valor;
     }
-    
 
     //--
     public String BuscarPresentacion(Long id) {
@@ -1923,7 +1922,7 @@ public class CRUD {
     public static void ingresoRapido(
             int id_prov,
             int id_producto,
-            String plazo, 
+            String plazo,
             String forma_pago,
             float iva,
             float descuento,
@@ -2709,11 +2708,8 @@ public class CRUD {
         }
         return lista;
     }
-    
-    
-    
-    
-    public String accionesInventarioVenta(Long prod,Long prec,Long cant,Long unid,int op) {
+
+    public String accionesInventarioVenta(Long prod, Long prec, Long cant, Long unid, int op) {
 
         String valor = "";
         try {
@@ -2746,11 +2742,9 @@ public class CRUD {
         }
         return valor;
     }
-    
-    
-    
+
     //-- Acciones inventario
-    public String accionesInventario(ListarKardex obj,int op) {
+    public String accionesInventario(ListarKardex obj, int op) {
 
         String valor = "";
         try {
@@ -2783,8 +2777,6 @@ public class CRUD {
         }
         return valor;
     }
-    
-    
 
     public String insertarConversionUnidades(ListarKardex obj) {
 
@@ -3569,10 +3561,9 @@ public class CRUD {
         }
         return lista;
     }
-    
-    
+
     //-- filtro 
-    public ArrayList<JoinListarProductosVentas> ListarFiltroProductosParaVender(int num,String palabra) {
+    public ArrayList<JoinListarProductosVentas> ListarFiltroProductosParaVender(int num, String palabra) {
         ArrayList<JoinListarProductosVentas> lista = new ArrayList<JoinListarProductosVentas>();
 
         try {
@@ -3580,8 +3571,8 @@ public class CRUD {
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
                     "{call filtroInventarioVenta(?,?)}");
-            prcProcedimientoAlmacenado.setInt(1,num);
-            prcProcedimientoAlmacenado.setString(2,palabra);
+            prcProcedimientoAlmacenado.setInt(1, num);
+            prcProcedimientoAlmacenado.setString(2, palabra);
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
@@ -4280,10 +4271,9 @@ public class CRUD {
 
     }
 
-    
     //--FILTRO INVENTARIO
-        //ParaListarkardex
-    public ArrayList<ListarKardex> ListarfiltroInventario(int num,String palabra) {
+    //ParaListarkardex
+    public ArrayList<ListarKardex> ListarfiltroInventario(int num, String palabra) {
         ArrayList<ListarKardex> lista = new ArrayList<ListarKardex>();
 
         try {
@@ -4291,8 +4281,8 @@ public class CRUD {
             conect.setAutoCommit(false);
             CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
                     "{call filtroInventario(?,?)}");
-            prcProcedimientoAlmacenado.setInt(1,num);
-            prcProcedimientoAlmacenado.setString(2,palabra);
+            prcProcedimientoAlmacenado.setInt(1, num);
+            prcProcedimientoAlmacenado.setString(2, palabra);
             prcProcedimientoAlmacenado.execute();
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
@@ -4317,12 +4307,42 @@ public class CRUD {
         return lista;
 
     }
-    
-    
-    
-    
-    
-    
+
+    public ArrayList<ListarKardexReporteBase> FiltroReporteInventario(int num, String palabra) {
+        ArrayList<ListarKardexReporteBase> lista = new ArrayList<ListarKardexReporteBase>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call FiltroReporteKardex(?,?)}");
+            prcProcedimientoAlmacenado.setInt(1, num);
+            prcProcedimientoAlmacenado.setString(2, palabra);
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                ListarKardexReporteBase obj = EntidadesMappers.getKardexReporteFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+
+    }
+
     //ParaListarkardex
     public ArrayList<ListarKardex> ListarKardexStock() {
         ArrayList<ListarKardex> lista = new ArrayList<ListarKardex>();
@@ -4336,6 +4356,39 @@ public class CRUD {
             rs = prcProcedimientoAlmacenado.getResultSet();
             while (rs.next()) {
                 ListarKardex obj = EntidadesMappers.getKardexStockFromResultSet(rs);
+                lista.add(obj);
+            }
+            conect.commit();
+        } catch (Exception e) {
+            try {
+                conect.rollback();
+                e.printStackTrace();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } finally {
+            try {
+                conect.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lista;
+
+    }
+
+    public ArrayList<ListarKardexReporteBase> ReporteKardex() {
+        ArrayList<ListarKardexReporteBase> lista = new ArrayList<ListarKardexReporteBase>();
+
+        try {
+            conect = con.conectar();
+            conect.setAutoCommit(false);
+            CallableStatement prcProcedimientoAlmacenado = conect.prepareCall(
+                    "{call ReporteInventario()}");
+            prcProcedimientoAlmacenado.execute();
+            rs = prcProcedimientoAlmacenado.getResultSet();
+            while (rs.next()) {
+                ListarKardexReporteBase obj = EntidadesMappers.getKardexReporteFromResultSet(rs);
                 lista.add(obj);
             }
             conect.commit();

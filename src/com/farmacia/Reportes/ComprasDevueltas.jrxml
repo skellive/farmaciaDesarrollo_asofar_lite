@@ -18,12 +18,16 @@
 	<title>
 		<band height="56" splitType="Stretch">
 			<staticText>
-				<reportElement x="3" y="15" width="796" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
+				<reportElement x="261" y="10" width="289" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="24" isBold="true" isItalic="true"/>
 				</textElement>
 				<text><![CDATA[COMPRAS DEVUELTAS]]></text>
 			</staticText>
+			<image>
+				<reportElement x="115" y="10" width="146" height="33" uuid="eae9c16e-bfc3-45b2-bf3f-c4f74d35fcdc"/>
+				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

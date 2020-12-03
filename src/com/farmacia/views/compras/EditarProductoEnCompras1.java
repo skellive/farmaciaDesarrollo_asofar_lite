@@ -609,9 +609,9 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         if (txtporcentajeDescuento.getText().equals("")) {
 //            PorcentajeDescuento = "0.00";
             BigDecimal ValorDescuento = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
-            VGdescuento=ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP);
+            VGdescuento = ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP);
             txtDescuento.setText(ValorDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-            
+
             //BigDecimal IVA = new BigDecimal(txtIva.getText());
             BigDecimal IVA = obj2.getIva();
 
@@ -626,12 +626,12 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
             System.out.println("Porcentaje Des" + PorcentajeDescuento);
 
             BigDecimal ValorDescuento = Subtotal.multiply(PorcentajeDescuento).divide(Cien);
-            VGdescuento=ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP);
+            VGdescuento = ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP);
 
             System.out.println("das" + ValorDescuento);
 //           ValorDescuento = BigDecimal.valueOf(Double.parseDouble(removeScientificNotation(ValorDescuento.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
             txtDescuento.setText(ValorDescuento.setScale(2, BigDecimal.ROUND_HALF_UP).toString());
-           // BigDecimal IVA = new BigDecimal(txtIva.getText());
+            // BigDecimal IVA = new BigDecimal(txtIva.getText());
             BigDecimal IVA = obj2.getIva();
 
             VGtotal = Subtotal.add(IVA).subtract(ValorDescuento);
@@ -645,18 +645,18 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
     }
 
     public void ValorDescuento() {
-        if("0.00".equals(txtDescuento.getText())){
-        txtporcentajeDescuento.setText("0");
-        }else{
-        BigDecimal Descuento = new BigDecimal("0.00");
-        BigDecimal Cantidad = BigDecimal.valueOf(Double.parseDouble(obj2.getCantidad().toString()));
-        BigDecimal Precio = BigDecimal.valueOf(Double.parseDouble(obj2.getPrecio().toString()));
-        BigDecimal PorcentajeDescuento = BigDecimal.valueOf(Double.parseDouble(obj2.getDescuento().toString()));
-        BigDecimal cien = new BigDecimal("100");
+        if ("0.00".equals(txtDescuento.getText())) {
+            txtporcentajeDescuento.setText("0");
+        } else {
+            BigDecimal Descuento = new BigDecimal("0.00");
+            BigDecimal Cantidad = BigDecimal.valueOf(Double.parseDouble(obj2.getCantidad().toString()));
+            BigDecimal Precio = BigDecimal.valueOf(Double.parseDouble(obj2.getPrecio().toString()));
+            BigDecimal PorcentajeDescuento = BigDecimal.valueOf(Double.parseDouble(obj2.getDescuento().toString()));
+            BigDecimal cien = new BigDecimal("100");
 
-       // Descuento = Cantidad.multiply(Precio).multiply(PorcentajeDescuento).divide(new BigDecimal("100"));
-        Descuento= (PorcentajeDescuento.multiply(cien)).divide(Cantidad.multiply(Precio));
-        txtporcentajeDescuento.setText(Descuento.toString());
+            // Descuento = Cantidad.multiply(Precio).multiply(PorcentajeDescuento).divide(new BigDecimal("100"));
+            Descuento = (PorcentajeDescuento.multiply(cien)).divide(Cantidad.multiply(Precio));
+            txtporcentajeDescuento.setText(Descuento.toString());
         }
     }
 
@@ -825,8 +825,9 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
         ClaseReporte producto2 = new ClaseReporte(codigo.getText(), Medida.getText(), producto.getText(), marca.getText(), txtEnvase3.getText(), txtTipo.getText(), txtcantidad.getText(), txtPrecio.getText(), txtporcentajeDescuento.getText(), txtDescuento.getText(), txtIva.getText(), txtTotal.getText());
         producto1.add(producto2);
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"modificarProducto.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +"";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("modificarProducto.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(producto1));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
@@ -841,7 +842,7 @@ public class EditarProductoEnCompras1 extends javax.swing.JDialog {
     }//GEN-LAST:event_lblImprimirMouseClicked
 
     private void lblEliminarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblEliminarMouseClicked
-         int r = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar?", "", JOptionPane.YES_NO_OPTION);
+        int r = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar?", "", JOptionPane.YES_NO_OPTION);
 
         if (r == JOptionPane.YES_OPTION) {
             EliminarDetalleNotaPedido();

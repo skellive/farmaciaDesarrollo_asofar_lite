@@ -12,7 +12,6 @@ package com.farmacia.views.clientes;
 //import com.farmacia.domain.Correo_Cliente;
 //import com.farmacia.domain.Obcx;
 //import com.farmacia.domain.Telefono_Cliente;
-
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Clientes;
@@ -33,14 +32,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
-import net.sf.jasperreports.engine.JRException; 
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
-
 
 /**
  *
@@ -58,10 +56,10 @@ public class Activar_Cliente extends javax.swing.JDialog {
     private static Clientes cliente;
     Obcx obcx = new Obcx();
     Connection coneccion;
-    
+
     Consultas llamar = new Consultas();
     private Date fecha_registro;
-    CRUD cc= new CRUD();
+    CRUD cc = new CRUD();
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
 
@@ -71,7 +69,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
         getContentPane().setBackground(Color.white);
         initComponents();
         setLocationRelativeTo(null);
-        this.setSize(new Dimension(jPanel1.getWidth()+4,jPanel1.getHeight()));
+        this.setSize(new Dimension(jPanel1.getWidth() + 4, jPanel1.getHeight()));
         //proveedores = proveedor1;
         ArrayList<Obcx> listat = null;
         ArrayList<Obcx> listad = null;
@@ -80,8 +78,8 @@ public class Activar_Cliente extends javax.swing.JDialog {
 //        telefonos = llamar.listarTelefonoCliente("Modulo_Cliente", "select * from Telefono ");
 //        correos = llamar.listarCorreoCliente("Modulo_Cliente", "select * from Correo ");
 //        
-      
-        telefonos = llamar.listarTelefonoCliente( "select * from telefono ");
+
+        telefonos = llamar.listarTelefonoCliente("select * from telefono ");
         correos = llamar.listarCorreoCliente("select * from correo ");
 //        
         LlenarDatos(cliente, telefonos, correos);
@@ -406,7 +404,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
         nombre.setText(pro.getNombre());
         apellido.setText(pro.getApellido());
         direccion.setText(pro.getDireccion());
-         
+
         for (int i = 0; i < telefonos.size(); i++) {
             if (pro.getCedula().equals(telefonos.get(i).getCedula())) {
                 switch (Integer.valueOf((telefonos.get(i).getId_tipo_Telefono()).toString())) {
@@ -421,16 +419,16 @@ public class Activar_Cliente extends javax.swing.JDialog {
                 }
             }
         }
-        
+
         for (int i = 0; i < correos.size(); i++) {
             if (pro.getCedula().equals(correos.get(i).getCedula())) {
                 cbx2.addItem(correos.get(i).getCorreo());
             }
-            }
+        }
 
         cbx1.setSelectedItem(pro.getStr_telefono());
         cbx2.setSelectedItem(pro.getStr_correo());
-        
+
     }
 
     private void BotonAgregarTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonAgregarTActionPerformed
@@ -448,7 +446,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BotonAgregarTActionPerformed
 
-   
+
     private void fecha_regActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fecha_regActionPerformed
 
     }//GEN-LAST:event_fecha_regActionPerformed
@@ -486,7 +484,7 @@ public class Activar_Cliente extends javax.swing.JDialog {
     public int Confirmacion(String msx) {
         int select = JOptionPane.showConfirmDialog(null, msx, "Confirmar", JOptionPane.YES_OPTION, JOptionPane.NO_OPTION);
 
-        System.out.println(" Confirmar "+select);
+        System.out.println(" Confirmar " + select);
         return select;
     }
     private void jLabel9MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MousePressed
@@ -496,8 +494,8 @@ public class Activar_Cliente extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel9MousePressed
 
     private void jLabel9MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseDragged
-            Point point = MouseInfo.getPointerInfo().getLocation();
-            setLocation(point.x - x, point.y - y);
+        Point point = MouseInfo.getPointerInfo().getLocation();
+        setLocation(point.x - x, point.y - y);
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel9MouseDragged
 
@@ -511,28 +509,29 @@ public class Activar_Cliente extends javax.swing.JDialog {
 
     private void lblCerrarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCerrarMouseClicked
         setVisible(false);
-        Consulta_Cliente_Inactivo cc =new Consulta_Cliente_Inactivo(new javax.swing.JFrame(), true);
+        Consulta_Cliente_Inactivo cc = new Consulta_Cliente_Inactivo(new javax.swing.JFrame(), true);
         cc.setVisible(true);
     }//GEN-LAST:event_lblCerrarMouseClicked
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList cliente = new ArrayList();
-        Clientes cliente1 = new Clientes (cedula.getText(),nombre.getText(),apellido.getText(),direccion.getText(),fecha_reg.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString());
-        cliente.add(cliente1);                    
-           try{ 
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"Cliente.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(cliente));
-            JDialog frame = new JDialog (this);
+        Clientes cliente1 = new Clientes(cedula.getText(), nombre.getText(), apellido.getText(), direccion.getText(), fecha_reg.getText(), cbx1.getSelectedItem().toString(), cbx2.getSelectedItem().toString());
+        cliente.add(cliente1);
+        try {
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +"Cliente.jasper";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Cliente.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(cliente));
+            JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
-            } catch (JRException ex) {
+        } catch (JRException ex) {
             Logger.getLogger(Activar_Cliente.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_lblImprimirMouseClicked
 
     private void lblActivarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblActivarMouseClicked
@@ -553,11 +552,11 @@ public class Activar_Cliente extends javax.swing.JDialog {
         BotonAgregarC.setEnabled(lok);
         cbx1.setEnabled(lok);
         cbx2.setEnabled(lok);
-       // direccion.setEnabled(lok);
+        // direccion.setEnabled(lok);
         //cedula.setEnabled(lok);
-      //  nombre.setEnabled(lok);
+        //  nombre.setEnabled(lok);
         //apellido.setEnabled(lok);
-      
+
     }
 
 //    public void fe() {

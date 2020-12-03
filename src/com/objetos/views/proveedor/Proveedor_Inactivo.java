@@ -49,6 +49,7 @@ import net.sf.jasperreports.view.JRViewer;
  * @author ANGEL JESUS
  */
 public class Proveedor_Inactivo extends javax.swing.JDialog {
+
     private String rutaimagen = "";
     int x, y;
     CRUD crud = new CRUD();
@@ -477,7 +478,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
         tip1 = pro.getId_proveedor_clase();
         tip2 = pro.getEstado();
         tip3 = pro.getId_proveedor();
-        getPicture2(pro.getDireccionImagen());     
+        getPicture2(pro.getDireccionImagen());
         System.out.println(pro.getDireccionImagen());
     }
 
@@ -589,7 +590,7 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
     }//GEN-LAST:event_cbx1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        Consulta_Proveedor_Inactivo cpi = new Consulta_Proveedor_Inactivo(new javax.swing.JFrame(),true);
+        Consulta_Proveedor_Inactivo cpi = new Consulta_Proveedor_Inactivo(new javax.swing.JFrame(), true);
         setVisible(false);
         cpi.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -650,23 +651,24 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void ReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteActionPerformed
-        ArrayList proveedor = new ArrayList();        
-        ProveedorRep proveedor1 = new ProveedorRep(cedula.getText(),nombre1.getText(),contacto.getText(),dire.getText(),fecha.getText(),cbx1.getSelectedItem().toString(),cbx2.getSelectedItem().toString(),rutaimagen);
+        ArrayList proveedor = new ArrayList();
+        ProveedorRep proveedor1 = new ProveedorRep(cedula.getText(), nombre1.getText(), contacto.getText(), dire.getText(), fecha.getText(), cbx1.getSelectedItem().toString(), cbx2.getSelectedItem().toString(), rutaimagen);
         proveedor.add(proveedor1);
         try {
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"Editar_Proveedor.jasper";
-            JasperReport reporte =  (JasperReport) JRLoader.loadObject(dir);            
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(proveedor));
+//            String dir = System.getProperty("user.dir")+"/Reportes/"+"";
+//            JasperReport reporte =  (JasperReport) JRLoader.loadObject(dir);  
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Editar_Proveedor.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(proveedor));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
         } catch (JRException ex) {
             Logger.getLogger(Proveedor_Inactivo.class.getName()).log(Level.SEVERE, null, ex);
-        }        
+        }
     }//GEN-LAST:event_ReporteActionPerformed
 
     private void nombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombre1ActionPerformed
@@ -703,20 +705,21 @@ public class Proveedor_Inactivo extends javax.swing.JDialog {
 //        return mensaje;
 //
 //    }
-public void VaciarImagen() {
+
+    public void VaciarImagen() {
         // String fil = "\\G:\\sin-imagen.png";
         //   String  fil= "\\home\\ineval\\Escritorio\\P-FARMACIA\\sin-imagen.png"; //Windows
-         fot = "logologin.png";
+        fot = "logologin.png";
         imagen.setIcon(new ImageIcon(fot));
         ImageIcon icon = new ImageIcon(fot);
         Image img = icon.getImage();
         System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
-        Image newimg = img.getScaledInstance(148,147, java.awt.Image.SCALE_SMOOTH);
+        Image newimg = img.getScaledInstance(148, 147, java.awt.Image.SCALE_SMOOTH);
         ImageIcon newIcono = new ImageIcon(newimg);
         imagen.setIcon(newIcono);
         rutaimagen = fot;
     }
-    
+
     private void getPicture1(String path) {
         JFileChooser dig = new JFileChooser(path);
         dig.setFileFilter(new FileNameExtensionFilter("Archivos de imagen",
@@ -728,36 +731,36 @@ public void VaciarImagen() {
             imagen.setIcon(new ImageIcon(fot));
             ImageIcon icon = new ImageIcon(fot);
             Image img = icon.getImage();
-            Image newimg = img.getScaledInstance(148,147, java.awt.Image.SCALE_SMOOTH);
+            Image newimg = img.getScaledInstance(148, 147, java.awt.Image.SCALE_SMOOTH);
             ImageIcon newIcono = new ImageIcon(newimg);
-            imagen.setIcon(newIcono);            
+            imagen.setIcon(newIcono);
             System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
-            System.out.println("ruta= "+rutaimagen +"\n"+
-                                "ruta2 "+fot);
+            System.out.println("ruta= " + rutaimagen + "\n"
+                    + "ruta2 " + fot);
         }
     }
 
-        private void getPicture2(String path) {
+    private void getPicture2(String path) {
         //JFileChooser dig = new JFileChooser(path);
         //dig.setFileFilter(new FileNameExtensionFilter("Archivos de imagen",
-              //  "tif", "jpg", "jpeg", "png", "gif"));
+        //  "tif", "jpg", "jpeg", "png", "gif"));
         //int opcion = dig.showOpenDialog(this);
         //if (opcion == JFileChooser.APPROVE_OPTION) {
-            //fot = dig.getSelectedFile().getPath();
-            //rutaimagen = dig.getSelectedFile().getPath();
-            rutaimagen = path;
-            imagen.setIcon(new ImageIcon(path));
-            ImageIcon icon = new ImageIcon(path);
-            Image img = icon.getImage();
-            Image newimg = img.getScaledInstance(148,147, java.awt.Image.SCALE_SMOOTH);
-            ImageIcon newIcono = new ImageIcon(newimg);
-            imagen.setIcon(newIcono);            
-            System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
-            System.out.println("ruta= "+rutaimagen +"\n"+
-                                "ruta2 "+fot);
-        }
-    
-    public void vaciarimagen(){
+        //fot = dig.getSelectedFile().getPath();
+        //rutaimagen = dig.getSelectedFile().getPath();
+        rutaimagen = path;
+        imagen.setIcon(new ImageIcon(path));
+        ImageIcon icon = new ImageIcon(path);
+        Image img = icon.getImage();
+        Image newimg = img.getScaledInstance(148, 147, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon newIcono = new ImageIcon(newimg);
+        imagen.setIcon(newIcono);
+        System.out.println(fot + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+        System.out.println("ruta= " + rutaimagen + "\n"
+                + "ruta2 " + fot);
+    }
+
+    public void vaciarimagen() {
         fot = "logologin.png";
         imagen.setIcon(new ImageIcon(fot));
         ImageIcon icon = new ImageIcon(fot);
@@ -768,6 +771,7 @@ public void VaciarImagen() {
         imagen.setIcon(newIcono);
         rutaimagen = fot;
     }
+
     public void Habilitar(boolean lok) {
         jButton1.setEnabled(lok);
         jButton2.setEnabled(lok);

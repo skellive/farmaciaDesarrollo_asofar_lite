@@ -5,11 +5,6 @@
  */
 package com.farmacia.views.laboratorio;
 
-//import com.objetos.dao.CRUD;
-//import com.objetos.dao.Consultas;
-//import com.objetos.entities.Laboratorio;
-//import com.objetos.fecha.Fecha;
-//import com.objetos.file.Archivos;
 import com.farmacia.dao.CRUD;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.ClaseReporte;
@@ -18,7 +13,6 @@ import com.farmacia.fecha.Fecha;
 import com.farmacia.validaciones.Validacion;
 import java.awt.Color;
 import java.awt.Dimension;
-//import static com.objetos.views.Consulta_Lab.listar;
 import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
@@ -38,7 +32,6 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
-
 
 /**
  *
@@ -87,7 +80,7 @@ public class Editar_Lab extends javax.swing.JDialog {
     }
 
     private void llenarDatos(Laboratorio obj) {
-        
+
         ruc.setText(obj.getRUC());
         nombre.setText(obj.getNombre());
         direccion.setText(obj.getDireccion());
@@ -101,15 +94,15 @@ public class Editar_Lab extends javax.swing.JDialog {
     }
 
     /* public void llenarImagen(String fil) {
-        imagen.setIcon(new ImageIcon(fil));
-        ImageIcon icon = new ImageIcon(fil);
-        Image img = icon.getImage();
-        System.out.println(fil + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
-        Image newimg = img.getScaledInstance(259, 221, java.awt.Image.SCALE_SMOOTH);
-        ImageIcon newIcono = new ImageIcon(newimg);
-        imagen.setIcon(newIcono);
-        rutaimagen = fil;
-    }*/
+     imagen.setIcon(new ImageIcon(fil));
+     ImageIcon icon = new ImageIcon(fil);
+     Image img = icon.getImage();
+     System.out.println(fil + " Foto " + imagen.getWidth() + " " + imagen.getHeight());
+     Image newimg = img.getScaledInstance(259, 221, java.awt.Image.SCALE_SMOOTH);
+     ImageIcon newIcono = new ImageIcon(newimg);
+     imagen.setIcon(newIcono);
+     rutaimagen = fil;
+     }*/
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -577,8 +570,9 @@ nombre.setText(nombre.getText().toUpperCase());    }//GEN-LAST:event_nombreFocus
         ClaseReporte lab = new ClaseReporte(ruc.getText(), nombre.getText(), direccion.getText(), telefono.getText(), fecha.getText(), rutaimagen, correo.getText());
         Laboratorio.add(lab);
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "Editar_Lab.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" + "";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Editar_Lab.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(Laboratorio));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

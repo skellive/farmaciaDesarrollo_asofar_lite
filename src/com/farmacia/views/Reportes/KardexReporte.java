@@ -1,25 +1,19 @@
 package com.farmacia.views.Reportes;
 
-import com.farmacia.views.stock.*;
-import com.farmacia.conponentes.Formato_Numeros;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Listar_usuario;
-import com.farmacia.entities1.Productos_Stock;
 import com.farmacia.join_entidades.ListarKardex;
-import com.farmacia.views.covertidor.covertidor;
+import com.farmacia.join_entidades.ListarKardexReporteBase;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
-import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -34,12 +28,9 @@ public class KardexReporte extends javax.swing.JDialog {
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
-    //ListarKardex
-    ArrayList<ListarKardex> listaKardex = null;
-    static ArrayList<ListarKardex> listaPrueba = new ArrayList<ListarKardex>();
-    //static ArrayList<ListarKardex> listaPrueba2 = new ArrayList<ListarKardex>();
-    ArrayList<ListarKardex> listaStock = null;
-    //ArrayList<Productos_Stock> listaStock = null;
+    ArrayList<ListarKardexReporteBase> listaKardex = null;
+    static ArrayList<ListarKardexReporteBase> listaPrueba = new ArrayList<ListarKardexReporteBase>();
+    ArrayList<ListarKardexReporteBase> listaStock = null;
     String Buscar = "";
     String mensaje = null;
     ListarKardex objet = null;
@@ -52,12 +43,8 @@ public class KardexReporte extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        //listaKardex = crud.listarKardex();
-        //probar();
-        listaStock = crud.ListarKardexStock();
-        //listarStock();
-        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-        //Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        listaStock = crud.ReporteKardex();
+        Tablas.ListarKardexReporte(listaStock, tabla_stock);
         this.sumarTotalStock();
     }
 
@@ -67,43 +54,37 @@ public class KardexReporte extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
-        //listaKardex = crud.listarKardex();
-        //probar();
         this.objUsu = objUsu;
-        //JOptionPane.showMessageDialog(null,objUsu.getCargo());
-        listaStock = crud.ListarKardexStock();
-        //listarStock();
-        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
-        //Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        listaStock = crud.ReporteKardex();
+        Tablas.ListarKardexReporte(listaStock, tabla_stock);
         this.sumarTotalStock();
     }
 
     public void sumarTotalStock() {
-        Double total = 0.00;
-        for (int i = 0; i < tabla_stock.getRowCount(); i++) {
-            String ao = tabla_stock.getValueAt(i, 9).toString();
-            String cadenaDeDecimales = ao;
-            String resultado = cadenaDeDecimales.replace(',', '.');
-            total = total + Double.valueOf(resultado);
-        }
-        txtTotal.setText(Formato_Numeros.formatoNumero(total.toString()));
+        /*Double total = 0.00;
+         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
+         String ao = tabla_stock.getValueAt(i, 9).toString();
+         String cadenaDeDecimales = ao;
+         String resultado = cadenaDeDecimales.replace(',', '.');
+         total = total + Double.valueOf(resultado);
+         }
+         txtTotal.setText(Formato_Numeros.formatoNumero(total.toString()));*/
     }
 
-    public ListarKardex devuelveObjeto(String idproducto, String preCompra, String preVenta, ArrayList<ListarKardex> lista) {
-        ListarKardex objeto1 = null;
-        for (int i = 0; i < lista.size(); i++) {
-            if (idproducto.equals(lista.get(i).getId_producto().toString())
-                    && preCompra.equals(lista.get(i).getPrecio_compra().toString())
-                    && preVenta.equals(lista.get(i).getPrecio_venta().toString())) {
-                objeto1 = lista.get(i);
-                //JOptionPane.showMessageDialog(this,"Encontrado");
-                System.out.println("Encontrado");
-                break;
-            }
-        }
-        return objeto1;
-    }
-
+    /*public ListarKardex devuelveObjeto(String idproducto, String preCompra, String preVenta, ArrayList<ListarKardex> lista) {
+     ListarKardex objeto1 = null;
+     for (int i = 0; i < lista.size(); i++) {
+     if (idproducto.equals(lista.get(i).getId_producto().toString())
+     && preCompra.equals(lista.get(i).getPrecio_compra().toString())
+     && preVenta.equals(lista.get(i).getPrecio_venta().toString())) {
+     objeto1 = lista.get(i);
+     //JOptionPane.showMessageDialog(this,"Encontrado");
+     System.out.println("Encontrado");
+     break;
+     }
+     }
+     return objeto1;
+     }*/
     //JOptionPane.showMessageDialog(this, "2 click");
     /**
      * This method is called from within the constructor to initialize the form.
@@ -118,8 +99,6 @@ public class KardexReporte extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         tblProduc = new javax.swing.JScrollPane();
         tabla_stock = new javax.swing.JTable();
-        txtTotal = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         lblCerrar = new javax.swing.JLabel();
@@ -142,11 +121,11 @@ public class KardexReporte extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 6", "Title 7", "Title 8 "
+                "Title 1", "Title 2", "Title 3", "Title 4", "Title 5", "Title 8 "
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -167,13 +146,6 @@ public class KardexReporte extends javax.swing.JDialog {
                 .addComponent(tblProduc, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
-
-        txtTotal.setEditable(false);
-        txtTotal.setFont(new java.awt.Font("Ubuntu", 1, 12)); // NOI18N
-
-        jLabel3.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 27, 134));
-        jLabel3.setText("TOTAL:");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 1, 0, new java.awt.Color(50, 99, 50)));
         jPanel3.setOpaque(false);
@@ -238,7 +210,7 @@ public class KardexReporte extends javax.swing.JDialog {
         });
 
         tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "C.BARRAS", "NOMBRE", "PRESENTACIÓN" }));
+        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "C.BARRAS", "NOMBRE", "PRESENTACIÓN", "TIPO" }));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -252,11 +224,7 @@ public class KardexReporte extends javax.swing.JDialog {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblImprimir)
-                .addGap(229, 229, 229)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addGap(482, 482, 482))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(373, 373, 373)
                 .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -275,19 +243,11 @@ public class KardexReporte extends javax.swing.JDialog {
                     .addComponent(btn_buscar)
                     .addComponent(txt_filtro_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblImprimir)
-                        .addContainerGap(12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(31, 31, 31))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblImprimir)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -323,22 +283,17 @@ public class KardexReporte extends javax.swing.JDialog {
         ArrayList tabla = new ArrayList();
         for (int i = 0; i < tabla_stock.getRowCount(); i++) {
             ClaseReporte tabla1 = new ClaseReporte(
+                    tabla_stock.getValueAt(i, 0).toString(),
                     tabla_stock.getValueAt(i, 1).toString(),
                     tabla_stock.getValueAt(i, 2).toString(),
                     tabla_stock.getValueAt(i, 3).toString(),
-                    tabla_stock.getValueAt(i, 5).toString(),
-                    tabla_stock.getValueAt(i, 6).toString(),
-                    tabla_stock.getValueAt(i, 7).toString(),
-                    txtTotal.getText(),
-                    tabla_stock.getValueAt(i, 4).toString());
+                    tabla_stock.getValueAt(i, 4).toString(),
+                    tabla_stock.getValueAt(i, 5).toString());
             tabla.add(tabla1);
         }
         try {
-            //String dir = System.getProperty("user.dir") + "/Reportes/" + "Stock_Productos.jasper";
 
-            //System.out.println(dir);
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Stock_Productos.jasper"));
-            //JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("reporte_Inventario.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
@@ -357,20 +312,23 @@ public class KardexReporte extends javax.swing.JDialog {
         String f = txt_filtro_inventario.getText().toUpperCase();
         int pos = tipofiltro.getSelectedIndex();
         if ("".equals(f) || f.isEmpty()) {
-            listaStock = crud.ListarKardexStock();
+            listaStock = crud.ReporteKardex();
         } else {
             if (pos == 0) {
-                listaStock = crud.ListarfiltroInventario(1, "%" + f + "%");
+                listaStock = crud.FiltroReporteInventario(1, "%" + f + "%");
             }
             if (pos == 1) {
-                listaStock = crud.ListarfiltroInventario(2, "%" + f + "%");
+                listaStock = crud.FiltroReporteInventario(2, "%" + f + "%");
             }
             if (pos == 2) {
-                listaStock = crud.ListarfiltroInventario(3, "%" + f + "%");
+                listaStock = crud.FiltroReporteInventario(3, "%" + f + "%");
+            }
+            if (pos == 3) {
+                listaStock = crud.FiltroReporteInventario(4, "%" + f + "%");
             }
 
         }
-        Tablas.ListarKardexStockProductos(listaStock, tabla_stock);
+        Tablas.ListarKardexReporte(listaStock, tabla_stock);
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     /**
@@ -421,7 +379,6 @@ public class KardexReporte extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -430,7 +387,6 @@ public class KardexReporte extends javax.swing.JDialog {
     private javax.swing.JTable tabla_stock;
     private javax.swing.JScrollPane tblProduc;
     private javax.swing.JComboBox<String> tipofiltro;
-    private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txt_filtro_inventario;
     // End of variables declaration//GEN-END:variables
 }

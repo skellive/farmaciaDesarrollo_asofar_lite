@@ -40,6 +40,7 @@ import com.farmacia.join_entidades.JoinListarProductosVentas;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.ListarKardex;
+import com.farmacia.join_entidades.ListarKardexReporteBase;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import java.awt.Color;
@@ -439,7 +440,7 @@ public class Tablas {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "TIPO", "MEDIDA", "ENVASE", "MARCA"};
+        String[] Co = {"CODIGO", "PRODUCTO", "TIPO", "MEDIDA", "PRESENTACION", "MARCA"};
         String[] Filas = new String[6];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -1956,32 +1957,25 @@ public class Tablas {
 
     }
 
-    public static void ListarKardexReporte(ArrayList<ListarKardex> lista, JTable Tabla) {
-        int[] a = {90, 180, 180, 100, 70, 70, 70};
+    public static void ListarKardexReporte(ArrayList<ListarKardexReporteBase> lista, JTable Tabla) {
+        int[] a = {150, 180, 60, 100, 70, 70};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"COD.BARRA", "PRODUCTO", "DESCRIPCION", "PRESENTACION", "CANTIDAD", "UNIDADES", "TOTAL"};
-        //   Date[] Ca = {Date.valueOf("Fecha")};
-        String[] Filas = new String[10];
-        //  Date[] Fila = new Date [1];
+        String[] Co = {"COD.BARRA", "PRODUCTO", "TIPO", "PRESENTACION", "CANTIDAD", "UNIDADES"};
+        String[] Filas = new String[6];
         model = new DefaultTableModel(null, Co);
-        //  laboratorio = new DefaultTableModel(null, Ca);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
             Filas[0] = lista.get(i).getCodigo_barra();
             Filas[1] = lista.get(i).getNombre_Producto();
-            Filas[2] = lista.get(i).getDescripcion();
+            Filas[2] = lista.get(i).getTipo();
             Filas[3] = lista.get(i).getPresentacion();
             Filas[4] = lista.get(i).getCantidad().toString();
             Filas[5] = lista.get(i).getCantidad_unidad().toString();
-            Double ao = lista.get(i).getCantidad() * (lista.get(i).getPrecio_compra());
-            Filas[6] = Formato_Numeros.formatoNumero(ao.toString());
-
             model.addRow(Filas);
-            //     laboratorio.addRow(Fila);
             Tabla.setModel(model);
             Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
             Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
@@ -1995,8 +1989,6 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
             Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
-            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
-            Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
         }
 
     }

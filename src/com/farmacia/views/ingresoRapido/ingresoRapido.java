@@ -6,47 +6,32 @@
 package com.farmacia.views.ingresoRapido;
 
 import com.farmacia.conponentes.Formato_Numeros;
-import com.farmacia.conponentes.Formulario;
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
-import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.filtros.filtrosProductos;
-import com.farmacia.join_entidades.JoinListarCabeceraVenta;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
 import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
-import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
 import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
 import com.farmacia.validaciones.ComponentesFaltantes;
 import com.farmacia.views.contentPane.ContentPanel;
 import com.farmacia.views.pedidos.AgregarProductoNotaPedido;
 import com.farmacia.views.pedidos.Consulta_proveedor_Nota;
-import static com.farmacia.views.pedidos.EditarNotaPedido.txtNumero;
 import com.farmacia.views.pedidos.NotePedidos;
-import com.toedter.calendar.JDateChooser;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.RowFilter;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableRowSorter;
 
 /**
  *
