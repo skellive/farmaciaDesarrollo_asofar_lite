@@ -17,6 +17,7 @@ public class Detalle_compra {
     private Long id_cabecera_compra;
     private Long id_precio;
     private Integer cantidad;
+    private Integer unidad;
     private BigDecimal precio;
     private BigDecimal descuento;
     private BigDecimal iva;
@@ -26,12 +27,13 @@ public class Detalle_compra {
     public Detalle_compra() {
     }
 
-    public Detalle_compra(Long id_producto,Long id_detalle_compra, Long id_cabecera_compra, Long id_precio, Integer cantidad, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer bono) {
+    public Detalle_compra(Long id_producto,Long id_detalle_compra, Long id_cabecera_compra, Long id_precio, Integer cantidad, Integer unidad,BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer bono) {
         this.id_producto = id_producto;
         this.id_detalle_compra = id_detalle_compra;
         this.id_cabecera_compra = id_cabecera_compra;
         this.id_precio = id_precio;
         this.cantidad = cantidad;
+        this.unidad = unidad;
         this.precio = precio;
         this.descuento = descuento;
         this.iva = iva;
@@ -46,8 +48,6 @@ public class Detalle_compra {
     public void setId_producto(Long id_producto) {
         this.id_producto = id_producto;
     }
-    
-    
 
     public Long getId_detalle_compra() {
         return id_detalle_compra;
@@ -79,6 +79,14 @@ public class Detalle_compra {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Integer getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(Integer unidad) {
+        this.unidad = unidad;
     }
 
     public BigDecimal getPrecio() {
@@ -120,6 +128,8 @@ public class Detalle_compra {
     public void setBono(Integer bono) {
         this.bono = bono;
     }
+
+    
     
     
 }

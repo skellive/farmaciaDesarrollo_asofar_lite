@@ -509,6 +509,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
     private void btnAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnadirActionPerformed
         String cant;
+        String und;
         String porc = null;
         String bono;
         // objf = new joinProductoDetallesFaltantes();
@@ -516,7 +517,14 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Ingrese Cantidad");
         } else {
             cant = txtcantidadpro.getText();
+            und = txtunidadpro.getText();
             objf.setCantidad(Integer.parseInt(cant));
+            if(!und.equals("")){
+            objf.setUnidad(Integer.parseInt(und));
+            }else{
+                objf.setUnidad(0);
+            }
+            
             setVisible(false);
         }
         /////////////

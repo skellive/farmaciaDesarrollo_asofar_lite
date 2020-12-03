@@ -34,6 +34,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -59,6 +61,7 @@ public class OrdenCompra extends javax.swing.JDialog {
     joinProductoDetallesFaltantes objeto = null;//<--
     JoinListarNotaPedidosCabecera objCabecera = null;
     ListarJoinProveedor proveedor = null;
+    List list12 = new ArrayList();
     JoinListarDetalleNotaPedido detalle = null;
     ArrayList<joinProductoDetallesFaltantes> lista1 = new ArrayList<joinProductoDetallesFaltantes>();//<--
     ArrayList<listarJoinProductosCompras> listapro = crud.listarTodoJoinProductos(1);
@@ -89,25 +92,28 @@ public class OrdenCompra extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         setLayout(null);
         objCabecera = Obj;
-        //txtFecha.setText(FechaActual());
+        
         llenarProveedor();
         //FECHA DEL SISTEMA
         java.util.Date sistFecha = new java.util.Date();
         SimpleDateFormat formato = new SimpleDateFormat("YYYY-MM-dd");
-        //    txtFecha.setText(formato.format(sistFecha));
+        
 
         //HORA DEL SISTEMA
         Timer tiempo = new Timer(100, new OrdenCompra.horas());
-        tiempo.start();
-        // Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, listaCompra);
-        // Tablas.cargarJoinProductosMCompra(tbacargarProductosA, lista);
+        tiempo.start();        
         String id_cab = txt_Numero.getText().toString();
+        list12.add(lista3);
+        Iterator itr = list12.iterator();
+        while (itr.hasNext()){
+           System.out.println(itr.next()); 
+        }
         lista3 = crud.listarDetalleNotaPedido(1, id_cab);
         Tablas.cargarJoinRegistroDetalleCompras(tbaListaComprasB, lista3);
         Total();
         TotalIVA();
         TotalDescuento();
-        // t_Nota_faltantes.setEnabled(false);
+        
     }
     public OrdenCompra(java.awt.Frame parent, boolean modal, JoinListarNotaPedidosCabecera Obj,Listar_usuario obj) {
         super(parent, modal);
@@ -831,10 +837,9 @@ public static String FechaActual() {
             FechaActual = hourdateFormat.format(date);
 //        ArrayList<String> queryL = new ArrayList<String>();
 //        ArrayList<String> queryL1 = new ArrayList<String>();
-            String cad = "";
-            String cad1 = "";
+            
             String id_cab = "";
-            String id_precio = null;
+            
             Cabecera_compra cc = new Cabecera_compra();
             cc.setId_proveedor(Long.valueOf(txtCodigoProveedor.getText()));
             cc.setId_usuario(Long.valueOf("2"));
@@ -848,57 +853,17 @@ public static String FechaActual() {
             cc.setIdcabecerapedido(Long.valueOf(txt_Numero.getText()));
             id_cab = crud.insertarCabeceraCompras(cc);
 
-            lista3.clear();
-            lista3 = crud.listarDetalleNotaPedido(1, txt_Numero.getText());
-//        for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
-//            crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`)VALUES("+id_cab + "," +lista3.get(i).getId_precio()+","+ tbaListaComprasB.getValueAt(i, 7).toString() + "," + 
-//            tbaListaComprasB.getValueAt(i, 8).toString() + "," + tbaListaComprasB.getValueAt(i, 9).toString()+"," + tbaListaComprasB.getValueAt(i, 10).toString()+"," + tbaListaComprasB.getValueAt(i, 11).toString()+")");
-//            id_precio = crud.buscarIDPrecioEnStock("SELECT `id_precio` FROM `stock` WHERE `id_precio`="+lista3.get(i).getId_precio());
-//            if("".equals(id_precio)){
-//               crud.insertarDetallesCompraRegistro("INSERT INTO `stock` (`cantidad`,`id_precio`)VALUES("+tbaListaComprasB.getValueAt(i, 7)+","+lista3.get(i).getId_precio()+");");
-//                //insertar si no existe
-//            }else{//actualizar o sumar si existe
-//               int cantidadx = crud.buscarCantidadEnStock("SELECT `cantidad` FROM `stock` WHERE `id_precio`="+lista3.get(i).getId_precio()+";");
-//               cantidadx= cantidadx+Integer.valueOf(tbaListaComprasB.getValueAt(i, 7).toString());
-//               crud.insertarDetallesCompraRegistro("UPDATE `stock` SET `cantidad` = "+cantidadx+" WHERE `id_precio` = "+lista3.get(i).getId_precio()+";");
-//            } 
-//              
-//        }
-
-            ///// cris!!
-                
-//                Integer CantidadComp = crud.buscarCantidadEnFaltantes("SELECT `cantidad` FROM `detalle_faltantes` WHERE `id_producto`=" + lista3.get(i).getId_producto() + ";");
-////                System.out.println("Cantidad existente"+CantidadComp);
-////                System.out.println("Cantidad "+Integer.valueOf(lista3.get(i).getCantidad().toString()));
-//                CantidadComp = CantidadComp - Integer.valueOf(lista3.get(i).getCantidad().toString());
-////                System.out.println("Cantidad Restada de Faltantes"+CantidadComp);
-//                crud.UpdateCantidadFaltantes("UPDATE `detalle_faltantes` SET `cantidad` = " + CantidadComp + " WHERE `id_producto` = "+lista3.get(i).getId_producto()+";");
-                
-            ///// cris
             
-//            this.setVisible(false);
-                //INTENTO 2 DE REGISTRAR DETALLES COMPRAS
-//            for (int i = 0; i < lista3.size(); i++) {
-//                crud.insertarDetallesCompraRegistro("INSERT INTO `detalle_compra`(`id_cabecera_compra`,`id_precio`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono)VALUES(" + id_cab + "," + lista3.get(i).getId_precio() + "," + lista3.get(i).getCantidad().toString() + ","
-//                        + lista3.get(i).getPrecio().toString() + "," + lista3.get(i).getDescuento().toString() + "," + lista3.get(i).getIva().toString() + "," + lista3.get(i).getTotal().toString() + "," + lista3.get(i).getBono().toString() + ");");
-//                id_precio = crud.buscarIDPrecioEnStock("SELECT `id_precio` FROM `stock` WHERE `id_precio`=" + lista3.get(i).getId_precio().toString());
-//                if (null == id_precio) {
-//                    crud.insertarDetallesCompraRegistro("INSERT INTO `stock` (`cantidad`,`id_precio`)VALUES(" + lista3.get(i).getCantidad().toString() + "," + lista3.get(i).getId_precio().toString() + ");");
-//                    //insertar si no existe
-//                } else {//actualizar o sumar si existe
-//                    int cantidadx = crud.buscarCantidadEnStock("SELECT `cantidad` FROM `stock` WHERE `id_precio`=" + lista3.get(i).getId_precio() + ";");
-//                    cantidadx = cantidadx + Integer.valueOf(lista3.get(i).getCantidad().toString());
-//                    crud.insertarDetallesCompraRegistro("UPDATE `stock` SET `cantidad` = " + cantidadx + " WHERE `id_precio` = " + lista3.get(i).getId_precio() + ";");
-//                }
-//
-//            }
-            //INTENTO 3 DE RESGISTRAR DETALLE COMPRA!
+            
+            lista3 = crud.listarDetalleNotaPedido(1, txt_Numero.getText().toString());
+
               for (int i = 0; i < lista3.size(); i++) {
                   Detalle_compra obj = new Detalle_compra();
                   obj.setId_producto(lista3.get(i).getId_producto());
                   obj.setId_cabecera_compra(Long.valueOf(id_cab));
                   obj.setId_precio(lista3.get(i).getId_precio());
                   obj.setCantidad(lista3.get(i).getCantidad());
+                  obj.setUnidad(lista3.get(i).getUnidad());
                   obj.setPrecio(lista3.get(i).getPrecio());
                   obj.setDescuento(lista3.get(i).getDescuento());
                   obj.setIva(lista3.get(i).getIva());

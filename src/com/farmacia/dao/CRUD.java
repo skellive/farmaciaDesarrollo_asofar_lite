@@ -1933,14 +1933,14 @@ public class CRUD {
             int cantidad,
             int unidad,
             int sucursal,
-            String fecha) {
+            String fecha, int unidadpro) {
         Conexion c = new Conexion();
         Connection con = c.conectar();
 
         try {
             CallableStatement prIngRap;
 
-            prIngRap = con.prepareCall("{call sp_ingreso_rapido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }");
+            prIngRap = con.prepareCall("{call sp_ingreso_rapido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }");
             prIngRap.setInt(1, id_prov);
             prIngRap.setInt(2, id_producto);
             prIngRap.setString(3, plazo);
@@ -1954,6 +1954,7 @@ public class CRUD {
             prIngRap.setInt(11, unidad);
             prIngRap.setInt(12, sucursal);
             prIngRap.setString(13, fecha);
+            prIngRap.setInt(14, unidadpro);
             prIngRap.execute();
             System.out.println("Ingreso rapido correcto");
         } catch (SQLException ex) {
@@ -4172,16 +4173,17 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call insertarDetalleParaComprar(?,?,?,?,?,?,?,?,?) }");
+                    "{ call insertarDetalleParaComprar(?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_producto());
             prodProAlm.setLong(2, obj.getId_cabecera_compra());
             prodProAlm.setLong(3, obj.getId_precio());
             prodProAlm.setLong(4, obj.getCantidad());
-            prodProAlm.setBigDecimal(5, obj.getPrecio());
-            prodProAlm.setBigDecimal(6, obj.getDescuento());
-            prodProAlm.setBigDecimal(7, obj.getIva());
-            prodProAlm.setBigDecimal(8, obj.getTotal());
-            prodProAlm.setLong(9, obj.getBono());
+            prodProAlm.setLong(5, obj.getUnidad());
+            prodProAlm.setBigDecimal(6, obj.getPrecio());
+            prodProAlm.setBigDecimal(7, obj.getDescuento());
+            prodProAlm.setBigDecimal(8, obj.getIva());
+            prodProAlm.setBigDecimal(9, obj.getTotal());
+            prodProAlm.setLong(10, obj.getBono());
 //            prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
 //            valor = prodProAlm.getString("valor1");

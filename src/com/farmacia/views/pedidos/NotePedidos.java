@@ -143,6 +143,7 @@ public class NotePedidos extends javax.swing.JDialog {
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             Integer Cant = listaPNP1.get(i).getCantidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
+            Integer und = listaPNP1.get(i).getUnidad();
             BigDecimal Precio = listaPNP1.get(i).getPrecios();
             BigDecimal Subtotal = Cantidad.multiply(Precio);
             BigDecimal PorcentajeDesc = listaPNP1.get(i).getPorcentaje_descuento();
@@ -168,6 +169,7 @@ public class NotePedidos extends javax.swing.JDialog {
             BigDecimal ValorIva = new BigDecimal("0.00");
             BigDecimal Precio = listaPNP1.get(i).getPrecios();
             Integer Cant = listaPNP1.get(i).getCantidad();
+            Integer und = listaPNP1.get(i).getUnidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
             BigDecimal Subtotal = Cantidad.multiply(Precio);
 
@@ -189,6 +191,7 @@ public class NotePedidos extends javax.swing.JDialog {
             BigDecimal Precio = listaPNP1.get(i).getPrecios();
             BigDecimal PorcDesc = listaPNP1.get(i).getPorcentaje_descuento();
             Integer Cant = listaPNP1.get(i).getCantidad();
+            Integer und = listaPNP1.get(i).getUnidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
             BigDecimal Subtotal = Cantidad.multiply(Precio);
             BigDecimal ValorDesc = Subtotal.multiply(PorcDesc).divide(new BigDecimal("100"));
@@ -635,11 +638,11 @@ public class NotePedidos extends javax.swing.JDialog {
 
             },
             new String [] {
-                " CODIGO", "       MARCA", "      TIPO", "     PRODUCTO", "   PRESENTACION", "   MEDIDA", "  CANTIDAD", "   PRECIO", " DESCUENTO", "      IVA", "    TOTAL"
+                " CODIGO", "       MARCA", "      TIPO", "     PRODUCTO", "   PRESENTACION", "   MEDIDA", "  CANTIDAD", "UNIDAD", "   PRECIO", " DESCUENTO", "      IVA", "    TOTAL"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -660,10 +663,11 @@ public class NotePedidos extends javax.swing.JDialog {
             tbaListaFaltantes.getColumnModel().getColumn(4).setPreferredWidth(55);
             tbaListaFaltantes.getColumnModel().getColumn(5).setPreferredWidth(55);
             tbaListaFaltantes.getColumnModel().getColumn(6).setPreferredWidth(55);
-            tbaListaFaltantes.getColumnModel().getColumn(7).setPreferredWidth(50);
-            tbaListaFaltantes.getColumnModel().getColumn(8).setPreferredWidth(60);
-            tbaListaFaltantes.getColumnModel().getColumn(9).setPreferredWidth(50);
+            tbaListaFaltantes.getColumnModel().getColumn(7).setPreferredWidth(55);
+            tbaListaFaltantes.getColumnModel().getColumn(8).setPreferredWidth(50);
+            tbaListaFaltantes.getColumnModel().getColumn(9).setPreferredWidth(60);
             tbaListaFaltantes.getColumnModel().getColumn(10).setPreferredWidth(50);
+            tbaListaFaltantes.getColumnModel().getColumn(11).setPreferredWidth(50);
         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -999,6 +1003,7 @@ public class NotePedidos extends javax.swing.JDialog {
                         np.objf.getId_precios();
                         System.out.println(" id producto " + np.objf.getId_producto());
                         System.out.println(" cantidad " + np.getObjf().getCantidad());
+                        System.out.println("unidad " + np.getObjf().getUnidad());
 
                         //VER DESDE AQUI
                         //joinProductoParaNotaPedido
@@ -1056,11 +1061,14 @@ public class NotePedidos extends javax.swing.JDialog {
         joinProductoParaNotaPedido objd = new joinProductoParaNotaPedido();
         objd = lista;
         BigDecimal PrecioBono = new BigDecimal("0.00");
-
+        
         BigDecimal Cantidad = BigDecimal.valueOf(lista.getCantidad());
         BigDecimal Precio = lista.getPrecios();
         BigDecimal Subtotal = Cantidad.multiply(Precio);
         BigDecimal Bono1 = BigDecimal.valueOf(lista.getBono())/*new BigDecimal(Bono)*/;
+        Integer Unid = lista.getUnidad();
+        System.out.println("un: " +Unid);
+        objd.setUnidad(Unid);
         BigDecimal CantidadTotal = Cantidad.add(Bono1);
         PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);
         objd.setPrecioBono(PrecioBono);
@@ -1352,16 +1360,18 @@ public class NotePedidos extends javax.swing.JDialog {
             try {
               
             id_cab = crud.insertarCabeceraNotaPedido(cn);
+           
             //String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
             //id_cab = crud.buscarIDCabeceraNotaPedido(query);
             if (id_cab.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "id_cabecera esta vacio");
             } else {
+                
                 for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
                     /////////////////////////////
                     cad1 = "INSERT INTO detalle_nota_pedidos"
-                            + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`)"
-                            + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + listaPNP1.get(i).getPrecioBono() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + "," + listaPNP1.get(i).getBono() + ")";
+                            + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`,`unidad`)"
+                            + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + listaPNP1.get(i).getPrecioBono() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + "," + listaPNP1.get(i).getBono() + ","+tbaListaFaltantes.getValueAt(i, 8).toString()+ ")";
                     queryL1.add(cad1);
                     System.out.println(" " + cad1);
                     //////////////////////////////////

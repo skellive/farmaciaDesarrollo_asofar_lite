@@ -910,11 +910,11 @@ public class ingresoRapido extends javax.swing.JFrame {
                                 Float.parseFloat(txtDescuento.getText().replaceAll(",", ".")),
                                 Float.parseFloat(txtTotal.getText().replaceAll(",", ".")),
                                 Integer.parseInt(listaPNP1.get(i).getId_precios().toString()),
-                                Float.parseFloat(tbaListaFaltantes.getValueAt(i, 11).toString().replaceAll(",", ".")),
+                                Float.parseFloat(tbaListaFaltantes.getValueAt(i, 9).toString().replaceAll(",", ".")),
                                 Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
                                 Integer.parseInt(0 + ""),
                                 2,
-                                fechaCompleta);
+                                fechaCompleta, Integer.parseInt(tbaListaFaltantes.getValueAt(i,8).toString()));
 
                     }
                     JOptionPane.showMessageDialog(null, " Guardado con Exito ");

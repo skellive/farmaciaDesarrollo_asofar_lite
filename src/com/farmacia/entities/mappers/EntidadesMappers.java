@@ -116,6 +116,7 @@ public class EntidadesMappers {
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setId_envase(rs.getLong("ID_ENVASE"));
             obj.setEnvase(rs.getString("ENVASE"));
+            
 //            obj.setEstado(rs.getString("ESTADO"));
 //            obj.setId_precios(rs.getLong("ID_PRECIO"));
 //            obj.setPrecios(rs.getBigDecimal("PRECIO"));
@@ -168,6 +169,7 @@ public class EntidadesMappers {
             obj.setNombre_tipo(rs.getString("TIPO"));
             obj.setId_medida(rs.getLong("ID_MEDIDAS"));
             obj.setMedida(rs.getString("MEDIDA"));
+            obj.setUnidad(rs.getInt("UNIDAD"));
             obj.setId_envase(rs.getLong("id_presentacion"));
             obj.setEnvase(rs.getString("PRESENTACION"));
             obj.setId_marcas(rs.getLong("ID_MARCAS"));
@@ -566,6 +568,7 @@ public class EntidadesMappers {
             obj.setPresentacion(rs.getString("PRESENTACION"));
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
+            obj.setUnidad(rs.getInt("UNIDAD"));
             obj.setBono(rs.getInt("BONO"));
             obj.setPrecio(rs.getBigDecimal("PRECIO"));
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
@@ -593,8 +596,9 @@ public class EntidadesMappers {
             obj.setProducto(rs.getString("PRODUCTO"));
             obj.setPresentacion(rs.getString("PRESENTACION"));
             obj.setMedida(rs.getString("MEDIDA"));
-            obj.setCantidad(rs.getInt("CANTIDAD"));
+            obj.setCantidad(rs.getInt("CANTIDAD"));            
             obj.setCantidad_unidad(rs.getLong("UNIDADES"));
+            obj.setUnidad(rs.getInt("UNIDAD"));
             obj.setBono(rs.getInt("BONO"));
             obj.setPrecio(rs.getBigDecimal("PRECIO"));
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
@@ -619,6 +623,7 @@ public class EntidadesMappers {
             obj.setPresentacion(rs.getString("ENVASE"));
             obj.setMedida(rs.getString("MEDIDA"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
+            obj.setUnidad(rs.getInt("UNIDAD"));
             obj.setPrecio(rs.getBigDecimal("PRECIO"));
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
             obj.setIva(rs.getBigDecimal("IVA"));
@@ -689,6 +694,7 @@ public class EntidadesMappers {
             obj.setId_marca(rs.getLong("ID_MARCAS"));
             obj.setNombreMarca(rs.getString("MARCA"));
             obj.setCantidad(rs.getInt("CANTIDAD"));
+            
             obj.setPrecio(rs.getDouble("PRECIO"));
 
         } catch (SQLException ex) {

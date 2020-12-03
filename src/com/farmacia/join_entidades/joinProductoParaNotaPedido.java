@@ -12,6 +12,7 @@ import java.math.BigDecimal;
  * @author josel
  */
 public class joinProductoParaNotaPedido {
+
     private Long id_detalle_faltantes;
     private Long id_tipo;
     private String nombre_tipo;
@@ -21,7 +22,7 @@ public class joinProductoParaNotaPedido {
     private String estado;
     private Long id_marcas;
     private String marca;
-    
+    private Integer unidad;
     private Long id_categoria;
     private String nombrecategoria;
     private Long id_medida;
@@ -37,7 +38,7 @@ public class joinProductoParaNotaPedido {
     private BigDecimal valor_descuento;
     private BigDecimal PrecioBono;
     private BigDecimal Precioiva;
-    
+
     public joinProductoParaNotaPedido() {
     }
 
@@ -49,9 +50,7 @@ public class joinProductoParaNotaPedido {
         this.id_categoria = id_categoria;
     }
 
-  
-
-    public joinProductoParaNotaPedido(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Long id_categoria, String nombrecategoria, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios, String iva, Integer bono, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento, BigDecimal PrecioBono, BigDecimal Precioiva) {
+    public joinProductoParaNotaPedido(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Integer unidad, Long id_categoria, String nombrecategoria, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios, String iva, Integer bono, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento, BigDecimal PrecioBono, BigDecimal Precioiva) {
         this.id_detalle_faltantes = id_detalle_faltantes;
         this.id_tipo = id_tipo;
         this.nombre_tipo = nombre_tipo;
@@ -61,6 +60,7 @@ public class joinProductoParaNotaPedido {
         this.estado = estado;
         this.id_marcas = id_marcas;
         this.marca = marca;
+        this.unidad = unidad;
         this.id_categoria = id_categoria;
         this.nombrecategoria = nombrecategoria;
         this.id_medida = id_medida;
@@ -77,16 +77,6 @@ public class joinProductoParaNotaPedido {
         this.PrecioBono = PrecioBono;
         this.Precioiva = Precioiva;
     }
-
-    public String getNombrecategoria() {
-        return nombrecategoria;
-    }
-
-    public void setNombrecategoria(String nombrecategoria) {
-        this.nombrecategoria = nombrecategoria;
-    }
-
-   
 
     public Long getId_detalle_faltantes() {
         return id_detalle_faltantes;
@@ -158,6 +148,22 @@ public class joinProductoParaNotaPedido {
 
     public void setMarca(String marca) {
         this.marca = marca;
+    }
+
+    public Integer getUnidad() {
+        return unidad;
+    }
+
+    public void setUnidad(Integer unidad) {
+        this.unidad = unidad;
+    }
+
+    public String getNombrecategoria() {
+        return nombrecategoria;
+    }
+
+    public void setNombrecategoria(String nombrecategoria) {
+        this.nombrecategoria = nombrecategoria;
     }
 
     public Long getId_medida() {
