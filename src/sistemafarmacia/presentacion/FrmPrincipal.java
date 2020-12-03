@@ -97,7 +97,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 mnEliminadas.setVisible(false);
                 jmLocal.setVisible(false);
                 jmIva.setVisible(false);
-                lblProveedores.setVisible(false);
+                lblProveedores.setVisible(true);
             }
         }
         this.setTitle(variables.getTitle() + TITLE + "  " + obj2.getCargo() + ": " + obj2.getNombres() + "  " + obj2.getApellidos());
