@@ -399,7 +399,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
         }
         TotalPro();
     }//GEN-LAST:event_BtnBuscarActionPerformed
-
+//Producto, cantidad, unidad
     private void btnimprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnimprimirActionPerformed
         if (Chooser1.getDate() != null || Chooser2.getDate() != null) {
             String dia = Integer.toString(Chooser1.getCalendar().get(Calendar.DAY_OF_MONTH));

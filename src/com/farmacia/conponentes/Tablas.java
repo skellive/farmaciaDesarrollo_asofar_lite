@@ -5,8 +5,6 @@
  */
 package com.farmacia.conponentes;
 
-//import com.objetos.domain.Laboratorio;
-//import com.objetos.fecha.Fecha;
 import com.farmacia.dao.Consultas;
 import com.farmacia.entities1.Cantidad_Ventas;
 import com.farmacia.entities1.Cantidad_compras;
@@ -21,7 +19,6 @@ import com.farmacia.entities1.EnvaseProducto;
 import com.farmacia.entities1.Faltantes;
 import com.farmacia.entities1.Iva;
 import com.farmacia.entities1.Laboratorio;
-import com.farmacia.entities1.ListarDetalleVentas;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.entities1.MarcaProducto;
 import com.farmacia.entities1.MedidaProducto;
@@ -29,7 +26,6 @@ import com.farmacia.entities1.Nombre_local;
 import com.farmacia.entities1.Persona;
 import com.farmacia.entities1.Precios;
 import com.farmacia.entities1.Productos_Stock;
-import com.farmacia.entities1.Punto_venta;
 import com.farmacia.entities1.Punto_venta_usuario;
 import com.farmacia.entities1.TipoProducto;
 import com.farmacia.fecha.Fecha;
@@ -42,13 +38,9 @@ import com.farmacia.join_entidades.ListarJoinProveedorNotaPedido;
 import com.farmacia.join_entidades.ListarKardex;
 import com.farmacia.join_entidades.ListarKardexReporteBase;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
-import com.farmacia.join_entidades.listarJoinProductosNotaPedidos;
-import java.awt.Color;
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.sql.Date;
 import java.text.DecimalFormat;
-import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
