@@ -46,7 +46,7 @@ public class conexion_Excel {
             int numFilas = sheet.getLastRowNum();
             for (int a = 1; a <= numFilas; a++) {
                 Row fila = sheet.getRow(a);
-                ps = con.prepareCall("{CALL ingreso_pro_excel(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");//18
+                ps = con.prepareCall("{CALL ingreso_pro_excel(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}");//20
                 ps.setString(1, String.valueOf(fila.getCell(0).getNumericCellValue()));
                 ps.setString(2, fila.getCell(1).getStringCellValue());
                 ps.setString(3, fila.getCell(2).getStringCellValue());
@@ -65,6 +65,8 @@ public class conexion_Excel {
                 ps.setDouble(16, fila.getCell(15).getNumericCellValue());
                 ps.setDouble(17, fila.getCell(16).getNumericCellValue());
                 ps.setString(18, fila.getCell(17).getStringCellValue());
+                ps.setDouble(19, fila.getCell(18).getNumericCellValue());
+                ps.setString(20, fila.getCell(19).getStringCellValue());
                 ps.execute();
                  System.out.println("Correcto");
                 
