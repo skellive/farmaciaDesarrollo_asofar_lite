@@ -205,7 +205,7 @@
                 <StringItem index="1" value="NOMBRE"/>
                 <StringItem index="2" value="TIPO"/>
                 <StringItem index="3" value="MEDIDA"/>
-                <StringItem index="4" value="ENVASE"/>
+                <StringItem index="4" value="PRESENTACI&#xd3;N"/>
                 <StringItem index="5" value="MARCA"/>
               </StringArray>
             </Property>
