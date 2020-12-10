@@ -192,7 +192,7 @@ public class Products extends javax.swing.JDialog {
                 cbxMarcaActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 160, 25));
+        jPanel1.add(cbxMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 140, 250, 25));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 27, 134));
@@ -206,7 +206,7 @@ public class Products extends javax.swing.JDialog {
                 txtDescripcionFocusLost(evt);
             }
         });
-        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 320, 30));
+        jPanel1.add(txtDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 300, 350, 25));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(0, 27, 134));
@@ -220,7 +220,7 @@ public class Products extends javax.swing.JDialog {
                 cbcCategoriaActionPerformed(evt);
             }
         });
-        jPanel1.add(cbcCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 160, 25));
+        jPanel1.add(cbcCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 60, 250, 25));
 
         btnAgregarCategoria.setBackground(new java.awt.Color(0, 27, 134));
         btnAgregarCategoria.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -231,7 +231,7 @@ public class Products extends javax.swing.JDialog {
                 btnAgregarCategoriaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 60, 90, 25));
+        jPanel1.add(btnAgregarCategoria, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 60, 90, 25));
 
         btnAgreMarca.setBackground(new java.awt.Color(0, 27, 134));
         btnAgreMarca.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -242,12 +242,12 @@ public class Products extends javax.swing.JDialog {
                 btnAgreMarcaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgreMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 140, 90, 25));
+        jPanel1.add(btnAgreMarca, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 140, 90, 25));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 27, 134));
         jLabel6.setText("PESO:");
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 25));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, 25));
 
         btnAgreEnvase.setBackground(new java.awt.Color(0, 27, 134));
         btnAgreEnvase.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -258,7 +258,7 @@ public class Products extends javax.swing.JDialog {
                 btnAgreEnvaseActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgreEnvase, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 180, 90, 25));
+        jPanel1.add(btnAgreEnvase, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 90, 25));
 
         cbxEnvase.setEditable(true);
         cbxEnvase.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -267,7 +267,7 @@ public class Products extends javax.swing.JDialog {
                 cbxEnvaseActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxEnvase, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 160, 25));
+        jPanel1.add(cbxEnvase, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 250, 25));
 
         nombre1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         nombre1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
@@ -276,12 +276,12 @@ public class Products extends javax.swing.JDialog {
                 nombre1FocusLost(evt);
             }
         });
-        jPanel1.add(nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 160, 25));
+        jPanel1.add(nombre1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 260, 350, 25));
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(0, 27, 134));
         jLabel20.setText("IVA:");
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, -1, 25));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 380, -1, 25));
 
         cbxIva.setEditable(true);
         cbxIva.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -291,12 +291,12 @@ public class Products extends javax.swing.JDialog {
                 cbxIvaActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, 105, 25));
+        jPanel1.add(cbxIva, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 380, 105, 25));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 27, 134));
         jLabel7.setText("CANT. MINIMA STOCK:");
-        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, 25));
+        jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, -1, 25));
 
         txtcantMinima.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtcantMinima.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
@@ -305,7 +305,7 @@ public class Products extends javax.swing.JDialog {
                 txtcantMinimaActionPerformed(evt);
             }
         });
-        jPanel1.add(txtcantMinima, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 340, 160, 25));
+        jPanel1.add(txtcantMinima, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 70, 25));
 
         ingresoDePrecio.setBackground(new java.awt.Color(0, 27, 134));
         ingresoDePrecio.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -316,12 +316,12 @@ public class Products extends javax.swing.JDialog {
                 ingresoDePrecioActionPerformed(evt);
             }
         });
-        jPanel1.add(ingresoDePrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 340, 138, 25));
+        jPanel1.add(ingresoDePrecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 380, 138, 25));
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 27, 134));
         jLabel10.setText(" MEDIDA:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 220, -1, 25));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 25));
 
         cbxMedida.setEditable(true);
         cbxMedida.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
@@ -330,7 +330,7 @@ public class Products extends javax.swing.JDialog {
                 cbxMedidaActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 220, 160, 25));
+        jPanel1.add(cbxMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 220, 250, 25));
 
         btnAgregarMedida.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
         btnAgregarMedida.setText("+");
@@ -339,7 +339,7 @@ public class Products extends javax.swing.JDialog {
                 btnAgregarMedidaActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 40, 30));
+        jPanel1.add(btnAgregarMedida, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 40, 30));
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 27, 134));
@@ -347,7 +347,7 @@ public class Products extends javax.swing.JDialog {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 25));
 
         cbxReceta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SIN RECETA ", "CON RECETA" }));
-        jPanel1.add(cbxReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, -1, -1));
+        jPanel1.add(cbxReceta, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 380, -1, -1));
 
         txtPeso1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtPeso1.setText("0");
@@ -365,12 +365,12 @@ public class Products extends javax.swing.JDialog {
                 txtPeso1KeyTyped(evt);
             }
         });
-        jPanel1.add(txtPeso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 220, 72, 25));
+        jPanel1.add(txtPeso1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 380, 60, 25));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(0, 27, 134));
         jLabel11.setText("UNIDADES:");
-        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, -1, 25));
+        jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, -1, 25));
 
         txtUnidades.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtUnidades.setText("1");
@@ -388,7 +388,7 @@ public class Products extends javax.swing.JDialog {
                 txtUnidadesKeyTyped(evt);
             }
         });
-        jPanel1.add(txtUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 220, 80, 25));
+        jPanel1.add(txtUnidades, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 80, 25));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 27, 134));
@@ -424,7 +424,7 @@ public class Products extends javax.swing.JDialog {
                 cbxTiposActionPerformed(evt);
             }
         });
-        jPanel1.add(cbxTipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 160, 25));
+        jPanel1.add(cbxTipos, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, 250, 25));
 
         btnAgregarTipo.setBackground(new java.awt.Color(0, 27, 134));
         btnAgregarTipo.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
@@ -435,7 +435,7 @@ public class Products extends javax.swing.JDialog {
                 btnAgregarTipoActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAgregarTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 100, 90, 25));
+        jPanel1.add(btnAgregarTipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 100, 90, 25));
 
         usuario.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         usuario.setForeground(new java.awt.Color(0, 27, 134));
@@ -505,26 +505,25 @@ public class Products extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 655, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(id_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel12)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(id_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
+                .addComponent(usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtFechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 626, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(254, 254, 254)
+                .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -540,10 +539,10 @@ public class Products extends javax.swing.JDialog {
                         .addComponent(usuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(id_usuario, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -554,7 +553,7 @@ public class Products extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -614,7 +613,7 @@ public class Products extends javax.swing.JDialog {
                 try {
                     p2.setPeso(Double.parseDouble(txtPeso1.getText()));
                 } catch (Exception e) {
-                    p2.setPeso(Double.parseDouble("0"));
+                    p2.setPeso(Double.parseDouble("0.00"));
                 }
                 p2.setPeso(Double.parseDouble(txtPeso1.getText()));
                 p2.setId_tipo(id_tipo);

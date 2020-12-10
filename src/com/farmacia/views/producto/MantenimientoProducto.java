@@ -143,7 +143,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         });
 
         tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "ENVASE", "MARCA" }));
+        tipofiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CODIGO", "NOMBRE", "TIPO", "MEDIDA", "PRESENTACIÓN", "MARCA" }));
         tipofiltro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tipofiltroActionPerformed(evt);
