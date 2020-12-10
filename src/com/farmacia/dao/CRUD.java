@@ -4193,6 +4193,7 @@ public class CRUD {
             try {
                 conect.rollback();
                 e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al ingresar la compra, vuelva a realizar, caso contrario, contactar con servicio tecnico.");
             } catch (SQLException ex) {
                 Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
             }
