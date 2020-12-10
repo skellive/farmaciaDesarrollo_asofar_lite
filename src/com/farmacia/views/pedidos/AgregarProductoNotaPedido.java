@@ -36,6 +36,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         setUndecorated(true);
         initComponents();
         this.setLocationRelativeTo(null);
+        jchecBlister.setVisible(false);
 
     }
 
@@ -50,10 +51,19 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         llenarFormulario(obj1);
+        
+        jchecBlister.setVisible(false);
         txtBono.setEnabled(false);
         txtporcentajeDescuento.setEnabled(false);
         txtcantidadpro.setEnabled(false);
         txtunidadpro.setEnabled(false);
+        if(txtEnvase3.getText().equals("CAJA")){
+            jchecBlister.setVisible(true);
+            
+        }
+        if(txtEnvase3.getText().equals("FUNDA")){
+            jchecBlister.setVisible(true);
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -92,7 +102,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         lblCerrar = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         txtunidadpro = new javax.swing.JTextField();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jchecBlister = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -347,9 +357,9 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
             }
         });
 
-        jCheckBox1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(0, 27, 134));
-        jCheckBox1.setText("BLISTER");
+        jchecBlister.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jchecBlister.setForeground(new java.awt.Color(0, 27, 134));
+        jchecBlister.setText("BLISTER");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -383,7 +393,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addComponent(txtunidadpro, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(jCheckBox1))
+                                .addComponent(jchecBlister))
                             .addComponent(Medida, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(producto, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(marca, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -456,7 +466,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtunidadpro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jCheckBox1))
+                    .addComponent(jchecBlister))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -521,6 +531,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         String und;
         String porc = null;
         String bono;
+        String check;
         // objf = new joinProductoDetallesFaltantes();
         if (txtcantidadpro.getText() == null || "".equals(txtcantidadpro.getText())) {
             JOptionPane.showMessageDialog(null, "Ingrese Cantidad");
@@ -533,6 +544,26 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
             }else{
                 objf.setUnidad(0);
             }
+            
+                
+                if(jchecBlister.isEnabled()){
+                check = "La compra de este producto es efectuado para Blister";
+                objf.setObservacion(check);
+            }else{
+                check = null;
+                objf.setObservacion(check);
+            }
+            
+            
+            
+                if(jchecBlister.isEnabled()){
+                check = "La compra de este producto es efectuado para Blister";
+                objf.setObservacion(check);
+            }else{
+                check = null;
+                objf.setObservacion(check);
+            }
+            
             
             setVisible(false);
         }
@@ -547,10 +578,12 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         objf.setPorcentaje_descuento(b1);
         if (!"".equals(txtBono.getText())) {
             bono = txtBono.getText();
+            objf.setBono(Integer.parseInt(bono));
         } else {
             bono = "0";
+            objf.setBono(Integer.parseInt(bono));
         }
-        objf.setBono(Integer.parseInt(bono));
+        
     }//GEN-LAST:event_btnAnadirActionPerformed
     
     public joinProductoParaNotaPedido getObjf() { //joinProductoParaNotaPedido
@@ -730,7 +763,6 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     private javax.swing.JButton btnAnadir;
     private javax.swing.JTextField codigo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel14;
@@ -747,6 +779,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JCheckBox jchecBlister;
     private javax.swing.JLabel lblCerrar;
     private javax.swing.JTextField marca;
     private javax.swing.JTextField producto;

@@ -859,6 +859,8 @@ public static String FechaActual() {
 
               for (int i = 0; i < lista3.size(); i++) {
                   Detalle_compra obj = new Detalle_compra();
+                  System.out.println(" obs: "+ lista3.get(i).getObservacion());
+                  String observa = String.valueOf(lista3.get(i).getObservacion());
                   obj.setId_producto(lista3.get(i).getId_producto());
                   obj.setId_cabecera_compra(Long.valueOf(id_cab));
                   obj.setId_precio(lista3.get(i).getId_precio());
@@ -869,6 +871,7 @@ public static String FechaActual() {
                   obj.setIva(lista3.get(i).getIva());
                   obj.setTotal(lista3.get(i).getTotal());
                   obj.setBono(lista3.get(i).getBono());
+                  obj.setObservacion(observa);
                   crud.insertarDetalleProductoCompra(obj);
               }
               JOptionPane.showMessageDialog(null, " Guardado con Exito ");

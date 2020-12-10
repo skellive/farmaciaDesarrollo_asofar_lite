@@ -35,11 +35,11 @@ public class JoinListarDetalleNotaPedido {
     private BigDecimal descuento;
     private BigDecimal iva;
     private BigDecimal total;
-
+    private String observacion;
     public JoinListarDetalleNotaPedido() {
     }
 
-    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long codigo_barra, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_Presentacion, String Presentacion, Long id_medida, String medida, Long id_cabecera_nota_pedido, Integer cantidad, Long cantidad_unidad, Integer unidad,Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total) {
+    public JoinListarDetalleNotaPedido(Long id_detalle_nota_pedido, Long codigo_barra, Long id_precio, Long id_producto, String producto, Long id_marca, String marca, Long id_tipo, String tipo, Long id_Presentacion, String Presentacion, Long id_medida, String medida, Long id_cabecera_nota_pedido, Integer cantidad, Long cantidad_unidad, Integer unidad,Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, String observacion) {
         this.id_detalle_nota_pedido = id_detalle_nota_pedido;
         this.codigo_barra = codigo_barra;
         this.id_precio = id_precio;
@@ -62,6 +62,8 @@ public class JoinListarDetalleNotaPedido {
         this.descuento = descuento;
         this.iva = iva;
         this.total = total;
+        this.observacion = observacion;
+        
     }
 
     public Long getId_detalle_nota_pedido() {
@@ -239,6 +241,16 @@ public class JoinListarDetalleNotaPedido {
     public void setTotal(BigDecimal total) {
         this.total = total;
     }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
+    
 
 
 

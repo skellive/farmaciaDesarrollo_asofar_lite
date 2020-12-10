@@ -1932,14 +1932,14 @@ public class CRUD {
             int cantidad,
             int unidad,
             int sucursal,
-            String fecha, int unidadpro) {
+            String fecha, int unidadpro, String observacion) {
         Conexion c = new Conexion();
         Connection con = c.conectar();
 
         try {
             CallableStatement prIngRap;
 
-            prIngRap = con.prepareCall("{call sp_ingreso_rapido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }");
+            prIngRap = con.prepareCall("{call sp_ingreso_rapido(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) }");
             prIngRap.setInt(1, id_prov);
             prIngRap.setInt(2, id_producto);
             prIngRap.setString(3, plazo);
@@ -1954,6 +1954,7 @@ public class CRUD {
             prIngRap.setInt(12, sucursal);
             prIngRap.setString(13, fecha);
             prIngRap.setInt(14, unidadpro);
+            prIngRap.setString(15, observacion);
             prIngRap.execute();
             System.out.println("Ingreso rapido correcto");
         } catch (SQLException ex) {
@@ -2875,6 +2876,7 @@ public class CRUD {
             }
             conect.close();
         } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al realizar la consulta. Error: "+ex);
             Logger.getLogger(CRUD.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
@@ -3786,6 +3788,7 @@ public class CRUD {
             pro.setBigDecimal(7, dnp.getIva());
             pro.setBigDecimal(8, dnp.getTotal());
             pro.setDouble(9, dnp.getBono());
+            pro.setString(10, dnp.getObservacion());
             pro.registerOutParameter("valor", Types.VARCHAR);
             pro.executeUpdate();
             //pro.execute();
@@ -4164,7 +4167,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call insertarDetalleParaComprar(?,?,?,?,?,?,?,?,?,?) }");
+                    "{ call insertarDetalleParaComprar(?,?,?,?,?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_producto());
             prodProAlm.setLong(2, obj.getId_cabecera_compra());
             prodProAlm.setLong(3, obj.getId_precio());
@@ -4175,6 +4178,7 @@ public class CRUD {
             prodProAlm.setBigDecimal(8, obj.getIva());
             prodProAlm.setBigDecimal(9, obj.getTotal());
             prodProAlm.setLong(10, obj.getBono());
+            prodProAlm.setString(11, obj.getObservacion());
 //            prodProAlm.registerOutParameter("valor1", Types.VARCHAR);
             prodProAlm.executeUpdate();
 //            valor = prodProAlm.getString("valor1");

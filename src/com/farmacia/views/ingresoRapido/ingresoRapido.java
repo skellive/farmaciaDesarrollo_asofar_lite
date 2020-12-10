@@ -899,7 +899,7 @@ public class ingresoRapido extends javax.swing.JFrame {
                                 Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
                                 Integer.parseInt(0 + ""),
                                 2,
-                                fechaCompleta, Integer.parseInt(tbaListaFaltantes.getValueAt(i,8).toString()));
+                                fechaCompleta, Integer.parseInt(tbaListaFaltantes.getValueAt(i,8).toString()), listaPNP1.get(i).getObservacion().toString());
 
                     }
                     JOptionPane.showMessageDialog(null, " Guardado con Exito ");

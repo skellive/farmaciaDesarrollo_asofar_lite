@@ -38,6 +38,7 @@ public class joinProductoParaNotaPedido {
     private BigDecimal valor_descuento;
     private BigDecimal PrecioBono;
     private BigDecimal Precioiva;
+    private String observacion;
 
     public joinProductoParaNotaPedido() {
     }
@@ -50,7 +51,7 @@ public class joinProductoParaNotaPedido {
         this.id_categoria = id_categoria;
     }
 
-    public joinProductoParaNotaPedido(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Integer unidad, Long id_categoria, String nombrecategoria, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios, String iva, Integer bono, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento, BigDecimal PrecioBono, BigDecimal Precioiva) {
+    public joinProductoParaNotaPedido(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Integer unidad, Long id_categoria, String nombrecategoria, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios, String iva, Integer bono, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento, BigDecimal PrecioBono, BigDecimal Precioiva, String observacion) {
         this.id_detalle_faltantes = id_detalle_faltantes;
         this.id_tipo = id_tipo;
         this.nombre_tipo = nombre_tipo;
@@ -76,6 +77,8 @@ public class joinProductoParaNotaPedido {
         this.valor_descuento = valor_descuento;
         this.PrecioBono = PrecioBono;
         this.Precioiva = Precioiva;
+        this.observacion = observacion;
+        
     }
 
     public Long getId_detalle_faltantes() {
@@ -269,6 +272,15 @@ public class joinProductoParaNotaPedido {
     public void setPrecioiva(BigDecimal Precioiva) {
         this.Precioiva = Precioiva;
     }
+
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
 
     
 }

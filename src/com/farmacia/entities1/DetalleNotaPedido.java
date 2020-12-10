@@ -25,12 +25,13 @@ public class DetalleNotaPedido {
     private Integer cantAnt;
     private Integer idCompra;
     private String fecha_caducidad;
+    private String observacion;
     
 
     public DetalleNotaPedido() {
     }
 
-    public DetalleNotaPedido(Long id_detalle_nota_pedidos, Long id_precio, Long id_cabecera_nota_pedidos, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer cantAnt, Integer idCompra, String fecha_caducidad) {
+    public DetalleNotaPedido(Long id_detalle_nota_pedidos, Long id_precio, Long id_cabecera_nota_pedidos, Integer cantidad, Integer bono, BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer cantAnt, Integer idCompra, String fecha_caducidad, String observacion) {
         this.id_detalle_nota_pedidos = id_detalle_nota_pedidos;
         this.id_precio = id_precio;
         this.id_cabecera_nota_pedidos = id_cabecera_nota_pedidos;
@@ -43,6 +44,7 @@ public class DetalleNotaPedido {
         this.cantAnt = cantAnt;
         this.idCompra = idCompra;
         this.fecha_caducidad = fecha_caducidad;
+        this.observacion = observacion;
     }
 
     public Long getId_detalle_nota_pedidos() {
@@ -141,4 +143,13 @@ public class DetalleNotaPedido {
         this.fecha_caducidad = fecha_caducidad;
     }
 
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
+    
 }

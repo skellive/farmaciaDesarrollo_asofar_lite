@@ -23,11 +23,12 @@ public class Detalle_compra {
     private BigDecimal iva;
     private BigDecimal total;
     private Integer bono;
+    private String observacion;
 
     public Detalle_compra() {
     }
 
-    public Detalle_compra(Long id_producto,Long id_detalle_compra, Long id_cabecera_compra, Long id_precio, Integer cantidad, Integer unidad,BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer bono) {
+    public Detalle_compra(Long id_producto,Long id_detalle_compra, Long id_cabecera_compra, Long id_precio, Integer cantidad, Integer unidad,BigDecimal precio, BigDecimal descuento, BigDecimal iva, BigDecimal total, Integer bono, String observacion) {
         this.id_producto = id_producto;
         this.id_detalle_compra = id_detalle_compra;
         this.id_cabecera_compra = id_cabecera_compra;
@@ -39,6 +40,7 @@ public class Detalle_compra {
         this.iva = iva;
         this.total = total;
         this.bono = bono;
+        this.observacion = observacion;
     }
 
     public Long getId_producto() {
@@ -129,6 +131,15 @@ public class Detalle_compra {
         this.bono = bono;
     }
 
+    public String getObservacion() {
+        return observacion;
+    }
+
+    public void setObservacion(String observacion) {
+        this.observacion = observacion;
+    }
+
+    
     
     
     
