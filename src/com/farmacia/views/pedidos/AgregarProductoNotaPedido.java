@@ -64,6 +64,8 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         if(txtEnvase3.getText().equals("FUNDA")){
             jchecBlister.setVisible(true);
         }
+        
+        
     }
 
     @SuppressWarnings("unchecked")
@@ -360,6 +362,11 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         jchecBlister.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jchecBlister.setForeground(new java.awt.Color(0, 27, 134));
         jchecBlister.setText("BLISTER");
+        jchecBlister.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jchecBlisterActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -547,6 +554,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
             
                 
                 if(jchecBlister.isEnabled()){
+                    
                 check = "La compra de este producto es efectuado para Blister";
                 objf.setObservacion(check);
             }else{
@@ -716,6 +724,15 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     private void txtunidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtunidadproKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtunidadproKeyTyped
+
+    private void jchecBlisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchecBlisterActionPerformed
+      if(jchecBlister.isSelected()){
+            txtcantidadpro.setText("0");
+            txtcantidadpro.setEnabled(false);
+        }else{
+            txtcantidadpro.setEnabled(true);
+        }
+    }//GEN-LAST:event_jchecBlisterActionPerformed
 
     /**
      * @param args the command line arguments
