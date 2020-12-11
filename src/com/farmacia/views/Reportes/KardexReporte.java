@@ -14,10 +14,14 @@ import java.awt.Point;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.GregorianCalendar;
+import java.util.Locale;
+import java.util.TimeZone;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -63,7 +67,10 @@ public class KardexReporte extends javax.swing.JDialog {
     ListarKardex objetoInv = null;
     Listar_usuario objUsu;
     int dia, mes, ano;
-    Calendar c1 = Calendar.getInstance();
+//    Calendar c1 = Calendar.getInstance();
+    Calendar c1 = new GregorianCalendar();
+
+//    Date fecha = new Date();
 
     public KardexReporte(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -387,7 +394,7 @@ public class KardexReporte extends javax.swing.JDialog {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\asofarLite.png");
+                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -399,7 +406,7 @@ public class KardexReporte extends javax.swing.JDialog {
                 anchor.setCol1(0);
                 anchor.setRow1(1);
                 Picture pict = draw.createPicture(anchor, imgIndex);
-                pict.resize(2, 5);
+                pict.resize(3, 5);
 
                 CellStyle tituloEstilo = book.createCellStyle();
                 tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
@@ -411,7 +418,7 @@ public class KardexReporte extends javax.swing.JDialog {
                 tituloEstilo.setFont(fuenteTitulo);
 
                 Row filaTitulo = sheet.createRow(3);
-                Cell celdaTitulo = filaTitulo.createCell(2);
+                Cell celdaTitulo = filaTitulo.createCell(3);
                 celdaTitulo.setCellStyle(tituloEstilo);
                 celdaTitulo.setCellValue("Reporte de Inventario");
 
@@ -512,7 +519,7 @@ public class KardexReporte extends javax.swing.JDialog {
                 sheet.setZoom(100);
 
                 dia = (c1.get(Calendar.DATE));
-                mes = (c1.get(Calendar.MONTH));
+                mes = (c1.get(Calendar.MONTH)) + 1;
                 ano = (c1.get(Calendar.YEAR));
                 System.out.println(dia + "-" + mes + "-" + ano);
 

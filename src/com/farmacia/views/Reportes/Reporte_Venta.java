@@ -69,7 +69,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
     JoinListarCabeceraVenta objeto = null;
     Calendar c1 = Calendar.getInstance();
     int dia = (c1.get(Calendar.DATE));
-    int mes = (c1.get(Calendar.MONTH));
+    int mes = (c1.get(Calendar.MONTH)) + 1;
     int ano = (c1.get(Calendar.YEAR));
 
     /**
@@ -554,7 +554,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\asofarLite.png");
+                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -566,7 +566,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 anchor.setCol1(0);
                 anchor.setRow1(1);
                 Picture pict = draw.createPicture(anchor, imgIndex);
-                pict.resize(2, 5);
+                pict.resize(3, 5);
 
                 CellStyle tituloEstilo = book.createCellStyle();
                 tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
@@ -578,7 +578,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 tituloEstilo.setFont(fuenteTitulo);
 
                 Row filaTitulo = sheet.createRow(3);
-                Cell celdaTitulo = filaTitulo.createCell(2);
+                Cell celdaTitulo = filaTitulo.createCell(3);
                 celdaTitulo.setCellStyle(tituloEstilo);
                 celdaTitulo.setCellValue("Reporte de Ventas");
 
@@ -673,7 +673,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 sheet.setZoom(120);
 
                 String dir = System.getProperty("user.home");
-                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteVenta\\reporte" + dia + "-" + mes + "-" + ano + ".xlsx");
+                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteVenta\\reporteVenta" + dia + "-" + mes + "-" + ano + ".xlsx");
                 book.write(fileout);
                 fileout.close();
 

@@ -752,7 +752,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\asofarLite.png");
+                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -764,7 +764,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 anchor.setCol1(0);
                 anchor.setRow1(1);
                 Picture pict = draw.createPicture(anchor, imgIndex);
-                pict.resize(2, 5);
+                pict.resize(3, 5);
 
                 CellStyle tituloEstilo = book.createCellStyle();
                 tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
@@ -776,7 +776,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 tituloEstilo.setFont(fuenteTitulo);
 
                 Row filaTitulo = sheet.createRow(3);
-                Cell celdaTitulo = filaTitulo.createCell(2);
+                Cell celdaTitulo = filaTitulo.createCell(3);
                 celdaTitulo.setCellStyle(tituloEstilo);
                 celdaTitulo.setCellValue("Reporte de Compras");
 
@@ -863,7 +863,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 sheet.setZoom(120);
 
                 dia = (c1.get(Calendar.DATE));
-                mes = (c1.get(Calendar.MONTH));
+                mes = (c1.get(Calendar.MONTH)) + 1;
                 ano = (c1.get(Calendar.YEAR));
                 System.out.println(dia + "-" + mes + "-" + ano);
 

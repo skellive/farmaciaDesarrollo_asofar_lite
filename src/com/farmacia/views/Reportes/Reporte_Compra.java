@@ -68,7 +68,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
     JoinListarNotaPedidosCabecera objeto = null;
     Calendar c1 = Calendar.getInstance();
     int dia = (c1.get(Calendar.DATE));
-    int mes = (c1.get(Calendar.MONTH));
+    int mes = (c1.get(Calendar.MONTH)) + 1;
     int ano = (c1.get(Calendar.YEAR));
 
     /**
@@ -518,7 +518,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\asofarLite.png");
+                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -631,7 +631,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
                 sheet.setZoom(120);
 
                 //System.out.println(dir);
-                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteCompra\\reporte" + dia + "-" + mes + "-" + ano + ".xlsx");
+                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteCompra\\reporteCompra" + dia + "-" + mes + "-" + ano + ".xlsx");
                 book.write(fileout);
                 fileout.close();
 
