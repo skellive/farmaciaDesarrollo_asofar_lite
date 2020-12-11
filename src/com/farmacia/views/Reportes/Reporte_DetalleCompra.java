@@ -782,7 +782,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
 
                 sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 1));
 
-                String[] cabecera = new String[]{"CODIGO", "PRODUCTO", "MARCA", "CANTIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
+                String[] cabecera = new String[]{"ID", "CODIGO DE BARRA", "MARCA", "TIPO", "PRODUCTO", "PRESENTACION", "MEDIDA","CANTIDAD", "UNIDAD", "PRECIO", "DESCUENTO", "IVA", "TOTAL"};
 
                 CellStyle headerStyle = book.createCellStyle();
                 headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
@@ -812,7 +812,8 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 ResultSet rs;
                 java.sql.Connection conn = con.conectar();
 
-                String id_cab = txt_Numero.getText().toString();;
+                String id_cab = txt_Numero.getText().toString();
+                int id = Integer.valueOf(txt_Numero.getText().toString());
                 int numFilaDatos = 7;
 
                 CellStyle datosEstilo = book.createCellStyle();
@@ -820,19 +821,8 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 datosEstilo.setBorderLeft(BorderStyle.THIN);
                 datosEstilo.setBorderRight(BorderStyle.THIN);
                 datosEstilo.setBorderBottom(BorderStyle.THIN);
-
-                ps = conn.prepareStatement("SELECT dnp.`id_detalle_nota_pedidos`, concat(t.`nombre`, ' ', pro.`nombre`, ' en ',en.`nombre`, ' en ',me.`nombre_medida`) AS producto,  m.`nombre` AS marca,\n"
-                        + "                        dnp.`cantidad`,dnp.`precio`,dnp.`descuento`,dnp.`iva`,dnp.`total`\n"
-                        + "                        FROM `detalle_nota_pedidos` dnp\n"
-                        + "                        JOIN `cabecera_nota_pedidos` cnp ON cnp.`id_cabecera_nota_pedidos`= dnp.`id_cabecera_nota_pedidos`\n"
-                        + "                        JOIN `precios` pre ON pre.`id_precio` = dnp.`id_precio`\n"
-                        + "                        JOIN `productos` pro ON pro.`id_productos`= pre.`id_producto`\n"
-                        + "                        JOIN `marcas` m ON m.`id_marcas` = pro.`id_marcas`\n"
-                        + "                        JOIN `tipo` t ON t.`id_tipo` = pro.`id_tipo`\n"
-                        + "                        JOIN `presentaciones` en ON en.`idPresentaciones`= pro.`id_presentacion`\n"
-                        + "                        JOIN `medidas` me ON me.`id_medidas`= pro.`id_medidas`\n"
-                        + "                        WHERE dnp.`id_cabecera_nota_pedidos`= " + id_cab + "\n"
-                        + "                        ORDER BY dnp.`id_cabecera_nota_pedidos`");
+                ps = conn.prepareStatement("call reporteExcelDetalleCompra(?)");
+                ps.setInt(1, id);
                 rs = ps.executeQuery();
 
                 int numCol = rs.getMetaData().getColumnCount();
@@ -865,6 +855,10 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
                 sheet.autoSizeColumn(5);
                 sheet.autoSizeColumn(6);
                 sheet.autoSizeColumn(7);
+                sheet.autoSizeColumn(8);
+                sheet.autoSizeColumn(9);
+                sheet.autoSizeColumn(10);
+                sheet.autoSizeColumn(11);
 
                 sheet.setZoom(120);
 
@@ -875,7 +869,7 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
 
                 String dir = System.getProperty("user.home");
                 //dir + "\\Documents\\
-                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteDetalleCompra\\reporte"+id_cab+"("+dia+"-"+mes+"-"+ano+").xlsx");
+                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteDetalleCompra\\reporte" + id_cab + "(" + dia + "-" + mes + "-" + ano + ").xlsx");
                 book.write(fileout);
                 fileout.close();
 
@@ -888,7 +882,6 @@ public class Reporte_DetalleCompra extends javax.swing.JDialog {
             System.out.println(ex);
         }
     }
-
 
     /**
      * @param args the command line arguments

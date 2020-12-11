@@ -2,6 +2,7 @@ package com.farmacia.views.Reportes;
 
 import com.farmacia.conponentes.Tablas;
 import com.farmacia.dao.CRUD;
+import com.farmacia.dao.Conexion;
 import com.farmacia.entities1.ClaseReporte;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.join_entidades.ListarKardex;
@@ -10,10 +11,17 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
@@ -21,6 +29,24 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.ClientAnchor;
+import org.apache.poi.ss.usermodel.CreationHelper;
+import org.apache.poi.ss.usermodel.Drawing;
+import org.apache.poi.ss.usermodel.FillPatternType;
+import org.apache.poi.ss.usermodel.Font;
+import org.apache.poi.ss.usermodel.HorizontalAlignment;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.ss.usermodel.Picture;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.VerticalAlignment;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.util.IOUtils;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class KardexReporte extends javax.swing.JDialog {
 
@@ -36,6 +62,8 @@ public class KardexReporte extends javax.swing.JDialog {
     ListarKardex objet = null;
     ListarKardex objetoInv = null;
     Listar_usuario objUsu;
+    int dia, mes, ano;
+    Calendar c1 = Calendar.getInstance();
 
     public KardexReporte(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -106,6 +134,7 @@ public class KardexReporte extends javax.swing.JDialog {
         txt_filtro_inventario = new javax.swing.JTextField();
         btn_buscar = new javax.swing.JButton();
         tipofiltro = new javax.swing.JComboBox<String>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -212,6 +241,13 @@ public class KardexReporte extends javax.swing.JDialog {
         tipofiltro.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         tipofiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "C.BARRAS", "NOMBRE", "PRESENTACIÓN", "TIPO" }));
 
+        jButton1.setText("Excel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -223,6 +259,8 @@ public class KardexReporte extends javax.swing.JDialog {
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(134, 134, 134)
                 .addComponent(lblImprimir)
                 .addGap(482, 482, 482))
             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -245,9 +283,15 @@ public class KardexReporte extends javax.swing.JDialog {
                     .addComponent(tipofiltro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblImprimir)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(lblImprimir)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1)
+                        .addGap(19, 19, 19))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -331,6 +375,182 @@ public class KardexReporte extends javax.swing.JDialog {
         Tablas.ListarKardexReporte(listaStock, tabla_stock);
     }//GEN-LAST:event_btn_buscarActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        reporte();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void reporte() {
+
+        int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
+
+        try {
+            if (r == JOptionPane.YES_OPTION) {
+                Workbook book = new XSSFWorkbook();
+                Sheet sheet = book.createSheet("REPORTE");
+                InputStream is = new FileInputStream("src\\img\\asofarLite.png");
+                byte[] bytes = IOUtils.toByteArray(is);
+                int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
+                is.close();
+
+                CreationHelper help = book.getCreationHelper();
+                Drawing draw = sheet.createDrawingPatriarch();
+
+                ClientAnchor anchor = help.createClientAnchor();
+                anchor.setCol1(0);
+                anchor.setRow1(1);
+                Picture pict = draw.createPicture(anchor, imgIndex);
+                pict.resize(2, 5);
+
+                CellStyle tituloEstilo = book.createCellStyle();
+                tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
+                tituloEstilo.setVerticalAlignment(VerticalAlignment.CENTER);
+                Font fuenteTitulo = book.createFont();
+                fuenteTitulo.setFontName("Arial");
+                fuenteTitulo.setBold(true);
+                fuenteTitulo.setFontHeightInPoints((short) 14);
+                tituloEstilo.setFont(fuenteTitulo);
+
+                Row filaTitulo = sheet.createRow(3);
+                Cell celdaTitulo = filaTitulo.createCell(2);
+                celdaTitulo.setCellStyle(tituloEstilo);
+                celdaTitulo.setCellValue("Reporte de Inventario");
+
+                sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 1));
+
+                String[] cabecera = new String[]{"ID", "CODIGO DE BARRA", "PRODUCTO", "TIPO", "PRESENTACION", "CANTIDAD", "UNIDADES"};
+
+                CellStyle headerStyle = book.createCellStyle();
+                headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+                headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
+                headerStyle.setBorderBottom(BorderStyle.THIN);
+                headerStyle.setBorderLeft(BorderStyle.THIN);
+                headerStyle.setBorderRight(BorderStyle.THIN);
+                headerStyle.setBorderBottom(BorderStyle.THIN);
+
+                Font font = book.createFont();
+                font.setFontName("Arial");
+                font.setBold(true);
+                font.setColor(IndexedColors.WHITE.getIndex());
+                font.setFontHeightInPoints((short) 12);
+                headerStyle.setFont(font);
+
+                Row filaEncabezados = sheet.createRow(6);
+
+                for (int i = 0; i < cabecera.length; i++) {
+                    Cell celdaEnzabezado = filaEncabezados.createCell(i);
+                    celdaEnzabezado.setCellStyle(headerStyle);
+                    celdaEnzabezado.setCellValue(cabecera[i]);
+                }
+
+                Conexion con = new Conexion();
+                PreparedStatement ps;
+                ResultSet rs;
+                java.sql.Connection conn = con.conectar();
+
+//                String id_cab = txt_Numero.getText().toString();
+                int numFilaDatos = 7;
+
+                CellStyle datosEstilo = book.createCellStyle();
+                datosEstilo.setBorderBottom(BorderStyle.THIN);
+                datosEstilo.setBorderLeft(BorderStyle.THIN);
+                datosEstilo.setBorderRight(BorderStyle.THIN);
+                datosEstilo.setBorderBottom(BorderStyle.THIN);
+
+                ps = conn.prepareStatement("call reporteExcelInventario()");
+                String f = txt_filtro_inventario.getText().toString();
+                int pos = tipofiltro.getSelectedIndex();
+
+                if ("".equals(f) || f.isEmpty()) {
+                    ps = conn.prepareStatement("call reporteExcelInventario()");
+                } else {
+                    if (pos == 0) {
+                        ps = conn.prepareStatement("call reporteExcelInventarioFiltro(" + 1 + ", '%" + f + "%')");
+                    }
+                    if (pos == 1) {
+                        ps = conn.prepareStatement("call reporteExcelInventarioFiltro(" + 2 + ", '%" + f + "%')");
+                    }
+                    if (pos == 2) {
+                        ps = conn.prepareStatement("call reporteExcelInventarioFiltro(" + 3 + ", '%" + f + "%')");
+                    }
+                    if (pos == 3) {
+                        ps = conn.prepareStatement("call reporteExcelInventarioFiltro(" + 4 + ", '%" + f + "%')");
+                    }
+                }
+                rs = ps.executeQuery();
+
+                int numCol = rs.getMetaData().getColumnCount();
+
+                while (rs.next()) {
+                    Row filaDatos = sheet.createRow(numFilaDatos);
+
+                    for (int a = 0; a < numCol; a++) {
+
+                        Cell CeldaDatos = filaDatos.createCell(a);
+                        CeldaDatos.setCellStyle(datosEstilo);
+
+                        if (a == 0) {
+                            CeldaDatos.setCellValue(rs.getInt(a + 1));
+                        } else {
+                            CeldaDatos.setCellValue(rs.getString(a + 1));
+                        }
+                    }
+
+                    numFilaDatos++;
+
+                }
+
+                conn.close();
+                sheet.autoSizeColumn(0);
+                sheet.autoSizeColumn(1);
+                sheet.autoSizeColumn(2);
+                sheet.autoSizeColumn(3);
+                sheet.autoSizeColumn(4);
+                sheet.autoSizeColumn(5);
+                sheet.autoSizeColumn(6);
+                sheet.autoSizeColumn(7);
+
+                sheet.setZoom(100);
+
+                dia = (c1.get(Calendar.DATE));
+                mes = (c1.get(Calendar.MONTH));
+                ano = (c1.get(Calendar.YEAR));
+                System.out.println(dia + "-" + mes + "-" + ano);
+
+                String dir = System.getProperty("user.home");
+                String direc = "";
+                //dir + "\\Documents\\
+
+                if ("".equals(f) || f.isEmpty()) {
+                    direc = "\\Documents\\reporteExcel\\reporteInventario\\reporte(" + dia + "-" + mes + "-" + ano + ").xlsx";
+                } else {
+                    if (pos == 0) {
+                        direc = "\\Documents\\reporteExcel\\reporteInventario\\reporteCodBarra(" + dia + "-" + mes + "-" + ano + ").xlsx";
+                    }
+                    if (pos == 1) {
+                        direc = "\\Documents\\reporteExcel\\reporteInventario\\reporteNombre(" + dia + "-" + mes + "-" + ano + ").xlsx";
+                    }
+                    if (pos == 2) {
+                        direc = "\\Documents\\reporteExcel\\reporteInventario\\reportePresentacion(" + dia + "-" + mes + "-" + ano + ").xlsx";
+                    }
+                    if (pos == 3) {
+                        direc = "\\Documents\\reporteExcel\\reporteInventario\\reporteTipo(" + dia + "-" + mes + "-" + ano + ").xlsx";
+                    }
+                }
+
+                FileOutputStream fileout = new FileOutputStream(dir + direc);
+                book.write(fileout);
+                fileout.close();
+
+                JOptionPane.showMessageDialog(null, "Generado con exito");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error al generar el reporte");
+            }
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, ex);
+            System.out.println(ex);
+        }
+    }
+
     /**
      * @param args the command line arguments
      */
@@ -378,6 +598,7 @@ public class KardexReporte extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_buscar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
