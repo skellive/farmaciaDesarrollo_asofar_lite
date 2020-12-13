@@ -436,6 +436,7 @@ public class EntidadesMappers {
             obj.setId_producto(rs.getLong("id_producto"));
             obj.setPrecio_base(rs.getDouble("precio_base"));
             obj.setPrecio_compra(rs.getDouble("precio_compra"));
+       //     obj.setCompra_unidad(rs.getDouble("compra_unidad"));
             obj.setPrecio_venta(rs.getDouble("precio_venta"));
             obj.setVenta_unidad(rs.getDouble("venta_unidad"));//venta_unidad
             obj.setEstado(rs.getString("estado"));

@@ -14,6 +14,7 @@ public class Precios {
     private Long id_producto;
     private Double precio_base;
     private Double precio_compra;
+    private Double compra_unidad;
     private Double precio_venta;
     private Double venta_unidad;
     private String estado;
@@ -26,11 +27,12 @@ public class Precios {
     public Precios() {
     }
 
-    public Precios(Long id_precio, Long id_producto, Double precio_base, Double precio_compra, Double precio_venta, Double venta_unidad,String estado, String estadoPrecio, String fecha_registro, Long id_usuario, Long porcentaje, Long descuentoVenta) {
+    public Precios(Long id_precio, Long id_producto, Double precio_base, Double precio_compra, Double compra_unidad, Double precio_venta, Double venta_unidad,String estado, String estadoPrecio, String fecha_registro, Long id_usuario, Long porcentaje, Long descuentoVenta) {
         this.id_precio = id_precio;
         this.id_producto = id_producto;
         this.precio_base = precio_base;
         this.precio_compra = precio_compra;
+        this.compra_unidad = compra_unidad;
         this.precio_venta = precio_venta;
         this.venta_unidad = venta_unidad;
         this.estado = estado;
@@ -73,6 +75,14 @@ public class Precios {
         this.precio_compra = precio_compra;
     }
 
+    public Double getCompra_unidad() {
+        return compra_unidad;
+    }
+
+    public void setCompra_unidad(Double compra_unidad) {
+        this.compra_unidad = compra_unidad;
+    }
+
     public Double getPrecio_venta() {
         return precio_venta;
     }
@@ -81,13 +91,14 @@ public class Precios {
         this.precio_venta = precio_venta;
     }
 
-    public Double getVenta_unidad(){
+    public Double getVenta_unidad() {
         return venta_unidad;
     }
-    
-    public void setVenta_unidad(Double venta_unidad){
+
+    public void setVenta_unidad(Double venta_unidad) {
         this.venta_unidad = venta_unidad;
     }
+
     public String getEstado() {
         return estado;
     }
@@ -136,5 +147,6 @@ public class Precios {
         this.descuentoVenta = descuentoVenta;
     }
 
+   
     
 }
