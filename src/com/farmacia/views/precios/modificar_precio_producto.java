@@ -109,7 +109,24 @@ public class modificar_precio_producto extends javax.swing.JDialog {
         for (int i = 0; i < lista_t.size(); i++) {
             System.out.println(223 + " hol" + id_producto + " " + lista_t.get(i).getPrecio_compra());
         }
-        llenarPrecios();
+        
+         preciobase.setText(pr1.getPrecio_base().toString());
+    nuevo1.setText(pr1.getPrecio_compra().toString());
+    if(pr1.getCompra_unidad()== null){
+    txtcomprUni.setText("0");
+        System.out.println("compra unidad. no obtuvo valor");    
+    }  else{
+        txtcomprUni.setText(precios.getCompra_unidad().toString());
+    System.out.println("compra unidad: " + pr1.getCompra_unidad().toString());        
+    }
+    
+    
+    nuevo2.setText(pr1.getPrecio_venta().toString());
+    txtDescVent.setText(pr1.getDescuentoVenta().toString());
+  // txtprociento.setText(precios.getPorcentaje().toString());25112020 ccevallos
+    txt_venta_unidad.setText(""+pr1.getVenta_unidad());
+
+        
        // nuevo2.setEditable(false);
    
     }
@@ -118,9 +135,10 @@ public class modificar_precio_producto extends javax.swing.JDialog {
     nuevo1.setText(precios.getPrecio_compra().toString());
     nuevo2.setText(precios.getPrecio_venta().toString());
     txtDescVent.setText(precios.getDescuentoVenta().toString());
-  //  txtprociento.setText(precios.getPorcentaje().toString());25112020 ccevallos
+  // txtprociento.setText(precios.getPorcentaje().toString());25112020 ccevallos
     txt_venta_unidad.setText(""+precios.getVenta_unidad());
-    txtcomprUni.setText(precios.getCompra_unidad().toString());
+    System.out.println("compra unidad"+ precios.getCompra_unidad().toString());
+    //txtcomprUni.setText(precios.getCompra_unidad().toString());
     }
     
     /**

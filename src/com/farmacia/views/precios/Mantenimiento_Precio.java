@@ -70,7 +70,7 @@ public class Mantenimiento_Precio extends javax.swing.JDialog {
         id_pro = id_pro1;
         System.out.println("id:pro " + id_pro);
         llenarDatos(producto1);
-        listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`, `compra_unidad`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_pro);
+        listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_pro);
 
         t.visualizar(jtbPrecios, id_pro);
         //FECHA DEL SISTEMA
@@ -320,7 +320,7 @@ public class Mantenimiento_Precio extends javax.swing.JDialog {
 
         id_precio = ic.getId_precio();
         listaPrecios.clear();
-        listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`, `compra_unidad`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_pro);
+        listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`, `precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_pro);
         t.visualizar(jtbPrecios, id_pro);
 //        System.out.println(objeto.getId_precio()+"  "+objeto.getPrecio_compra());
     }//GEN-LAST:event_agregarCompraActionPerformed
@@ -420,6 +420,7 @@ public class Mantenimiento_Precio extends javax.swing.JDialog {
         try {
             if (evt.getClickCount() == 2) {
                 i = jtbPrecios.getSelectedRow();
+                listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`, `compra_unidad`,`precio_venta`,`venta_unidad`, estado, porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_pro);
                 objeto = devuelveObjeto(jtbPrecios.getValueAt(i, 0).toString(), listaPrecios);
                 //Agregar_Precios_Productos ic = new Agregar_Precios_Productos(new javax.swing.JFrame(), true, id_pro,objeto);
                 modificar_precio_producto ic = new modificar_precio_producto(new javax.swing.JFrame(), true, id_pro, objeto);

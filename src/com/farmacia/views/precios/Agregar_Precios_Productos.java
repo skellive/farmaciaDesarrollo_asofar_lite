@@ -624,7 +624,11 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
             pr.setId_producto(id_producto);
             pr.setPrecio_base(Double.valueOf(preciobase.getText()));
             pr.setPrecio_compra(Double.valueOf(nuevo1.getText()));
-            pr.setCompra_unidad(Double.valueOf(txtunidCompra.getText()));
+            if(txtunidCompra.getText().equals("")){
+                pr.setCompra_unidad(Double.valueOf(0));
+            }else{
+                pr.setCompra_unidad(Double.valueOf(txtunidCompra.getText()));
+            }            
             pr.setPrecio_venta(Double.valueOf(nuevo2.getText()));
             pr.setVenta_unidad(Double.valueOf(txt_venta_unidad.getText()));
             pr.setFecha_registro(FechaActual);
