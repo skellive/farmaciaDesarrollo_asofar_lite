@@ -69,7 +69,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
     JoinListarCabeceraVenta objeto = null;
     Calendar c1 = Calendar.getInstance();
     int dia = (c1.get(Calendar.DATE));
-    int mes = (c1.get(Calendar.MONTH));
+    int mes = (c1.get(Calendar.MONTH)) + 1;
     int ano = (c1.get(Calendar.YEAR));
 
     /**
@@ -554,7 +554,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\asofarLite.png");
+                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -566,7 +566,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 anchor.setCol1(0);
                 anchor.setRow1(1);
                 Picture pict = draw.createPicture(anchor, imgIndex);
-                pict.resize(2, 5);
+                pict.resize(3, 5);
 
                 CellStyle tituloEstilo = book.createCellStyle();
                 tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
@@ -578,7 +578,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 tituloEstilo.setFont(fuenteTitulo);
 
                 Row filaTitulo = sheet.createRow(3);
-                Cell celdaTitulo = filaTitulo.createCell(2);
+                Cell celdaTitulo = filaTitulo.createCell(3);
                 celdaTitulo.setCellStyle(tituloEstilo);
                 celdaTitulo.setCellValue("Reporte de Ventas");
 
@@ -622,26 +622,15 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 datosEstilo.setBorderRight(BorderStyle.THIN);
                 datosEstilo.setBorderBottom(BorderStyle.THIN);
 
-                ps = conn.prepareStatement("SELECT `cabecera_venta`.`num_venta`,`sucursal`.`nombre` AS 'Sucursal',cabecera_venta.`fecha_creacion` AS 'Fecha',\n"
-                        + "CONCAT (`clientes`.`Nombre`,\" \",`clientes`.`Apellido`)AS 'Cliente',\n"
-                        + "`clientes`.`Cedula` AS 'Cedula_cliente',\n"
-                        + "CONCAT (`fc_usuario`.`nombres`,\" \",`fc_usuario`.`apellidos`)AS 'Usuario',\n"
-                        + "`cabecera_venta`.`tipo_pago`,`cabecera_venta`.`tipo_venta`,\n"
-                        + "ROUND ((`cabecera_venta`.`subtotal_con_iva` + cabecera_venta.`subtotal_sin_iva`),2)  AS 'Subtotal',\n"
-                        + "ROUND (cabecera_venta.`iva_total`,2) AS 'Iva',\n"
-                        + "ROUND (cabecera_venta.`descuento_total`,2) AS 'Descuento',\n"
-                        + "ROUND (cabecera_venta.`total`,2)AS 'Total',\n"
-                        + "ROUND (`cabecera_venta`.`utilidad`,2) AS 'Utilidad',\n"
-                        + "(`cabecera_venta`.`estado`) AS 'Estado'\n"
-                        + "FROM `cabecera_venta` \n"
-                        + "INNER JOIN `clientes` \n"
-                        + "ON cabecera_venta.`id_cliente` = `clientes`.`id_Clientes` \n"
-                        + "INNER JOIN `sucursal`\n"
-                        + "ON cabecera_venta.`id_sucursal` = `sucursal`.`id_sucursal` \n"
-                        + "INNER JOIN `fc_session`\n"
-                        + "ON `fc_session`.`id_sesion` = `cabecera_venta`.`id_usuario` \n"
-                        + "INNER JOIN `fc_usuario`\n"
-                        + "ON `fc_session`.`id_usuario` = `fc_usuario`.`id_usuario`;");
+                String F1 = F.getFecha(Chooser1)+ " 23:59:59";
+                String F2 = F.getFecha(Chooser2)+ " 23:59:59";
+                ps = conn.prepareStatement("call reporteExcelVenta()");
+                if (Chooser1.getDate() != null || Chooser2.getDate() != null) {
+                    ps = conn.prepareStatement("call reporteExcelVentaFiltroFecha(?, ?)");
+                    ps.setString(1, F1);                    
+                    ps.setString(2, F2);
+                }
+                
                 rs = ps.executeQuery();
 
                 int numCol = rs.getMetaData().getColumnCount();
@@ -684,7 +673,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
                 sheet.setZoom(120);
 
                 String dir = System.getProperty("user.home");
-                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteVenta\\reporte" + dia + "-" + mes + "-" + ano + ".xlsx");
+                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteVenta\\reporteVenta" + dia + "-" + mes + "-" + ano + ".xlsx");
                 book.write(fileout);
                 fileout.close();
 

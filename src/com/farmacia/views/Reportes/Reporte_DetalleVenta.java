@@ -61,6 +61,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
  * @author Usuario
  */
 public class Reporte_DetalleVenta extends javax.swing.JDialog {
+
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
     CRUD crud = new CRUD();
@@ -619,7 +620,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\asofarLite.png");
+                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -631,7 +632,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                 anchor.setCol1(0);
                 anchor.setRow1(1);
                 Picture pict = draw.createPicture(anchor, imgIndex);
-                pict.resize(2, 5);
+                pict.resize(3, 5);
 
                 CellStyle tituloEstilo = book.createCellStyle();
                 tituloEstilo.setAlignment(HorizontalAlignment.CENTER);
@@ -643,13 +644,13 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                 tituloEstilo.setFont(fuenteTitulo);
 
                 Row filaTitulo = sheet.createRow(3);
-                Cell celdaTitulo = filaTitulo.createCell(2);
+                Cell celdaTitulo = filaTitulo.createCell(3);
                 celdaTitulo.setCellStyle(tituloEstilo);
                 celdaTitulo.setCellValue("Reporte de Detalle de venta");
 
                 sheet.addMergedRegion(new CellRangeAddress(1, 2, 1, 1));
 
-                String[] cabecera = new String[]{"CODIGO", "PRODUCTO", "CANTIDAD", "PRECIO", "SUBTOTAL", "DESCUENTO", "IVA", "TOTAL"};
+                String[] cabecera = new String[]{"ID", "CODIGO DE BARRAS", "MARCAS", "TIPO", "PRODUCTO", "PRESENTACION", "CANTIDAD", "UNIDAD", "PRECIO", "SUBTOTAL", "DESCUENTO", "IVA", "TOTAL"};
 
                 CellStyle headerStyle = book.createCellStyle();
                 headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
@@ -679,7 +680,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                 ResultSet rs;
                 java.sql.Connection conn = con.conectar();
 
-                String id_cab = txt_Numero.getText().toString();
+                String num_venta = txt_Numero.getText().toString();
+                int idCab = Integer.valueOf(objCabecera.getId_cabecera_venta().toString());
                 int numFilaDatos = 7;
 
                 CellStyle datosEstilo = book.createCellStyle();
@@ -687,20 +689,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                 datosEstilo.setBorderLeft(BorderStyle.THIN);
                 datosEstilo.setBorderRight(BorderStyle.THIN);
                 datosEstilo.setBorderBottom(BorderStyle.THIN);
-
-                ps = conn.prepareStatement("SELECT `detalle_venta`.`id`, `detalle_venta`.`id_cabecera_venta` AS 'id_cabecera',`detalle_venta`.`id_control`,`productos`.`id_productos` AS 'Codigo' ,`productos`.`nombre` AS 'Detalle', \n"
-                        + "`detalle_venta`.`cantidad` AS 'Cantidad',\n"
-                        + "ROUND (detalle_venta.`precio`,2 )AS 'Precio', \n"
-                        + "ROUND ((`detalle_venta`.`cantidad` * `detalle_venta`.`precio`),2)AS 'Subtotal',\n"
-                        + "ROUND (`detalle_venta`.`descuento`,2) AS 'Descuento',\n"
-                        + "ROUND (`detalle_venta`.`iva`,2) AS 'Iva',\n"
-                        + "ROUND ((( `detalle_venta`.`precio` * `detalle_venta`.`cantidad`) + `detalle_venta`.`iva` - `detalle_venta`.`descuento` ),2) AS 'Total'\n"
-                        + "FROM detalle_venta INNER JOIN `precios`\n"
-                        + "ON\n"
-                        + "`detalle_venta`.`id_control` = `precios`.`id_precio` INNER JOIN `productos`\n"
-                        + "ON\n"
-                        + "`productos`.`id_productos` = `precios`.`id_producto`\n"
-                        + "WHERE `detalle_venta`.`id_cabecera_venta`= "+ id_cab +"");
+                ps = conn.prepareStatement("call reporteExcelDetalleVenta(?)");
+                ps.setInt(1, idCab);
                 rs = ps.executeQuery();
 
                 int numCol = rs.getMetaData().getColumnCount();
@@ -733,25 +723,31 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                 sheet.autoSizeColumn(5);
                 sheet.autoSizeColumn(6);
                 sheet.autoSizeColumn(7);
+                sheet.autoSizeColumn(8);
+                sheet.autoSizeColumn(9);
+                sheet.autoSizeColumn(10);
+                sheet.autoSizeColumn(11);
 
                 sheet.setZoom(120);
 
                 dia = (c1.get(Calendar.DATE));
-                mes = (c1.get(Calendar.MONTH));
+                mes = (c1.get(Calendar.MONTH)) + 1;
                 ano = (c1.get(Calendar.YEAR));
                 System.out.println(dia + "-" + mes + "-" + ano);
 
                 String dir = System.getProperty("user.home");
                 //dir + "\\Documents\\
-                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteDetalleVenta\\reporte" + id_cab + "(" + dia + "-" + mes + "-" + ano + ").xlsx");
+                
+                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteDetalleVenta\\reporte" + num_venta + "(" + dia + "-" + mes + "-" + ano + ").xlsx");
                 book.write(fileout);
                 fileout.close();
 
                 JOptionPane.showMessageDialog(null, "Generado con exito");
             } else {
-                JOptionPane.showMessageDialog(null, "Error al generar el reporte");
+                JOptionPane.showMessageDialog(null, "Excel no generado");
             }
         } catch (Exception ex) {
+            Logger.getLogger(Reporte_DetalleCompra.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(null, ex);
             System.out.println(ex);
         }

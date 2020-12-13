@@ -68,7 +68,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
     JoinListarNotaPedidosCabecera objeto = null;
     Calendar c1 = Calendar.getInstance();
     int dia = (c1.get(Calendar.DATE));
-    int mes = (c1.get(Calendar.MONTH));
+    int mes = (c1.get(Calendar.MONTH)) + 1;
     int ano = (c1.get(Calendar.YEAR));
 
     /**
@@ -518,7 +518,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream(dir + "\\Documents\\reporteExcel\\img\\asofarLite.png");
+                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -586,12 +586,15 @@ public class Reporte_Compra extends javax.swing.JDialog {
                 datosEstilo.setBorderRight(BorderStyle.THIN);
                 datosEstilo.setBorderBottom(BorderStyle.THIN);
 
-                ps = conn.prepareStatement("SELECT cnp.`id_cabecera_nota_pedidos`,cnp.`id_proveedor`,p.`entidad` AS proveedor,\n"
-                        + "p.`representante`,p.`telefono`,cnp.`fecha_creacion`,cnp.`plazo`,cnp.`total`\n"
-                        + "FROM `cabecera_nota_pedidos` cnp\n"
-                        + "JOIN `proveedor` p ON p.`id_proveedor`= cnp.`id_proveedor`\n"
-                        + "JOIN `proveedor_clase` pc ON pc.`id_proclase`= p.`id_proveedor_clase`\n"
-                        + "WHERE cnp.estado= \"EF\";");
+                ps = conn.prepareStatement("call reporteExcelCompra()");
+                String F1 = F.getFecha(Chooser1) + " 23:59:59";
+                String F2 = F.getFecha(Chooser2) + " 23:59:59";
+                if (Chooser1.getDate() != null || Chooser2.getDate() != null) {
+                    ps = conn.prepareStatement("call reporteExcelCompraFiltroFecha(?, ?)");
+                    ps.setString(1, F1);
+                    ps.setString(2, F2);
+                }
+
                 rs = ps.executeQuery();
 
                 int numCol = rs.getMetaData().getColumnCount();
@@ -628,7 +631,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
                 sheet.setZoom(120);
 
                 //System.out.println(dir);
-                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteCompra\\reporte" + dia + "-" + mes + "-" + ano + ".xlsx");
+                FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteCompra\\reporteCompra" + dia + "-" + mes + "-" + ano + ".xlsx");
                 book.write(fileout);
                 fileout.close();
 
