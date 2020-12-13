@@ -70,7 +70,7 @@ public class Mantenimiento_Precio extends javax.swing.JDialog {
         id_pro = id_pro1;
         System.out.println("id:pro " + id_pro);
         llenarDatos(producto1);
-        listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_pro);
+        listaPrecios = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`, `compra_unidad`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id_pro);
 
         t.visualizar(jtbPrecios, id_pro);
         //FECHA DEL SISTEMA

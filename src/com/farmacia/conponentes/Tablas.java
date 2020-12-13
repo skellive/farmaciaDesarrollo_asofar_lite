@@ -1290,19 +1290,20 @@ public class Tablas {
         Consultas llamar = new Consultas();
         Precios vo = new Precios();
         //Long id= Long.valueOf("22");
-        ArrayList<Precios> list = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id);
+        ArrayList<Precios> list = llamar.listarPrecioCompra("SELECT id_precio,`id_producto`,`precio_base`,`precio_compra`,`compra_unidad`,`precio_venta`,`venta_unidad`, estado,porcentaje,`descuentoVenta`  FROM `precios` WHERE `id_producto`= " + id);
 
         if (list.size() > 0) {
             for (int i = 0; i < list.size(); i++) {
                 // model.addRow(new Object[]{});
-                Object fila[] = new Object[8];
+                Object fila[] = new Object[9];
                 vo = list.get(i);
                 fila[0] = vo.getId_precio();
                 fila[1] = vo.getId_producto();
                 fila[2] = vo.getPrecio_base();
                 fila[3] = vo.getPrecio_compra();
-                fila[4] = vo.getPrecio_venta();
-                fila[5] = vo.getPorcentaje();
+                fila[4] = vo.getCompra_unidad();
+                fila[5] = vo.getPrecio_venta();
+                fila[6] = vo.getPorcentaje();
                 Double por = 0.00;
                 Double envio = 0.00;
                 if (vo.getPorcentaje() == 0) {
@@ -1315,12 +1316,12 @@ public class Tablas {
                     envio = vo.getPrecio_compra() * por;
                 }
 
-                fila[6] = Formato_Numeros.formatoNumero(envio.toString());
+                fila[7] = Formato_Numeros.formatoNumero(envio.toString());
                 String ac = (String) vo.getEstado();
                 if ("A".equals(ac)) {
-                    fila[7] = true;
+                    fila[8] = true;
                 } else {
-                    fila[7] = false;
+                    fila[8] = false;
                 }
                 //  fila[5] = btn_visualizar;
 
