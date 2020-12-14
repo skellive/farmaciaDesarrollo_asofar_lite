@@ -899,7 +899,7 @@ public class ingresoRapido extends javax.swing.JFrame {
                                 Integer.parseInt(tbaListaFaltantes.getValueAt(i, 7).toString()),
                                 Integer.parseInt(0 + ""),
                                 2,
-                                fechaCompleta, Integer.parseInt(tbaListaFaltantes.getValueAt(i,8).toString()), listaPNP1.get(i).getObservacion().toString());
+                                fechaCompleta, Integer.parseInt(tbaListaFaltantes.getValueAt(i, 8).toString()), listaPNP1.get(i).getObservacion().toString());
 
                     }
                     JOptionPane.showMessageDialog(null, " Guardado con Exito ");
@@ -1015,7 +1015,7 @@ public class ingresoRapido extends javax.swing.JFrame {
                         //System.out.println(" PASO EL NULL");
                         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
                         //filtroProducto.removeAll();
-                        if (np.getObjf().getCantidad() > 0) {
+                        if (np.getObjf().getCantidad() > 0 || np.getObjf().getUnidad() > 0) {
                             Objx = calcularValores(np.getObjf());
                             listaPNP1.add(Objx);
                             for (joinProductoParaNotaPedido p : listaPNP1) {
@@ -1033,7 +1033,8 @@ public class ingresoRapido extends javax.swing.JFrame {
                             TotalPro();
                             TotalIVA2();
                         } else {
-                            JOptionPane.showMessageDialog(this, "getCantidad() ->" + np.getObjf().getCantidad());
+//                            JOptionPane.showMessageDialog(this, "getCantidad() ->" + np.getObjf().getCantidad());
+                            JOptionPane.showMessageDialog(this, "No es posible hacer un pedido del producto " + np.getObjf().getNombre_producto() + " con una cantidad de " + np.getObjf().getCantidad() + " y unidades de " + np.getObjf().getUnidad());
                         }
                     } else {
                         JOptionPane.showMessageDialog(this, msg);

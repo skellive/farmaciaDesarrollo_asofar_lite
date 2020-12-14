@@ -51,21 +51,21 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         llenarFormulario(obj1);
-        
+
+        txtcantidadpro.setText("0");
+        txtunidadpro.setText("0");
+        txtporcentajeDescuento.setText("0");
+        txtBono.setText("0");
+        jchecBlister.setSelected(true);
         jchecBlister.setVisible(false);
         txtBono.setEnabled(false);
         txtporcentajeDescuento.setEnabled(false);
         txtcantidadpro.setEnabled(false);
         txtunidadpro.setEnabled(false);
-        if(txtEnvase3.getText().equals("CAJA")){
-            jchecBlister.setVisible(true);
-            
-        }
-        if(txtEnvase3.getText().equals("FUNDA")){
-            jchecBlister.setVisible(true);
-        }
-        
-        
+        txtPrecio.setEnabled(false);
+//        if (txtEnvase3.getText().equals("FUNDA")) {
+//            jchecBlister.setVisible(true);
+//        }
     }
 
     @SuppressWarnings("unchecked")
@@ -257,6 +257,11 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         jLabel5.setText("DESCUENTO:");
 
         txtporcentajeDescuento.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtporcentajeDescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtporcentajeDescuentoActionPerformed(evt);
+            }
+        });
         txtporcentajeDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtporcentajeDescuentoKeyReleased(evt);
@@ -362,6 +367,11 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         jchecBlister.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jchecBlister.setForeground(new java.awt.Color(0, 27, 134));
         jchecBlister.setText("BLISTER");
+        jchecBlister.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jchecBlisterMouseClicked(evt);
+            }
+        });
         jchecBlister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jchecBlisterActionPerformed(evt);
@@ -523,7 +533,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         objf.setPrecios(obj.getPrecios());
         objf.setIva(obj.getIva());
 //        objf.setId_precios(obj.getId_precios());
-        
+
     }
     private void txtcantidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadproKeyTyped
         char c = evt.getKeyChar();
@@ -546,33 +556,29 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
             cant = txtcantidadpro.getText();
             und = txtunidadpro.getText();
             objf.setCantidad(Integer.parseInt(cant));
-            if(!und.equals("")){
-            objf.setUnidad(Integer.parseInt(und));
-            }else{
+            if (!und.equals("")) {
+                objf.setUnidad(Integer.parseInt(und));
+            } else {
                 objf.setUnidad(0);
             }
-            
-                
-                if(jchecBlister.isEnabled()){
-                    
+
+            if (jchecBlister.isEnabled()) {
+
                 check = "La compra de este producto es efectuado para Blister";
                 objf.setObservacion(check);
-            }else{
+            } else {
                 check = null;
                 objf.setObservacion(check);
             }
-            
-            
-            
-                if(jchecBlister.isEnabled()){
+
+            if (jchecBlister.isEnabled()) {
                 check = "La compra de este producto es efectuado para Blister";
                 objf.setObservacion(check);
-            }else{
+            } else {
                 check = null;
                 objf.setObservacion(check);
             }
-            
-            
+
             setVisible(false);
         }
         /////////////
@@ -591,9 +597,9 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
             bono = "0";
             objf.setBono(Integer.parseInt(bono));
         }
-        
+
     }//GEN-LAST:event_btnAnadirActionPerformed
-    
+
     public joinProductoParaNotaPedido getObjf() { //joinProductoParaNotaPedido
         return objf;
     }
@@ -686,25 +692,31 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel7MouseDragged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        PrecioNotaPedido Pnp = new PrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(),producto.getText());
+        PrecioNotaPedido Pnp = new PrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(), producto.getText());
         Pnp.setVisible(true);
         Pnp.getPrecio();
-        if(txtPrecio.equals("")){
+        if (txtPrecio.equals("")) {
             txtPrecio.setText("");
-        }else{
-            if(Pnp.getPrecio()==null){
-            }else{
-        txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
-        txtBono.setEnabled(true);
-        txtporcentajeDescuento.setEnabled(true);
-        txtcantidadpro.setEnabled(true);
-        objf.setPrecios(Pnp.getPrecio().getPrecio_compra());
-        objf.setId_precios(Pnp.getPrecio().getId_precio());
-        if(txtEnvase3.getText().equals("CAJA")){
-            txtunidadpro.setEnabled(true);
-        } else if(txtEnvase3.getText().equals("FUNDA")){
-             txtunidadpro.setEnabled(true);
-        }
+        } else {
+            if (Pnp.getPrecio() == null) {
+            } else {
+                txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
+                txtBono.setEnabled(true);
+                txtporcentajeDescuento.setEnabled(true);
+                if (txtEnvase3.getText().equals("CAJA") || txtEnvase3.getText().equals("FUNDA")) {
+                    jchecBlister.setVisible(true);
+                }
+//                txtcantidadpro.setEnabled(true);
+                txtPrecio.setEnabled(true);
+                objf.setPrecios(Pnp.getPrecio().getPrecio_compra());
+                objf.setId_precios(Pnp.getPrecio().getId_precio());
+                if (txtEnvase3.getText().equals("CAJA")) {
+                    txtunidadpro.setEnabled(true);
+                } else if (txtEnvase3.getText().equals("FUNDA")) {
+                    txtunidadpro.setEnabled(true);
+                } else {
+                    txtcantidadpro.setEnabled(true);
+                }
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -726,13 +738,26 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_txtunidadproKeyTyped
 
     private void jchecBlisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchecBlisterActionPerformed
-      if(jchecBlister.isSelected()){
+    }//GEN-LAST:event_jchecBlisterActionPerformed
+
+    private void txtporcentajeDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtporcentajeDescuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtporcentajeDescuentoActionPerformed
+
+    private void jchecBlisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jchecBlisterMouseClicked
+        String precio = txtPrecio.getText().toString();
+        if (jchecBlister.isSelected()) {
             txtcantidadpro.setText("0");
             txtcantidadpro.setEnabled(false);
-        }else{
-            txtcantidadpro.setEnabled(true);
+        } else {
+            if ("".equals(precio)) {
+                txtcantidadpro.setEnabled(false);
+            } else {
+                txtcantidadpro.setEnabled(true);
+            }
+//            txtcantidadpro.setEnabled(true);
         }
-    }//GEN-LAST:event_jchecBlisterActionPerformed
+    }//GEN-LAST:event_jchecBlisterMouseClicked
 
     /**
      * @param args the command line arguments
