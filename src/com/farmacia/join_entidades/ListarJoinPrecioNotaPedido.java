@@ -12,12 +12,13 @@ import java.math.BigDecimal;
  * @author alumno
  */
 public class ListarJoinPrecioNotaPedido {
-    
+
     private Long id_precio;
     private String nombre;
     private String descripcion;
     private Long id_producto;
     private BigDecimal precio_compra;
+    private BigDecimal precio_compra_unidad;
     private String estado_precio;
     private Long id_productos;
     private String fecha_registro;
@@ -33,12 +34,13 @@ public class ListarJoinPrecioNotaPedido {
     public ListarJoinPrecioNotaPedido() {
     }
 
-    public ListarJoinPrecioNotaPedido(Long id_precio, String nombre, String descripcion, Long id_producto, BigDecimal precio_compra, String estado_precio, Long id_productos, String fecha_registro, Double peso, Long id_tipo, Long id_medidas, Long id_envase, Long id_marcas, String estado_producto, String iva, String fecha_registroProducto) {
+    public ListarJoinPrecioNotaPedido(Long id_precio, String nombre, String descripcion, Long id_producto, BigDecimal precio_compra, BigDecimal precio_compra_unidad, String estado_precio, Long id_productos, String fecha_registro, Double peso, Long id_tipo, Long id_medidas, Long id_envase, Long id_marcas, String estado_producto, String iva, String fecha_registroProducto) {
         this.id_precio = id_precio;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.id_producto = id_producto;
         this.precio_compra = precio_compra;
+        this.precio_compra_unidad = precio_compra_unidad;
         this.estado_precio = estado_precio;
         this.id_productos = id_productos;
         this.fecha_registro = fecha_registro;
@@ -90,6 +92,14 @@ public class ListarJoinPrecioNotaPedido {
 
     public void setPrecio_compra(BigDecimal precio_compra) {
         this.precio_compra = precio_compra;
+    }
+
+    public BigDecimal getPrecio_compra_unidad() {
+        return precio_compra_unidad;
+    }
+
+    public void setPrecio_compra_unidad(BigDecimal precio_compra_unidad) {
+        this.precio_compra_unidad = precio_compra_unidad;
     }
 
     public String getEstado_precio() {
@@ -179,5 +189,6 @@ public class ListarJoinPrecioNotaPedido {
     public void setFecha_registroProducto(String fecha_registroProducto) {
         this.fecha_registroProducto = fecha_registroProducto;
     }
+
 
 }

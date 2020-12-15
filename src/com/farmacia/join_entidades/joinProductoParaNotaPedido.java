@@ -30,9 +30,11 @@ public class joinProductoParaNotaPedido {
     private Long id_envase;
     private String envase;
     private Long id_precios;
-    private BigDecimal precios;
+    private BigDecimal precios_presentacion;
+    private BigDecimal precios_unidad;
     private String iva;
     private Integer bono;
+    private BigDecimal precio_total;
     private BigDecimal importe;
     private BigDecimal porcentaje_descuento;
     private BigDecimal valor_descuento;
@@ -43,15 +45,7 @@ public class joinProductoParaNotaPedido {
     public joinProductoParaNotaPedido() {
     }
 
-    public Long getId_categoria() {
-        return id_categoria;
-    }
-
-    public void setId_categoria(Long id_categoria) {
-        this.id_categoria = id_categoria;
-    }
-
-    public joinProductoParaNotaPedido(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Integer unidad, Long id_categoria, String nombrecategoria, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios, String iva, Integer bono, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento, BigDecimal PrecioBono, BigDecimal Precioiva, String observacion) {
+    public joinProductoParaNotaPedido(Long id_detalle_faltantes, Long id_tipo, String nombre_tipo, Long id_producto, String nombre_producto, Integer cantidad, String estado, Long id_marcas, String marca, Integer unidad, Long id_categoria, String nombrecategoria, Long id_medida, String medida, Long id_envase, String envase, Long id_precios, BigDecimal precios_presentacion, BigDecimal precios_unidad, String iva, Integer bono, BigDecimal precio_total, BigDecimal importe, BigDecimal porcentaje_descuento, BigDecimal valor_descuento, BigDecimal PrecioBono, BigDecimal Precioiva, String observacion) {
         this.id_detalle_faltantes = id_detalle_faltantes;
         this.id_tipo = id_tipo;
         this.nombre_tipo = nombre_tipo;
@@ -69,16 +63,17 @@ public class joinProductoParaNotaPedido {
         this.id_envase = id_envase;
         this.envase = envase;
         this.id_precios = id_precios;
-        this.precios = precios;
+        this.precios_presentacion = precios_presentacion;
+        this.precios_unidad = precios_unidad;
         this.iva = iva;
         this.bono = bono;
+        this.precio_total = precio_total;
         this.importe = importe;
         this.porcentaje_descuento = porcentaje_descuento;
         this.valor_descuento = valor_descuento;
         this.PrecioBono = PrecioBono;
         this.Precioiva = Precioiva;
         this.observacion = observacion;
-        
     }
 
     public Long getId_detalle_faltantes() {
@@ -161,6 +156,14 @@ public class joinProductoParaNotaPedido {
         this.unidad = unidad;
     }
 
+    public Long getId_categoria() {
+        return id_categoria;
+    }
+
+    public void setId_categoria(Long id_categoria) {
+        this.id_categoria = id_categoria;
+    }
+
     public String getNombrecategoria() {
         return nombrecategoria;
     }
@@ -209,12 +212,20 @@ public class joinProductoParaNotaPedido {
         this.id_precios = id_precios;
     }
 
-    public BigDecimal getPrecios() {
-        return precios;
+    public BigDecimal getPrecios_presentacion() {
+        return precios_presentacion;
     }
 
-    public void setPrecios(BigDecimal precios) {
-        this.precios = precios;
+    public void setPrecios_presentacion(BigDecimal precios_presentacion) {
+        this.precios_presentacion = precios_presentacion;
+    }
+
+    public BigDecimal getPrecios_unidad() {
+        return precios_unidad;
+    }
+
+    public void setPrecios_unidad(BigDecimal precios_unidad) {
+        this.precios_unidad = precios_unidad;
     }
 
     public String getIva() {
@@ -231,6 +242,14 @@ public class joinProductoParaNotaPedido {
 
     public void setBono(Integer bono) {
         this.bono = bono;
+    }
+
+    public BigDecimal getPrecio_total() {
+        return precio_total;
+    }
+
+    public void setPrecio_total(BigDecimal precio_total) {
+        this.precio_total = precio_total;
     }
 
     public BigDecimal getImporte() {
@@ -282,5 +301,4 @@ public class joinProductoParaNotaPedido {
     }
 
 
-    
 }

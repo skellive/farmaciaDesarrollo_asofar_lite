@@ -509,8 +509,10 @@ public class presentarProducto extends javax.swing.JFrame {
         BigDecimal PrecioBono = new BigDecimal("0.00");
 
         BigDecimal Cantidad = BigDecimal.valueOf(lista.getCantidad());
-        BigDecimal Precio = lista.getPrecios();
+        BigDecimal Precio = lista.getPrecios_presentacion();
         BigDecimal Subtotal = Cantidad.multiply(Precio);
+        
+        
         BigDecimal Bono1 = BigDecimal.valueOf(lista.getBono())/*new BigDecimal(Bono)*/;
         BigDecimal CantidadTotal = Cantidad.add(Bono1);
         PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);

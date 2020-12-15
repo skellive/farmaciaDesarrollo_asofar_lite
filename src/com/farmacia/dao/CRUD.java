@@ -2820,7 +2820,7 @@ public class CRUD {
             conect = con.conectar();
             conect.setAutoCommit(false);
             CallableStatement prodProAlm = conect.prepareCall(
-                    "{ call insertarCabeceraNotaPedido(?,?,?,?,?,?,?,?,?) }");
+                    "{ call insertarCabeceraNotaPedido(?,?,?,?,?,?,?,?) }");
             prodProAlm.setLong(1, obj.getId_proveedor());
             prodProAlm.setLong(2, obj.getId_usuario());
             prodProAlm.setString(3, obj.getFecha_creacion());
@@ -3890,9 +3890,9 @@ public class CRUD {
             Filas[4] = lista.get(i).getEnvase();
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = lista.get(i).getCantidad().toString();
-            Filas[7] = lista.get(i).getPrecios().toString();
+            Filas[7] = lista.get(i).getPrecios_presentacion().toString();
             BigDecimal Cantidad = BigDecimal.valueOf(Integer.valueOf(lista.get(i).getCantidad()));//BigDecimal.valueOf(Double.parseDouble(comisiontxt.getText()))
-            BigDecimal Precio = lista.get(i).getPrecios();
+            BigDecimal Precio = lista.get(i).getPrecios_presentacion();
             BigDecimal PorcDesc = lista.get(i).getPorcentaje_descuento();
             BigDecimal ValorDes = Cantidad.multiply(Precio).multiply(PorcDesc).divide(new BigDecimal("100"));
             ValorDes = ValorDes.setScale(7, BigDecimal.ROUND_HALF_UP);

@@ -5,7 +5,6 @@
  */
 package com.farmacia.views.pedidos;
 
-import com.farmacia.join_entidades.FaltantesCabeceraDetalles;
 import com.farmacia.join_entidades.ListarJoinPrecioNotaPedido;
 import com.farmacia.join_entidades.joinProductoDetallesFaltantes;
 import com.farmacia.join_entidades.joinProductoParaNotaPedido;
@@ -13,7 +12,6 @@ import com.farmacia.validaciones.Validacion;
 import java.awt.Color;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.awt.event.KeyEvent;
 import java.math.BigDecimal;
 import javax.swing.JOptionPane;
 
@@ -54,18 +52,16 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
         txtcantidadpro.setText("0");
         txtunidadpro.setText("0");
+        txtPrecioUnidad.setText("0");
         txtporcentajeDescuento.setText("0");
         txtBono.setText("0");
-        jchecBlister.setSelected(true);
         jchecBlister.setVisible(false);
         txtBono.setEnabled(false);
         txtporcentajeDescuento.setEnabled(false);
         txtcantidadpro.setEnabled(false);
         txtunidadpro.setEnabled(false);
-        txtPrecio.setEnabled(false);
-//        if (txtEnvase3.getText().equals("FUNDA")) {
-//            jchecBlister.setVisible(true);
-//        }
+        txtPrecioCaja.setEnabled(false);
+        txtPrecioUnidad.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -90,7 +86,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         jLabel15 = new javax.swing.JLabel();
         txtTipo = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
-        txtPrecio = new javax.swing.JTextField();
+        txtPrecioCaja = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         txtIva = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -105,6 +101,8 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         jLabel19 = new javax.swing.JLabel();
         txtunidadpro = new javax.swing.JTextField();
         jchecBlister = new javax.swing.JCheckBox();
+        jLabel20 = new javax.swing.JLabel();
+        txtPrecioUnidad = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -228,19 +226,19 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
         jLabel16.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(0, 27, 134));
-        jLabel16.setText("PRECIO:");
+        jLabel16.setText("PRECIO  POR UNIDAD:");
 
-        txtPrecio.setEditable(false);
-        txtPrecio.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        txtPrecio.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
-        txtPrecio.addActionListener(new java.awt.event.ActionListener() {
+        txtPrecioCaja.setEditable(false);
+        txtPrecioCaja.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtPrecioCaja.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
+        txtPrecioCaja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPrecioActionPerformed(evt);
+                txtPrecioCajaActionPerformed(evt);
             }
         });
-        txtPrecio.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtPrecioCaja.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtPrecioKeyTyped(evt);
+                txtPrecioCajaKeyTyped(evt);
             }
         });
 
@@ -378,6 +376,14 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
             }
         });
 
+        jLabel20.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(0, 27, 134));
+        jLabel20.setText("PRECIO POR CAJA:");
+
+        txtPrecioUnidad.setEditable(false);
+        txtPrecioUnidad.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtPrecioUnidad.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -389,9 +395,9 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
                         .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(116, 116, 116))
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel18)
-                            .addComponent(jLabel16)
+                            .addComponent(jLabel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel10)
                             .addComponent(jLabel15)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -404,7 +410,8 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
                                     .addComponent(jLabel2)))
                             .addComponent(jLabel14)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel19))
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(30, 30, 30)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -430,10 +437,12 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
                                         .addComponent(txtIva, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtPrecioCaja, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                    .addComponent(txtPrecioUnidad))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton1)))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
@@ -484,11 +493,15 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
                     .addComponent(txtunidadpro, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jchecBlister))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrecioCaja, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtPrecioUnidad, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addComponent(btnAnadir, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -521,25 +534,22 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         marca.setText(obj.getMarca());
         txtEnvase3.setText(obj.getEnvase());
         txtTipo.setText(obj.getNombre_tipo());
-//        txtPrecio.setText(String.valueOf(obj.getPrecios()));
         txtIva.setText(obj.getIva());
-//        objf = obj;
         objf.setId_producto(obj.getId_producto());
         objf.setNombre_producto(obj.getNombre_producto());
         objf.setMedida(obj.getMedida());
         objf.setMarca(obj.getMarca());
         objf.setEnvase(obj.getEnvase());
         objf.setNombre_tipo(obj.getNombre_tipo());
-        objf.setPrecios(obj.getPrecios());
+        objf.setPrecios_presentacion(obj.getPrecios_presentacion());
+        objf.setPrecios_unidad(obj.getPrecios_unidad());
         objf.setIva(obj.getIva());
-//        objf.setId_precios(obj.getId_precios());
 
     }
     private void txtcantidadproKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcantidadproKeyTyped
         char c = evt.getKeyChar();
         if (c < '0' || c > '9') {
             evt.consume();
-//            JOptionPane.showMessageDialog(null, "INGRESE NUMEROS");
         }
     }//GEN-LAST:event_txtcantidadproKeyTyped
 
@@ -550,28 +560,29 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         String bono;
         String check;
         // objf = new joinProductoDetallesFaltantes();
-        if (txtcantidadpro.getText() == null || "".equals(txtcantidadpro.getText())) {
+        if (txtcantidadpro.getText() == null || "".equals(txtcantidadpro.getText()) && txtunidadpro.getText() == null || "".equals(txtunidadpro.getText())) {
             JOptionPane.showMessageDialog(null, "Ingrese Cantidad");
         } else {
             cant = txtcantidadpro.getText();
             und = txtunidadpro.getText();
-            objf.setCantidad(Integer.parseInt(cant));
+
             if (!und.equals("")) {
                 objf.setUnidad(Integer.parseInt(und));
+                System.out.println("unidad ingresada" + und);
             } else {
                 objf.setUnidad(0);
+                System.out.println("unidad 0");
             }
-
-            if (jchecBlister.isEnabled()) {
-
-                check = "La compra de este producto es efectuado para Blister";
-                objf.setObservacion(check);
+            if (!cant.equals("") || !cant.equals(0)) {
+                objf.setCantidad(Integer.parseInt(cant));
+                System.out.println("cantidad ingresada" + cant);
             } else {
-                check = null;
-                objf.setObservacion(check);
+                objf.setCantidad(0);
+                System.out.println("cantidad 0");
             }
 
             if (jchecBlister.isEnabled()) {
+
                 check = "La compra de este producto es efectuado para Blister";
                 objf.setObservacion(check);
             } else {
@@ -581,13 +592,11 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
 
             setVisible(false);
         }
-        /////////////
         if (!"".equals(txtporcentajeDescuento.getText())) {
             porc = txtporcentajeDescuento.getText();
         } else {
             porc = "0.0000";
         }
-        ///////
         BigDecimal b1 = new BigDecimal(porc);
         objf.setPorcentaje_descuento(b1);
         if (!"".equals(txtBono.getText())) {
@@ -627,13 +636,13 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTipoKeyTyped
 
-    private void txtPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioActionPerformed
+    private void txtPrecioCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecioCajaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioActionPerformed
+    }//GEN-LAST:event_txtPrecioCajaActionPerformed
 
-    private void txtPrecioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioKeyTyped
+    private void txtPrecioCajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPrecioCajaKeyTyped
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPrecioKeyTyped
+    }//GEN-LAST:event_txtPrecioCajaKeyTyped
 
     private void txtporcentajeDescuentoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtporcentajeDescuentoKeyTyped
         char c = evt.getKeyChar();
@@ -695,28 +704,24 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
         PrecioNotaPedido Pnp = new PrecioNotaPedido(new javax.swing.JFrame(), true, codigo.getText(), producto.getText());
         Pnp.setVisible(true);
         Pnp.getPrecio();
-        if (txtPrecio.equals("")) {
-            txtPrecio.setText("");
+        if (txtPrecioCaja.equals("")) {
+            txtPrecioCaja.setText("");
         } else {
             if (Pnp.getPrecio() == null) {
+                JOptionPane.showMessageDialog(null, "NO SE AGREGO EL PRECIO");
             } else {
-                txtPrecio.setText(Pnp.getPrecio().getPrecio_compra().toString());
+                txtPrecioCaja.setText(Pnp.getPrecio().getPrecio_compra().toString());
+                txtPrecioUnidad.setText(Pnp.getPrecio().getPrecio_compra_unidad().toString());
                 txtBono.setEnabled(true);
                 txtporcentajeDescuento.setEnabled(true);
                 if (txtEnvase3.getText().equals("CAJA") || txtEnvase3.getText().equals("FUNDA")) {
                     jchecBlister.setVisible(true);
                 }
-//                txtcantidadpro.setEnabled(true);
-                txtPrecio.setEnabled(true);
-                objf.setPrecios(Pnp.getPrecio().getPrecio_compra());
+                txtPrecioCaja.setEnabled(true);
+                txtcantidadpro.setEnabled(true);
+                objf.setPrecios_presentacion(Pnp.getPrecio().getPrecio_compra());
+                objf.setPrecios_unidad(Pnp.getPrecio().getPrecio_compra_unidad());
                 objf.setId_precios(Pnp.getPrecio().getId_precio());
-                if (txtEnvase3.getText().equals("CAJA")) {
-                    txtunidadpro.setEnabled(true);
-                } else if (txtEnvase3.getText().equals("FUNDA")) {
-                    txtunidadpro.setEnabled(true);
-                } else {
-                    txtcantidadpro.setEnabled(true);
-                }
             }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -738,6 +743,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_txtunidadproKeyTyped
 
     private void jchecBlisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jchecBlisterActionPerformed
+
     }//GEN-LAST:event_jchecBlisterActionPerformed
 
     private void txtporcentajeDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtporcentajeDescuentoActionPerformed
@@ -745,17 +751,12 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_txtporcentajeDescuentoActionPerformed
 
     private void jchecBlisterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jchecBlisterMouseClicked
-        String precio = txtPrecio.getText().toString();
         if (jchecBlister.isSelected()) {
-            txtcantidadpro.setText("0");
-            txtcantidadpro.setEnabled(false);
+            txtunidadpro.setEnabled(true);
+            txtPrecioUnidad.setEnabled(true);
         } else {
-            if ("".equals(precio)) {
-                txtcantidadpro.setEnabled(false);
-            } else {
-                txtcantidadpro.setEnabled(true);
-            }
-//            txtcantidadpro.setEnabled(true);
+            txtunidadpro.setEnabled(false);
+            txtPrecioUnidad.setEnabled(false);
         }
     }//GEN-LAST:event_jchecBlisterMouseClicked
 
@@ -814,6 +815,7 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -828,7 +830,8 @@ public class AgregarProductoNotaPedido extends javax.swing.JDialog {
     private javax.swing.JTextField txtBono;
     private javax.swing.JTextField txtEnvase3;
     private javax.swing.JTextField txtIva;
-    private javax.swing.JTextField txtPrecio;
+    private javax.swing.JTextField txtPrecioCaja;
+    private javax.swing.JTextField txtPrecioUnidad;
     private javax.swing.JTextField txtTipo;
     private javax.swing.JTextField txtcantidadpro;
     private javax.swing.JTextField txtporcentajeDescuento;

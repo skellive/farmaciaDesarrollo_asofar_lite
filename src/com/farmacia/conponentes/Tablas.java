@@ -881,7 +881,7 @@ public class Tablas {
             Filas[6] = lista.get(i).getBono().toString();
             Filas[7] = lista.get(i).getCantidad().toString();
             Filas[8] = lista.get(i).getUnidad().toString();
-            Filas[9] = formatoNumero(lista.get(i).getPrecioBono().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
+            Filas[9] = formatoNumero(lista.get(i).getPrecio_total().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             Filas[10] = formatoNumero(lista.get(i).getValor_descuento().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             Filas[11] = formatoNumero(lista.get(i).getPrecioiva().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
             Filas[12] = formatoNumero(lista.get(i).getImporte().setScale(2, BigDecimal.ROUND_HALF_UP).toString());
@@ -2183,14 +2183,14 @@ public class Tablas {
 
     public static void cargarJoinPrecioNotaPedido(JTable Tabla, ArrayList<ListarJoinPrecioNotaPedido> lista) {
 
-        int[] a = {100, 200, 200, 100};
+        int[] a = {100, 200, 200, 100, 100};
         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
         DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "PRECIO"};
-        String[] Filas = new String[4];
+        String[] Co = {"CODIGO", "PRODUCTO", "DESCRIPCION", "PRECIO POR CAJA", "PRECIO POR UNIDAD"};
+        String[] Filas = new String[5];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
         for (int i = 0; i < lista.size(); i++) {
@@ -2199,7 +2199,7 @@ public class Tablas {
             Filas[1] = lista.get(i).getNombre();
             Filas[2] = lista.get(i).getDescripcion();
             Filas[3] = lista.get(i).getPrecio_compra().toString();
-//            Filas[4] = lista.get(i).getIva();
+            Filas[4] = "" + lista.get(i).getPrecio_compra_unidad().toString();
 
             model.addRow(Filas);
             Tabla.setModel(model);
@@ -2211,8 +2211,8 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
             Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
             Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
-//            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
-//            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
         }
 
     }

@@ -64,20 +64,10 @@ public class NotePedidos extends javax.swing.JDialog {
         TotalDescuento2();
         TotalPro();
         TotalIVA2();
-
-        //Arreglado 
-        //cargar productos en la tabla
         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
-        //cargar productos en la tabla
-        //Tablas.cargarJoinProductosMCompra(tabla_para_productos, listapro);
-
-        //Tablas.cargarJoinProductoDetallesFaltantes(t_Nota_faltantes, lista);
-        //FECHA DEL SISTEMA
         java.util.Date sistFecha = new java.util.Date();
         SimpleDateFormat formato = new SimpleDateFormat("yyyy/MM/dd");
         txtFecha.setText(formato.format(sistFecha));
-
-        //HORA DEL SISTEMA
         Timer tiempo = new Timer(100, new NotePedidos.horas());
         tiempo.start();
 
@@ -135,25 +125,32 @@ public class NotePedidos extends javax.swing.JDialog {
         BigDecimal TotalPro = new BigDecimal("0.00");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
 
-            if (rootPaneCheckingEnabled) {
+            BigDecimal Precio_presentacion = listaPNP1.get(i).getPrecios_presentacion();
+            BigDecimal precio_unidad = listaPNP1.get(i).getPrecios_unidad();
+            Integer Cantidad = listaPNP1.get(i).getCantidad();
+            Integer Unidad = listaPNP1.get(i).getUnidad();
+            String Presentacion = listaPNP1.get(i).getEnvase().toString();
+            BigDecimal Precio;
 
+            if ("CAJA".equals(Presentacion)) {
+                BigDecimal precio_presentacion_total = Precio_presentacion.multiply(BigDecimal.valueOf(Cantidad));
+                BigDecimal precio_unidad_total = precio_unidad.multiply(BigDecimal.valueOf(Unidad));
+                Precio = precio_presentacion_total.add(precio_unidad_total);
             } else {
-                Integer Cant = listaPNP1.get(i).getCantidad();
-                BigDecimal Cantidad = new BigDecimal(Cant);
-                Integer und = listaPNP1.get(i).getUnidad();
-                BigDecimal Precio = listaPNP1.get(i).getPrecios();
-                BigDecimal Subtotal = Cantidad.multiply(Precio);
-                BigDecimal PorcentajeDesc = listaPNP1.get(i).getPorcentaje_descuento();
-                BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
-                if (listaPNP1.get(i).getIva().equals("NO")) {
-                    TotalPro = TotalPro.add(Subtotal).subtract(ValorDes);
-                }
-                if (!"NO".equals(listaPNP1.get(i).getIva())) {
-                    String ivaget = listaPNP1.get(i).getIva();
-                    BigDecimal IVA = new BigDecimal(ivaget);
-                    BigDecimal ValorIVA = IVA.multiply(Subtotal);
-                    TotalPro = TotalPro.add(Subtotal).subtract(ValorDes).add(ValorIVA);
-                }
+                Precio = BigDecimal.valueOf(Cantidad).multiply(Precio_presentacion);
+            }
+            BigDecimal Subtotal = Precio;
+            BigDecimal PorcentajeDesc = listaPNP1.get(i).getPorcentaje_descuento();
+            BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
+            if (listaPNP1.get(i).getIva().equals("NO")) {
+                TotalPro = TotalPro.add(Subtotal).subtract(ValorDes);
+            }
+            if (!"NO".equals(listaPNP1.get(i).getIva())) {
+                String ivaget = listaPNP1.get(i).getIva();
+                BigDecimal IVA = new BigDecimal(ivaget);
+                BigDecimal ValorIVA = IVA.multiply(Subtotal);
+                TotalPro = TotalPro.add(Subtotal).subtract(ValorDes).add(ValorIVA);
+
             }
         }
         VGtotal = BigDecimal.valueOf(Double.parseDouble(Formato_Numeros.removeScientificNotation(TotalPro.setScale(7, BigDecimal.ROUND_HALF_UP).toString())));
@@ -165,7 +162,10 @@ public class NotePedidos extends javax.swing.JDialog {
 
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
             BigDecimal ValorIva = new BigDecimal("0.00");
-            BigDecimal Precio = listaPNP1.get(i).getPrecios();
+//            BigDecimal Precio = listaPNP1.get(i).getPrecios();
+            BigDecimal Precio_presentacion = listaPNP1.get(i).getPrecios_presentacion();
+            BigDecimal precio_unidad = listaPNP1.get(i).getPrecios_unidad();
+            BigDecimal Precio = Precio_presentacion.add(precio_unidad);
             Integer Cant = listaPNP1.get(i).getCantidad();
             Integer und = listaPNP1.get(i).getUnidad();
             BigDecimal Cantidad = new BigDecimal(Cant);
@@ -186,12 +186,31 @@ public class NotePedidos extends javax.swing.JDialog {
     public void TotalDescuento2() {
         BigDecimal TotalDesc = new BigDecimal("0.00");
         for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
-            BigDecimal Precio = listaPNP1.get(i).getPrecios();
+//            BigDecimal Precio = listaPNP1.get(i).getPrecios();
+//            BigDecimal Precio_presentacion = listaPNP1.get(i).getPrecios_presentacion();
+//            BigDecimal precio_unidad = listaPNP1.get(i).getPrecios_unidad();
+//            BigDecimal Precio = Precio_presentacion.add(precio_unidad);
+//            BigDecimal PorcDesc = listaPNP1.get(i).getPorcentaje_descuento();
+//            Integer Cant = listaPNP1.get(i).getCantidad();
+//            Integer und = listaPNP1.get(i).getUnidad();
+//            BigDecimal Cantidad = new BigDecimal(Cant);
+
+            BigDecimal Precio_presentacion = listaPNP1.get(i).getPrecios_presentacion();
+            BigDecimal precio_unidad = listaPNP1.get(i).getPrecios_unidad();
+            Integer Cantidad = listaPNP1.get(i).getCantidad();
+            Integer Unidad = listaPNP1.get(i).getUnidad();
+            String Presentacion = listaPNP1.get(i).getEnvase().toString();
+            BigDecimal Precio;
+
+            if ("CAJA".equals(Presentacion)) {
+                BigDecimal precio_presentacion_total = Precio_presentacion.multiply(BigDecimal.valueOf(Cantidad));
+                BigDecimal precio_unidad_total = precio_unidad.multiply(BigDecimal.valueOf(Unidad));
+                Precio = precio_presentacion_total.add(precio_unidad_total);
+            } else {
+                Precio = BigDecimal.valueOf(Cantidad).multiply(Precio_presentacion);
+            }
             BigDecimal PorcDesc = listaPNP1.get(i).getPorcentaje_descuento();
-            Integer Cant = listaPNP1.get(i).getCantidad();
-            Integer und = listaPNP1.get(i).getUnidad();
-            BigDecimal Cantidad = new BigDecimal(Cant);
-            BigDecimal Subtotal = Cantidad.multiply(Precio);
+            BigDecimal Subtotal = Precio;
             BigDecimal ValorDesc = Subtotal.multiply(PorcDesc).divide(new BigDecimal("100"));
 
             TotalDesc = TotalDesc.add(ValorDesc);
@@ -945,24 +964,16 @@ public class NotePedidos extends javax.swing.JDialog {
 
 
     private void tabla_para_productosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabla_para_productosMousePressed
-
-        //OPERACION PARA LISTAR TABLA DE ABAJO
         int i = 0;
         String msg = null;
-        //Nuevo variable para saber si esta el producto en la lista
         String id_pro = null;
         Integer cantidatabla = 0;//ni idea porq si solo la guarda una vez pero no la utiliza
         try {
             if (evt.getClickCount() == 2) {
                 i = tabla_para_productos.getSelectedRow();
-//                objeto = devuelveObjeto(lista.get(i).getId_precios().toString(), lista);
                 objetoActual = devuelveProducto(tabla_para_productos.getValueAt(i, 0).toString(), listaPNP);
-
                 cantidatabla = objetoActual.getCantidad();
-                System.out.println("holaaa");
-                //valida que el objeto no este vacio
                 if (objetoActual != null) {
-
                     id_pro = objetoActual.getId_producto().toString();
                     System.out.println(id_pro + " <-- Este es el id Producto");
                     //VALIDA SI EL PRODUCTO ESTA AGREGADO
@@ -970,11 +981,8 @@ public class NotePedidos extends javax.swing.JDialog {
                     System.out.println(msg);
                     //valida el mensaje
                     if (msg == null) {
-
-                        System.out.println("hello");
                         AgregarProductoNotaPedido np = new AgregarProductoNotaPedido(new javax.swing.JFrame(), true, objetoActual);
                         np.setVisible(true);
-
                         np.objf.getId_precios();
                         System.out.println(" id precio " + np.objf.getId_precios());
                         np.objf.getId_precios();
@@ -982,11 +990,6 @@ public class NotePedidos extends javax.swing.JDialog {
                         System.out.println(" cantidad " + np.getObjf().getCantidad());
                         System.out.println("unidad " + np.getObjf().getUnidad());
                         System.out.println("observacion: " + np.getObjf().getObservacion());
-
-                        //VER DESDE AQUI
-                        //joinProductoParaNotaPedido
-                        //compara si tiene el mismo precio para saber si el producto esta dentro
-                        System.out.println(" PASO EL NULL");
                         Tablas.cargarJoinProductosNotaPedido(tabla_para_productos, listaPNP);
                         System.out.println(np.getObjf().getCantidad() + " " + np.getObjf().getUnidad());
                         if (np.getObjf().getCantidad() > 0 || np.getObjf().getUnidad() > 0) {
@@ -1006,7 +1009,7 @@ public class NotePedidos extends javax.swing.JDialog {
                             TotalIVA2();
                             TotalPro();
                         } else {
-                            JOptionPane.showMessageDialog(this, "No es posible hacer un pedido del producto "+ np.getObjf().getNombre_producto() + " con una cantidad de " + np.getObjf().getCantidad() + " y unidades de " + np.getObjf().getUnidad());
+                            JOptionPane.showMessageDialog(this, "No es posible hacer un pedido del producto " + np.getObjf().getNombre_producto() + " con una cantidad de " + np.getObjf().getCantidad() + " y unidades de " + np.getObjf().getUnidad());
 //                            JOptionPane.showMessageDialog(this, "getCantidad() ->" + np.getObjf().getCantidad());
                         }
 //                        }
@@ -1029,21 +1032,42 @@ public class NotePedidos extends javax.swing.JDialog {
         BigDecimal PrecioBono = new BigDecimal("0.00");
 
         BigDecimal Cantidad = BigDecimal.valueOf(lista.getCantidad());
-        BigDecimal Precio = lista.getPrecios();
-        BigDecimal Subtotal = Cantidad.multiply(Precio);
-        BigDecimal Bono1 = BigDecimal.valueOf(lista.getBono())/*new BigDecimal(Bono)*/;
+        BigDecimal Precio_presentacion = lista.getPrecios_presentacion();
+        BigDecimal precio_unidad = lista.getPrecios_unidad();
+        BigDecimal Unidad = BigDecimal.valueOf(lista.getUnidad());
+        String Presentacion = lista.getEnvase().toString();
+        BigDecimal Precio;
+
+        if ("CAJA".equals(Presentacion)) {
+            BigDecimal precio_presentacion_total = Precio_presentacion.multiply(Cantidad);
+            BigDecimal precio_unidad_total = precio_unidad.multiply(Unidad);
+            Precio = precio_presentacion_total.add(precio_unidad_total);
+        } else {
+            Precio = Cantidad.multiply(Precio_presentacion);
+        }
+        BigDecimal Subtotal = Precio;
+        BigDecimal Bono1 = BigDecimal.valueOf(lista.getBono());
+        BigDecimal CantidadTotal = Cantidad.add(Bono1);
+
+        if (Cantidad.equals(0) || Unidad.equals(0)) {
+            PrecioBono = Subtotal.divide(CantidadTotal);
+        } else {
+            PrecioBono = CantidadTotal.divide(Subtotal, 7, RoundingMode.HALF_UP);
+        }
         Integer Unid = lista.getUnidad();
         String obsr = lista.getObservacion();
         System.out.println("Observacion 1: " + obsr);
         System.out.println("un: " + Unid);
         objd.setUnidad(Unid);
         objd.setObservacion(obsr);
-        BigDecimal CantidadTotal = Cantidad.add(Bono1);
-        PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);
+//        BigDecimal CantidadTotal = Cantidad.add(Bono1);
+//        PrecioBono = Subtotal.divide(CantidadTotal, 7, RoundingMode.HALF_UP);
         objd.setPrecioBono(PrecioBono);
+        objd.setPrecio_total(Subtotal);
         BigDecimal PorcentajeDesc = lista.getPorcentaje_descuento();
         BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
         objd.setValor_descuento(ValorDes);
+        
         if (lista.getIva().equals("NO")) {
             objd.setPrecioiva(new BigDecimal("0.00"));
             BigDecimal importe = Subtotal.subtract(ValorDes);

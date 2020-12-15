@@ -466,7 +466,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         txtEnvase3.setText(obj.getEnvase());
         txtTipo.setText(obj.getNombre_tipo());
 //        txtPrecio.setText(obj.getPrecios().toString());
-        System.out.println("ddddd" + obj.getPrecios());
+        System.out.println("ddddd" + obj.getPrecios_presentacion());
         txtIva.setText(obj.getIva());
         //
         objf.setId_producto(obj.getId_producto());
@@ -654,7 +654,7 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         txtBono.setEnabled(true);
         txtporcentajeDescuento.setEnabled(true);
         txtcantidadpro.setEnabled(true);
-        objf.setPrecios(Pnp.getPrecio().getPrecio_compra());
+        objf.setPrecios_presentacion(Pnp.getPrecio().getPrecio_compra());
         objf.setId_precios(Pnp.getPrecio().getId_precio());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
