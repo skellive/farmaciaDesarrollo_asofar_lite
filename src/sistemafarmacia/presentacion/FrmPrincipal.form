@@ -228,6 +228,7 @@
                 <Property name="text" type="java.lang.String" value="REGISTRAR NOTA DE PEDIDO"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="mnuRegistrarVenta1MouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mnuRegistrarVenta1ActionPerformed"/>
               </Events>
             </MenuItem>

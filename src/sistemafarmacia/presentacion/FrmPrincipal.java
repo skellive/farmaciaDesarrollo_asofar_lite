@@ -476,6 +476,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         mnuRegistrarVenta1.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         mnuRegistrarVenta1.setText("REGISTRAR NOTA DE PEDIDO");
+        mnuRegistrarVenta1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuRegistrarVenta1MouseClicked(evt);
+            }
+        });
         mnuRegistrarVenta1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 mnuRegistrarVenta1ActionPerformed(evt);
@@ -879,6 +884,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         KardexReporte kp = new KardexReporte(this, rootPaneCheckingEnabled, objUsuario);
         kp.setVisible(rootPaneCheckingEnabled);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void mnuRegistrarVenta1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuRegistrarVenta1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuRegistrarVenta1MouseClicked
 
     public Listar_usuario getUsuario() {
         return objUsuario;
