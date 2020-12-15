@@ -1311,6 +1311,9 @@ public class NotePedidos extends javax.swing.JDialog {
             cn.setIva(VGiva);
             cn.setDescuento(VGdescuento);
             cn.setTotal(VGtotal);
+            
+            String hora = txtFecha.getText() + " " + txtHora.getText();
+            System.out.println(txtCodigoProveedor.getText() + " " + 2 +" " + hora +" " + cbxPlazo.getSelectedItem().toString() +" " + cbxFormaP.getSelectedItem().toString() +" " + VGiva +" " + VGdescuento+" " + VGtotal);
 
             try {
 
@@ -1318,6 +1321,7 @@ public class NotePedidos extends javax.swing.JDialog {
 
                 //String query = "SELECT `id_cabecera_nota_pedidos` FROM `cabecera_nota_pedidos` WHERE `id_proveedor`=" + txtCodigoProveedor.getText() + " AND `fecha_creacion`=" + "'" + txtFecha.getText() + " " + txtHora.getText() + "'" + " AND `total`=" + VGtotal.toString();
                 //id_cab = crud.buscarIDCabeceraNotaPedido(query);
+                
                 if (id_cab.isEmpty()) {
                     JOptionPane.showMessageDialog(null, "id_cabecera esta vacio");
                 } else {
