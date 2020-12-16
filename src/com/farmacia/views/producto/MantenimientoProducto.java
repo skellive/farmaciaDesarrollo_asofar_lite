@@ -35,7 +35,8 @@ import net.sf.jasperreports.view.JRViewer;
  * @author User
  */
 public class MantenimientoProducto extends javax.swing.JDialog {
-    int x,y;
+
+    int x, y;
     filtrosProductos fil = new filtrosProductos();
     CRUD crud = new CRUD();
     listarJoinProductosCompras objeto = null;
@@ -44,7 +45,8 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     ArrayList<listarJoinProductosCompras> lista = crud.listarTodoJoinProductos(1);
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
-    Listar_usuario objUsuario=null;
+    Listar_usuario objUsuario = null;
+
     public MantenimientoProducto(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
@@ -53,14 +55,15 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
     }
-    public MantenimientoProducto(java.awt.Frame parent, boolean modal,Listar_usuario obj) {
+
+    public MantenimientoProducto(java.awt.Frame parent, boolean modal, Listar_usuario obj) {
         super(parent, modal);
         getContentPane().setBackground(Color.white);
         setUndecorated(true);
         initComponents();
         setLocationRelativeTo(null);
         Tablas.cargarJoinProductosMCompra(tbacargarProductos, lista);
-        objUsuario=obj;
+        objUsuario = obj;
     }
 
     /**
@@ -286,7 +289,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
 
     private void tbacargarProductosMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbacargarProductosMousePressed
         int i = 0;
-        
+
         try {
             if (evt.getClickCount() == 2) {
                 i = tbacargarProductos.getSelectedRow();
@@ -312,7 +315,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
             Logger.getLogger(MantenimientoProducto.class.getName()).log(Level.SEVERE, null, e);
         }
     }//GEN-LAST:event_tbacargarProductosMousePressed
-    
+
     public listarJoinProductosCompras devuelveObjeto(String datos, ArrayList<listarJoinProductosCompras> listarobj) {
         listarJoinProductosCompras objeto1 = null;
         for (int i = 0; i < listarobj.size(); i++) {
@@ -323,7 +326,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         }
         return objeto1;
     }
-    
+
     private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_filtroActionPerformed
@@ -333,7 +336,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
         //        String dat = Filtro.getText();
         //        Tablas.filtro(dat, Tabla);
     }//GEN-LAST:event_filtroKeyReleased
-    
+
     private void tipofiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipofiltroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tipofiltroActionPerformed
@@ -394,7 +397,7 @@ public class MantenimientoProducto extends javax.swing.JDialog {
     }//GEN-LAST:event_lblBuscarMouseClicked
 
     private void lblNuevoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblNuevoMouseClicked
-        Products Prod = new Products(new javax.swing.JFrame(), true,objUsuario);
+        Products Prod = new Products(new javax.swing.JFrame(), true, objUsuario);
         Prod.setVisible(true);
         lista.clear();
         lista = crud.listarTodoJoinProductos(1);
@@ -403,17 +406,19 @@ public class MantenimientoProducto extends javax.swing.JDialog {
 
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList tablac = new ArrayList();
-        for(int i=0;i<tbacargarProductos.getRowCount();i++){
-            ClaseReporte tabla1 = new ClaseReporte (tbacargarProductos.getValueAt(i,0).toString(),tbacargarProductos.getValueAt(i,1).toString(),tbacargarProductos.getValueAt(i,2).toString(),tbacargarProductos.getValueAt(i,3).toString(),tbacargarProductos.getValueAt(i,4).toString(),tbacargarProductos.getValueAt(i,5).toString());
-            tablac.add(tabla1);}
-        try{
-            String dir = System.getProperty("user.dir")+"/Reportes/"+"MantenimientoProducto.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tablac));
-            JDialog frame = new JDialog (this);
+        for (int i = 0; i < tbacargarProductos.getRowCount(); i++) {
+            ClaseReporte tabla1 = new ClaseReporte(tbacargarProductos.getValueAt(i, 0).toString(), tbacargarProductos.getValueAt(i, 1).toString(), tbacargarProductos.getValueAt(i, 2).toString(), tbacargarProductos.getValueAt(i, 3).toString(), tbacargarProductos.getValueAt(i, 4).toString(), tbacargarProductos.getValueAt(i, 5).toString());
+            tablac.add(tabla1);
+        }
+        try {
+//            String dir = System.getProperty("user.dir") + "/Reportes/" + ".jasper";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("MantenimientoProducto.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tablac));
+            JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
             frame.add(viewer);
-            frame.setSize(new Dimension(ancho/2,alto/2));
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();

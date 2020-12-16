@@ -360,7 +360,8 @@ public class Reporte_Productos_Ventas extends javax.swing.JDialog {
 
         try {
             String dir = System.getProperty("user.dir") + "/Reportes/" + "Reporte_Compra";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Reporte_Compra.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
             JDialog frame = new JDialog();
             JRViewer viewer = new JRViewer(jprint);

@@ -157,7 +157,7 @@ public class ClaseReporte {
         this.valor12 = valor12;
     }
 
-        public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13) {
+    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13) {
         this.valor1 = valor1;
         this.valor2 = valor2;
         this.valor3 = valor3;
@@ -172,8 +172,8 @@ public class ClaseReporte {
         this.valor12 = valor12;
         this.valor13 = valor13;
     }
-        
-            public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14) {
+
+    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14) {
         this.valor1 = valor1;
         this.valor2 = valor2;
         this.valor3 = valor3;
@@ -189,8 +189,8 @@ public class ClaseReporte {
         this.valor13 = valor13;
         this.valor14 = valor14;
     }
-        
-            public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15) {
+
+    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15) {
         this.valor1 = valor1;
         this.valor2 = valor2;
         this.valor3 = valor3;
@@ -208,7 +208,7 @@ public class ClaseReporte {
         this.valor15 = valor15;
     }
 
-                public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16) {
+    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16) {
         this.valor1 = valor1;
         this.valor2 = valor2;
         this.valor3 = valor3;
@@ -226,8 +226,8 @@ public class ClaseReporte {
         this.valor15 = valor15;
         this.valor16 = valor16;
     }
-                
-                    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17) {
+
+    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17) {
         this.valor1 = valor1;
         this.valor2 = valor2;
         this.valor3 = valor3;
@@ -246,7 +246,7 @@ public class ClaseReporte {
         this.valor16 = valor16;
         this.valor17 = valor17;
     }
-            
+
     public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18) {
         this.valor1 = valor1;
         this.valor2 = valor2;
@@ -290,7 +290,7 @@ public class ClaseReporte {
         this.valor19 = valor19;
     }
 
-        public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20) {
+    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20) {
         this.valor1 = valor1;
         this.valor2 = valor2;
         this.valor3 = valor3;
@@ -312,7 +312,7 @@ public class ClaseReporte {
         this.valor19 = valor19;
         this.valor20 = valor20;
     }
-    
+
     public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20, String valor21) {
         this.valor1 = valor1;
         this.valor2 = valor2;
@@ -362,7 +362,7 @@ public class ClaseReporte {
         this.valor22 = valor22;
     }
 
-        public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20, String valor21, String valor22, String valor23) {
+    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20, String valor21, String valor22, String valor23) {
         this.valor1 = valor1;
         this.valor2 = valor2;
         this.valor3 = valor3;
@@ -387,8 +387,8 @@ public class ClaseReporte {
         this.valor22 = valor22;
         this.valor23 = valor23;
     }
-        
-            public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20, String valor21, String valor22, String valor23, String valor24) {
+
+    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20, String valor21, String valor22, String valor23, String valor24) {
         this.valor1 = valor1;
         this.valor2 = valor2;
         this.valor3 = valor3;
@@ -414,8 +414,8 @@ public class ClaseReporte {
         this.valor23 = valor23;
         this.valor24 = valor24;
     }
-            
-                public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20, String valor21, String valor22, String valor23, String valor24, String valor25) {
+
+    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20, String valor21, String valor22, String valor23, String valor24, String valor25) {
         this.valor1 = valor1;
         this.valor2 = valor2;
         this.valor3 = valor3;
@@ -442,7 +442,7 @@ public class ClaseReporte {
         this.valor24 = valor24;
         this.valor25 = valor25;
     }
-    
+
     public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20, String valor21, String valor22, String valor23, String valor24, String valor25, String valor26) {
         this.valor1 = valor1;
         this.valor2 = valor2;
@@ -471,8 +471,8 @@ public class ClaseReporte {
         this.valor25 = valor25;
         this.valor26 = valor26;
     }
-    
-        public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20, String valor21, String valor22, String valor23, String valor24, String valor25, String valor26, String valor27) {
+
+    public ClaseReporte(String valor1, String valor2, String valor3, String valor4, String valor5, String valor6, String valor7, String valor8, String valor9, String valor10, String valor11, String valor12, String valor13, String valor14, String valor15, String valor16, String valor17, String valor18, String valor19, String valor20, String valor21, String valor22, String valor23, String valor24, String valor25, String valor26, String valor27) {
         this.valor1 = valor1;
         this.valor2 = valor2;
         this.valor3 = valor3;

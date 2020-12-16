@@ -325,8 +325,9 @@ public class Tipo_Producto extends javax.swing.JDialog {
             lista.add(medida);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"Tipo_Producto.jasper";            
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +".jasper";            
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Tipo_Producto.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

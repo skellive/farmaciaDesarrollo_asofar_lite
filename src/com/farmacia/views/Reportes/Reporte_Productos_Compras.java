@@ -387,8 +387,9 @@ public class Reporte_Productos_Compras extends javax.swing.JDialog {
             tabla.add(componentes);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" + "Reporte_Productos_Compras.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" + ".jasper";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Reporte_Productos_Compras.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
             JDialog frame = new JDialog();
             JRViewer viewer = new JRViewer(jprint);
@@ -411,8 +412,9 @@ public class Reporte_Productos_Compras extends javax.swing.JDialog {
              tabla.add(componentes);
              }
              try {
-        String dir = System.getProperty("user.dir")+"/Reportes/"+"Reporte_Productos_ComprasinDate.jasper";
-        JasperReport reporte = (JasperReport)JRLoader.loadObject(dir);
+//        String dir = System.getProperty("user.dir")+"/Reportes/"+".jasper";
+//        JasperReport reporte = (JasperReport)JRLoader.loadObject(dir);
+        JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Reporte_Productos_ComprasinDate.jasper"));
         JasperPrint jprint = JasperFillManager.fillReport(reporte,null,new JRBeanCollectionDataSource(tabla));
         JDialog frame = new JDialog();
         JRViewer viewer = new JRViewer(jprint);

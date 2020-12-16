@@ -323,8 +323,9 @@ public class Categoria extends javax.swing.JDialog {
             lista.add(Envases);
         }
         try {
-            String dir = System.getProperty("user.dir") + "/Reportes/" +"Envases.jasper";
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +".jasper";
+//            JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("Envases.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte,null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

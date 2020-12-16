@@ -23,6 +23,7 @@ import java.awt.Point;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -55,19 +56,21 @@ public class MenuPreVentas extends javax.swing.JDialog {
     int x, y;
     Cabecera_ventas objeto = new Cabecera_ventas();
     Detalle_ventas objeto1 = new Detalle_ventas();
+    int dia, mes, ano;
+    Calendar c1 = Calendar.getInstance();
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        initComponents();
         listaCliente = crud.ListarTodoClienteVentas("1");
         getContentPane().setBackground(Color.white);
-        initComponents();
 //        TxtCedula.setText("9999999999");
 //        TxtNombre.setText("CONSUMIDOR FINAL");
 //        TxtCorreo.setText("*************************************");
 //        TxtDirec.setText("*************************************");
 //        TxtTelefono.setText("*************************************");
         this.setLocationRelativeTo(null);
-        
+
         TxtProdNombre.setEnabled(false);
         TxtProdPrecio.setEnabled(false);
         TxtProdCantidad.setEnabled(false);
@@ -81,13 +84,16 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal, Listar_usuario objlogin) {
         super(parent, modal);
-        getContentPane().setBackground(Color.white);
+        setUndecorated(true);
         initComponents();
+        setLocationRelativeTo(null);
+        getContentPane().setBackground(Color.white);
 //        TxtCedula.setText("9999999999");
 //        TxtNombre.setText("CONSUMIDOR FINAL");
 //        TxtCorreo.setText("*************************************");
 //        TxtDirec.setText("*************************************");
 //        TxtTelefono.setText("*************************************");
+        BtnGenerarVenta.setEnabled(false);
         this.setLocationRelativeTo(null);
         listaCliente = crud.ListarTodoClienteVentas("1");
         objUsuario = objlogin;
@@ -99,6 +105,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdDescuento.setEnabled(false);
         TxtProdIva.setEnabled(false);
         TxtProdtotal.setEnabled(false);
+        BtnAddIten.setEnabled(false);
 
     }
 
@@ -817,11 +824,10 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
                 cv.setId_usuario(Long.parseLong("36"));
                 cv.setId_usuario(objUsuario.getId_sesion());
-//            System.out.println("usuario :" + objUsuario.getApellidos());
                 cv.setId_sucursal(Long.parseLong("2"));
                 cv.setForma_de_pago(CbxFormaPago.getSelectedItem().toString());
                 cv.setTipo_de_venta(CbxTipoVenta.getSelectedItem().toString());
-                
+
                 cv.setSubtotal_con_iva(ct.getSubtotalConIva());
                 cv.setSubtotal_sin_iva(ct.getSubtotalSinIva());
                 cv.setSubtotal_venta(ct.getSubtotal());
@@ -846,7 +852,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                     dv.setPrecio(ListarDetalle.get(i).getPrecio());
                     if (ListarDetalle.get(i).getEmpaque() == 1) {
                         dv.setMarca(ListarDetalle.get(i).getMarca());
-                        
+
                         dv.setCantidad(ListarDetalle.get(i).getCantidad());
                         dv.setCantidad_unidad(Long.valueOf(0));
                     } else {
@@ -869,16 +875,16 @@ public class MenuPreVentas extends javax.swing.JDialog {
                     crud.ActulizarStockVentas(listaStockVentas.get(i));
                     //crud.insertarKardex_ventas();
                 }
+                reporteJasper();
+                reiniciar();
+//                this.setVisible(false);
+//                ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
+//                ov.setVisible(true);
+            } else if (jCheckBox1.isEnabled()) {
 
-                this.setVisible(false);
-                ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
-                ov.setVisible(true);
-            }
-            else if (jCheckBox1.isEnabled()) {
-                
                 objClienteC1 = getCliente1();
                 Cabecera_ventas cv = new Cabecera_ventas();
-                
+
                 String id_cab;
                 int can;
                 String query = "SELECT COUNT(*)+1 AS 'cantidad' FROM cabecera_venta";
@@ -939,10 +945,11 @@ public class MenuPreVentas extends javax.swing.JDialog {
                     crud.ActulizarStockVentas(listaStockVentas.get(i));
                     //crud.insertarKardex_ventas();
                 }
-
-                this.setVisible(false);
-                ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
-                ov.setVisible(true);
+                reporteJasper();
+                reiniciar();
+//                this.setVisible(false);
+//                ImprimirOrdenVentas ov = new ImprimirOrdenVentas(new javax.swing.JFrame(), true, objeto);
+//                ov.setVisible(true);
             }
         }
 
@@ -954,6 +961,52 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     }
 
+    public void reporteJasper() {
+        Cabecera_ventas cv = new Cabecera_ventas();
+        ArrayList lista = new ArrayList();
+        dia = (c1.get(Calendar.DATE));
+        mes = (c1.get(Calendar.MONTH)) + 1;
+        ano = (c1.get(Calendar.YEAR));
+        String fecha = (dia + "-" + mes + "-" + ano);
+        for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
+            ClaseReporte creporte = new ClaseReporte(
+                    String.valueOf(objeto.getMun_venta()),
+                    TxtNombre.getText(),
+                    fecha,
+                    fecha,
+                    TablaListarVentas.getValueAt(i, 0).toString(),
+                    TablaListarVentas.getValueAt(i, 3).toString(),
+                    TablaListarVentas.getValueAt(i, 5).toString(),
+                    TablaListarVentas.getValueAt(i, 6).toString(),
+                    TablaListarVentas.getValueAt(i, 7).toString(),
+                    TablaListarVentas.getValueAt(i, 9).toString(),
+                    TablaListarVentas.getValueAt(i, 10).toString(),
+                    TablaListarVentas.getValueAt(i, 11).toString(),
+                    TxtSubtotalconIva.getText(),
+                    TxtSubtotalsinIva.getText(),
+                    TxtSubtotal.getText(),
+                    TxtDescuento.getText(),
+                    TxtIva.getText(),
+                    TxtTotal.getText(),
+                    TablaListarVentas.getValueAt(i, 8).toString());
+            lista.add(creporte);
+        }
+
+        try {
+            JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Venta.jasper"));
+            JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
+            JDialog frame = new JDialog(this);
+            JRViewer viewer = new JRViewer(jprint);
+            frame.add(viewer);
+            frame.setSize(new Dimension(ancho / 2, alto / 2));
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+            viewer.setFitWidthZoomRatio();
+
+        } catch (JRException ex) {
+            Logger.getLogger(MenuPreVentas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 
     private void BtnAddItenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddItenActionPerformed
 
@@ -973,7 +1026,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 } else {
                     Detalle_ventas RegDetalleVentas = new Detalle_ventas();
 
-                        
                     RegDetalleVentas.setId_control(objProd.getId_precio());//nuevo
                     RegDetalleVentas.setId_producto(objProd.getId_producto());
                     RegDetalleVentas.setCodigo_barras(Long.parseLong(objProd.getCodigo_barras()));
@@ -981,7 +1033,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
                     RegDetalleVentas.setMarca(objProd.getMarca_nombre());
                     RegDetalleVentas.setPresentacion(objProd.getPresentacion());
                     RegDetalleVentas.setTipo(objProd.getTipo_nombre());
-                    RegDetalleVentas.setCantidad(Long.parseLong(TxtProdCantidad.getText()));                    
+                    RegDetalleVentas.setCantidad(Long.parseLong(TxtProdCantidad.getText()));
                     RegDetalleVentas.setPrecio(objProd.getPrecio_venta());
                     RegDetalleVentas.setPrecio_compra(objProd.getPrecio_compra());
                     RegDetalleVentas.setSubtotal(objeto1.getSubtotal());
@@ -1007,7 +1059,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
                     TxtProdDescuento.setText("");
                     TxtProdIva.setText("");
                     TxtProdtotal.setText("");
-
                     TxtProdNombre.setEnabled(false);
                     TxtProdPrecio.setEnabled(false);
                     TxtProdCantidad.setEnabled(false);
@@ -1021,8 +1072,46 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
                 }
             }
+            BtnGenerarVenta.setEnabled(true);
         }
     }//GEN-LAST:event_BtnAddItenActionPerformed
+
+    private void reiniciar() {
+        TxtSubtotalconIva.setText("");
+        TxtSubtotalsinIva.setText("");
+        TxtSubtotal.setText("");
+        TxtDescuento.setText("");
+        TxtIva.setText("");
+        TxtTotal.setText("");
+        TxtCedula.setText("");
+        TxtNombre.setText("");
+        TxtDirec.setText("");
+        TxtTelefono.setText("");
+        TxtCorreo.setText("");
+        TxtProdNombre.setText("");
+        TxtProdPrecio.setText("");
+        TxtProdCantidad.setText("");
+        TxtProdPrecio.setText("");
+        TxtProdSubtotal.setText("");
+        TxtDescuentoPorcentaje.setText("");
+        TxtProdDescuento.setText("");
+        TxtProdIva.setText("");
+        TxtProdtotal.setText("");
+        TxtProdNombre.setEnabled(false);
+        TxtProdPrecio.setEnabled(false);
+        TxtProdCantidad.setEnabled(false);
+        TxtProdSubtotal.setEnabled(false);
+        TxtDescuentoPorcentaje.setEnabled(false);
+        TxtProdDescuento.setEnabled(false);
+        TxtProdIva.setEnabled(false);
+        TxtProdtotal.setEnabled(false);
+        TablaListarVentas.clearSelection();
+        ListarDetalle.clear();
+        jCheckBox1.setSelected(false);
+//        listaStockVentas.clear();
+//        listaCliente.clear();
+        Tablas.cargarListaVentasDetalle(TablaListarVentas, ListarDetalle);
+    }
 
     public String verificarObjeto(String datos, String idPre, String empaque) {
         String idproducto, idprecio;
@@ -1256,7 +1345,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
             }
 
         }
-
+        BtnAddIten.setEnabled(true);
 
     }//GEN-LAST:event_BtnBuscarprodnombreActionPerformed
 
@@ -1377,15 +1466,15 @@ public class MenuPreVentas extends javax.swing.JDialog {
         }
         /*   if (!TxtProdSubtotal.getText().equals("")) {
 
-            VerificarAcceso va = new VerificarAcceso(new javax.swing.JFrame(), true);
+         VerificarAcceso va = new VerificarAcceso(new javax.swing.JFrame(), true);
 
-            va.setVisible(true);
+         va.setVisible(true);
 
-            if (va.devolverBandera().equals("si")) {
-                TxtDescuentoPorcentaje.setEditable(true);
-            }
+         if (va.devolverBandera().equals("si")) {
+         TxtDescuentoPorcentaje.setEditable(true);
+         }
 
-        }*/
+         }*/
 
 
     }//GEN-LAST:event_jButton2ActionPerformed

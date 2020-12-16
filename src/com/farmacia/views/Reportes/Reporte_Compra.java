@@ -431,8 +431,6 @@ public class Reporte_Compra extends javax.swing.JDialog {
                 JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Reporte_Compra.jasper"));
                 JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
                 JDialog ventana = new JDialog();
-
-//            JRViewer jviewer = new JRViewer(jprint);
                 JRViewer jviewer = new net.sf.jasperreports.view.JRViewer(jprint);
                 ventana.add(jviewer);
                 ventana.setSize(new Dimension(ancho / 2, alto / 2));
