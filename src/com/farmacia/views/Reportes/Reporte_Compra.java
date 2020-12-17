@@ -73,6 +73,8 @@ public class Reporte_Compra extends javax.swing.JDialog {
 
     /**
      * Creates new form Reporte_Compra
+     * @param parent
+     * @param modal
      */
     public Reporte_Compra(java.awt.Frame parent, boolean modal) {
         super(parent, modal = false);
@@ -221,6 +223,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton3.setText("EXCEL");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

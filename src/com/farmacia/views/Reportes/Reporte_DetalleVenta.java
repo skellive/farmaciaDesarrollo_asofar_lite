@@ -590,11 +590,11 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                     jTable1.getValueAt(i, 8).toString(),
                     jTable1.getValueAt(i, 9).toString(),
                     jTable1.getValueAt(i, 10).toString(),
-                    TxtSubSinIva.getText().toString(),
-                    TxtSubtotal.getText().toString(),
-                    txtDescuento.getText().toString(),
-                    txtIva.getText().toString(),
-                    txtTotal.getText().toString());
+                    TxtSubSinIva.getText(),
+                    TxtSubtotal.getText(),
+                    txtDescuento.getText(),
+                    txtIva.getText(),
+                    txtTotal.getText());
             tablac.add(tabla1);
         }
         try {

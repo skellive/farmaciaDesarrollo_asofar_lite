@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eef98107-54aa-473e-a5d9-7af6f92b3a9b">
 	<property name="ireport.zoom" value="1.1000000000000334"/>
-	<property name="ireport.x" value="0"/>
+	<property name="ireport.x" value="198"/>
 	<property name="ireport.y" value="0"/>
 	<field name="valor1" class="java.lang.String"/>
 	<field name="valor2" class="java.lang.String"/>
@@ -48,11 +48,11 @@
 				<textElement>
 					<font size="24" isBold="true"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{valor28}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{valor27}]]></textFieldExpression>
 			</textField>
 			<image>
 				<reportElement x="101" y="3" width="145" height="33" uuid="17577285-1881-4cc7-a7d8-169f75606ab9"/>
-				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("iconos\\asofar.jpg")]]></imageExpression>
 			</image>
 		</band>
 	</title>

@@ -523,7 +523,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
             }
 
             try {
-                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Venta.jasper"));
+                JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("reporteVenta.jasper"));
                 JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
                 //JDialog ventana = new JDialog();
                 JDialog ventana = new JDialog();

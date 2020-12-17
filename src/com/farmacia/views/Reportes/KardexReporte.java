@@ -464,7 +464,7 @@ public class KardexReporte extends javax.swing.JDialog {
                 datosEstilo.setBorderBottom(BorderStyle.THIN);
 
                 ps = conn.prepareStatement("call reporteExcelInventario()");
-                String f = txt_filtro_inventario.getText().toString();
+                String f = txt_filtro_inventario.getText();
                 int pos = tipofiltro.getSelectedIndex();
 
                 if ("".equals(f) || f.isEmpty()) {
