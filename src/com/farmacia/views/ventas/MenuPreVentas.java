@@ -20,10 +20,13 @@ import java.awt.Dimension;
 import java.awt.Label;
 import java.awt.MouseInfo;
 import java.awt.Point;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JDialog;
@@ -35,6 +38,7 @@ import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
+import net.sf.jasperreports.view.JasperViewer;
 
 public class MenuPreVentas extends javax.swing.JDialog {
 
@@ -968,6 +972,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         mes = (c1.get(Calendar.MONTH)) + 1;
         ano = (c1.get(Calendar.YEAR));
         String fecha = (dia + "-" + mes + "-" + ano);
+//        String dir = System.getProperty("user.dir") + "\\P_Farmacia00_Menu3.jar";
         for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
             ClaseReporte creporte = new ClaseReporte(
                     String.valueOf(objeto.getMun_venta()),
@@ -993,16 +998,32 @@ public class MenuPreVentas extends javax.swing.JDialog {
         }
 
         try {
+//            Map parametro = new HashMap();
+//            parametro.put("conte", String.valueOf(dir));
             JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Venta.jasper"));
+//            InputStream report = MenuPreVentas.class.getResourceAsStream("Venta.jasper");
+//            String dir = System.getProperty("user.dir") + "/Reportes/" +"Venta.jasper";
+//            InputStream report = JRLoader.getFileInputStream("Venta.jasper");
             JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
+//            JasperViewer viewer = new JasperViewer(jprint, false);
             frame.add(viewer);
             frame.setSize(new Dimension(ancho / 2, alto / 2));
             frame.setLocationRelativeTo(null);
+//            viewer.setLocationRelativeTo(null);
             frame.setVisible(true);
+//            viewer.setVisible(true);
             viewer.setFitWidthZoomRatio();
+            /*
+             InputStream reporteInputStream = MiClase.class.getResourceAsStream("/reportes/" + archivo);
+             JasperPrint jasperPrint = JasperFillManager.fillReport(reporteInputStream, null, conexion);
+             JasperViewer jView = new JasperViewer(jasperPrint, false);
+             jView.setVisible(true);
+             */
         } catch (JRException ex) {
+            
+            JOptionPane.showMessageDialog(rootPane, "report fail: " + ex);
             Logger.getLogger(MenuPreVentas.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
