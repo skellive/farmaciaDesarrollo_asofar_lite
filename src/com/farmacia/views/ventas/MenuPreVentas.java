@@ -1002,7 +1002,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
             viewer.setFitWidthZoomRatio();
-
         } catch (JRException ex) {
             Logger.getLogger(MenuPreVentas.class.getName()).log(Level.SEVERE, null, ex);
         }
