@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eef98107-54aa-473e-a5d9-7af6f92b3a9b">
 	<property name="ireport.zoom" value="1.1000000000000334"/>
-	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="5"/>
+	<property name="ireport.x" value="15"/>
+	<property name="ireport.y" value="0"/>
 	<field name="valor1" class="java.lang.String"/>
 	<field name="valor2" class="java.lang.String"/>
 	<field name="valor3" class="java.lang.String"/>
@@ -37,7 +37,7 @@
 	<title>
 		<band height="46" splitType="Stretch">
 			<staticText>
-				<reportElement x="94" y="3" width="440" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
+				<reportElement x="253" y="3" width="281" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
 				<textElement textAlignment="Right">
 					<font size="24" isBold="true" isItalic="true"/>
 				</textElement>
@@ -50,6 +50,10 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor28}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="123" y="3" width="130" height="33" uuid="9670a08f-720c-4fcc-90ac-1a525c7ed166"/>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("iconos\\asofar.jpg")]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

@@ -20,7 +20,7 @@
 			</staticText>
 			<image>
 				<reportElement x="138" y="4" width="107" height="29" uuid="c636ce53-6d72-42ec-b266-3bc448bc6c19"/>
-				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("iconos\\asofar.jpg")]]></imageExpression>
 			</image>
 		</band>
 	</title>
