@@ -36,7 +36,7 @@
 	<title>
 		<band height="46" splitType="Stretch">
 			<staticText>
-				<reportElement x="94" y="3" width="405" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
+				<reportElement x="238" y="3" width="261" height="33" uuid="69370e2e-b926-4d89-86ca-bf4942d011a1"/>
 				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font size="24" isBold="true" isItalic="true"/>
 				</textElement>
@@ -49,6 +49,10 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$F{valor1}]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="100" y="3" width="138" height="33" uuid="716bab06-962e-4168-8963-292bfdd6b194"/>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("iconos\\asofar.jpg")]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>

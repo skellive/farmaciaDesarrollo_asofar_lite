@@ -17,28 +17,40 @@ import com.farmacia.entities1.StockVentas;
 import com.farmacia.join_entidades.JoinListarProductosVentas;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Label;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.MouseInfo;
 import java.awt.Point;
-import java.io.InputStream;
+import java.awt.print.PageFormat;
+import java.awt.print.Printable;
+import static java.awt.print.Printable.NO_SUCH_PAGE;
+import static java.awt.print.Printable.PAGE_EXISTS;
+import java.awt.print.PrinterException;
 import java.math.BigDecimal;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.print.Doc;
+import javax.print.DocFlavor;
+import javax.print.DocPrintJob;
+import javax.print.PrintService;
+import javax.print.PrintServiceLookup;
+import javax.print.SimpleDoc;
+import javax.print.attribute.HashPrintRequestAttributeSet;
+import javax.print.attribute.PrintRequestAttributeSet;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.view.JRViewer;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class MenuPreVentas extends javax.swing.JDialog {
 
@@ -50,7 +62,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
     ArrayList<StockVentas> listaStockVentas = null;
 
     Listar_usuario objUsuario = null;
-    // Label jlId_pro = new ConsultarProductoVentas().lblId.getText();
     CRUD crud = new CRUD();
     JoinListarProductosVentas objProd = new JoinListarProductosVentas();
     Persona objCliente = new Persona();
@@ -68,11 +79,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         initComponents();
         listaCliente = crud.ListarTodoClienteVentas("1");
         getContentPane().setBackground(Color.white);
-//        TxtCedula.setText("9999999999");
-//        TxtNombre.setText("CONSUMIDOR FINAL");
-//        TxtCorreo.setText("*************************************");
-//        TxtDirec.setText("*************************************");
-//        TxtTelefono.setText("*************************************");
         this.setLocationRelativeTo(null);
 
         TxtProdNombre.setEnabled(false);
@@ -92,11 +98,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         getContentPane().setBackground(Color.white);
-//        TxtCedula.setText("9999999999");
-//        TxtNombre.setText("CONSUMIDOR FINAL");
-//        TxtCorreo.setText("*************************************");
-//        TxtDirec.setText("*************************************");
-//        TxtTelefono.setText("*************************************");
         BtnGenerarVenta.setEnabled(false);
         this.setLocationRelativeTo(null);
         listaCliente = crud.ListarTodoClienteVentas("1");
@@ -957,6 +958,187 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
     }//GEN-LAST:event_BtnGenerarVentaActionPerformed
 
+    public class PrintEpson implements Printable {
+
+        public List<String> getPrinters() {
+            DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
+            PrintRequestAttributeSet pras = new HashPrintRequestAttributeSet();
+            PrintService printServices[] = PrintServiceLookup.lookupPrintServices(flavor, pras);
+            List<String> printerList = new ArrayList<String>();
+            for (PrintService printerService : printServices) {
+                printerList.add(printerService.getName());
+            }
+            return printerList;
+        }
+
+        @Override
+        public int print(Graphics g, PageFormat pf, int page)
+                throws PrinterException {
+            if (page > 0) {
+                /* We have only one page, and 'page' is zero-based */
+                return NO_SUCH_PAGE;
+            }
+            /*
+             * User (0,0) is typically outside the imageable area, so we must
+             * translate by the X and Y values in the PageFormat to avoid clipping
+             */
+            Graphics2D g2d = (Graphics2D) g;
+            g2d.translate(pf.getImageableX(), pf.getImageableY());
+            /* Now we perform our rendering */
+            g.setFont(new Font("Arial", 4, 4));
+            g.drawString("Hello world !", 0, 10);
+            return PAGE_EXISTS;
+        }
+
+        public void printString(String printerName, String text) {
+            // find the printService of name printerName
+            DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
+            PrintRequestAttributeSet pras = new HashPrintRequestAttributeSet();
+            PrintService printService[] = PrintServiceLookup.lookupPrintServices(flavor, pras);
+            PrintService service = findPrintService("JAPOS1", printService);
+
+            DocPrintJob job = service.createPrintJob();
+            try {
+                byte[] bytes;
+                // important for umlaut chars
+                bytes = text.getBytes("CP437");
+                Doc doc = new SimpleDoc(bytes, flavor, null);
+                job.print(doc, null);
+            } catch (Exception e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
+        public void printBytes(String printerName, byte[] bytes) {
+            DocFlavor flavor = DocFlavor.BYTE_ARRAY.AUTOSENSE;
+            PrintRequestAttributeSet pras = new HashPrintRequestAttributeSet();
+            PrintService printService[] = PrintServiceLookup.lookupPrintServices(flavor, pras);
+            PrintService service = findPrintService(printerName, printService);
+            DocPrintJob job = service.createPrintJob();
+            try {
+                Doc doc = new SimpleDoc(bytes, flavor, null);
+                job.print(doc, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+        private PrintService findPrintService(String printerName,
+                PrintService[] services) {
+            for (PrintService service : services) {
+                if (service.getName().equalsIgnoreCase(printerName)) {
+                    return service;
+                }
+            }
+            return null;
+        }
+    }
+
+    public void generarFactura() {
+        String empresa = "";
+        String sucursal = "";
+        String ruc = "";
+        String direccion = "";
+        int idFac = 555555;
+        objClienteC1 = getCliente1();
+        Cabecera_ventas cv = new Cabecera_ventas();
+//        cv.setId_cliente(objClienteC1.getId_Clientes());
+//        String idFactura = idFac.toString();
+//    MenuPreVentas.PrintEpson printerService = new MenuPreVentas.PrintEpson();
+        int im = JOptionPane.showConfirmDialog(null, "¿Desea Imprimir la factura?", "", JOptionPane.YES_NO_OPTION);
+        if (im == JOptionPane.YES_OPTION) {
+            MenuPreVentas.PrintEpson printerService = new MenuPreVentas.PrintEpson();
+            System.out.println(printerService.getPrinters());
+            printerService.printString("EPSON-TM-T20II", "------------------------------------------\n\n");
+            printerService.printString("EPSON-TM-T20II", " *     FARMACIA " + empresa + " " + sucursal + "    *\n");
+            printerService.printString("EPSON-TM-T20II", "------------------------------------------\n");
+            printerService.printString("EPSON-TM-T20II", "         Direccion: " + direccion + "\n");
+            printerService.printString("EPSON-TM-T20II", "               RUC: " + ruc + "\n");
+            printerService.printString("EPSON-TM-T20II", "               Nº FACTURA: " + String.format("%06d", idFac) + "\n");
+            printerService.printString("EPSON-TM-T20II", "   CODIGO DE VENTA: " + objClienteC1.getId_Clientes() + "\n");
+            printerService.printString("EPSON-TM-T20II", " N° IDENTIFICACION: " + TxtCedula.getText() + "\n");
+            printerService.printString("EPSON-TM-T20II", "    NOMBRE DE CLTE: " + TxtNombre.getText() + "\n");
+            printerService.printString("EPSON-TM-T20II", "    CORREO DE CLTE: " + TxtCorreo.getText() + "\n");
+            printerService.printString("EPSON-TM-T20II", "  TELEFONO DE CLTE: " + TxtTelefono.getText() + "\n");
+            printerService.printString("EPSON-TM-T20II", " DIRECCION DE CLTE: " + TxtDirec.getText() + "\n");
+            printerService.printString("EPSON-TM-T20II", "------------------------------------------\n");
+            printerService.printString("EPSON-TM-T20II", "Producto             Cant Precio SubTotal\n");
+            for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
+                if (!"0,00".equals(TablaListarVentas.getValueAt(i, 6).toString())) {
+                    printerService.printString("EPSON-TM-T20II", TablaListarVentas.getValueAt(i, 2).toString() + "\n");
+//                                    System.out.println("****prin  +"+tba_detalle.getValueAt(i, 2).toString());
+//                                printerService.printString("EPSON-TM-T20II",tba_detalle.getValueAt(i, 2).toString() + "  " + tba_detalle.getValueAt(i, 3).toString() + "  " + tba_detalle.getValueAt(i, 4).toString() + "  " + tba_detalle.getValueAt(i, 7).toString() + "  " + tba_detalle.getValueAt(i, 8).toString() + "\n");
+                    printerService.printString("EPSON-TM-T20II", "                       " + TablaListarVentas.getValueAt(i, 3).toString() + "  " + TablaListarVentas.getValueAt(i, 4).toString() + "  " + TablaListarVentas.getValueAt(i, 8).toString() + "   *" + "\n");
+//                                    System.out.println("****prin ++"+tba_detalle.getValueAt(i, 4).toString() + "  " + tba_detalle.getValueAt(i, 7).toString() + "  " + tba_detalle.getValueAt(i, 8).toString());
+                } else {
+                    printerService.printString("EPSON-TM-T20II", TablaListarVentas.getValueAt(i, 2).toString() + "\n");
+//                                printerService.printString("EPSON-TM-T20II",tba_detalle.getValueAt(i, 2).toString() + "  " + tba_detalle.getValueAt(i, 3).toString() + "  " + tba_detalle.getValueAt(i, 4).toString() + "  " + tba_detalle.getValueAt(i, 7).toString() + "  " + tba_detalle.getValueAt(i, 8).toString() + "\n");
+                    printerService.printString("EPSON-TM-T20II", "                       " + TablaListarVentas.getValueAt(i, 3).toString() + "  " + TablaListarVentas.getValueAt(i, 4).toString() + "  " + TablaListarVentas.getValueAt(i, 8).toString() + "\n");
+                }
+            }
+            printerService.printString("EPSON-TM-T20II", "------------------------------------------\n");
+            printerService.printString("EPSON-TM-T20II", "                     SUBTOTAL: " + TxtSubtotal.getText() + "\n");
+            printerService.printString("EPSON-TM-T20II", "                    DESCUENTO: " + TxtDescuento.getText() + "\n");
+            printerService.printString("EPSON-TM-T20II", "                          IVA: " + TxtIva.getText() + "\n");
+            printerService.printString("EPSON-TM-T20II", "                        TOTAL: " + TxtTotal.getText() + "\n");
+            printerService.printString("EPSON-TM-T20II", "------------------------------------------\n");
+            printerService.printString("EPSON-TM-T20II", "--------- GRACIAS POR PREFERIRNOS --------\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+            printerService.printString("EPSON-TM-T20II", "\n");
+//            ArrayList listap = new ArrayList();
+//            for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
+//                ClaseReporte clase = new ClaseReporte(empresa, sucursal, idFactura, direccion, ruc, txt_NumeroCaja.getText(), txt_NombreCaja.getText(), txt_idCliente.getText(), txtTipoIdent.getText(), txtIdentificacion.getText(), txtEmail.getText(), txtNombre.getText(), txtTelefono.getText(), txtApellido.getText(), txtDireccion.getText(),
+//                        tba_detalle.getValueAt(i, 0).toString(),
+//                        tba_detalle.getValueAt(i, 1).toString(),
+//                        tba_detalle.getValueAt(i, 2).toString(),
+//                        tba_detalle.getValueAt(i, 3).toString(),
+//                        tba_detalle.getValueAt(i, 4).toString(),
+//                        tba_detalle.getValueAt(i, 5).toString(),
+//                        tba_detalle.getValueAt(i, 6).toString(),
+//                        tba_detalle.getValueAt(i, 7).toString(),
+//                        tba_detalle.getValueAt(i, 8).toString(),
+//                        txtSubtotal.getText(),
+//                        txtDescuento.getText(),
+//                        txtIva.getText(),
+//                        TxtTotal.getText());
+//                listap.add(clase);
+//            }
+//            JasperReport jreport = (JasperReport) JRLoader.loadObject("Reportes/Venta.jasper");
+//            JasperPrint jprint = JasperFillManager.fillReport(jreport, null, new JRBeanCollectionDataSource(listap));
+//            JasperExportManager.exportReportToPdfFile(jprint, System.getProperty("user.dir") + "/ReporteDeFacturas/" + "CI." + txtIdentificacion.getText() + " Factura#" + idFactura + " Fecha:" + fechact.toString() + ".pdf");
+        } else {
+//            ArrayList listap = new ArrayList();
+//            for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
+//                ClaseReporte clase = new ClaseReporte(empresa, sucursal, idFactura, direccion, ruc, txt_NumeroCaja.getText(), txt_NombreCaja.getText(), txt_idCliente.getText(), txtTipoIdent.getText(), txtIdentificacion.getText(), txtEmail.getText(), txtNombre.getText(), txtTelefono.getText(), txtApellido.getText(), txtDireccion.getText(),
+//                        tba_detalle.getValueAt(i, 0).toString(),
+//                        tba_detalle.getValueAt(i, 1).toString(),
+//                        tba_detalle.getValueAt(i, 2).toString(),
+//                        tba_detalle.getValueAt(i, 3).toString(),
+//                        tba_detalle.getValueAt(i, 4).toString(),
+//                        tba_detalle.getValueAt(i, 5).toString(),
+//                        tba_detalle.getValueAt(i, 6).toString(),
+//                        tba_detalle.getValueAt(i, 7).toString(),
+//                        tba_detalle.getValueAt(i, 8).toString(),
+//                        txtSubtotal.getText(), txtDescuento.getText(), txtIva.getText(), txtTotal.getText());
+//                listap.add(clase);
+//            }
+//            JasperReport jreport = (JasperReport) JRLoader.loadObject("Reportes/Venta.jasper");
+//            JasperPrint jprint = JasperFillManager.fillReport(jreport, null, new JRBeanCollectionDataSource(listap));
+//            JasperExportManager.exportReportToPdfFile(jprint, System.getProperty("user.dir") + "/ReporteDeFacturas/" + "CI." + txtIdentificacion.getText() + " Factura#" + idFactura + " Fecha:" + fechact.toString() + ".pdf");
+
+        }
+    }
+
     public Cabecera_ventas getCabecera() {
         return objeto;
 
@@ -1019,7 +1201,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
              jView.setVisible(true);
              */
         } catch (JRException ex) {
-            
+
             JOptionPane.showMessageDialog(rootPane, "report fail: " + ex);
             Logger.getLogger(MenuPreVentas.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1221,6 +1403,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
 
 
     }//GEN-LAST:event_TxtProdCantidadKeyReleased
+
     public void CalcularDetalle() {
 
         String query = " SELECT iva.iva AS 'iva' FROM iva WHERE iva.est  = 'A' ";
@@ -1316,7 +1499,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtTotal.setText(Total.setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString());
 
     }
-
 
     private void BtnBuscarprodnombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarprodnombreActionPerformed
         TxtProdNombre.setText("");

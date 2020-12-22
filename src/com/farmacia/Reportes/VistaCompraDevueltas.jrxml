@@ -52,7 +52,7 @@
 			</textField>
 			<image>
 				<reportElement x="34" y="3" width="113" height="33" uuid="da42e404-b3c0-4b14-8f6d-7c1340da1d2c"/>
-				<imageExpression><![CDATA["src\\img\\iconos\\asofar.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("iconos\\asofar.jpg")]]></imageExpression>
 			</image>
 		</band>
 	</title>
