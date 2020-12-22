@@ -337,6 +337,7 @@ public class Agregar_Precios_Productos extends javax.swing.JDialog {
         jLabel4.setText("COMPRA UNIDAD:");
 
         txtunidCompra.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtunidCompra.setText("0");
         txtunidCompra.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(50, 99, 50)));
         txtunidCompra.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
