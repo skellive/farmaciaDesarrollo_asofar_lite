@@ -1919,7 +1919,7 @@ public class Tablas {
             Filas[6] = lista.get(i).getPrecio_venta().toString();
             Filas[7] = lista.get(i).getCantidad().toString();
             Filas[8] = lista.get(i).getCantidad_unidad().toString();
-            Double ao = lista.get(i).getCantidad() * (lista.get(i).getPrecio_compra());
+            Double ao = ((lista.get(i).getCantidad_unidad())*(lista.get(i).getPrecio_venta_unidad())) + (lista.get(i).getCantidad()*(lista.get(i).getPrecio_venta()));
             Filas[9] = Formato_Numeros.formatoNumero(ao.toString());
 
             model.addRow(Filas);
