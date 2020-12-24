@@ -354,7 +354,7 @@ public class modificar_precio_producto extends javax.swing.JDialog {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 27, 134));
-        jLabel4.setText("COMPRA UNDAD:");
+        jLabel4.setText("COMPRA UNIDAD:");
 
         txtcomprUni.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         txtcomprUni.setText("0");

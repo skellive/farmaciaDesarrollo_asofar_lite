@@ -1328,10 +1328,22 @@ public class NotePedidos extends javax.swing.JDialog {
 
                     for (int i = 0; i < tbaListaFaltantes.getRowCount(); i++) {
                         /////////////////////////////
-                        System.out.println("," + listaPNP1.get(i).getObservacion());
+                        System.out.println("Cabecera: " + id_cab);
+                        System.out.println("Id_precio: " + listaPNP1.get(i).getId_precios());
+                        System.out.println("Cantidad: " + tbaListaFaltantes.getValueAt(i, 7));
+                        System.out.println("Precio: " + listaPNP1.get(i).getPrecioBono());
+                        System.out.println("Descuento: " + listaPNP1.get(i).getValor_descuento());
+                        System.out.println("Total: " + listaPNP1.get(i).getImporte());
+                        System.out.println("Iva: " + listaPNP1.get(i).getPrecioiva());
+                        System.out.println("Bono" + tbaListaFaltantes.getValueAt(i, 6));
+                        System.out.println("Unidad: " + tbaListaFaltantes.getValueAt(i, 8));
+                        System.out.println("Observacion: " + listaPNP1.get(i).getObservacion());
+                        
                         cad1 = "INSERT INTO detalle_nota_pedidos"
                                 + "(`id_cabecera_nota_pedidos`,`id_precio`,`cantidad`,`precio`,`descuento`,`total`,`iva`,`bono`,`unidad`, `observacion`)"
-                                + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + listaPNP1.get(i).getPrecioBono() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + "," + listaPNP1.get(i).getBono() + tbaListaFaltantes.getValueAt(i, 8).toString() + ",'" + listaPNP1.get(i).getObservacion() + "')";
+                                + "VALUES(" + id_cab + "," + listaPNP1.get(i).getId_precios() + "," + tbaListaFaltantes.getValueAt(i, 7).toString() + "," + 
+                                            listaPNP1.get(i).getPrecioBono() + "," + listaPNP1.get(i).getValor_descuento().toString() + "," + listaPNP1.get(i).getImporte() + "," + listaPNP1.get(i).getPrecioiva().toString() + 
+                                "," + tbaListaFaltantes.getValueAt(i, 6).toString() + ","+tbaListaFaltantes.getValueAt(i, 8).toString() + ",'" + listaPNP1.get(i).getObservacion() + "')";
                         queryL1.add(cad1);
 //                        System.out.println(" " + cad1);
                     }

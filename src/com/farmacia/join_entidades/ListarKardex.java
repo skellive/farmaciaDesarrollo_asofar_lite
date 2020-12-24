@@ -18,6 +18,7 @@ public class ListarKardex {
     Long id_precio;
     Double precio_compra;
     Double precio_venta;
+    Double precio_venta_unidad;
     Double total;
     Long compra;
     Long venta;
@@ -25,7 +26,7 @@ public class ListarKardex {
     public ListarKardex() {
     }
 
-    public ListarKardex(Long id_kardex, Long id_producto,String codigo_barra ,String nombre_Producto, String descripcion, String tipo, String presentacion,Long unidad_aceptada ,Long cantidad, Long cantidad_unidad, String iva,Long id_precio, Double precio_compra, Double precio_venta, Double total, Long compra, Long venta) {
+    public ListarKardex(Long id_kardex, Long id_producto,String codigo_barra ,String nombre_Producto, String descripcion, String tipo, String presentacion,Long unidad_aceptada ,Long cantidad, Long cantidad_unidad, String iva,Long id_precio, Double precio_compra, Double precio_venta,Double precio_venta_unidad,Double total, Long compra, Long venta) {
         this.id_kardex = id_kardex;
         this.id_producto = id_producto;//codigo_barra
         this.codigo_barra = codigo_barra;
@@ -40,6 +41,7 @@ public class ListarKardex {
         this.id_precio = id_precio;
         this.precio_compra = precio_compra;
         this.precio_venta = precio_venta;
+        this.precio_venta_unidad = precio_venta_unidad;
         this.total = total;
         this.compra = compra;
         this.venta = venta;
@@ -159,6 +161,14 @@ public class ListarKardex {
 
     public void setPrecio_venta(Double precio_venta) {
         this.precio_venta = precio_venta;
+    }
+
+    public Double getPrecio_venta_unidad() {
+        return precio_venta_unidad;
+    }
+
+    public void setPrecio_venta_unidad(Double precio_venta_unidad) {
+        this.precio_venta_unidad = precio_venta_unidad;
     }
 
     public Double getTotal() {
