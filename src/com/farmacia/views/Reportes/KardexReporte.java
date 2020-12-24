@@ -383,18 +383,19 @@ public class KardexReporte extends javax.swing.JDialog {
     }//GEN-LAST:event_btn_buscarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        reporte();
+        reporteExcel();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void reporte() {
+    public void reporteExcel() {
 
         int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
+        String dir = System.getProperty("user.home");
 
         try {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
+                InputStream is = new FileInputStream(dir + "\\Documents\\reporteExcel\\img\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -523,7 +524,7 @@ public class KardexReporte extends javax.swing.JDialog {
                 ano = (c1.get(Calendar.YEAR));
                 System.out.println(dia + "-" + mes + "-" + ano);
 
-                String dir = System.getProperty("user.home");
+//                String dir = System.getProperty("user.home");
                 String direc = "";
                 //dir + "\\Documents\\
 

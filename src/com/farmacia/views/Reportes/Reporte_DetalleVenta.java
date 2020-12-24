@@ -22,6 +22,8 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -562,7 +564,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
     }//GEN-LAST:event_jLabel10MouseDragged
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        reporte();
+        reporteExcel();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void txt_NumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_NumeroActionPerformed
@@ -612,15 +614,16 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnImprimirActionPerformed
 
-    public void reporte() {
+    public void reporteExcel() {
 
         int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
+        String dir = System.getProperty("user.home");
 
         try {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
+                InputStream is = new FileInputStream(dir + "\\Documents\\reporteExcel\\img\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -735,7 +738,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                 ano = (c1.get(Calendar.YEAR));
                 System.out.println(dia + "-" + mes + "-" + ano);
 
-                String dir = System.getProperty("user.home");
+//                String dir = System.getProperty("user.home");
                 //dir + "\\Documents\\
                 
                 FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteDetalleVenta\\reporte" + num_venta + "(" + dia + "-" + mes + "-" + ano + ").xlsx");

@@ -30,7 +30,9 @@ import java.awt.print.PrinterException;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.print.Doc;
@@ -73,6 +75,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
     Detalle_ventas objeto1 = new Detalle_ventas();
     int dia, mes, ano;
     Calendar c1 = Calendar.getInstance();
+    String direc = System.getProperty("user.dir");
+    String casa = System.getProperty("user.home");
 
     public MenuPreVentas(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -111,7 +115,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtProdIva.setEnabled(false);
         TxtProdtotal.setEnabled(false);
         BtnAddIten.setEnabled(false);
-
+        System.out.println(direc + " " + casa);
     }
 
     /**
@@ -138,8 +142,8 @@ public class MenuPreVentas extends javax.swing.JDialog {
         TxtTelefono = new javax.swing.JTextField();
         TxtCorreo = new javax.swing.JTextField();
         jCheckBox1 = new javax.swing.JCheckBox();
-        CbxFormaPago = new javax.swing.JComboBox<>();
-        CbxTipoVenta = new javax.swing.JComboBox<>();
+        CbxFormaPago = new javax.swing.JComboBox<String>();
+        CbxTipoVenta = new javax.swing.JComboBox<String>();
         BtnGenerarVenta = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel25 = new javax.swing.JLabel();
@@ -301,10 +305,10 @@ public class MenuPreVentas extends javax.swing.JDialog {
         );
 
         CbxFormaPago.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        CbxFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "contado", "credito" }));
+        CbxFormaPago.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "contado", "credito" }));
 
         CbxTipoVenta.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
-        CbxTipoVenta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Factura", "Nota de venta" }));
+        CbxTipoVenta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Factura", "Nota de venta" }));
 
         BtnGenerarVenta.setBackground(new java.awt.Color(0, 27, 134));
         BtnGenerarVenta.setFont(new java.awt.Font("Ubuntu", 1, 11)); // NOI18N
@@ -1151,7 +1155,7 @@ public class MenuPreVentas extends javax.swing.JDialog {
         mes = (c1.get(Calendar.MONTH)) + 1;
         ano = (c1.get(Calendar.YEAR));
         String fecha = (dia + "-" + mes + "-" + ano);
-//        String dir = System.getProperty("user.dir") + "\\P_Farmacia00_Menu3.jar";
+        String dir = System.getProperty("user.dir");
         for (int i = 0; i < TablaListarVentas.getRowCount(); i++) {
             ClaseReporte creporte = new ClaseReporte(
                     String.valueOf(objeto.getMun_venta()),
@@ -1177,13 +1181,13 @@ public class MenuPreVentas extends javax.swing.JDialog {
         }
 
         try {
-//            Map parametro = new HashMap();
-//            parametro.put("conte", String.valueOf(dir));
-            JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("Venta.jasper"));
+            Map parametro = new HashMap();
+            parametro.put("contex", String.valueOf(dir));
+            JasperReport report = (JasperReport) JRLoader.loadObject(getClass().getResource("facturaVenta.jasper"));
 //            InputStream report = MenuPreVentas.class.getResourceAsStream("Venta.jasper");
 //            String dir = System.getProperty("user.dir") + "/Reportes/" +"Venta.jasper";
 //            InputStream report = JRLoader.getFileInputStream("Venta.jasper");
-            JasperPrint jprint = JasperFillManager.fillReport(report, null, new JRBeanCollectionDataSource(lista));
+            JasperPrint jprint = JasperFillManager.fillReport(report, parametro, new JRBeanCollectionDataSource(lista));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);
 //            JasperViewer viewer = new JasperViewer(jprint, false);

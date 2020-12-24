@@ -490,7 +490,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
      */
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        reporte();
+        reporteExcel();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void Txt_TotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Txt_TotalActionPerformed
@@ -509,7 +509,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
         TotalPro();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public void reporte() {
+    public void reporteExcel() {
 
         int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
         String dir = System.getProperty("user.home");
@@ -519,7 +519,7 @@ public class Reporte_Compra extends javax.swing.JDialog {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
+                InputStream is = new FileInputStream(dir + "\\Documents\\reporteExcel\\img\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
