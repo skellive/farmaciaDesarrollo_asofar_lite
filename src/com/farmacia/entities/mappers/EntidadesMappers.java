@@ -570,7 +570,7 @@ public class EntidadesMappers {
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
             obj.setIva(rs.getBigDecimal("IVA"));
             obj.setTotal(rs.getBigDecimal("TOTAL"));
-//            obj.setObservacion(rs.getString("OBSERVACION"));
+            obj.setObservacion(rs.getString("OBSERVACION"));
             obj.setId_precio(rs.getLong("id_precio"));
             obj.setId_cabecera_nota_pedido(rs.getLong("id_cabecera_compra"));
         } catch (SQLException ex) {

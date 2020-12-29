@@ -1611,7 +1611,67 @@ public class Tablas {
         tcr.setHorizontalAlignment(SwingConstants.CENTER);
         tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
         model = Tablas.VaciarTabla(Tabla);
-        String[] Co = {"CODIGO DE BARRAS", "MARCA", "TIPO", "PRODUCTO", "PRESENTACION", "CANTIDAD", "UNIDAD", "PRECIO", "SUBTOTAL", "DESCUENTO", "IVA", "TOTAL"};
+        String[] Co = {"CODIGO DE BARRAS", "MARCA", "TIPO", "PRODUCTO", "PRESENTACION", "CANTIDAD", "UNIDAD", "P. UNITARIO", "SUBTOTAL", "DESCUENTO", "IVA", "TOTAL"};
+        String[] Filas = new String[12];
+        model = new DefaultTableModel(null, Co);
+        Tabla.setShowGrid(true);
+        for (int i = 0; i < lista.size(); i++) {
+            Filas[0] = "" + lista.get(i).getCodigo_barras();
+            Filas[1] = "" + lista.get(i).getMarca();
+            Filas[2] = "" + lista.get(i).getTipo();
+            Filas[3] = lista.get(i).getNombre_producto();
+            Filas[4] = "" + lista.get(i).getPresentacion();
+            if(lista.get(i).getEmpaque()==1){
+            Filas[5] = "" + lista.get(i).getCantidad();
+            Filas[6] = "0" ;    
+            }else{
+            Filas[5] = "0";
+            Filas[6] = "" + lista.get(i).getCantidad();  
+            }
+            Filas[7] = lista.get(i).getPrecio().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[8] = lista.get(i).getSubtotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[9] = lista.get(i).getDescuento().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[10] = lista.get(i).getIva().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            Filas[11] = lista.get(i).getTotal().setScale(2, BigDecimal.ROUND_HALF_UP).toEngineeringString();
+            model.addRow(Filas);
+
+            Tabla.setModel(model);
+            Tabla.getColumnModel().getColumn(0).setPreferredWidth(a[0]);
+            Tabla.getColumnModel().getColumn(0).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(1).setPreferredWidth(a[1]);
+            Tabla.getColumnModel().getColumn(1).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(2).setPreferredWidth(a[2]);
+            Tabla.getColumnModel().getColumn(2).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(3).setPreferredWidth(a[3]);
+            Tabla.getColumnModel().getColumn(3).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(4).setPreferredWidth(a[4]);
+            Tabla.getColumnModel().getColumn(4).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(5).setPreferredWidth(a[5]);
+            Tabla.getColumnModel().getColumn(5).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(6).setPreferredWidth(a[6]);
+            Tabla.getColumnModel().getColumn(6).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(7).setPreferredWidth(a[7]);
+            Tabla.getColumnModel().getColumn(7).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(8).setPreferredWidth(a[8]);
+            Tabla.getColumnModel().getColumn(8).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(9).setPreferredWidth(a[9]);
+            Tabla.getColumnModel().getColumn(9).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(10).setPreferredWidth(a[10]);
+            Tabla.getColumnModel().getColumn(10).setCellRenderer(tcr);
+            Tabla.getColumnModel().getColumn(11).setPreferredWidth(a[11]);
+            Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
+        }
+    }
+
+        public static void cargarListaReporteVentasDetalle(JTable Tabla, ArrayList<Detalle_ventas> lista) {
+
+        int[] a = {150, 60, 60, 170, 100, 50, 50, 50, 50, 50, 50, 50};
+        DefaultTableCellRenderer tcr = new DefaultTableCellRenderer();
+        DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer();
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        tcr1.setHorizontalAlignment(SwingConstants.RIGHT);
+        model = Tablas.VaciarTabla(Tabla);
+        String[] Co = {"CODIGO DE BARRAS", "MARCA", "TIPO", "PRODUCTO", "PRESENTACION", "CANTIDAD", "UNIDAD", "P. UNITARIO", "SUBTOTAL", "DESCUENTO", "IVA", "TOTAL"};
         String[] Filas = new String[12];
         model = new DefaultTableModel(null, Co);
         Tabla.setShowGrid(true);
@@ -1657,6 +1717,7 @@ public class Tablas {
             Tabla.getColumnModel().getColumn(11).setCellRenderer(tcr);
         }
     }
+
 //    public void visualizar(JTable tabla,Long id) {
 //
 //        tabla.setDefaultRenderer(Object.class, new Render());
