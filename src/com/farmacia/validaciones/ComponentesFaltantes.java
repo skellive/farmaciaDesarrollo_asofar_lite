@@ -64,20 +64,36 @@ public class ComponentesFaltantes {
         return msg;
     }
     
-    public static String validarProductoParaAgregar2(ArrayList<JoinListarDetalleNotaPedido> Array2, String id_producto) {
+    public static String validarProductoParaAgregar2(ArrayList<JoinListarDetalleNotaPedido> Array2, String id_producto,int num) {
         //JoinListarDetalleNotaPedido
         String o, msg = null;
         Integer cantActual = null;
+        if(num==1){//cantidad
         for (int i = 0; i < Array2.size(); i++) {
             o = Array2.get(i).getId_producto().toString();
+            cantActual = Array2.get(i).getCantidad();
             System.out.println(o + " o");
-            if (o.equals(id_producto)) {
+            if (o.equals(id_producto) && cantActual>0) {
                  //cantActual = Array2.get(i).getCantidad();
                 //Array2.get(i).setCantidad(cantidad+cantActual);
                 msg = "El producto ya esta agregado";
                 break;
             }
+        }    
+        }else{//unidad
+        for (int i = 0; i < Array2.size(); i++) {
+            o = Array2.get(i).getId_producto().toString();
+            cantActual = Array2.get(i).getUnidad();
+            System.out.println(o + " o");
+            if (o.equals(id_producto) && cantActual>0) {
+                 //cantActual = Array2.get(i).getCantidad();
+                //Array2.get(i).setCantidad(cantidad+cantActual);
+                msg = "El producto ya esta agregado";
+                break;
+            }
+        }    
         }
+        
         return msg;
     }
 

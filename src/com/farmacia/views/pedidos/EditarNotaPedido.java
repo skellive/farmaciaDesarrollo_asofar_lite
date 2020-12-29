@@ -912,6 +912,7 @@ public class EditarNotaPedido extends javax.swing.JDialog {
         int i = 0;
         String msg = null;
         String id_pro = null;
+        int valida = 0;
         try {
             if (evt.getClickCount() == 2) {
                 i = tblaProducto.getSelectedRow();
@@ -921,7 +922,8 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                     id_pro = objetoActual.getId_producto().toString();
                     System.out.println(id_pro + " <-- Este es el id Producto");
                     //VALIDA SI EL PRODUCTO ESTA AGREGADO
-                    msg = ComponentesFaltantes.validarProductoParaAgregar2(lista3, id_pro);
+                    msg = null;
+                    //msg = ComponentesFaltantes.validarProductoParaAgregar2(lista3, id_pro);
                     System.out.println(msg);
                     //valida el mensaje
                     if (msg == null) {
@@ -936,6 +938,17 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                             if (np.getObjf().getCantidad() > 0 || np.getObjf().getCantidad() != null || np.getObjf().getUnidad() > 0) {
                                 //int suma = Integer.parseInt((String) tblaProducto.getValueAt(i, 6)) + np.getObjf().getCantidad();
                                 //getPosicion(objeto.getId_producto(), suma);
+                                
+                                //VALIDAR SI YA ESTA AGREGADO O NO EN LA LISTA
+                                if(np.getObjf().getCantidad()>0){
+                                valida=1;//cantidad    
+                                }else{
+                                valida=2;//unidad    
+                                }
+                                msg = ComponentesFaltantes.validarProductoParaAgregar2(lista3, id_pro,valida);
+                                System.out.println(msg);
+                                if(msg == null){
+                                
                                 listaP1.add(np.getObjf());
 
                                 Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
@@ -947,6 +960,9 @@ public class EditarNotaPedido extends javax.swing.JDialog {
                                 actualizarTabla2();
                                 actualizarCabecera();
                                 lblCerrar.setEnabled(false);
+                                }else{
+                                JOptionPane.showMessageDialog(this, msg);    
+                                }
                             } else {
                                 //JOptionPane.showMessageDialog(this, "getCantidad() ->" +np.getObjf().getCantidad());
                             }
