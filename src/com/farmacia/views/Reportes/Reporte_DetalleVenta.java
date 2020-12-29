@@ -91,8 +91,7 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
         objCabecera = Obj;
         llenarDatos();
         listadetalles = crud.ListarDetallesVentas(Integer.valueOf(objCabecera.getId_cabecera_venta().toString()));
-        Tablas.cargarListaVentasDetalle(jTable1, listadetalles);
-
+        Tablas.cargarListaReporteVentasDetalle(jTable1, listadetalles);
     }
 
     /**
