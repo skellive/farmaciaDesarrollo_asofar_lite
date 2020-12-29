@@ -1023,6 +1023,7 @@ public class EntidadesMappers {
             obj.setPrecio_compra(rs.getDouble("PRECIO_COMPRA"));
             obj.setPrecio_venta(rs.getDouble("PRECIO_VENTA"));
             obj.setPrecio_venta_unidad(rs.getDouble("VENTA_UNIDAD"));
+            //
             //obj.setTotal(rs.getDouble("TOTAL"));
             //obj.setCompra(rs.getLong("COMPRA"));
             //obj.setVenta(rs.getLong("VENTA"));
