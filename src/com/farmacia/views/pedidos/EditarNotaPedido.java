@@ -6,6 +6,7 @@ import com.farmacia.dao.CRUD;
 import com.farmacia.entities1.CabeceraNotaPedido;
 import com.farmacia.entities1.Cabecera_compra;
 import com.farmacia.entities1.ClaseReporte;
+import com.farmacia.entities1.DetalleNotaPedido;
 import com.farmacia.entities1.Listar_usuario;
 import com.farmacia.filtros.filtrosProductos;
 import com.farmacia.join_entidades.JoinListarDetalleNotaPedido;
@@ -932,13 +933,13 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //  msg = ComponentesFaltantes.validarListaCompras(t_Nota_faltantes, msg);
                             Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
                             //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
-                            if (np.getObjf().getCantidad() > 0 || np.getObjf().getCantidad() != null) {
-                            //int suma = Integer.parseInt((String) tblaProducto.getValueAt(i, 6)) + np.getObjf().getCantidad();
+                            if (np.getObjf().getCantidad() > 0 || np.getObjf().getCantidad() != null || np.getObjf().getUnidad() > 0) {
+                                //int suma = Integer.parseInt((String) tblaProducto.getValueAt(i, 6)) + np.getObjf().getCantidad();
                                 //getPosicion(objeto.getId_producto(), suma);
                                 listaP1.add(np.getObjf());
 
                                 Tablas.cargarJoinProductosNotaPedido(tblaProducto, listaP);
-                            //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
+                                //Tablas.cargarJoinProductoDetallesFaltantes(tblaProducto, lista);
 
 //                            Tablas.cargarJoinProductoIngresoDetalleNotaPedido(tbaListaFaltantes, lista3);
                                 //Tablas.cargarJoinRegistroDetalleNotas(tbaListaFaltantes, lista3);
@@ -1116,9 +1117,21 @@ public class EditarNotaPedido extends javax.swing.JDialog {
 //            objetop = devuelveObjeto(lista3.get(i).getId_precio().toString(), lista3);
 //            objetop = devuelveObjeto(codigocabecera, lista);
             objetop = devuelveObjeto2(lista3.get(i).getId_precio().toString(), lista3);
+
             if (objetop != null) {
+                /*
                 EditarProductoNota Man = new EditarProductoNota(new javax.swing.JFrame(), true, objetop);
                 Man.setVisible(true);
+                 */
+                int r = JOptionPane.showConfirmDialog(null, "¿Desea Eliminar?", "", JOptionPane.YES_NO_OPTION);
+                if (r == JOptionPane.YES_OPTION) {
+                    DetalleNotaPedido obj = new DetalleNotaPedido();
+                    //JOptionPane.showMessageDialog(null,""+objetop.getId_detalle_nota_pedido());
+                    obj.setId_detalle_nota_pedidos(objetop.getId_detalle_nota_pedido());
+                    crud.EliminarDetalleNotaPedido(obj);
+                    JOptionPane.showMessageDialog(null,"Eliminado");
+                } else {}
+
                 lista3.clear();
                 lista3 = crud.listarDetalleNotaPedido(1, codigocabecera);
                 Tablas.cargarJoinRegistroDetalleNotas(tbaNotaPedido, lista3);
@@ -1262,11 +1275,11 @@ public class EditarNotaPedido extends javax.swing.JDialog {
     }//GEN-LAST:event_lblImprimirMouseClicked
 
     private void TxtFiltroKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TxtFiltroKeyTyped
-        boolean v= crud.ValidarCaracteres(evt);
-        if(v==false){
-        getToolkit().beep();
-        evt.consume();
-    }
+        boolean v = crud.ValidarCaracteres(evt);
+        if (v == false) {
+            getToolkit().beep();
+            evt.consume();
+        }
     }//GEN-LAST:event_TxtFiltroKeyTyped
 
     public static void main(String args[]) {

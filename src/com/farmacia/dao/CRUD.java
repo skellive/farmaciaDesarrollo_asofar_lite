@@ -3879,7 +3879,7 @@ public class CRUD {
 
     public static void InsertarBDCompras(String id_cabecera, ArrayList<joinProductoParaNotaPedido> lista) {
         String cad1 = "";
-        String[] Filas = new String[12];
+        String[] Filas = new String[13];
 
         for (int i = 0; i < lista.size(); i++) {
 
@@ -3890,8 +3890,16 @@ public class CRUD {
             Filas[4] = lista.get(i).getEnvase();
             Filas[5] = lista.get(i).getMedida();
             Filas[6] = lista.get(i).getCantidad().toString();
+            Filas[12] = lista.get(i).getUnidad().toString();
             Filas[7] = lista.get(i).getPrecios_presentacion().toString();
-            BigDecimal Cantidad = BigDecimal.valueOf(Integer.valueOf(lista.get(i).getCantidad()));//BigDecimal.valueOf(Double.parseDouble(comisiontxt.getText()))
+            BigDecimal Cantidad;
+            int valor = 1;
+            if(lista.get(i).getCantidad()>0){
+            Cantidad = BigDecimal.valueOf(Integer.valueOf(lista.get(i).getCantidad()));   
+            }else{
+            valor = 2;
+            Cantidad = BigDecimal.valueOf(Integer.valueOf(lista.get(i).getUnidad()));   
+            }
             BigDecimal Precio = lista.get(i).getPrecios_presentacion();
             BigDecimal PorcDesc = lista.get(i).getPorcentaje_descuento();
             BigDecimal ValorDes = Cantidad.multiply(Precio).multiply(PorcDesc).divide(new BigDecimal("100"));
@@ -3925,7 +3933,7 @@ public class CRUD {
 
             }
             Filas[11] = lista.get(i).getBono().toString();
-            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`precio`,`descuento`,`iva`,`total`,bono) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "','" + Filas[11] + "');";
+            cad1 = "INSERT INTO `detalle_nota_pedidos`(`id_precio`,`id_cabecera_nota_pedidos`,`cantidad`,`unidad`,`precio`,`descuento`,`iva`,`total`,bono) VALUES ('" + lista.get(i).getId_precios() + "','" + id_cabecera + "','" + Filas[6]+ "','" + Filas[12] + "','" + Filas[7] + "','" + Filas[8] + "','" + Filas[9] + "','" + Filas[10] + "','" + Filas[11] + "');";
 
         }
         System.out.println(cad1);
