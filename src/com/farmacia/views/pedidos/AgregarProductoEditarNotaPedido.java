@@ -695,11 +695,11 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         if(Unidades>1){
         if(txtEnvase3.getText().equals("FUNDA") || txtEnvase3.getText().equals("CAJA")){
         chbox_unidad.setEnabled(true);
-        JOptionPane.showMessageDialog(null, "Unidades: "+Unidades);    
+        //JOptionPane.showMessageDialog(null, "Unidades: "+Unidades);    
         }
         }else{
-          JOptionPane.showMessageDialog(null, "envace: "+txtEnvase3.getText());
-          JOptionPane.showMessageDialog(null, "Unidades: "+Unidades);
+          //JOptionPane.showMessageDialog(null, "envace: "+txtEnvase3.getText());
+          //JOptionPane.showMessageDialog(null, "Unidades: "+Unidades);
         }
         objf.setPrecios_presentacion(Pnp.getPrecio().getPrecio_compra());
         bd_pre_compra=objf.getPrecios_presentacion();
@@ -729,14 +729,14 @@ public class AgregarProductoEditarNotaPedido extends javax.swing.JDialog {
         String unidades =crud.BuscarUnidadesProducto(Long.parseLong(codigo.getText()));
         if(chbox_unidad.isSelected()){
             bd= bd.divide(new BigDecimal(unidades),2,RoundingMode.CEILING);
-          JOptionPane.showMessageDialog(null, "Precio: "+bd);
-          JOptionPane.showMessageDialog(null, "Unidades: "+unidades);
+          //JOptionPane.showMessageDialog(null, "Precio: "+bd);
+          //JOptionPane.showMessageDialog(null, "Unidades: "+unidades);
           txtPrecio.setText(""+bd);
           bd_pre_compra=bd;
           //objf.setPrecios_presentacion(bd);
         }else{
           bd_pre_compra=bd;
-          JOptionPane.showMessageDialog(null, ""+objf.getPrecios_presentacion());
+          //JOptionPane.showMessageDialog(null, ""+objf.getPrecios_presentacion());
           txtPrecio.setText(""+bd);
         }
     }//GEN-LAST:event_chbox_unidadMouseClicked
