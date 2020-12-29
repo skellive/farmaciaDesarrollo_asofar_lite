@@ -317,7 +317,14 @@ public class CabeceraCompra extends javax.swing.JDialog {
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         java.util.List lista = new ArrayList();
         for (int i = 0; i < tbaCabeceraPedido.getRowCount(); i++) {
-            ClaseReporte cabecera = new ClaseReporte(tbaCabeceraPedido.getValueAt(i, 0).toString(), tbaCabeceraPedido.getValueAt(i, 1).toString(), tbaCabeceraPedido.getValueAt(i, 2).toString(), tbaCabeceraPedido.getValueAt(i, 3).toString(), tbaCabeceraPedido.getValueAt(i, 4).toString(), tbaCabeceraPedido.getValueAt(i, 5).toString(), tbaCabeceraPedido.getValueAt(i, 6).toString(), tbaCabeceraPedido.getValueAt(i, 7).toString());
+            ClaseReporte cabecera = new ClaseReporte(
+                    tbaCabeceraPedido.getValueAt(i, 0).toString(), 
+                    tbaCabeceraPedido.getValueAt(i, 1).toString(), 
+                    tbaCabeceraPedido.getValueAt(i, 2).toString(), 
+                    tbaCabeceraPedido.getValueAt(i, 3).toString(), 
+                    tbaCabeceraPedido.getValueAt(i, 4).toString(), 
+                    tbaCabeceraPedido.getValueAt(i, 5).toString(), 
+                    tbaCabeceraPedido.getValueAt(i, 6).toString());
             lista.add(cabecera);
         }
         try {

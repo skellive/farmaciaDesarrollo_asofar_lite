@@ -447,7 +447,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        reporte();
+        reporteExcel();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -546,15 +546,16 @@ public class Reporte_Venta extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_Txt_TotalActionPerformed
 
-    public void reporte() {
+    public void reporteExcel() {
 
         int r = JOptionPane.showConfirmDialog(null, "¿Generar Reporte?", "", JOptionPane.YES_NO_OPTION);
+        String dir = System.getProperty("user.home");
 
         try {
             if (r == JOptionPane.YES_OPTION) {
                 Workbook book = new XSSFWorkbook();
                 Sheet sheet = book.createSheet("REPORTE");
-                InputStream is = new FileInputStream("src\\img\\iconos\\asofar.jpg");
+                InputStream is = new FileInputStream(dir + "\\Documents\\reporteExcel\\img\\asofar.jpg");
                 byte[] bytes = IOUtils.toByteArray(is);
                 int imgIndex = book.addPicture(bytes, Workbook.PICTURE_TYPE_PNG);
                 is.close();
@@ -672,7 +673,7 @@ public class Reporte_Venta extends javax.swing.JDialog {
 
                 sheet.setZoom(120);
 
-                String dir = System.getProperty("user.home");
+//                String dir = System.getProperty("user.home");
                 FileOutputStream fileout = new FileOutputStream(dir + "\\Documents\\reporteExcel\\reporteVenta\\reporteVenta" + dia + "-" + mes + "-" + ano + ".xlsx");
                 book.write(fileout);
                 fileout.close();

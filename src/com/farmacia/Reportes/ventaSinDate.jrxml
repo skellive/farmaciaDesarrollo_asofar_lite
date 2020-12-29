@@ -45,7 +45,7 @@
 			</staticText>
 			<image>
 				<reportElement x="168" y="0" width="154" height="63" uuid="a1a7fc06-af72-435f-a043-9a3321d62c0e"/>
-				<imageExpression><![CDATA[this.getClass().getResourceAsStream("iconos\\asofar.jpg")]]></imageExpression>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("iconos\\asofar.png")]]></imageExpression>
 			</image>
 		</band>
 	</title>

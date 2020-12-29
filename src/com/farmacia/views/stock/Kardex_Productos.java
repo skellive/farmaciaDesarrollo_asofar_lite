@@ -612,11 +612,13 @@ public class Kardex_Productos extends javax.swing.JDialog {
                     tabla_stock.getValueAt(i, 1).toString(),
                     tabla_stock.getValueAt(i, 2).toString(),
                     tabla_stock.getValueAt(i, 3).toString(),
+                    tabla_stock.getValueAt(i, 4).toString(),
                     tabla_stock.getValueAt(i, 5).toString(),
                     tabla_stock.getValueAt(i, 6).toString(),
                     tabla_stock.getValueAt(i, 7).toString(),
-                    txtTotal.getText(),
-                    tabla_stock.getValueAt(i, 4).toString());
+                    tabla_stock.getValueAt(i, 8).toString(),
+                    tabla_stock.getValueAt(i, 9).toString(),
+                    txtTotal.getText());
             tabla.add(tabla1);
         }
         try {

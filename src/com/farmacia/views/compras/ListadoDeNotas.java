@@ -213,7 +213,7 @@ public class ListadoDeNotas extends javax.swing.JDialog {
         try {
 //                String dir = System.getProperty("user.dir")+"/Reportes/"+"ListadoDeNotas";
 //                JasperReport reporte = (JasperReport) JRLoader.loadObject(dir);
-            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("ListadoDeNotas"));
+            JasperReport reporte = (JasperReport) JRLoader.loadObject(getClass().getResource("ListadoDeNotas.jasper"));
             JasperPrint jprint = JasperFillManager.fillReport(reporte, null, new JRBeanCollectionDataSource(tabla));
             JDialog frame = new JDialog(this);
             JRViewer viewer = new JRViewer(jprint);

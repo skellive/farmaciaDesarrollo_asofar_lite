@@ -1206,7 +1206,7 @@ public class EntidadesMappers {
             obj.setPresentacion(rs.getString("PRESENTACION"));
             obj.setPrecio(rs.getBigDecimal("PRECIO"));
             obj.setCantidad(rs.getLong("CANTIDAD"));
-            obj.setCantidad_unidad(rs.getLong("UNIDADES"));
+            obj.setCantidad_unidad(rs.getLong("UNIDAD"));
             obj.setSubtotal(rs.getBigDecimal("SUBTOTAL"));
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
             obj.setIva(rs.getBigDecimal("IVA"));
