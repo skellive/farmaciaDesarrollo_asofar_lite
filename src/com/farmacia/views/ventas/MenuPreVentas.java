@@ -1024,7 +1024,6 @@ public class MenuPreVentas extends javax.swing.JDialog {
                 Doc doc = new SimpleDoc(bytes, flavor, null);
                 job.print(doc, null);
             } catch (Exception e) {
-                e.printStackTrace();
             }
         }
 

@@ -592,6 +592,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
                     jTable1.getValueAt(i, 8).toString(),
                     jTable1.getValueAt(i, 9).toString(),
                     jTable1.getValueAt(i, 10).toString(),
+                    jTable1.getValueAt(i, 11).toString(),
+                    TxtSubConIva.getText(),
                     TxtSubSinIva.getText(),
                     TxtSubtotal.getText(),
                     txtDescuento.getText(),
@@ -770,8 +772,8 @@ public class Reporte_DetalleVenta extends javax.swing.JDialog {
             TxtFormaPago.setText(objCabecera.getTipo_pago());
             TxtSubConIva.setText(Formato_Numeros.formatoNumero(objCabecera.getSubtotal_con_iva().toString()));
             TxtSubSinIva.setText(Formato_Numeros.formatoNumero(objCabecera.getSubtotal_sin_iva().toString()));
-            TxtSubtotal.setText(Formato_Numeros.formatoNumero(objCabecera.getIva_total().toString()));
-            txtIva.setText(Formato_Numeros.formatoNumero(objCabecera.getSubtotal().toString()));
+            TxtSubtotal.setText(Formato_Numeros.formatoNumero(objCabecera.getSubtotal().toString()));
+            txtIva.setText(Formato_Numeros.formatoNumero(objCabecera.getIva_total().toString()));
             txtDescuento.setText(Formato_Numeros.formatoNumero(objCabecera.getDescuento_total().toString()));
             txtTotal.setText(Formato_Numeros.formatoNumero(objCabecera.getTotal().toString()));
         } else {

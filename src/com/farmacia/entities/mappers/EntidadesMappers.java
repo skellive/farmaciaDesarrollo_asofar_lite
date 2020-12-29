@@ -570,7 +570,7 @@ public class EntidadesMappers {
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
             obj.setIva(rs.getBigDecimal("IVA"));
             obj.setTotal(rs.getBigDecimal("TOTAL"));
-            obj.setObservacion(rs.getString("OBSERVACION"));
+//            obj.setObservacion(rs.getString("OBSERVACION"));
             obj.setId_precio(rs.getLong("id_precio"));
             obj.setId_cabecera_nota_pedido(rs.getLong("id_cabecera_compra"));
         } catch (SQLException ex) {
@@ -1205,7 +1205,7 @@ public class EntidadesMappers {
             obj.setPresentacion(rs.getString("PRESENTACION"));
             obj.setPrecio(rs.getBigDecimal("PRECIO"));
             obj.setCantidad(rs.getLong("CANTIDAD"));
-            obj.setCantidad_unidad(rs.getLong("UNIDADES"));
+            obj.setCantidad_unidad(rs.getLong("UNIDAD"));
             obj.setSubtotal(rs.getBigDecimal("SUBTOTAL"));
             obj.setDescuento(rs.getBigDecimal("DESCUENTO"));
             obj.setIva(rs.getBigDecimal("IVA"));

@@ -54,7 +54,7 @@
 			</textField>
 			<image>
 				<reportElement x="139" y="3" width="150" height="33" isPrintWhenDetailOverflows="true" uuid="ff76177a-369e-4d5a-acef-ddb2f9b2fa6e"/>
-				<imageExpression><![CDATA[$P{contex} + "\\img\\iconos\\asofar.jpg"]]></imageExpression>
+				<imageExpression><![CDATA[this.getClass().getResourceAsStream("\\img\\iconos\\asofar.jpg")]]></imageExpression>
 			</image>
 		</band>
 	</title>

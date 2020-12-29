@@ -965,7 +965,8 @@ public static String FechaActual() {
     private void lblImprimirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblImprimirMouseClicked
         ArrayList tablac = new ArrayList();
         for (int i = 0; i < tbaListaComprasB.getRowCount(); i++) {
-            ClaseReporte tabla1 = new ClaseReporte(txtNombre.getText(),
+            ClaseReporte tabla1 = new ClaseReporte(
+                    txtNombre.getText(),
                     txtCodigoProveedor.getText(),
                     txtNombre.getText(),
                     txtRepresentante.getText(),
@@ -988,7 +989,7 @@ public static String FechaActual() {
                     tbaListaComprasB.getValueAt(i, 8).toString(),
                     tbaListaComprasB.getValueAt(i, 9).toString(),
                     tbaListaComprasB.getValueAt(i, 10).toString(),
-                    tbaListaComprasB.getValueAt(i, 11).toString(),
+//                    tbaListaComprasB.getValueAt(i, 11).toString(),
                     txtDescuento.getText(),
                     txtIva.getText(),
                     txtTotal.getText(),
