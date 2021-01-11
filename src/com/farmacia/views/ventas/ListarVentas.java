@@ -31,28 +31,29 @@ public class ListarVentas extends javax.swing.JFrame {
      * Creates new form ListarVentas
      */
     CRUD crud = new CRUD();
-    int x, y;    
+    int x, y;
     int alto = java.awt.Toolkit.getDefaultToolkit().getScreenSize().height;
     int ancho = java.awt.Toolkit.getDefaultToolkit().getScreenSize().width;
+
     public ListarVentas(Listar_usuario obj) {
         initComponents();
         this.setLocationRelativeTo(this);
-        try{
-        DefaultTableModel modelo = new DefaultTableModel(); 
-        jtblistVentas.setModel(modelo);
-        PreparedStatement ps = null;
+        try {
+            DefaultTableModel modelo = new DefaultTableModel();
+            jtblistVentas.setModel(modelo);
+            PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion conn = new Conexion();
             Connection con = conn.conectar();
-             CallableStatement listVent;
-            
-            String sql= "{call listar_ventas(1) }";
-            ps = con.prepareStatement(sql);  
+            CallableStatement listVent;
+
+            String sql = "{call listar_ventas(1) }";
+            ps = con.prepareStatement(sql);
             System.out.println(sql);
             rs = ps.executeQuery();
-            ResultSetMetaData rsMD = rs.getMetaData(); 
+            ResultSetMetaData rsMD = rs.getMetaData();
             int cantidadColumnas = rsMD.getColumnCount();
-            
+
             modelo.addColumn("Id");
             modelo.addColumn("Numero venta");
             modelo.addColumn("Fecha");
@@ -61,30 +62,28 @@ public class ListarVentas extends javax.swing.JFrame {
             modelo.addColumn("Apellido");
             modelo.addColumn("Pago");
             modelo.addColumn("Venta");
-            
-               int[] anchos = {30,30,50,50,50,50,40,40};
-               
-               for(int x=0; x<cantidadColumnas; x++){
-                   
-                   jtblistVentas.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
-                   
-               }
-            
-            
-            while(rs.next()){
-                
+
+            int[] anchos = {30, 30, 50, 50, 50, 50, 40, 40};
+
+            for (int x = 0; x < cantidadColumnas; x++) {
+
+                jtblistVentas.getColumnModel().getColumn(x).setPreferredWidth(anchos[x]);
+
+            }
+
+            while (rs.next()) {
+
                 Object[] filas = new Object[cantidadColumnas];
-                
-                for(int i=0; i < cantidadColumnas; i++){
+
+                for (int i = 0; i < cantidadColumnas; i++) {
                     filas[i] = rs.getObject(i + 1);
                 }
-                
+
                 modelo.addRow(filas);
             }
-            
-        }
-        catch(SQLException e){
-            JOptionPane.showMessageDialog(null, "Error al traer datos: "+e);
+
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Error al traer datos: " + e);
         }
     }
 
@@ -223,30 +222,23 @@ public class ListarVentas extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtblistVentasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtblistVentasMouseClicked
- try {
-            
-                       
-            
+        try {
+
             PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion conn = new Conexion();
             Connection con = conn.conectar();
             int Filas = jtblistVentas.getSelectedRow();
-            String codigo= jtblistVentas.getValueAt(Filas, 1).toString();            
+            String codigo = jtblistVentas.getValueAt(Filas, 1).toString();
             ps = con.prepareStatement("SELECT num_venta FROM cabecera_venta WHERE num_venta =?");
             ps.setString(1, codigo);
-            rs = ps.executeQuery();          
-                       
-            
-            
-            while(rs.next()){
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
                 txtVenta.setText(rs.getString("num_venta"));
-               
-                
-             
+
             }
-            
-            
+
         } catch (SQLException ex) {
             System.err.println(ex.toString());
         }
@@ -279,13 +271,13 @@ public class ListarVentas extends javax.swing.JFrame {
         if (r == JOptionPane.YES_OPTION) {
             setVisible(false);
             editarVentas edv = new editarVentas(txtVenta.getText());
-            
+
             edv.setVisible(true);
-            
+
         } else {
 
         }
-        
+
     }//GEN-LAST:event_btnEditarMouseClicked
 
     /**

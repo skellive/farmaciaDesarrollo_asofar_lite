@@ -45,6 +45,7 @@ import com.farmacia.views.usuario.Local;
 import com.farmacia.views.usuario.Mostrar_usuario;
 import com.farmacia.views.ventas.ListarVentas;
 import com.farmacia.views.ventas.MenuPreVentas;
+import com.farmacia.views.ventas.subirExcelBDVentas;
 import com.farmacia.views.ventas.ventasEliminadas;
 import java.awt.Color;
 import javax.swing.JOptionPane;
@@ -178,6 +179,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         mnuExcel = new javax.swing.JMenu();
         mnuAcerca1 = new javax.swing.JMenuItem();
         mnuAcerca2 = new javax.swing.JMenuItem();
+        mnuAcerca3 = new javax.swing.JMenuItem();
         mnuAyuda = new javax.swing.JMenu();
         mnuAcerca = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
@@ -604,6 +606,20 @@ public class FrmPrincipal extends javax.swing.JFrame {
         });
         mnuExcel.add(mnuAcerca2);
 
+        mnuAcerca3.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        mnuAcerca3.setText("SUBIR EXCEL VENTAS");
+        mnuAcerca3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                mnuAcerca3MouseClicked(evt);
+            }
+        });
+        mnuAcerca3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mnuAcerca3ActionPerformed(evt);
+            }
+        });
+        mnuExcel.add(mnuAcerca3);
+
         jMenuBar1.add(mnuExcel);
 
         mnuAyuda.setText("AYUDA");
@@ -889,6 +905,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_mnuRegistrarVenta1MouseClicked
 
+    private void mnuAcerca3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAcerca3MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_mnuAcerca3MouseClicked
+
+    private void mnuAcerca3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAcerca3ActionPerformed
+       subirExcelBDVentas sbv = new subirExcelBDVentas();
+       sbv.setVisible(true);
+    }//GEN-LAST:event_mnuAcerca3ActionPerformed
+
     public Listar_usuario getUsuario() {
         return objUsuario;
     }
@@ -971,6 +996,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem mnuAcerca;
     private javax.swing.JMenuItem mnuAcerca1;
     private javax.swing.JMenuItem mnuAcerca2;
+    private javax.swing.JMenuItem mnuAcerca3;
     private javax.swing.JMenu mnuAyuda;
     private javax.swing.JMenuItem mnuCliente;
     private javax.swing.JMenuItem mnuCliente1;

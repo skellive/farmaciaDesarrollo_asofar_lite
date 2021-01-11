@@ -6,6 +6,7 @@
 package com.farmacia.dao;
 
 import com.farmacia.view.excel.subirExcelBD;
+import static com.itextpdf.kernel.pdf.PdfName.Decimal;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -153,4 +154,60 @@ public class conexion_Excel {
 
     }
 
+    
+    public static void subirArchivosVentas(String ruta) throws IOException, SQLException, ClassNotFoundException {
+        Conexion c = new Conexion();
+
+            Connection con = c.conectar();
+        try {
+            
+            
+            CallableStatement ps;
+            FileInputStream file = new FileInputStream(new File(ruta));
+
+            
+            XSSFWorkbook wb = new XSSFWorkbook(file);
+            XSSFSheet sheet = wb.getSheetAt(0);
+
+            int numFilas = sheet.getLastRowNum();
+            for (int a = 1; a <= numFilas; a++) {
+                Row fila = sheet.getRow(a);
+                ps = con.prepareCall("{CALL insertarVentaCompleta(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");//20
+                ps.setString(1, fila.getCell(0).getStringCellValue());
+                ps.setString(2, fila.getCell(1).getStringCellValue());
+                ps.setString(3, fila.getCell(2).getStringCellValue());
+                ps.setString(4, fila.getCell(3).getStringCellValue());
+                ps.setString(5, fila.getCell(4).getStringCellValue());
+                ps.setDouble(6, fila.getCell(5).getNumericCellValue());
+                ps.setDouble(7, fila.getCell(6).getNumericCellValue());
+                ps.setDouble(8, fila.getCell(7).getNumericCellValue());
+                ps.setInt(9, (int) (fila.getCell(8).getNumericCellValue()));
+                ps.setInt(10, (int) fila.getCell(9).getNumericCellValue());                
+                ps.setDouble(11,  fila.getCell(10).getNumericCellValue());                
+                ps.execute();
+                 System.out.println("Correcto");
+                
+            }
+           
+            JOptionPane.showMessageDialog(null, "Datos guardados correctamente");
+
+        } catch (FileNotFoundException ex) {
+            
+            Logger.getLogger(conexion_Excel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al procesar:" + ex);
+        }
+        catch (SQLException ex) {
+            Logger.getLogger(conexion_Excel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Problema en base. Error al procesar:" + ex);
+        }catch (IOException ex) {
+            Logger.getLogger(subirExcelBD.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Problema en datos. Error al procesar:" + ex);
+        }
+        finally{
+            con.close();
+        }
+
+    }
+    
+    
 }
