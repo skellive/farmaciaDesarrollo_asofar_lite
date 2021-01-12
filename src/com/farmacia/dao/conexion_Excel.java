@@ -173,8 +173,8 @@ public class conexion_Excel {
             for (int a = 1; a <= numFilas; a++) {
                 Row fila = sheet.getRow(a);
                 ps = con.prepareCall("{CALL insertarVentaCompleta(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)}");//20
-                ps.setString(1, fila.getCell(0).getStringCellValue());
-                ps.setString(2, fila.getCell(1).getStringCellValue());
+                ps.setString(1, String.valueOf(fila.getCell(0).getNumericCellValue()));
+                ps.setString(2, String.valueOf(fila.getCell(1).getNumericCellValue()));
                 ps.setString(3, fila.getCell(2).getStringCellValue());
                 ps.setString(4, fila.getCell(3).getStringCellValue());
                 ps.setString(5, fila.getCell(4).getStringCellValue());
