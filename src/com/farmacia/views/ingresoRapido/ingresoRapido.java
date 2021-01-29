@@ -844,7 +844,7 @@ public class ingresoRapido extends javax.swing.JFrame {
         BigDecimal PorcentajeDesc = lista.getPorcentaje_descuento();
         BigDecimal ValorDes = Subtotal.multiply(PorcentajeDesc).divide(new BigDecimal("100"));
         objd.setValor_descuento(ValorDes);
-        
+
         if (lista.getIva().equals("NO")) {
             objd.setPrecioiva(new BigDecimal("0.00"));
             BigDecimal importe = Subtotal.subtract(ValorDes);
@@ -866,7 +866,7 @@ public class ingresoRapido extends javax.swing.JFrame {
                 listaPNP.get(i).setCantidad(valor);
             }
         }
-
+        /* Comentario de prueba en java*/
     }
 
     private void getPosicion2(Long id, int valor) {
